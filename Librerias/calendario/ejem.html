@@ -1,0 +1,30 @@
+<html>
+    <head>    
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" media="all" href="daterangepicker-bs3.css" />
+      <script type="text/javascript" src="../js/jquery.min.js"></script> 
+      <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="moment.js"></script>
+      <script type="text/javascript" src="daterangepicker.js"></script>
+    </head>
+    <body> 
+<form>
+  <div class="form-group">
+    <label for="reservation">Reservation dates:</label>
+    <div class="controls">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" name="reservation" id="reservation" />
+      </div>
+    </div>
+  </div>
+</form>
+ 
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#reservation').daterangepicker();
+});
+</script>
+    </body>
+
+</html>

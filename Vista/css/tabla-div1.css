@@ -1,0 +1,73 @@
+@charset "utf-8";
+/* CSS Document */
+.contenedor-tabla{
+display: table;   
+
+
+}
+.contenedor-fila{
+display: table-row;
+height: 20px;
+background-color:#ffffff;
+
+}
+.contenedor-fila2{
+display: table-row;
+height: 20px;
+font-size: 20px;
+color:#ffffff;
+background-color:#003200;
+}
+.contenedor-fila3{
+display: table-row;
+height: 20px;
+font-size: 15px;
+
+}
+.contenedor-columna{
+display: table-cell;
+width: 15%;
+padding:0px 13px 5px 13px;
+
+border: 1px solid #003200;
+
+
+}
+.contenedor-columna2{
+display: table-cell;
+width: 15%;
+padding:0px 13px 5px 13px;
+
+
+}
+.contenedor-columna3{
+display: table-cell;
+width: 15%;
+padding:0px 8px 4px 8px;
+
+}
+#alinDer{
+	text-align:right;
+	}
+#alinIzq{
+	text-align:left;
+	}
+.historia1
+{
+margin-left: 15%;
+border-radius: 17px 17px 17px 17px;
+-moz-border-radius: 17px 17px 17px 17px;
+-webkit-border-radius: 17px 17px 17px 17px;
+border: 7px solid #003200;
+width: 70%;
+}
+h1{
+        text-align: left;
+    color: #003300;
+    font-weight: bold;
+}
+h2{
+
+    color: #003300;
+    font-weight: bold; 
+}

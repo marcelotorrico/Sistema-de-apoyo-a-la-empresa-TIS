@@ -1,0 +1,138 @@
+/*
+ * Hoja de estilos de: www.cs.umss.edu.bo
+ * Creados por el "Laboratorio de Desarrollo" - CIDAI.
+ * de la Universidad Mayor de San Sim�n - Cochabamba-Bolivia.
+ * @2004, 2005, 2008.
+ */
+
+/*** BODY ***/
+
+
+/*** INPUT ***/
+
+/*** SubTitulo de la Parte Central Con el Tag TD ***/
+
+/*** SubTitulo de la Parte Central Con el Tag TD ***/
+TD.sub_titulo_central {
+	font-family: Times,Verdana,Arial;
+	font-size: 13px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	color:#ffffff;; /*#F18F58;*/
+	text-decoration: underline;
+	text-align: left;
+        background-color:#003300;  /*#FFFED9;*/
+/*	background: url(../imagenes/fondo_sub_titulo.gif); */
+}
+
+
+
+/*** Primera letra de los SubTitulos ***/
+.sub_titulo_central:first-letter {
+	font-size: 16px;
+	 
+        font-weight: bold; 
+}
+
+/* Estilos para los avisos moviles del index */
+.caja_aviso{
+   background-color: #ffffff;
+   border-bottom-color:#003300;
+   border-bottom-style: ridge;
+   border-bottom-width: 1px;
+   border-left-color: #003300;
+   border-left-style: ridge;
+   border-left-width: 1px;
+   border-right-color: #003300;
+   border-right-style: ridge;
+   border-right-width: 1px;
+   border-top-color: #003300;
+   border-top-style: ridge;
+   border-top-width: 1px;
+   margin-bottom: 1px;
+   margin-left: 1px;
+   margin-right: 1px;
+   margin-top: 1px;
+   padding-bottom: 2px;
+   padding-left: 2px;
+   padding-right: 2px;
+   padding-top: 2px
+}
+
+.titulo_aviso{
+    background-color:#003300;
+   color:#fef0cb;
+   font-family: 'Times New Roman',Times,serif;
+   font-size: 14px;
+   font-weight: bold;
+   margin-bottom: 1px;
+   margin-left: 1px;
+   margin-right: 1px;
+   margin-top: 1px;
+   padding-bottom: 4px;
+   padding-left: 4px;
+   padding-right: 4px;
+   padding-top: 4px;
+   text-align: center
+}       
+
+
+.subtitulo_aviso{
+    background-color:#485913;
+   color: #FFFFFF;
+   font-family: 'Times New Roman',Times,serif;
+   font-size: 10px;
+   margin-bottom: 1px;
+   margin-left: 1px;
+   margin-right: 1px;;
+   margin-top: 1px;
+   padding-bottom: 4px;
+   padding-left: 4px;
+   padding-right: 4px;
+   padding-top: 4px;
+ 
+}
+
+.letra_aviso{
+   color:#1b7e5a;
+   font-family: 'Times New Roman',Times,serif;
+   font-size: 12px;
+   margin-bottom: 2px;
+   margin-left: 2px;
+   margin-right: 2px;
+   margin-top: 2px;
+   padding-bottom: 4px;
+   padding-left: 4px;
+   padding-right: 4px;
+   padding-top: 4px;
+   text-align: justify;
+   vertical-align: middle
+}
+
+.pie_aviso{
+   border-top-style: ridge;
+   border-top-width: 2px;
+   bottom: 8%;
+   color:#005f8d;
+   font-family: 'Times New Roman',Times,serif;
+   font-size: 10px;
+   left: 2%;
+   position: absolute;
+   vertical-align: bottom;
+   width: 95%
+}
+
+.contenedor-tabla
+{
+       border-top-style: ridge;
+   border-top-width: 2px;
+   bottom: 8%;
+   color:#005f8d;
+   font-family: 'Times New Roman',Times,serif;
+   font-size: 10px;
+   left: 2%;
+  
+   vertical-align: bottom;
+   width: 95%
+}

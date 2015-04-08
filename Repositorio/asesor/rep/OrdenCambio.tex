@@ -1,0 +1,65 @@
+\documentclass[10pt,letterpaper,twoside]{article}
+
+\newcommand{\empresa}[0]{\textbf{[[empresa-nombre-largo]]}}
+\newcommand{\diayhora}[0]{\textbf{[[fecha-actual]], a horas [[hora-actual]]}}
+\newcommand{\lugar}[0]{\textbf{[[lugar]]}}
+
+\newcommand{\pp}[0]{\textbf{[[primer-puntaje]]}}
+\newcommand{\sep}[0]{\textbf{[[segundo-puntaje]]}}
+\newcommand{\tp}[0]{\textbf{[[tercer-puntaje]]}}
+\newcommand{\cp}[0]{\textbf{[[cuarto-puntaje]]}}
+\newcommand{\qp}[0]{\textbf{[[quinto-puntaje]]}}
+\newcommand{\ssp}[0]{\textbf{[[sexto-puntaje]]}}
+\newcommand{\sssp}[0]{\textbf{[[septimo-puntaje]]}}
+
+\newcommand{\observacionesDetalle}[3]{\item #1 \item #2 \item #3}
+\newcommand{\observaciones}[0]{\observacionesDetalle{ob1}{ob2}{ob3}}
+
+\usepackage{t1enc}
+\usepackage[latin1]{inputenc}
+\usepackage[activeacute, spanish]{babel}
+\usepackage{graphics}
+
+%\pagestyle{myheadings}
+\markboth{TIS}{Ma. Leticia Blanco Coca}
+
+\begin{document}
+
+\title{Orden de Cambio}
+\author{Ma. Leticia Blanco Coca}
+\maketitle
+
+
+TIS ha revisado la propuesta que su empresa a entregado y se ha puntuado de la siguiente manera:
+
+\begin{tabular}{|l|l|l|}
+\hline \textbf{Descripci'on}& \textbf{Puntaje}&\textbf{Puntaje} \\
+& \textbf{Referencial}&\textbf{Obtenido} \\
+\hline Cumplimiento de especificaciones del proponente       & 15 puntos & \pp \\
+\hline Claridad en la organizaci'on de la empresa proponente & 10 puntos & \sep \\
+\hline Cumplimiento de especificaciones t'ecnicas            & 30 puntos & \tp \\ 
+\hline Claridad en el proceso de desarrollo                  & 10 puntos & \cp \\
+\hline Plazo de ejecuci'on                                   & 10 puntos & \qp \\
+\hline Precio total                                          & 15 puntos & \ssp \\
+\hline Uso de herramientas en el proceso de desarrollo       & 10 puntos & \sssp \\
+\hline
+\end{tabular}
+
+TIS despu'es de revisar la propuesta de su empresa \empresa, tiene las siguientes observaciones:
+
+\begin{enumerate}
+\observaciones
+\end{enumerate}
+
+Esta adenda de correcci'on debe ser entregada por correo electr'onico antes de la firma del contrato, misma que debe hacerse llegar al correo leticia@memi.umss.edu.bo.
+
+
+Paralelamnete se solicita, indicar el d'ia de su preferencia para realizar revisiones, puesta
+en marcha  y 
+seguimiento de su propuesta de desarrollo en el tiempo que dure el contrato con TIS.
+
+
+As'imismo, recordar que para el d'ia de la firma del contrato que se realizar'a el d'ia \diayhora\ en \lugar; se requiere de una copia f'isica
+ de la 
+\texttt{Boleta de Garant'ia}, emitida a favor de \texttt{TIS} por parte de \empresa.
+\end{document}
