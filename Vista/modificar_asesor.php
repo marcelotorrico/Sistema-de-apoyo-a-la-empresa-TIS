@@ -68,7 +68,7 @@
                                
                 if($("form")[0].checkValidity()) 
                 {
-                    var url = "ActualizarRegistroAsesor.php"
+                    var url = "../Modelo/BD/ActualizarRegistroAsesor.php"
 
                     $.ajax({
                         url: url,

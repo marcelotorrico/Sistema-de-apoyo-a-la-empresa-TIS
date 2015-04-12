@@ -281,7 +281,7 @@
 									</div>
                                     <div class="contenedor-columna">
                                         <?php
-                                            echo '<a href = "EliminarGrupoEmpresa.php?id_us='.$grupo.'" class="verificar" ><font color="blue">Eliminar</font></a>';
+                                            echo '<a href = "../Modelo/BD/EliminarGrupoEmpresa.php?id_us='.$grupo.'" class="verificar" ><font color="blue">Eliminar</font></a>';
                                                                                    
                                         ?>
                                     </div>                                                               

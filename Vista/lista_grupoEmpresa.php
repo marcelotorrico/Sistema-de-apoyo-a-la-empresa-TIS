@@ -310,7 +310,7 @@
 
                 <div class="contenedor-columna">
                     <?php
-                            echo "<a href ='eliminar_grupoEmpresa.php?id_us=".$fila['CODIGO_S']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+                            echo "<a href ='../Modelo/BD/eliminar_socio.php?id_us=".$fila['CODIGO_S']."' class='verificar'><font color='blue'>Eliminar</font></a>";
                     ?>
                 </div>
 

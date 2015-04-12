@@ -1,5 +1,5 @@
 <?php
-    include '../Modelo/conexion.php';
+    include '../conexion.php';
     $conectar = new conexion();
     session_start();
 

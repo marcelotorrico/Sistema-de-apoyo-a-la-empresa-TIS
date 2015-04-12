@@ -1,6 +1,6 @@
 <?php  
 
-include '../Modelo/conexion.php';
+include '../conexion.php';
 $conect = new conexion();
 $GrupoE = $_GET['id_us'];
 
@@ -72,14 +72,14 @@ if(isset($_GET['op']))
 		eliminDir("../Repositorio/".$GrupoE."");
 
 		echo '<script>alert("Se elimino la grupo empresa correctamente!!")</script>';
-		echo '<script>window.location="../Vista/ListaGrupoEmpresas.php";</script>';
+		echo '<script>window.location="../../Vista/ListaGrupoEmpresas.php";</script>';
 	}
 
 	else
 	{
 		if($accion == 'no')
 		{
-			header('location:../Vista/ListaGrupoEmpresas.php');
+			header('location:../../Vista/ListaGrupoEmpresas.php');
 		}
 	}
 
@@ -122,7 +122,7 @@ else
 	    $Del_Us = $conect->consulta("DELETE FROM usuario WHERE NOMBRE_U = '$GrupoE' ");
 
 		echo '<script>alert("Se elimino la grupo empresa correctamente!!")</script>';
-		echo '<script>window.location="../Vista/ListaGrupoEmpresas.php";</script>';
+		echo '<script>window.location="../../Vista/ListaGrupoEmpresas.php";</script>';
 
 	}
 

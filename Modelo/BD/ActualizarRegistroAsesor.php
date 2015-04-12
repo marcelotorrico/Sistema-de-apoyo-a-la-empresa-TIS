@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include '../Modelo/conexion.php';
+    include '../conexion.php';
     $conectar = new conexion();
     $name = $_POST['nombreUsuario'];
     $RealName = $_POST['nombreReal'];
