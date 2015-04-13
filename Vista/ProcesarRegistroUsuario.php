@@ -12,8 +12,12 @@
     require '../Vista/PHPMailerAutoload.php';
     require '../Vista/class.phpmailer.php';
     
+    require '../Controlador/ValidadorTelefonoUsuario.php';
+    
     $conect = new conexion();
     $mail = new PHPMailer();
+    
+    $validar = new ValidadorTelefonoUsuario();
 
     $Sel_U = $conect->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$Name' ");
     $Sel_U2 = mysql_fetch_row($Sel_U);
@@ -107,33 +111,25 @@
           if(!$mail->Send()) {
             echo "Error: " . $mail->ErrorInfo;
           } else {
-              if(strlen($Telefono)==7 || strlen($Telefono)==8){
+              
+              $boolean = $validar->verificarNumeroValido($Telefono);
+              
+              if($boolean == true){
                   
-                  $primerNumero = $Telefono[0];
+                  $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
                   
-                  if($primerNumero==7 && strlen($Telefono)==8 || $primerNumero==6 && strlen($Telefono)==8 ||$primerNumero==4 && strlen($Telefono)==7){
-                      
-                      
-                      $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
-
-                      $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
-                      $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
-                      $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
-
-                      echo '<script>alert("Su solicitud se envio correctamente");</script>';
-                      echo '<script>window.location="../index.php";</script>';
-                  }else{
-                      
-                      echo '<script>alert("El numero es incorrecto");</script>';
-                      echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
-                  }
+                  $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
+                  $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
+                  $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
+                  
+                  echo '<script>alert("Su solicitud se envio correctamente");</script>';
+                  echo '<script>window.location="../index.php";</script>';
               }else{
                   
-                  echo '<script>alert("El numero es incorrecto");</script>';
+                  echo '<script>alert("El numero de telefono es incorrecto");</script>';
                   echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
               }
           }
-        
     }else{
 
 
@@ -148,5 +144,5 @@
         echo '<script>alert("Correo Ingresado no Valido");</script>';
         echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
     }
-   
+    
 ?>

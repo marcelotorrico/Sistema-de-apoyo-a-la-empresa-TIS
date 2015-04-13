@@ -13,7 +13,11 @@
     require '../Vista/PHPMailerAutoload.php';
     require '../Vista/class.phpmailer.php';
     
+    require '../Controlador/ValidadorTelefonoUsuario.php';
+    
     $conexion = new conexion();
+    
+    $validar = new ValidadorTelefonoUsuario();
     
     $seleccion = $conexion->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$nombreUGE' ");
     $verGE = mysql_fetch_row($seleccion);
@@ -43,8 +47,12 @@
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 // iniciar transacción
                  $conn->beginTransaction();
-                try 
-                {
+                 
+                 $boolean = $validar->verificarNumeroValido($telefGE);
+              
+              if($boolean == true){
+                  try 
+                    {
                     $sql = 'INSERT INTO usuario (NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES (:value, :estado, :contrasena, :telefono, :correo);';
                     $result = $conn->prepare($sql);
                     $result->bindValue(':value', $nombreUGE, PDO::PARAM_STR);
@@ -76,6 +84,12 @@
                     $conn->rollback();
                     echo $e->getMessage();
                 }
+              }else{
+                  
+                  echo '<script>alert("El numero de telefono es incorrecto");</script>';
+                  echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+              }
+                
              }
              else
              {                

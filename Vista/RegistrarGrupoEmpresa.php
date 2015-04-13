@@ -125,7 +125,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejm: 4022371" pattern="\b[4][0-9]{6}"  required  onkeypress="return validarNumeros(event)">
+                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599" pattern="\b[467][0-9]{6,7}"  required  onkeypress="return validarNumeros(event)">
                                             </div>
                                         </div>
                                         
