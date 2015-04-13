@@ -33,24 +33,38 @@ $peticion3 = $conectar ->consulta("SELECT * FROM asesor");
     
      if (!is_array($verificarUGE2)) 
       {
-//conexion-------------		
-    
-
-	
-        
-        $peticion1 = $conectar ->consulta("INSERT INTO `usuario` (`NOMBRE_U`, `ESTADO_E`, `PASSWORD_U`, `TELEFONO_U`, `CORREO_ELECTRONICO_U`) VALUES ('$addUsuario', 'Habilitado', '$addContra', '$addTelefono', '$addEmail');");
-        $peticion2 = $conectar ->consulta("INSERT INTO `usuario_rol` (`NOMBRE_U`, `ROL_R`) VALUES ('$addUsuario', 'administrador');");
-        $peticion3 = $conectar ->consulta("INSERT INTO `administrador` (`NOMBRE_U`, `NOMBRES_AD`, `APELLIDOS_AD`) VALUES ('$addUsuario', '$addNombre ', '$addApellido');");
-	
-         //cerrar conexion--------------------------
-	
-	 //volver a la pagina---------------
          
-        echo"<script type=\"text/javascript\">alert('El registro se realizo exitosamente'); window.location='principal.php';</script>";
-	
-     }
- else{
+//conexion-------------		
+         
+         if(strlen($addTelefono)==7 || strlen($addTelefono)==8){
+                  
+                  $primerNumero = $addTelefono[0];
+                  
+                  if($primerNumero==7 && strlen($addTelefono)==8 || $primerNumero==6 && strlen($addTelefono)==8 ||$primerNumero==4 && strlen($addTelefono)==7){
+                      
+                      
+                      $peticion1 = $conectar ->consulta("INSERT INTO `usuario` (`NOMBRE_U`, `ESTADO_E`, `PASSWORD_U`, `TELEFONO_U`, `CORREO_ELECTRONICO_U`) VALUES ('$addUsuario', 'Habilitado', '$addContra', '$addTelefono', '$addEmail');");
+                      $peticion2 = $conectar ->consulta("INSERT INTO `usuario_rol` (`NOMBRE_U`, `ROL_R`) VALUES ('$addUsuario', 'administrador');");
+                      $peticion3 = $conectar ->consulta("INSERT INTO `administrador` (`NOMBRE_U`, `NOMBRES_AD`, `APELLIDOS_AD`) VALUES ('$addUsuario', '$addNombre ', '$addApellido');");
+
+                     //cerrar conexion--------------------------
+
+                     //volver a la pagina---------------
+
+                    echo"<script type=\"text/javascript\">alert('El registro se realizo exitosamente'); window.location='registro_administrador.php';</script>";
+
+                  }else{
+                      
+                      echo '<script>alert("El numero es incorrecto");</script>';
+                      echo '<script>window.location="../Vista/registro_administrador.php";</script>';
+                  }           
+     }else{
+                  
+                  echo '<script>alert("El numero es incorrecto");</script>';
+                  echo '<script>window.location="../Vista/registro_administrador.php";</script>';
+              }
+      }else{
      
-   echo"<script type=\"text/javascript\">alert('El nombre de usuario ya fue registrado por favor cambie de nombre'); window.location='registro_administrador.php';</script>";  
+        echo"<script type=\"text/javascript\">alert('El nombre de usuario ya fue registrado por favor cambie de nombre'); window.location='registro_administrador.php';</script>";  
      }
 

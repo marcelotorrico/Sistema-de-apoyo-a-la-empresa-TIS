@@ -249,7 +249,7 @@
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-earphone"></span>
             </span>
-            <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejm: 4022371" pattern="\b[4][0-9]{6}" required>
+            <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599" pattern="\b[467][0-9]{6,7}" required>
             </div>
             </div>
             <div class="form-group">

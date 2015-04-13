@@ -107,21 +107,34 @@
           if(!$mail->Send()) {
             echo "Error: " . $mail->ErrorInfo;
           } else {
+              if(strlen($Telefono)==7 || strlen($Telefono)==8){
+                  
+                  $primerNumero = $Telefono[0];
+                  
+                  if($primerNumero==7 && strlen($Telefono)==8 || $primerNumero==6 && strlen($Telefono)==8 ||$primerNumero==4 && strlen($Telefono)==7){
+                      
+                      
+                      $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
 
+                      $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
+                      $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
+                      $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
 
-
-            $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
-
-            $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
-            $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
-            $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
-               
-            echo '<script>alert("Su solicitud se envio correctamente");</script>';
-            echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                      echo '<script>alert("Su solicitud se envio correctamente");</script>';
+                      echo '<script>window.location="../index.php";</script>';
+                  }else{
+                      
+                      echo '<script>alert("El numero es incorrecto");</script>';
+                      echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                  }
+              }else{
+                  
+                  echo '<script>alert("El numero es incorrecto");</script>';
+                  echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+              }
           }
         
-    }
-    else{
+    }else{
 
 
         echo '<script>alert("El nombre de usuario ya esta registrado");</script>';
