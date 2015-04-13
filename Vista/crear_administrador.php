@@ -15,7 +15,7 @@
 $contador = 0;
 
 $addUsuario = $_POST['usuario'];
-$addContra = $_POST['contrasena'];
+$addContra = md5($_POST['contrasena']);
 $addNombre = $_POST['nombre'];
 $addApellido = $_POST['apellido'];
 $addTelefono = $_POST['telefono'];

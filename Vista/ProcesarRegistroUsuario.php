@@ -2,7 +2,7 @@
 
     $Name = $_POST['nombreUsuario'];
     $RealName = $_POST['nombreReal'];
-    $Pass = $_POST['password'];
+    $Pass = md5($_POST['password']);
     $Email = $_POST['email'];
     $rol = $_POST['UsuarioRol'];
     $Apellido = $_POST['apellido'];

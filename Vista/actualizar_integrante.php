@@ -10,7 +10,7 @@ $usuario=$_SESSION['usuario'];
 
 
 $updLogin = $_POST['login'];
-$updPassword = $_POST['password'];
+$updPassword = md5($_POST['password']);
 $updNombre = $_POST['nombre'];
 $updApellido = $_POST['apellido'];
 $updTelefono = $_POST['telefono'];

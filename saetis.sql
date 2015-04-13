@@ -1217,20 +1217,20 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`NOMBRE_U`, `ESTADO_E`, `PASSWORD_U`, `TELEFONO_U`, `CORREO_ELECTRONICO_U`) VALUES
-('Admin1', 'Habilitado', 'Admin1*123', '4442336', 'adm.saetis@gmail.com'),
-('Admin2', 'Habilitado', 'Admin2*123', '4329092', 'joaquin@rodriguez.com'),
-('AgileA', 'Habilitado', 'Agile*123', '4443200', 'agile@action.com'),
-('Arkano', 'Habilitado', 'Arkano*123', '4233322', 'arkano@arkanos.com'),
-('Camaleon', 'Habilitado', 'Camaleon*123', '4442299', 'camaleon@soft.com'),
-('Colective', 'Habilitado', 'Colective*123', '4432211', 'colectivo@virtual.com'),
-('Corina', 'Deshabilitado', 'Corina*123', '4241122', 'corina@hotmail.com'),
-('David', 'Deshabilitado', 'David*123', '4443321', 'davides@gmail.com'),
-('FreeValue', 'Habilitado', 'Freevalue*123', '4329092', 'free@value.com'),
-('LeticiaB', 'Habilitado', 'Leticia*123', '4440099', 'leticia@gmail.com'),
-('MarcoA', 'Deshabilitado', 'Marco*123', '4440099', 'marcoantonio@hotmail.com'),
-('Oasis', 'Habilitado', 'Oasis*123', '4331222', 'oasis@oasis.com'),
-('Patricia', 'Habilitado', 'Patricia*123', '4298765', 'patricia@hotmail.com'),
-('Power', 'Habilitado', 'Power*123', '4329090', 'power@power.com');
+('Admin1', 'Habilitado', 'dbb050cddf3a78fd6b861eb577d1f5dc', '4442336', 'adm.saetis@gmail.com'),
+('Admin2', 'Habilitado', '62132d33742969b9b1db54e2d4145009', '4329092', 'joaquin@rodriguez.com'),
+('AgileA', 'Habilitado', 'f4326bafda468fdca9511f4468cea9c9', '4443200', 'agile@action.com'),
+('Arkano', 'Habilitado', 'd87b0418cd506677986e7a3ae41b2c54', '4233322', 'arkano@arkanos.com'),
+('Camaleon', 'Habilitado', '88936961971d538e693935a6ffb40a20', '4442299', 'camaleon@soft.com'),
+('Colective', 'Habilitado', 'b9becbb405f0fd5524071709a02b5330', '4432211', 'colectivo@virtual.com'),
+('Corina', 'Deshabilitado', '83175e301fe440e2fa85463a987037ba', '4241122', 'corina@hotmail.com'),
+('David', 'Deshabilitado', '0076fa0d70724c52f22a82f7ed3f5e23', '4443321', 'davides@gmail.com'),
+('FreeValue', 'Habilitado', 'f87f9d72ff9dfb09182cffa68762c2c8', '4329092', 'free@value.com'),
+('LeticiaB', 'Habilitado', '1fec3b9b292b7c95d5287012c1ea3052', '4440099', 'leticia@gmail.com'),
+('MarcoA', 'Deshabilitado', '0c7895d527f7680d6a715fc6a47a720e', '4440099', 'marcoantonio@hotmail.com'),
+('Oasis', 'Habilitado', 'c810a44fc32898ae6ab495d89510d75f', '4331222', 'oasis@oasis.com'),
+('Patricia', 'Habilitado', '1f08de3d6b9e572ba8f5da4c1dd2c30d', '4298765', 'patricia@hotmail.com'),
+('Power', 'Habilitado', '7a4f8e9647073ee9a5564f81cf3a1082', '4329090', 'power@power.com');
 
 -- --------------------------------------------------------
 

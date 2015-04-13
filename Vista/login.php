@@ -5,7 +5,7 @@
     session_start();
     
     $usuario= $_POST['usuario'];
-    $contrasena= $_POST['contrasena'];
+    $contrasena= md5($_POST['contrasena']);
     $permiso="administrador";
     $permiso2="asesor";
     $permiso3="grupoEmpresa";

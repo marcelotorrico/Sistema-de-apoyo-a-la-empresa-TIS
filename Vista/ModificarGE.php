@@ -8,7 +8,7 @@
     $correo = $_POST['correo'];
     $telef = $_POST['telefono'];
     $direc = $_POST['direccion'];
-    $contrasena = $_POST['contrasena1'];
+    $contrasena = md5($_POST['contrasena1']);
 
     $conexion->consulta(" UPDATE usuario SET PASSWORD_U='$contrasena', TELEFONO_U='$telef', CORREO_ELECTRONICO_U='$correo' WHERE NOMBRE_U = '$nombreUGE'");
     $conexion->consulta(" UPDATE grupo_empresa SET DIRECCION_GE='$direc' WHERE NOMBRE_U = '$nombreUGE'");

@@ -4,7 +4,7 @@ session_start();
     $conectar = new conexion();
     $name = $_POST['nombreUsuario'];
     $RealName = $_POST['nombreReal'];
-    $password = $_POST['password'];
+    $password = md5($_POST['password']);
     $emailUsuario = $_POST['email'];
     $apellidoUsuario = $_POST['apellido'];
     $telefonoUsuario = $_POST['telefono'];

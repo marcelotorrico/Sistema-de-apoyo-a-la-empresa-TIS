@@ -7,7 +7,7 @@
     $correoGE = $_POST['correo'];
     $telefGE = $_POST['telefono'];
     $dirGE = $_POST['direccion'];
-    $contGE = $_POST['contrasena1'];
+    $contGE = md5($_POST['contrasena1']);
     
     include '../Modelo/conexion.php';
     require '../Vista/PHPMailerAutoload.php';
