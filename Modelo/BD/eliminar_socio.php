@@ -1,11 +1,17 @@
 <?php
     include '../conexion.php';
+    
+    require '../../Controlador/ValidadorInicioSesion.php';
+    
     $conectar = new conexion();
     session_start();
+    $usuario = $_SESSION['usuario'];
+    
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($usuario);
 
 //Crear variables--------------------------
 
-$usuario = $_SESSION['usuario'];
 $contrasena = $_SESSION['contrasena'];
 
 $idgp = $_GET['id_us'];

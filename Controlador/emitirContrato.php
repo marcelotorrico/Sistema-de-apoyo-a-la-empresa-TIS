@@ -1,7 +1,14 @@
 <?php
   
   include '../Modelo/conexion.php';
+  
+  require '../Controlador/ValidadorInicioSesion.php';
+  
   session_start();
+  $uActivo = $_SESSION['usuario'];
+  
+  $verificar = new ValidadorInicioSesion();
+  $verificar->validarInicioSesion($uActivo);
   $conexion = new conexion();
 
   if (isset($_POST['grupoempresa']))

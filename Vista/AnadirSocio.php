@@ -1,10 +1,15 @@
 <?php
 
  include '../Modelo/conexion.php';
+ 
+ require '../Controlador/ValidadorInicioSesion.php';
+  
  session_start();
  $uActivo = $_SESSION['usuario'];
  $conexion = new conexion();
- 
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($uActivo);
 
 ?>
 <html>

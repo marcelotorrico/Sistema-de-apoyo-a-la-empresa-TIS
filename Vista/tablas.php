@@ -4,6 +4,12 @@
   session_start();
   $conect = new conexion();
          $userAct = $_SESSION['usuario'];
+         
+         require '../Controlador/ValidadorInicioSesion.php';
+
+        $verificar = new ValidadorInicioSesion();
+        $verificar->validarInicioSesion($userAct);
+        
 	if(isset($_POST["enviar"])){
             $destino= $_POST["Conocido"];
 

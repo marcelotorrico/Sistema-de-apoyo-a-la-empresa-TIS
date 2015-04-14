@@ -13,6 +13,10 @@ $addFecha= $_POST['fec'];
    session_start();
    $UsuarioActivo = $_SESSION['usuario'];
  
+   require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($UsuarioActivo);
 
 //conexion-------------		
     

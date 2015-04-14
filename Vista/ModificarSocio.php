@@ -4,6 +4,12 @@
     session_start();
     $UsuarioActivo = $_SESSION['usuario'];
     include("controlSesion.php");
+    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($UsuarioActivo);
+
     $con=new conexion();
     $VerificarUsuario = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$UsuarioActivo' ");
     $VerificarUsuario2 = mysql_fetch_row($VerificarUsuario);

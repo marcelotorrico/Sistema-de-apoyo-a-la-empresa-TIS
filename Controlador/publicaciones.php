@@ -2,6 +2,8 @@
 //include('../Vista/recursosasesor.php');
 include('../Modelo/crearimagen.php');
 
+ require '../Controlador/ValidadorInicioSesion.php';
+
     $conexion = mysql_connect("localhost","root","");
    // $conexion = mysql_connect("192.168.2.5","mbittle","5rtZAGYq");
 	//Control
@@ -10,6 +12,9 @@ include('../Modelo/crearimagen.php');
 	//mysql_select_db("tis_mbittle",$conexion);
    session_start();
 	 $UsuarioActivo = $_SESSION['usuario'];
+         
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($UsuarioActivo);
 	//$usuario ='leticia';
 
 	$graficorecurso     = new Recurso($UsuarioActivo);

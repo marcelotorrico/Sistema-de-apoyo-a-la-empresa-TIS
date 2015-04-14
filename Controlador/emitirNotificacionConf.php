@@ -2,11 +2,17 @@
 
 include '../Modelo/conexion_pd.php';
 include '../Modelo/crear_oc_pdf.php';
+
+require '../Controlador/ValidadorInicioSesion.php';
+
 session_start();
+$nombreUA = $_SESSION['usuario'] ;
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($nombreUA);
 
 $conexion = new conexion();
 
-$nombreUA = $_SESSION['usuario'] ;
 $nomAp = $conexion->query("SELECT NOMBRES_A, APELLIDOS_A FROM asesor WHERE NOMBRE_U =  '$nombreUA' ");
 $nombreAp = $nomAp->fetchObject();
 $nomA = $nombreAp->NOMBRES_A;

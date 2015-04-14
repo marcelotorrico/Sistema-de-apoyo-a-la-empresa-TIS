@@ -4,6 +4,11 @@
 	$Crit_C = $_POST['CriterioEliminar'];
 
 	include '../Modelo/conexion.php';
+        
+        require '../Controlador/ValidadorInicioSesion.php';
+
+        $verificar = new ValidadorInicioSesion();
+        $verificar->validarInicioSesion($UserAct);
 						                    
 	$conect = new conexion();
 

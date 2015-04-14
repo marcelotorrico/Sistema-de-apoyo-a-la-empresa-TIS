@@ -4,6 +4,10 @@
     session_start();
     $uActivo = $_SESSION['usuario'];
   
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($uActivo);
 
     $con=new conexion();
     $VerificarUsuario = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");

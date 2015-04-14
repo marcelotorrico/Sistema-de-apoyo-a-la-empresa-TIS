@@ -7,6 +7,12 @@ $conect = new conexion();
 
 //Crear variables--------------------------
 $usuario = $_SESSION['usuario'];
+
+require '../Controlador/ValidadorInicioSesion.php';
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($usuario);
+
 error_reporting(E_ALL ^ E_NOTICE);
 $idPubli = $_GET['id_us'];
 

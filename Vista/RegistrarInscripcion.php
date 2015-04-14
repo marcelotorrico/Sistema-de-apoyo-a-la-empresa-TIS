@@ -6,6 +6,11 @@
     $nombreU = $_SESSION['usuario']  ;
     $codigoProyecto;
 
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($nombreU);
+
     
 //Relacion entre gestion y proyecto, 1 gestion n proyectos
     $conect->consulta(" UPDATE inscripcion SET CODIGO_P='$codigoProyecto' WHERE NOMBRE_UA = '$nombreU'");

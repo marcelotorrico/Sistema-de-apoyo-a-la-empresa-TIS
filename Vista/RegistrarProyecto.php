@@ -5,6 +5,12 @@
     $conexion = new conexion();
   
     $nombreU = $_SESSION['usuario']  ;
+    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($nombreU);
+
     $nombProy = $_POST['nombreProy'];
     $descProy = $_POST['desProy'];
     $conv = $_POST['convocatoria'];

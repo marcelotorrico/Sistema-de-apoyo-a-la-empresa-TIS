@@ -2,11 +2,15 @@
 
 
 	include '../Modelo/conexion.php';
+        
+        require '../Controlador/ValidadorInicioSesion.php';
+            
 	session_start();
 	$conect = new conexion(); 
     $UsuarioActivo = $_SESSION['usuario'];
 
-
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($UsuarioActivo);
 
     $CriteriosEvaluacion = $conect->consulta("SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_U = '$UsuarioActivo'");
 

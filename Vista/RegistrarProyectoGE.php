@@ -5,6 +5,12 @@ session_start();
 $conect = new conexion();
 $nombreU = $_SESSION['usuario'];
 
+require '../Controlador/ValidadorInicioSesion.php';
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($nombreU);
+
+
 if (isset($_POST['proyecto'])) {
     
     $VerificarIns= $conect->consulta("SELECT NOMBRE_U FROM inscripcion_proyecto WHERE NOMBRE_U = '$nombreU' ");

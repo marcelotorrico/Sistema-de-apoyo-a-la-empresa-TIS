@@ -2,6 +2,12 @@
  session_start();
  $uActivo = $_SESSION['usuario'];
  include("controlSesion.php");
+ 
+ require '../Controlador/ValidadorInicioSesion.php';
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($uActivo);
+
 ?>
 
   <!DOCTYPE html>

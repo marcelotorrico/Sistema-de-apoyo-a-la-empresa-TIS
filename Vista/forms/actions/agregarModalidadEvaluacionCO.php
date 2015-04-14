@@ -1,5 +1,8 @@
 <?php
 include '../../../Modelo/conexion.php';
+
+require '../Controlador/ValidadorInicioSesion.php';
+
 //header('Location: ../../CrearModalidadEvaluacion.php');
 $textDescripcionD=$_POST["descripcionDocumento"];
 
@@ -12,6 +15,8 @@ $existeCampo="vacio";
 session_start();
 $usuarioActivo=$_SESSION['usuario'];
 
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($usuarioActivo);
 
 if(isset($Agregar))
 {

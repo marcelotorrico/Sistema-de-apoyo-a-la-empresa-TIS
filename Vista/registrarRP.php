@@ -3,6 +3,12 @@
     session_start();
     
     $nombreU = $_SESSION['usuario'];
+    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($nombreU);
+
     $conexion = new conexion();
     
     $consulta = $conexion->consulta("SELECT REPRESENTANTE_LEGAL_GE FROM grupo_empresa WHERE NOMBRE_U = '$nombreU' ");

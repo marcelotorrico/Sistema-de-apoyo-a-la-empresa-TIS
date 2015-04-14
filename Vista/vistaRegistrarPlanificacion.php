@@ -8,6 +8,12 @@
     session_start();
         
     $uActivo = $_SESSION['usuario'];
+    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($uActivo);
+
     $con = new conexion();
     $Ver_Usr = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");
     $Ver_Usr2 = mysql_fetch_row($Ver_Usr);

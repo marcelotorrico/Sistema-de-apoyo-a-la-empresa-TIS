@@ -1,7 +1,13 @@
  <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';  
+    include '../Modelo/conexion.php';
+    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($uActivo);
+
     $conectar=new conexion();
     
     

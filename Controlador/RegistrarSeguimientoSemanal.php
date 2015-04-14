@@ -1,13 +1,18 @@
 <?php
 	
 	require_once '../Modelo/conexion.php';
+        
+        require '../Controlador/ValidadorInicioSesion.php';
 
 	$funcion = $_POST['funcion'];
 	$grupoE = $_POST['grupoE'];
 	$conexion = new conexion();
 	session_start();
 	$uActivo = $_SESSION['usuario'];
-
+         
+        $verificar = new ValidadorInicioSesion();
+        $verificar->validarInicioSesion($uActivo);
+        
 	date_default_timezone_set('America/Puerto_Rico');
 	$horaReg = date("H:i:s");
 	$fechaReg = date('Y:m:j');

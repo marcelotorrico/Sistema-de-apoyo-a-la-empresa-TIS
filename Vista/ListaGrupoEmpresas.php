@@ -4,6 +4,11 @@
   
     include '../Modelo/conexion.php';
    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($uActivo);
+
     $conect = new conexion();
  ?>
 	<html>

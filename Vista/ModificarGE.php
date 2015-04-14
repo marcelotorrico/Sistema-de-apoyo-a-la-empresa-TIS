@@ -5,6 +5,11 @@
     $conexion = new conexion();
     $nombreUGE = $_SESSION['usuario'];
     
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($nombreUGE);
+
     $correo = $_POST['correo'];
     $telef = $_POST['telefono'];
     $direc = $_POST['direccion'];

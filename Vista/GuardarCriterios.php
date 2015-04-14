@@ -6,6 +6,11 @@
 
     $UserAct = $_SESSION['usuario'];
 
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($UserAct);
+
 	$con = new conexion();
 
 	$con->conectar();

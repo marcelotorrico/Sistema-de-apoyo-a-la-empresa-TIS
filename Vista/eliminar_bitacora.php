@@ -9,6 +9,11 @@
 $usuario= $_SESSION['usuario'];
 $contrasena= $_SESSION['contrasena'];
 
+require '../Controlador/ValidadorInicioSesion.php';
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($usuario);
+
 $delActiv = $_GET['id_us'];
     
 

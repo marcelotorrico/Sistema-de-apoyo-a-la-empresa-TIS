@@ -2,6 +2,12 @@
 session_start();
   
     $nombreU = $_SESSION['usuario']  ;
+    
+    require '../Controlador/ValidadorInicioSesion.php';
+
+    $verificar = new ValidadorInicioSesion();
+    $verificar->validarInicioSesion($nombreU);
+
     $nombreS = $_POST['nombre'];
     $apellidoS = $_POST['apellido'];
     

@@ -5,6 +5,11 @@
 	session_start();
 	$usuario = $_SESSION['usuario'];
      
+        require '../Controlador/ValidadorInicioSesion.php';
+
+        $verificar = new ValidadorInicioSesion();
+        $verificar->validarInicioSesion($usuario);
+
 	$conexion = new conexion();
 	$conexion->conectar();
 

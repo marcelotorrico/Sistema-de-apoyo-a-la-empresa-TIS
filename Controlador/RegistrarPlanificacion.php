@@ -7,11 +7,14 @@
 	require_once '../Modelo/Model/Precio.php';
 	require_once '../Modelo/Model/Entrega.php';
 	require_once '../Modelo/Model/Pago.php';
-
+        
+        require '../Controlador/ValidadorInicioSesion.php';
 	
         session_start();
         $usuario=$_SESSION['usuario'];
-        
+
+        $verificar = new ValidadorInicioSesion();
+        $verificar->validarInicioSesion($usuario);
         /*$usuario = 'Bittle';*/
         $planificacion = new Planificacion($usuario);
         $estado = $planificacion->getEstado();

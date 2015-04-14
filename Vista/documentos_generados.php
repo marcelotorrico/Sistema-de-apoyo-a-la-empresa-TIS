@@ -2,6 +2,12 @@
  include '../Modelo/conexion.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
+ 
+ require '../Controlador/ValidadorInicioSesion.php';
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($uActivo);
+
  $con=new conexion();
  
  ?> 

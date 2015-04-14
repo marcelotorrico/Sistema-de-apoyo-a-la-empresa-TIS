@@ -1,5 +1,12 @@
 <?php
 session_start();
+$updLogin=$_SESSION['usuario'];
+
+require '../../Controlador/ValidadorInicioSesion.php';
+
+$verificar = new ValidadorInicioSesion();
+$verificar->validarInicioSesion($updLogin);
+
     include '../conexion.php';
     $conectar = new conexion();
     $name = $_POST['nombreUsuario'];
@@ -10,7 +17,7 @@ session_start();
     $telefonoUsuario = $_POST['telefono'];
 
 
-$updLogin=$_SESSION['usuario'];
+
 
 
 
