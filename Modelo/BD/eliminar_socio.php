@@ -1,14 +1,17 @@
 <?php
     include '../conexion.php';
     
-    require '../../Controlador/ValidadorInicioSesion.php';
-    
     $conectar = new conexion();
     session_start();
     $usuario = $_SESSION['usuario'];
     
-    $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($usuario);
+    $user = isset($usuario);
+
+if($user == ''){
+    
+    echo '<script>alert("Primero debe iniciar sesión para acceder al sitio");</script>';
+    echo '<script>window.location="../../index.php";</script>';
+}
 
 //Crear variables--------------------------
 

@@ -2,10 +2,13 @@
 session_start();
 $updLogin=$_SESSION['usuario'];
 
-require '../../Controlador/ValidadorInicioSesion.php';
+$user = isset($updLogin);
 
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($updLogin);
+if($user == ''){
+    
+    echo '<script>alert("Primero debe iniciar sesión para acceder al sitio");</script>';
+    echo '<script>window.location="../../index.php";</script>';
+}
 
     include '../conexion.php';
     $conectar = new conexion();
