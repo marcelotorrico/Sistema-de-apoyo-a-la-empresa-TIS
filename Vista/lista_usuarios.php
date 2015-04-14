@@ -214,11 +214,6 @@
 
             <div class="contenedor-columna">
             <?php
-                echo "Password";
-            ?>
-            </div>
-            <div class="contenedor-columna">
-            <?php
                 echo "Telefono";
             ?>
             </div>
@@ -236,7 +231,7 @@
             <?php
 
             //Peticion
-            $peticion = $conectar ->consulta("SELECT u.NOMBRE_U, u.ESTADO_E, u.PASSWORD_U, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R FROM usuario u , usuario_rol r WHERE  u.NOMBRE_U = r.NOMBRE_U ");
+            $peticion = $conectar ->consulta("SELECT u.NOMBRE_U, u.ESTADO_E, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R FROM usuario u , usuario_rol r WHERE  u.NOMBRE_U = r.NOMBRE_U ");
 
 
             while($fila = mysql_fetch_array($peticion))
@@ -252,12 +247,6 @@
             <div class="contenedor-columna">
                 <?php
                         echo $fila['ESTADO_E'];
-                ?>
-            </div>
-
-            <div class="contenedor-columna">
-                <?php
-                        echo $fila['PASSWORD_U'];
                 ?>
             </div>
 
