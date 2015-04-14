@@ -263,12 +263,7 @@
                                         echo "Estado";
                                     ?>
                                 </div>
-        
-                                <div class="contenedor-columna">
-                                    <?php
-                                        echo "Password";
-                                    ?>
-                                </div>
+
                                 <div class="contenedor-columna">
                                     <?php
                                         echo "Telefono";
@@ -289,7 +284,7 @@
                                 //crear conexion---------------------------
                                 
                                 //Peticion
-                                $peticion = $conect->consulta("SELECT u.NOMBRE_U, u.ESTADO_E, u.PASSWORD_U, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R
+                                $peticion = $conect->consulta("SELECT u.NOMBRE_U, u.ESTADO_E, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R
 FROM usuario u , usuario_rol r
 WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'asesor'");
                             
@@ -308,12 +303,6 @@ WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'asesor'");
                                     <div class="contenedor-columna">
                                         <?php
                                             echo $asesor['ESTADO_E'];
-                                        ?>
-                                    </div>
-            
-                                    <div class="contenedor-columna">
-                                        <?php
-                                            echo $asesor['PASSWORD_U'];
                                         ?>
                                     </div>
                                     
