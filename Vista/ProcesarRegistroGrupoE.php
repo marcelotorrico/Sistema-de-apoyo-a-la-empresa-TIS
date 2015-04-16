@@ -10,7 +10,7 @@
     $contGE = md5($_POST['contrasena1']);
     
     include '../Modelo/conexion.php';
-    require '../Vista/PHPMailerAutoload.php';
+    require '../Modelo/PHPMailerAutoload.php';
     require '../Vista/class.phpmailer.php';
     
     require '../Controlador/ValidadorTelefonoUsuario.php';

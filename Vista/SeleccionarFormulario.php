@@ -270,7 +270,7 @@ $verificar->validarInicioSesion($uActivo);
             <div class="col-lg-12">
                 <h2 class="page-header">Habilitar Formulario:</h2>
                 <div class="col-lg-6">
-                    <form method = "post" id="HabilitarFormulario" action="../Vista/HabilitarFormulario.php">   
+                    <form method = "post" id="HabilitarFormulario" action="../Modelo/BD/HabilitarFormulario.php">   
                         <?php 
 
                         include '../Modelo/conexion.php';     

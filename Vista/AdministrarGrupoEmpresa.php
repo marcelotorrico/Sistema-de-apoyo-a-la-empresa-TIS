@@ -304,9 +304,9 @@ $verificar->validarInicioSesion($uActivo);
                                                                         <td>' . $Rep[$i] . '</td>
                                                                         <td>' . $Estado[$i] . '</td>
                                                                         <td>
-                                                                            <a href="HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Habilitar"
+                                                                            <a href="../Modelo/BD/HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Habilitar"
                                                                             class="btn btn-default btn-xs">Habilitar</a>
-                                                                            <a href="HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Deshabilitar"
+                                                                            <a href="../Modelo/BD/HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Deshabilitar"
                                                                             class="btn btn-default btn-xs">Deshabilitar</a>
                                                                             <a href="ModificarEvaluacionGrupoEmpresa.php?GE=' . $GruposIn[$i] . '"
                                                                             class="btn btn-default btn-xs">Modificar Evaluacion</a>

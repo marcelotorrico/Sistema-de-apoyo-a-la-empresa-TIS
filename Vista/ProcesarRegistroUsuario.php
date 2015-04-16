@@ -9,7 +9,7 @@
     $Telefono = $_POST['telefono'];
 
     include '../Modelo/conexion.php';
-    require '../Vista/PHPMailerAutoload.php';
+    require '../Modelo/PHPMailerAutoload.php';
     require '../Vista/class.phpmailer.php';
     
     require '../Controlador/ValidadorTelefonoUsuario.php';

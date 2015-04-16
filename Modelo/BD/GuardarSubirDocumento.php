@@ -1,19 +1,19 @@
 <?php
 
-include '../Modelo/conexion.php';
+include '../conexion.php';
 $UsuarioActivo = $_POST['Usuario'];
 $DocumentoR = $_POST['Documento'];
 
-$rutaDirectorio="../Repositorio/$UsuarioActivo";  
+$rutaDirectorio="../../Repositorio/$UsuarioActivo";  
 $clas = new conexion();
 
     if(!file_exists($rutaDirectorio))
     {
         mkdir($rutaDirectorio, 0777);
 
-        if(!file_exists("../Repositorio/".$UsuarioActivo."/index.html"))
+        if(!file_exists("../../Repositorio/".$UsuarioActivo."/index.html"))
         {
-            $directorioIndex = "../Repositorio/".$UsuarioActivo."/index.html";
+            $directorioIndex = "../../Repositorio/".$UsuarioActivo."/index.html";
             fopen($directorioIndex, "x");
         }
     }
@@ -42,7 +42,7 @@ $clas = new conexion();
                 $clas->consulta("INSERT INTO `registro` (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R)  VALUES ('$UsuarioActivo','documento subido','habilitado','$DocumentoR','$fecha','$hora')");
                 $clas->consulta("INSERT INTO `documento` (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES ($idRegistro,$tamanio,'$rutaDocumento','$visualizable','$descargable')");
                 echo '<script>alert("Documento subido exitosamente");
-                              location.href = "../Vista/inicio_grupo_empresa.php";
+                              location.href = "../../Vista/inicio_grupo_empresa.php";
                       </script>';
                 
             }

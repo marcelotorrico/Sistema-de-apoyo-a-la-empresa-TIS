@@ -1,12 +1,12 @@
 <?php  
 
-    include '../Modelo/conexion.php';
+    include '../conexion.php';
 
      session_start();
 
     $UserAct = $_SESSION['usuario'];
     
-    require '../Controlador/ValidadorInicioSesion.php';
+    require '../../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($UserAct);
@@ -23,7 +23,6 @@
         while ($Row_Plan = mysql_fetch_row($Sel_Plan)) {
 
             $Planif[] = $Row_Plan[0];
-    
         }
 
         if(isset($Planif))
@@ -41,7 +40,7 @@
 
             if(isset($Planif) and isset($Eval2))
             {
-
+                //echo count($Eval2)." ".count($Planif);
                 if(count($Eval2) == count($Planif))
                 {
                     $Ver_Form = $conect->consulta("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$UserAct'");

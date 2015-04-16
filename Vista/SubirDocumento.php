@@ -263,7 +263,7 @@
                                                 echo '</div>';
 
                                                 echo '
-                                                    <form action="GuardarSubirDocumento.php" method="POST" enctype="multipart/form-data">
+                                                    <form action="../Modelo/BD/GuardarSubirDocumento.php" method="POST" enctype="multipart/form-data">
                                                         <fieldset>
                                                             <div class="form-group">
                                                                 <input name="archivoA" id="archivoA" type="file" class = "btn btn-primary" required>

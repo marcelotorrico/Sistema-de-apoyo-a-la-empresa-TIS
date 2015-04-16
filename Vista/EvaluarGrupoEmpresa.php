@@ -433,7 +433,7 @@ $verificar->validarInicioSesion($uActivo);
                             <div class="form-group">
                                 
                             </div>
-                        </div>                                      
+                        </div>                                    
                     </div><!--Col-lg6-->
                 </div><!--Col lg 12-->
             </div><!-- /.row -->    

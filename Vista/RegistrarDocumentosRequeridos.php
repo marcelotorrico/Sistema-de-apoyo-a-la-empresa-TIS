@@ -282,7 +282,7 @@ $verificar->validarInicioSesion($uActivo);
                 <div class="col-lg-12">
                     <div class="panel panel-default" id="configuracionFechas">
                         <div class="panel-body"> 
-                            <form  method="POST" name="formulario" id="formulario" action="GuardarDocumento.php">
+                            <form  method="POST" name="formulario" id="formulario" action="../Modelo/BD/GuardarDocumento.php">
                                 <p>
                                     <label class="default" >Escriba el nombre del documento requerido</label>
                                 </p>

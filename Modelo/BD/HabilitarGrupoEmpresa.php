@@ -1,6 +1,6 @@
 <?php  
 
-	include '../Modelo/conexion.php';
+	include '../conexion.php';
     $conectar = new conexion();
     $GrupoE = $_GET['GE'];
     $Op = $_GET['Operacion'];
@@ -50,7 +50,7 @@
         {
 
             echo '<script>alert("Se habilito la grupo empresa correctamente");</script>';
-            echo '<script>window.location="../Vista/AdministrarGrupoEmpresa.php";</script>';
+            echo '<script>window.location="../../Vista/AdministrarGrupoEmpresa.php";</script>';
                    
         }
     }
@@ -63,7 +63,7 @@
         {
 
             echo '<script>alert("Se Deshabilito la grupo empresa correctamente");</script>';
-            echo '<script>window.location="../Vista/AdministrarGrupoEmpresa.php";</script>';
+            echo '<script>window.location="../../Vista/AdministrarGrupoEmpresa.php";</script>';
                    
         }
     }
