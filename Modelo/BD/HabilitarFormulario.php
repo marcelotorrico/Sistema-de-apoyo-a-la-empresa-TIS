@@ -2,9 +2,9 @@
 
 session_start();
 $UsuarioActivo = $_SESSION['usuario'];
-include '../Modelo/conexion.php';
+include '../conexion.php';
 
-require '../Controlador/ValidadorInicioSesion.php';
+require '../../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($UsuarioActivo);
@@ -20,7 +20,7 @@ $Form = $_POST['formulario'];
     {
 
         echo '<script>alert("Se habilito el formulario para su uso");</script>';
-        echo '<script>window.location = "../Vista/SeleccionarFormulario.php"</script>';
+        echo '<script>window.location = "../../Vista/SeleccionarFormulario.php"</script>';
       
     }
     

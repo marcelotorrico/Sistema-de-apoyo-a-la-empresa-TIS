@@ -296,7 +296,7 @@
                                         </div>
                                         
                                         <div class="form-group">
-                                             <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='ModificarGE.php'">  <span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+                                             <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='../Modelo/BD/ModificarGE.php'">  <span class="glyphicon glyphicon-ok"></span> Actualizar</button>
                                         </div>
                                         
                                     </form>   

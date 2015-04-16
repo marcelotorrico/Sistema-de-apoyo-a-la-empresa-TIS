@@ -1,13 +1,13 @@
 <?php
 
-include '../Modelo/conexion.php';
+include '../conexion.php';
 $conect = new conexion();
 date_default_timezone_set('America/Puerto_Rico');
 
 session_start();
 $UsuarioActivo = $_SESSION['usuario'];
 
-require '../Controlador/ValidadorInicioSesion.php';
+require '../../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($UsuarioActivo);
@@ -32,7 +32,7 @@ if (is_array($ExistenciaDoc)) {
 
 	echo "<SCRIPT LANGUAGE='javascript'>". 
             " alert('Error, ya existe un registro con ese nombre');".
-            " document.location=('RegistrarDocumentosRequeridos.php');</SCRIPT>";
+            " document.location=('../../Vista/RegistrarDocumentosRequeridos.php');</SCRIPT>";
 }
 else{
 
@@ -55,13 +55,13 @@ else{
 
 			echo "<SCRIPT LANGUAGE='javascript'>". 
 		            " alert('Exito, el registro del documento se realizo exitosamente.');".
-		            " document.location=('../Vista/RegistrarDocumentosRequeridos.php');</SCRIPT>";
+		            " document.location=('../../Vista/RegistrarDocumentosRequeridos.php');</SCRIPT>";
 	}
 	else{
 	
 		echo "<SCRIPT LANGUAGE='javascript'>". 
 		            " alert('Error, no se pudo registrar el documento');".
-		            " document.location=('../Vista/RegistrarDocumentosRequeridos.php');</SCRIPT>";
+		            " document.location=('../../Vista/RegistrarDocumentosRequeridos.php');</SCRIPT>";
 	}	
 }
 

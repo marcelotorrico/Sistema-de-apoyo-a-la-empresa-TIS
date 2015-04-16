@@ -1,11 +1,11 @@
 <?php
-    include '../Modelo/conexion.php';
+    include '../conexion.php';
     session_start();
 
     $conexion = new conexion();
     $nombreUGE = $_SESSION['usuario'];
     
-    require '../Controlador/ValidadorInicioSesion.php';
+    require '../../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($nombreUGE);
@@ -18,6 +18,6 @@
     $conexion->consulta(" UPDATE usuario SET PASSWORD_U='$contrasena', TELEFONO_U='$telef', CORREO_ELECTRONICO_U='$correo' WHERE NOMBRE_U = '$nombreUGE'");
     $conexion->consulta(" UPDATE grupo_empresa SET DIRECCION_GE='$direc' WHERE NOMBRE_U = '$nombreUGE'");
                       
-    echo"<script type=\"text/javascript\">alert('Se modificaron los datos satisfactoriamente'); window.location='ModificarGrupoEmpresa.php';</script>";
+    echo"<script type=\"text/javascript\">alert('Se modificaron los datos satisfactoriamente'); window.location='../../Vista/ModificarGrupoEmpresa.php';</script>";
          
 ?>
