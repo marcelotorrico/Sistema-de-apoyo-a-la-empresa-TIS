@@ -35,6 +35,18 @@ function consulta($consulta) {
     
 }
 
+function consultaProcedimiento($consulta) {
+
+    $mysql = mysql_connect('localhost','root','');
+    mysql_select_db('saetis',$mysql);
+
+    $consultaP = mysql_query($consulta,$mysql);
+    $resultado = mysql_fetch_assoc($consultaP);
+    
+    return $resultado;
+}
+
+
 function cerrarConexion() {
     global $link;
     mysql_close($link);

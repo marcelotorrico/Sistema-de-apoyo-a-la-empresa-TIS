@@ -3,39 +3,36 @@ include '../Modelo/conexion.php';
 $conectar = new conexion();
 session_start();
 
-//Crear variables--------------------------
-
 $usuario = $_SESSION['usuario'];
 $contrasena = $_SESSION['contrasena'];
 
-require '../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
 
 $addini = $_POST['ini'];
 $addfin = $_POST['fin'];
 $addRol = $_POST['rol'];
 
-    $seleccion = $conectar->consulta("SELECT NOM_G FROM gestion WHERE NOM_G = '$addRol'");
-    $verificarG = mysql_fetch_row($seleccion);
+    
+    $peticion = $conectar->consultaProcedimiento("call insert_gestion('$addRol','$addini','$addfin')") ;
+    $result=$peticion['errno'];
+  
 
-    if (!is_array($verificarG)) 
-    {            
-        $seleccion = $conectar->consulta("SELECT NOM_G FROM gestion WHERE FECHA_INICIO_G = '$addini' and FECHA_FIN_G = '$addfin'");
-        $verificarD = mysql_fetch_row($seleccion);
-        if(!is_array($verificarD))
-        {
-            $peticion = $conectar->consulta("INSERT INTO `gestion` (`ID_G`, `NOM_G`, `FECHA_INICIO_G`, `FECHA_FIN_G`) VALUES (NULL, '$addRol', '$addini', '$addfin')");    
-            echo"<script type=\"text/javascript\">alert('Se registro satisfactoriamenta la gestion'); window.location='add_gestion.php';</script>";    
-        }
-        else
-        {
-            echo"<script type=\"text/javascript\">alert('El rango de fechas esta siendo utilizado en otra gestion'); window.location='add_gestion.php';</script>";    
-        }
+    if($peticion['errno'] == 1){
+      echo "<script type=\"text/javascript\">alert('Se registro satisfactoriamenta la gestion'); window.location='add_gestion.php';</script>";            
     }
-    else
+    else      
+    if($peticion['errno'] == 0)
     {
-        echo"<script type=\"text/javascript\">alert('Ya existe una gestion con ese nombre'); window.location='add_gestion.php';</script>";
+        echo "<script type=\"text/javascript\">alert('La fecha de inicio no puede ser mayor a la de fin'); window.location='add_gestion.php';</script>";
+       
     }
+    else 
+     if($peticion['errno'] == 2)
+     {
+        echo "<script type=\"text/javascript\">alert('Las gestiones deben ser posteriores a la fecha actual'); window.location='add_gestion.php';</script>";
+       
+     }   
+    else{
+        echo "<script type=\"text/javascript\">alert('se produjo un error'); window.location='add_gestion.php';</script>";
+    }
+
 ?>
