@@ -7,17 +7,19 @@
     $correoGE = $_POST['correo'];
     $telefGE = $_POST['telefono'];
     $dirGE = $_POST['direccion'];
-    $contGE = md5($_POST['contrasena1']);
+    //$contGE = md5($_POST['contrasena1']);
+    $passwordAnterior = $_POST['contrasena1'];
+    $PasswordRepetido = ($_POST['contrasena2']);
     
     include '../Modelo/conexion.php';
     require '../Vista/PHPMailerAutoload.php';
     require '../Vista/class.phpmailer.php';
     
-    require '../Controlador/ValidadorTelefonoUsuario.php';
+    require '../Controlador/ValidadorFormulario.php';
     
     $conexion = new conexion();
     
-    $validar = new ValidadorTelefonoUsuario();
+    $validar = new ValidadorFormulario();
     
     $seleccion = $conexion->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$nombreUGE' ");
     $verGE = mysql_fetch_row($seleccion);
@@ -48,41 +50,81 @@
                 // iniciar transacción
                  $conn->beginTransaction();
                  
-                 $boolean = $validar->verificarNumeroValido($telefGE);
+                 $booleanTelefono = $validar->verificarNumeroValido($telefGE);
+                 $booleanUsuario = $validar->verificarNombreUsuario($nombreUGE);
+                 $booleanContrasena = $validar->verificarContrasena($passwordAnterior);
+                 $booleanVerificarContrasenas = $validar->validarContrasenas($passwordAnterior, $PasswordRepetido);
+                 $booleanNombreLargo = $validar->validarNombreLargo($nombreLGE);
+                 $booleanNombreCorto = $validar->validarNombreLargo($nombreCGE);
               
-              if($boolean == true){
-                  try 
-                    {
-                    $sql = 'INSERT INTO usuario (NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES (:value, :estado, :contrasena, :telefono, :correo);';
-                    $result = $conn->prepare($sql);
-                    $result->bindValue(':value', $nombreUGE, PDO::PARAM_STR);
-                    $result->bindValue(':estado', 'Habilitado', PDO::PARAM_STR);
-                    $result->bindValue(':contrasena', $contGE, PDO::PARAM_STR);
-                    $result->bindValue(':telefono', $telefGE, PDO::PARAM_STR);
-                    $result->bindValue(':correo', $correoGE, PDO::PARAM_STR);
-                    $result->execute();
-                    //$lastId = $conn->lastInsertId();
-                    $sql = 'INSERT INTO grupo_empresa (NOMBRE_U, NOMBRE_CORTO_GE, NOMBRE_LARGO_GE, DIRECCION_GE, REPRESENTANTE_LEGAL_GE) VALUES (:a_id, :nombreC, :nombreL, :direccion, :representante)';
-                    $result = $conn->prepare($sql);
-                    $result->bindValue(':a_id', $nombreUGE, PDO::PARAM_STR);
-                    $result->bindValue(':nombreC', $nombreCGE, PDO::PARAM_STR);
-                    $result->bindValue(':nombreL', $nombreLGE, PDO::PARAM_STR);
-                    $result->bindValue(':direccion', $dirGE, PDO::PARAM_STR);
-                    $result->bindValue(':representante', $nombreRGE, PDO::PARAM_STR);
-                    $result->execute();
-                     $sql = 'INSERT INTO usuario_rol (NOMBRE_U, ROL_R) VALUES (:nombre, :rol)';
-                    $result = $conn->prepare($sql);
-                    $result->bindValue(':nombre', $nombreUGE, PDO::PARAM_STR);
-                    $result->bindValue(':rol', 'grupoEmpresa', PDO::PARAM_STR);
-                    $result->execute();
+              if($booleanTelefono == true){
+                  
+                  if($booleanUsuario){
+                      
+                      if($booleanContrasena){
+                          if($booleanVerificarContrasenas){
+                              $contGE = md5($passwordAnterior);
+                              
+                              if($booleanNombreLargo){
+                                  if($booleanNombreCorto){
+                                    try 
+                                      {
+                                      $sql = 'INSERT INTO usuario (NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES (:value, :estado, :contrasena, :telefono, :correo);';
+                                      $result = $conn->prepare($sql);
+                                      $result->bindValue(':value', $nombreUGE, PDO::PARAM_STR);
+                                      $result->bindValue(':estado', 'Habilitado', PDO::PARAM_STR);
+                                      $result->bindValue(':contrasena', $contGE, PDO::PARAM_STR);
+                                      $result->bindValue(':telefono', $telefGE, PDO::PARAM_STR);
+                                      $result->bindValue(':correo', $correoGE, PDO::PARAM_STR);
+                                      $result->execute();
+                                      //$lastId = $conn->lastInsertId();
+                                      $sql = 'INSERT INTO grupo_empresa (NOMBRE_U, NOMBRE_CORTO_GE, NOMBRE_LARGO_GE, DIRECCION_GE, REPRESENTANTE_LEGAL_GE) VALUES (:a_id, :nombreC, :nombreL, :direccion, :representante)';
+                                      $result = $conn->prepare($sql);
+                                      $result->bindValue(':a_id', $nombreUGE, PDO::PARAM_STR);
+                                      $result->bindValue(':nombreC', $nombreCGE, PDO::PARAM_STR);
+                                      $result->bindValue(':nombreL', $nombreLGE, PDO::PARAM_STR);
+                                      $result->bindValue(':direccion', $dirGE, PDO::PARAM_STR);
+                                      $result->bindValue(':representante', $nombreRGE, PDO::PARAM_STR);
+                                      $result->execute();
+                                       $sql = 'INSERT INTO usuario_rol (NOMBRE_U, ROL_R) VALUES (:nombre, :rol)';
+                                      $result = $conn->prepare($sql);
+                                      $result->bindValue(':nombre', $nombreUGE, PDO::PARAM_STR);
+                                      $result->bindValue(':rol', 'grupoEmpresa', PDO::PARAM_STR);
+                                      $result->execute();
 
-                    $conn->commit();
-                    echo"<script type=\"text/javascript\">alert('El registro ha sido satisfactorio'); window.location='RegistrarGrupoEmpresa.php';</script>";
+                                      $conn->commit();
+                                      echo"<script type=\"text/javascript\">alert('El registro ha sido satisfactorio'); window.location='RegistrarGrupoEmpresa.php';</script>";
 
-                } catch (PDOException $e) {
-                    // si ocurre un error hacemos rollback para anular todos los insert
-                    $conn->rollback();
-                    echo $e->getMessage();
+                                        } catch (PDOException $e) {
+                                            // si ocurre un error hacemos rollback para anular todos los insert
+                                            $conn->rollback();
+                                            echo $e->getMessage();
+                                        }
+                                  }else{
+                  
+                                    echo '<script>alert("El nombre corto de la Grupo Empresa es muy corto");</script>';
+                                    echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                                  } 
+                                  
+                              }else{
+                  
+                                echo '<script>alert("El nombre largo de la Grupo Empresa es muy corto");</script>';
+                                echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                              }
+                          }else{
+                  
+                            echo '<script>alert("Las contrasenas no coinciden");</script>';
+                            echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                          }
+                      }else{
+                  
+                        echo '<script>alert("La contrasena no cumple con lo requerido");</script>';
+                        echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                      }
+                  }else{
+                  
+                  echo '<script>alert("El nombre de usuario es incorrecto");</script>';
+                  echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
                 }
               }else{
                   

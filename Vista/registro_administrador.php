@@ -216,7 +216,7 @@ $verificar->validarInicioSesion($uActivo);
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
             </span>
-            <input class="form-control" type="password" name="contrasena" id="contrasena1" placeholder="Contraseña" minlength="5" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="la contraseña debe contener mayusculas, minusculas, caracteres y numeros" required>
+            <input class="form-control" type="password" name="contrasena" id="contrasena1" placeholder="Contraseña" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="la contraseña debe contener mayusculas, minusculas, caracteres y numeros" required>
             </div>
             </div>
                 

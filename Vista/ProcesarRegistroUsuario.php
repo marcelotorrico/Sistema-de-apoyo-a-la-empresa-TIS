@@ -2,7 +2,9 @@
 
     $Name = $_POST['nombreUsuario'];
     $RealName = $_POST['nombreReal'];
-    $Pass = md5($_POST['password']);
+    //$Pass = md5($_POST['password']);
+    $PasswordAnterior = ($_POST['password']);
+    $PasswordRepetido = ($_POST['contrasena2']);
     $Email = $_POST['email'];
     $rol = $_POST['UsuarioRol'];
     $Apellido = $_POST['apellido'];
@@ -12,12 +14,12 @@
     require '../Vista/PHPMailerAutoload.php';
     require '../Vista/class.phpmailer.php';
     
-    require '../Controlador/ValidadorTelefonoUsuario.php';
+    require '../Controlador/ValidadorFormulario.php';
     
     $conect = new conexion();
     $mail = new PHPMailer();
     
-    $validar = new ValidadorTelefonoUsuario();
+    $validar = new ValidadorFormulario();
 
     $Sel_U = $conect->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$Name' ");
     $Sel_U2 = mysql_fetch_row($Sel_U);
@@ -112,18 +114,59 @@
             echo "Error: " . $mail->ErrorInfo;
           } else {
               
-              $boolean = $validar->verificarNumeroValido($Telefono);
+              $booleanTelefono = $validar->verificarNumeroValido($Telefono);
+              $booleanUsuario = $validar->verificarNombreUsuario($Name);
+              $booleanContrasena = $validar->verificarContrasena($PasswordAnterior);
+              $booleanVerificarContrasenas = $validar->validarContrasenas($PasswordAnterior, $PasswordRepetido);
+              $booleanNombreReal = $validar ->validarNombre($RealName);
+              $booleanApellido = $validar->validarNombre($Apellido);
               
-              if($boolean == true){
+              if($booleanTelefono){
                   
-                  $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
-                  
-                  $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
-                  $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
-                  $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
-                  
-                  echo '<script>alert("Su solicitud se envio correctamente");</script>';
-                  echo '<script>window.location="../index.php";</script>';
+                  if($booleanUsuario){
+                      
+                      if($booleanContrasena){
+                          if($booleanVerificarContrasenas){
+                          
+                                $Pass = md5($PasswordAnterior);
+                                
+                                if($booleanNombreReal){
+                                    
+                                    if($booleanApellido){
+
+                                        $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
+
+                                        $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
+                                        $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
+                                        $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
+
+                                        echo '<script>alert("Su solicitud se envio correctamente");</script>';
+                                        echo '<script>window.location="../index.php";</script>';
+                                    }else{
+                          
+                                        echo '<script>alert("Su apellido es incorrecto");</script>';
+                                        echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                                    }
+                                }else{
+                          
+                                    echo '<script>alert("Su nombre es incorrecto");</script>';
+                                    echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                                }
+                          }else{
+                          
+                            echo '<script>alert("La contrasena no coinciden");</script>';
+                            echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                      }
+                      }else{
+                          
+                          echo '<script>alert("La contrasena no cumple con lo requerido");</script>';
+                          echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                      }
+                  }else{
+                      
+                      echo '<script>alert("El nombre de usuario es incorrecto");</script>';
+                      echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                  }
               }else{
                   
                   echo '<script>alert("El numero de telefono es incorrecto");</script>';
