@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Modelo/BD/eliminar_socio.php</file>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/lista_grupoEmpresa.php</file>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/saetis.sql</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/RegistrarInscripcion.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/archivo_recibido.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Modelo/BD/GuardarSubirDocumento.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Modelo/BD/ModificarInfSocio.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/ModificarSocio.php</file>
         </group>
     </open-files>
 </project-private>

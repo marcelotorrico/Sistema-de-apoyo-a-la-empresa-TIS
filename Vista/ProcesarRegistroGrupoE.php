@@ -1,15 +1,15 @@
 <?php
 
-    $nombreUGE = $_POST['nombreU'];
-    $nombreLGE = $_POST['nombreL'];
-    $nombreCGE = $_POST['nombreC'];
+    $nombreUGE = htmlentities($_POST['nombreU'], ENT_QUOTES);
+    $nombreLGE = htmlentities($_POST['nombreL'], ENT_QUOTES);
+    $nombreCGE = htmlentities($_POST['nombreC'], ENT_QUOTES);
     $nombreRGE = "";
-    $correoGE = $_POST['correo'];
-    $telefGE = $_POST['telefono'];
-    $dirGE = $_POST['direccion'];
+    $correoGE = htmlentities($_POST['correo'], ENT_QUOTES);
+    $telefGE = htmlentities($_POST['telefono'], ENT_QUOTES);
+    $dirGE = htmlentities($_POST['direccion'], ENT_QUOTES);
     //$contGE = md5($_POST['contrasena1']);
-    $passwordAnterior = $_POST['contrasena1'];
-    $PasswordRepetido = ($_POST['contrasena2']);
+    $passwordAnterior = htmlentities($_POST['contrasena1'], ENT_QUOTES);
+    $PasswordRepetido = htmlentities($_POST['contrasena2'], ENT_QUOTES);
     
     include '../Modelo/conexion.php';
     require '../Modelo/PHPMailerAutoload.php';

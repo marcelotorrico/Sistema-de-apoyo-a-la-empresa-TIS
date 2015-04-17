@@ -1,14 +1,14 @@
 <?php
 
-    $Name = $_POST['nombreUsuario'];
-    $RealName = $_POST['nombreReal'];
+    $Name = htmlentities($_POST['nombreUsuario'], ENT_QUOTES);
+    $RealName = htmlentities($_POST['nombreReal'], ENT_QUOTES);
     //$Pass = md5($_POST['password']);
-    $PasswordAnterior = ($_POST['password']);
-    $PasswordRepetido = ($_POST['contrasena2']);
-    $Email = $_POST['email'];
-    $rol = $_POST['UsuarioRol'];
-    $Apellido = $_POST['apellido'];
-    $Telefono = $_POST['telefono'];
+    $PasswordAnterior = htmlentities($_POST['password'], ENT_QUOTES);
+    $PasswordRepetido = htmlentities($_POST['contrasena2'], ENT_QUOTES);
+    $Email = htmlentities($_POST['email'], ENT_QUOTES);
+    $rol = htmlentities($_POST['UsuarioRol'], ENT_QUOTES);
+    $Apellido = htmlentities($_POST['apellido'], ENT_QUOTES);
+    $Telefono = htmlentities($_POST['telefono'], ENT_QUOTES);
 
     include '../Modelo/conexion.php';
     require '../Modelo/PHPMailerAutoload.php';

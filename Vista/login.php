@@ -4,7 +4,7 @@
     $conectar = new conexion();
     session_start();
     
-    $usuario= $_POST['usuario'];
+    $usuario= htmlentities($_POST['usuario'], ENT_QUOTES);
     $contrasena= md5($_POST['contrasena']);
     $permiso="administrador";
     $permiso2="asesor";
