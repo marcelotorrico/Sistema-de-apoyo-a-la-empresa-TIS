@@ -3,7 +3,7 @@
 $Form = $_POST['EscogidoEliminar'];
 
 
-include '../Modelo/conexion.php';
+include '../conexion.php';
 
     $conect = new conexion();
 
@@ -15,7 +15,7 @@ include '../Modelo/conexion.php';
     {
 
         echo '<script>alert("El formulario esta siendo usado y no puede ser eliminado");</script>';
-        echo '<script>window.location="EliminarFormulario.php";</script>';
+        echo '<script>window.location="../../Vista/EliminarFormulario.php";</script>';
     
     }
     else{
@@ -32,7 +32,7 @@ include '../Modelo/conexion.php';
         {
 
             echo '<script>alert("Se elimino el formulario correctamente");</script>';
-            echo '<script>window.location="EliminarFormulario.php";</script>';
+            echo '<script>window.location="../../Vista/EliminarFormulario.php";</script>';
  
         }
 

@@ -3,9 +3,9 @@
 	$UserAct = $_SESSION['usuario'];
 	$Crit_C = $_POST['CriterioEliminar'];
 
-	include '../Modelo/conexion.php';
+	include '../conexion.php';
         
-        require '../Controlador/ValidadorInicioSesion.php';
+        require '../../Controlador/ValidadorInicioSesion.php';
 
         $verificar = new ValidadorInicioSesion();
         $verificar->validarInicioSesion($UserAct);
@@ -37,7 +37,7 @@
 		}
 
 		echo '<script>alert("El criterio esta en uso por el siguiente formulario: '.$NomForm[0].'");</script>';
-		echo '<script>window.location="../Vista/EliminarCriterioCalificacion.php";</script>';
+		echo '<script>window.location="../../Vista/EliminarCriterioCalificacion.php";</script>';
 	
 	}
 	else
@@ -49,7 +49,7 @@
 		if ($Del_Ind and $Del_Crit) {
 
 			echo '<script>alert("Se elimino el criterio correctamente");</script>';
-			echo '<script>window.location="../Vista/EliminarCriterioCalificacion.php";</script>';
+			echo '<script>window.location="../../Vista/EliminarCriterioCalificacion.php";</script>';
 		
 		}
 	}	

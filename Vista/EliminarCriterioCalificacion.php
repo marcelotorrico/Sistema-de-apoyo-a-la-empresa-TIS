@@ -270,7 +270,7 @@ $verificar->validarInicioSesion($UsuarioActivo);
         <div class="col-lg-12">
             <h2 class="page-header">Eliminar Criterio de Calificacion</h2>
             <div class="col-lg-6">
-                <form method = "post" id="HabilitarFormulario" action="ProcesarEliminarCriterioCalificacion.php">   
+                <form method = "post" id="HabilitarFormulario" action="../Modelo/BD/ProcesarEliminarCriterioCalificacion.php">   
 
                     <?php 
 

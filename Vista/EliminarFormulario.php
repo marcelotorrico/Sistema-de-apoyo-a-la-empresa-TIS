@@ -271,7 +271,7 @@ $verificar->validarInicioSesion($uActivo);
             <div class="col-lg-12">
                 <h2 class="page-header">Eliminar Formulario:</h2>
                 <div class="col-lg-6">
-                    <form method = "post" id="EliminarFormulario" action="ProcesarEliminarFormulario.php">   
+                    <form method = "post" id="EliminarFormulario" action="../Modelo/BD/ProcesarEliminarFormulario.php">   
 
                         <div class="form-group">
                             <label for=""><h4>Seleccione un Formulario:</h4></label>
