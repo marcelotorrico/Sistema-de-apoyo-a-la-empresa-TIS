@@ -1211,7 +1211,7 @@ INSERT INTO `usuario_rol` VALUES ('Power', 'grupoEmpresa');
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_gestion`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
+CREATE PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
 BEGIN
 DECLARE anio_actual, anio_f_ini integer;
 set anio_actual = YEAR(CURDATE()); 
@@ -1228,4 +1228,3 @@ IF(anio_f_ini >= anio_actual)THEN
     SELECT 2 as errno;
   END IF;
 END;;
-DELIMITER ;
