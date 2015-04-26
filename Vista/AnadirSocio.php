@@ -230,6 +230,7 @@ $verificar->validarInicioSesion($uActivo);
                         $consSocios = $conexion->consulta("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
 
                         $socios = mysql_num_rows($consSocios);
+                        $restantes = (5- $socios);
 
                         if($socios < 3)
                         {
@@ -238,8 +239,20 @@ $verificar->validarInicioSesion($uActivo);
                                         <strong>* Recuerde que debe registrar al menos 3 socios</strong>
                                     </div>
                                 </div>';
-
                         }  
+                        if($socios == 5)
+                        {
+                            echo '<div class="form-group">
+                                    <div class="alert alert-warning">
+                                        <strong>Aún puede registrar </strong>
+                                    </div>
+                                </div>';
+                            echo $restantes;    
+                        }  
+
+
+
+
 
                         ?>
 
