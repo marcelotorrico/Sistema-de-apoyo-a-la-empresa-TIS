@@ -1210,7 +1210,6 @@ INSERT INTO `usuario_rol` VALUES ('Power', 'grupoEmpresa');
 -- Procedure structure for `insert_gestion`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_gestion`;
-DELIMITER ;;
 CREATE PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
 BEGIN
 DECLARE anio_actual, anio_f_ini integer;
@@ -1228,3 +1227,19 @@ IF(anio_f_ini >= anio_actual)THEN
     SELECT 2 as errno;
   END IF;
 END;;
+-- ----------------------------
+-- Procedure structure for `insert_socio`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS insert_socio;
+CREATE PROCEDURE insert_socio(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
+BEGIN
+DECLARE cant integer;
+SET cant = (select count(*) from socio where NOMBRE_U=n_u);
+IF (cant < 5) 
+THEN
+  INSERT INTO socio(NOMBRE_U,NOMBRES_S,APELLIDOS_S) VALUES (n_u,nombre,apellido);
+  SELECT "Se registro correctamente" as errno;
+ ELSE
+  SELECT "Solo se pueden registrar 5 socios" as errno;
+ END IF;
+END;
