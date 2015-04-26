@@ -240,14 +240,14 @@ $verificar->validarInicioSesion($uActivo);
                                     </div>
                                 </div>';
                         }  
-                        if($socios == 5)
+                        if($socios <= 5)
                         {
                             echo '<div class="form-group">
                                     <div class="alert alert-warning">
                                         <strong>Aún puede registrar </strong>
                                     </div>
                                 </div>';
-                            echo $restantes;    
+                            echo $restantes;    ////esta variable no me reconoce
                         }  
 
 
