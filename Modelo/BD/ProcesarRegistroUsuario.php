@@ -10,11 +10,11 @@
     $Apellido = htmlentities($_POST['apellido'], ENT_QUOTES);
     $Telefono = htmlentities($_POST['telefono'], ENT_QUOTES);
 
-    include '../Modelo/conexion.php';
-    require '../Modelo/PHPMailerAutoload.php';
-    require '../Vista/class.phpmailer.php';
+    include '../conexion.php';
+    require '../PHPMailerAutoload.php';
+    require '../../Vista/class.phpmailer.php';
     
-    require '../Controlador/ValidadorFormulario.php';
+    require '../../Controlador/ValidadorFormulario.php';
     
     $conect = new conexion();
     $mail = new PHPMailer();
@@ -141,43 +141,43 @@
                                         $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
 
                                         echo '<script>alert("Su solicitud se envio correctamente");</script>';
-                                        echo '<script>window.location="../index.php";</script>';
+                                        echo '<script>window.location="../../index.php";</script>';
                                     }else{
                           
                                         echo '<script>alert("Su apellido es incorrecto");</script>';
-                                        echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                                        echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
                                     }
                                 }else{
                           
                                     echo '<script>alert("Su nombre es incorrecto");</script>';
-                                    echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                                    echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
                                 }
                           }else{
                           
                             echo '<script>alert("La contrasena no coinciden");</script>';
-                            echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                            echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
                       }
                       }else{
                           
                           echo '<script>alert("La contrasena no cumple con lo requerido");</script>';
-                          echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                          echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
                       }
                   }else{
                       
                       echo '<script>alert("El nombre de usuario es incorrecto");</script>';
-                      echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                      echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
                   }
               }else{
                   
                   echo '<script>alert("El numero de telefono es incorrecto");</script>';
-                  echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+                  echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
               }
           }
     }else{
 
 
         echo '<script>alert("El nombre de usuario ya esta registrado");</script>';
-        echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+        echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
         
 
     }
@@ -185,7 +185,7 @@
     else
     {
         echo '<script>alert("Correo Ingresado no Valido");</script>';
-        echo '<script>window.location="../Vista/RegistrarUsuario.php";</script>';
+        echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
     }
     
 ?>

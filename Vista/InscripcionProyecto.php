@@ -311,7 +311,7 @@ $verificar->validarInicioSesion($uActivo);
                                 </div>     
                                        
                                 <div class="form-group">
-                                     <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='RegistrarProyecto.php'">  <span class="glyphicon glyphicon-ok"></span> Aceptar</button>
+                                     <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='../Modelo/BD/RegistrarProyecto.php'">  <span class="glyphicon glyphicon-ok"></span> Aceptar</button>
                                 </div>
                                        
                             </form>                              

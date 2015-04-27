@@ -267,7 +267,7 @@ $verificar->validarInicioSesion($uActivo);
         <div class="col-lg-12">
             <h2 class="page-header">Evaluacion Final</h2>
             <div class="col-lg-6">   
-                <form method ="post" id="FormEvaluar" action="../Vista/RegistrarEvaluacionFinal.php"> 
+                <form method ="post" id="FormEvaluar" action="../Modelo/BD/RegistrarEvaluacionFinal.php"> 
 
                     <div class="form-group">
                         

@@ -1,6 +1,6 @@
 <?php  
 
-	include '../Modelo/conexion.php';
+	include '../conexion.php';
 	$conect = new conexion();  
 
 	$GrupoEF = $_POST['GrupoE'];
@@ -13,7 +13,7 @@
 	if (is_array($NotaFinal)) {
 
 		echo '<script>alert("La grupo empresa seleccionada ya tiene una nota registrada anteriormente");
-				window.location="../Vista/EvaluacionGeneral.php";
+				window.location="../../Vista/EvaluacionGeneral.php";
 				</script>';
 	}
 	else
@@ -22,7 +22,7 @@
 		$conect->consulta('INSERT INTO nota_final(NOMBRE_U, NOTA_F) VALUES("'.$GrupoEF.'","'.$NotaFn.'")');
 
 		echo '<script>alert("Se registro la nota correctamente");
-				window.location="../Vista/EvaluacionGeneral.php";
+				window.location="../../Vista/EvaluacionGeneral.php";
 				</script>';
 
 	}

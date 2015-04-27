@@ -11,11 +11,11 @@
     $passwordAnterior = htmlentities($_POST['contrasena1'], ENT_QUOTES);
     $PasswordRepetido = htmlentities($_POST['contrasena2'], ENT_QUOTES);
     
-    include '../Modelo/conexion.php';
-    require '../Modelo/PHPMailerAutoload.php';
-    require '../Vista/class.phpmailer.php';
+    include '../conexion.php';
+    require '../PHPMailerAutoload.php';
+    require '../../Vista/class.phpmailer.php';
     
-    require '../Controlador/ValidadorFormulario.php';
+    require '../../Controlador/ValidadorFormulario.php';
     
     $conexion = new conexion();
     
@@ -93,7 +93,7 @@
                                       $result->execute();
 
                                       $conn->commit();
-                                      echo"<script type=\"text/javascript\">alert('El registro ha sido satisfactorio'); window.location='RegistrarGrupoEmpresa.php';</script>";
+                                      echo"<script type=\"text/javascript\">alert('El registro ha sido satisfactorio'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
 
                                         } catch (PDOException $e) {
                                             // si ocurre un error hacemos rollback para anular todos los insert
@@ -103,51 +103,51 @@
                                   }else{
                   
                                     echo '<script>alert("El nombre corto de la Grupo Empresa es muy corto");</script>';
-                                    echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                                    echo '<script>window.location="../../Vista/RegistrarGrupoEmpresa.php";</script>';
                                   } 
                                   
                               }else{
                   
                                 echo '<script>alert("El nombre largo de la Grupo Empresa es muy corto");</script>';
-                                echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                                echo '<script>window.location="../../Vista/RegistrarGrupoEmpresa.php";</script>';
                               }
                           }else{
                   
                             echo '<script>alert("Las contrasenas no coinciden");</script>';
-                            echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                            echo '<script>window.location="../../Vista/RegistrarGrupoEmpresa.php";</script>';
                           }
                       }else{
                   
                         echo '<script>alert("La contrasena no cumple con lo requerido");</script>';
-                        echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                        echo '<script>window.location="../../Vista/RegistrarGrupoEmpresa.php";</script>';
                       }
                   }else{
                   
                   echo '<script>alert("El nombre de usuario es incorrecto");</script>';
-                  echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                  echo '<script>window.location="../../Vista/RegistrarGrupoEmpresa.php";</script>';
                 }
               }else{
                   
                   echo '<script>alert("El numero de telefono es incorrecto");</script>';
-                  echo '<script>window.location="../Vista/RegistrarGrupoEmpresa.php";</script>';
+                  echo '<script>window.location="../../Vista/RegistrarGrupoEmpresa.php";</script>';
               }
                 
              }
              else
              {                
-                echo"<script type=\"text/javascript\">alert('El nombre largo ya esta registrado'); window.location='RegistrarGrupoEmpresa.php';</script>";
+                echo"<script type=\"text/javascript\">alert('El nombre largo ya esta registrado'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
              }
              
          }
          else
          {
-                echo"<script type=\"text/javascript\">alert('El nombre corto ya esta registrado'); window.location='RegistrarGrupoEmpresa.php';</script>";
+                echo"<script type=\"text/javascript\">alert('El nombre corto ya esta registrado'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
          }
          
      }
      else
      {
-        echo"<script type=\"text/javascript\">alert('El nombre de usuario ya esta registrado'); window.location='RegistrarGrupoEmpresa.php';</script>";
+        echo"<script type=\"text/javascript\">alert('El nombre de usuario ya esta registrado'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
      }
     
 ?>
