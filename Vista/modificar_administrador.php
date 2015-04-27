@@ -229,7 +229,7 @@
             {
 
             echo"
-            <form action='actualizar_integrante.php' method='post'>
+            <form action='../Controlador/actualizar_integrante.php' method='post'>
             <table border=0 width=50%>
             <tr>
             <td >

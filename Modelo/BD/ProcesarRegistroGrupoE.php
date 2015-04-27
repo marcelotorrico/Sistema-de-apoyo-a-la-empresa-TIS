@@ -13,7 +13,7 @@
     
     include '../conexion.php';
     require '../PHPMailerAutoload.php';
-    require '../../Vista/class.phpmailer.php';
+    require '../class.phpmailer.php';
     
     require '../../Controlador/ValidadorFormulario.php';
     
