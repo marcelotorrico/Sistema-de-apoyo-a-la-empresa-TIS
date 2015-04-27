@@ -1209,8 +1209,8 @@ INSERT INTO `usuario_rol` VALUES ('Power', 'grupoEmpresa');
 -- ----------------------------
 -- Procedure structure for `insert_gestion`
 -- ----------------------------
-DROP PROCEDURE IF EXISTS `insert_gestion`;
-CREATE PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
+DROP PROCEDURE IF EXISTS insert_gestion;
+CREATE PROCEDURE insert_gestion(in gestion varchar(25), f_ini date, f_fin date)
 BEGIN
 DECLARE anio_actual, anio_f_ini integer;
 set anio_actual = YEAR(CURDATE()); 
@@ -1218,15 +1218,15 @@ set anio_f_ini = YEAR(f_ini);
 
 IF(anio_f_ini >= anio_actual)THEN
  IF(f_ini > f_fin) THEN
-  SELECT 0 as errno;
+  SELECT "La fecha de inicio no puede ser mayor a la de fin" as errno;
  ELSE
-  SELECT 1 as errno;
+  SELECT "Se registro la gestion" as errno;
   INSERT INTO GESTION(NOM_G,FECHA_INICIO_G,FECHA_FIN_G) values(gestion,f_ini,f_fin);
  END IF;
- ELSE
-    SELECT 2 as errno;
+ELSE
+    SELECT "Las gestiones deben ser posteriores a la fecha actual" as errno;
   END IF;
-END;;
+END;
 -- ----------------------------
 -- Procedure structure for `insert_socio`
 -- ----------------------------
