@@ -8,11 +8,6 @@
 
 $usuario=$_SESSION['usuario'];
 
-require '../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
-
 $updLogin = $_POST['login'];
 $updPassword = md5($_POST['password']);
 $updNombre = $_POST['nombre'];

@@ -7,11 +7,6 @@ session_start();
 
 $usuario = $_SESSION['usuario'];
 
-require '../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
-
 $idAdmin = $_GET['id_us'];
 
 	

@@ -8,11 +8,6 @@ $usuario = $_SESSION['usuario'];
 $contrasena = $_SESSION['contrasena'];
 include '../Modelo/conexion.php';
 
-require '../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
-
 $conectar = new conexion();
 
 $rolAnt=$_SESSION["Variable1"];

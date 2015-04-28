@@ -9,7 +9,7 @@
  $conexion = new conexion();
  
  $verificar = new ValidadorInicioSesion();
- $verificar->validarInicioSesion($uActivo);
+ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
 ?>
 <html>

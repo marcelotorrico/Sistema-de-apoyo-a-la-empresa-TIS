@@ -9,11 +9,6 @@
 $usuario= $_SESSION['usuario'];
 $contrasena= $_SESSION['contrasena'];
 
-require '../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
-
 $delRol = $_GET['id_us'];
 $peticion1 = $conectar-> consulta("SELECT CODIGO_P FROM proyecto WHERE ID_G='".$delRol."'");
         while ($codp = mysql_fetch_array($peticion1))

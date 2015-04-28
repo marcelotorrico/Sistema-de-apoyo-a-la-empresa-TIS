@@ -13,11 +13,6 @@ $conect = new conexion();
 $usuario = $_SESSION['usuario'];
 $contrasena = $_SESSION['contrasena'];
 
-require '../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
-
 error_reporting(E_ALL ^ E_NOTICE);
 $idgp = $_GET['id_us'];
 

@@ -3,13 +3,8 @@
 include '../Modelo/conexion_pd.php';
 include '../Modelo/crear_oc_pdf.php';
 
-require '../Controlador/ValidadorInicioSesion.php';
-
 session_start();
 $nombreUA = $_SESSION['usuario'] ;
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($nombreUA);
 
 $conexion = new conexion();
 

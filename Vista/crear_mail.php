@@ -12,11 +12,6 @@ $addFecha= $_POST['fec'];
 
    session_start();
    $UsuarioActivo = $_SESSION['usuario'];
- 
-   require '../Controlador/ValidadorInicioSesion.php';
-
-    $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($UsuarioActivo);
 
 //conexion-------------		
     
@@ -46,7 +41,7 @@ $addFecha= $_POST['fec'];
  
    
     require '../Modelo/PHPMailerAutoload.php';
-    require '../Modelo/class.phpmailer.php';
+    require '../Vista/class.phpmailer.php';
     
 
         //Crear una instancia de PHPMailer

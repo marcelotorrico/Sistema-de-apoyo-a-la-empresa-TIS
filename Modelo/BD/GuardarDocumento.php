@@ -7,11 +7,6 @@ date_default_timezone_set('America/Puerto_Rico');
 session_start();
 $UsuarioActivo = $_SESSION['usuario'];
 
-require '../../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($UsuarioActivo);
-
 $proyecto =$_POST['proyecto'];
 
 $nombreDoc = trim($_POST['nombreDocumento']);

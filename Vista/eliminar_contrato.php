@@ -1,7 +1,7 @@
 <?php
  
 session_start();
-include '../Modelo/conexion.php';
+include_once '../Modelo/conexion.php';
 $conect = new conexion();
 
 
@@ -16,7 +16,7 @@ $contrasena = $_SESSION['contrasena'];
 require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
+$verificar->validarInicioSesion($usuario,"asesor");
 
 error_reporting(E_ALL ^ E_NOTICE);
 $idgp = $_GET['id_us'];

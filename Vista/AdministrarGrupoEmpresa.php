@@ -5,7 +5,7 @@ $uActivo = $_SESSION['usuario'];
 require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
 ?>
 <!DOCTYPE html>
@@ -252,7 +252,7 @@ $verificar->validarInicioSesion($uActivo);
                             <div class="col-lg-12">
                                 <form method = "post" id="FormEvaluar">
                                     <?php
-                                    include '../Modelo/conexion.php';
+                                    include_once '../Modelo/conexion.php';
                                     $conect = new conexion();
                                     $SelectGI = $conect->consulta("SELECT NOMBRE_UGE FROM inscripcion
                                                         WHERE NOMBRE_UA='$uActivo'");
