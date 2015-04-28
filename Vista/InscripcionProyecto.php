@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  $con=new conexion();
  ?> 
@@ -311,7 +311,7 @@ $verificar->validarInicioSesion($uActivo);
                                 </div>     
                                        
                                 <div class="form-group">
-                                     <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='../Modelo/BD/RegistrarProyecto.php'">  <span class="glyphicon glyphicon-ok"></span> Aceptar</button>
+                                     <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='RegistrarProyecto.php'">  <span class="glyphicon glyphicon-ok"></span> Aceptar</button>
                                 </div>
                                        
                             </form>                              

@@ -1,12 +1,12 @@
 <?php  
- include '../Modelo/conexion.php';
+ include_once '../Modelo/conexion.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
- require '../Controlador/ValidadorInicioSesion.php';
+ require_once '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  $con=new conexion();
  ?> 

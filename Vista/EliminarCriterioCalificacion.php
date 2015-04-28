@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($UsuarioActivo);
+$verificar->validarInicioSesion($UsuarioActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -274,7 +274,7 @@ $verificar->validarInicioSesion($UsuarioActivo);
 
                     <?php 
 
-                    include '../Modelo/conexion.php';
+                    include_once '../Modelo/conexion.php';
 
                     $conect = new conexion();
 

@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -279,7 +279,7 @@ $verificar->validarInicioSesion($uActivo);
                         <div class="panel-body">     
                             
                             <?php 
-                            include '../Modelo/conexion.php';
+                            include_once '../Modelo/conexion.php';
                             $conect = new conexion();
                             
                             $Sel_Form = $conect->consulta("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$uActivo'");

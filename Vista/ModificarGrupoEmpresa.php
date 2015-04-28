@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
  $verificar = new ValidadorInicioSesion();
- $verificar->validarInicioSesion($uActivo);
+ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
  $conexion = new conexion();
 

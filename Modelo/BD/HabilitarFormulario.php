@@ -4,11 +4,6 @@ session_start();
 $UsuarioActivo = $_SESSION['usuario'];
 include '../conexion.php';
 
-require '../../Controlador/ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($UsuarioActivo);
-
 $Form = $_POST['formulario'];
                                                   
     $conect = new conexion();

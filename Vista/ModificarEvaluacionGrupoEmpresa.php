@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -265,7 +265,7 @@ $verificar->validarInicioSesion($uActivo);
                 <form method = "post" id="FormEvaluar">
 
                     <?php 
-                    include '../Modelo/conexion.php';
+                    include_once '../Modelo/conexion.php';
 
                     $GrupoE = $_GET['GE'];
 

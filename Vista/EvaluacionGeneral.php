@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -272,7 +272,7 @@ $verificar->validarInicioSesion($uActivo);
             <div class="col-lg-6">   
                 
                             <?php  
-                            include '../Modelo/conexion.php';
+                            include_once '../Modelo/conexion.php';
                             $conect = new conexion();
 
                             $SelGrupo = $conect->consulta("SELECT NOMBRE_UGE FROM inscripcion, nota WHERE NOMBRE_UA = '$uActivo' AND ESTADO_INSCRIPCION = 'Habilitado' AND NOMBRE_U = NOMBRE_UGE");                         
