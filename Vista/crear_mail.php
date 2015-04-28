@@ -41,7 +41,7 @@ $addFecha= $_POST['fec'];
  
    
     require '../Modelo/PHPMailerAutoload.php';
-    require '../Vista/class.phpmailer.php';
+    require '../Modelo/class.phpmailer.php';
     
 
         //Crear una instancia de PHPMailer
