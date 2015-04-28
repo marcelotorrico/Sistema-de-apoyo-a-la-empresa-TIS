@@ -1208,10 +1208,9 @@ INSERT INTO `usuario_rol` VALUES ('Power', 'grupoEmpresa');
 -- ----------------------------
 -- Procedure structure for insert_gestion
 -- ----------------------------
-
 DROP PROCEDURE IF EXISTS `insert_gestion`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
+CREATE PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
 BEGIN
 DECLARE anio_actual, anio_f_ini integer;
 set anio_actual = YEAR(CURDATE()); 
@@ -1236,7 +1235,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_socio`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_socio`(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
+CREATE PROCEDURE `insert_socio`(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
 BEGIN
 DECLARE cant integer;
 SET cant = (select count(*) from socio where NOMBRE_U=n_u);
