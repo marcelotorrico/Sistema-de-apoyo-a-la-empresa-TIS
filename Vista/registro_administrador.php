@@ -244,7 +244,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="\b[A-Z]{1}[a-z]{3,20}\b" title="Ejm: Vargas, Morales, Medrano" required>
+            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="\b[A-Z]{1}[a-z]{2,20}\b" title="Ejm: Vargas, Morales, Medrano" required>
             </div>
             </div>
 
@@ -262,7 +262,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-envelope"></span>
             </span>
-            <input class="form-control" type="email" name="email" id="UserEmail" placeholder="Correo" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" required>
+            <input class="form-control" type="text" name="email" id="UserEmail" placeholder="Correo" pattern="^([a-zA-Z0-9_\.\-])+\@(([hotmail]{7}|[yahoo]{5}|[gmail]{5})+\.)+([a-zA-Z0-9]{2,4})+$" required>
             </div>
             </div>
 

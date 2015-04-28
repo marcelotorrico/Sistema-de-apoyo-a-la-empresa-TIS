@@ -110,7 +110,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="^[a-zA-Z\s]{3,25}" title="Ejm: Daniel Marcelo, Rolando" required>
+                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="\b[A-Z]{1}[a-z]{3,20}" title="Ejm: Daniel Marcelo, Rolando" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -118,7 +118,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="^[a-zA-Z\s]{3,25}" title="Ejm: Quiroga Santivanez, Suarez" required>
+                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="\b[A-Z]{1}[a-z]{3,20}\b" title="Ejm: Quiroga Santivanez, Suarez" required>
                                             </div>
                                         </div>
                                         

@@ -120,6 +120,7 @@
               $booleanVerificarContrasenas = $validar->validarContrasenas($PasswordAnterior, $PasswordRepetido);
               $booleanNombreReal = $validar ->validarNombre($RealName);
               $booleanApellido = $validar->validarNombre($Apellido);
+              $booleanCorreo = $validar->validarCorreo($Email);
               
               if($booleanTelefono){
                   
@@ -133,6 +134,8 @@
                                 if($booleanNombreReal){
                                     
                                     if($booleanApellido){
+                                        
+                                        if($booleanCorreo){
 
                                         $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
 
@@ -142,6 +145,10 @@
 
                                         echo '<script>alert("Su solicitud se envio correctamente");</script>';
                                         echo '<script>window.location="../../index.php";</script>';
+                                        }else{
+                                          echo '<script>alert("El correo es incorrecto");</script>';
+                                          echo '<script>window.location="../Vista/registro_administrador.php";</script>';
+                                      }
                                     }else{
                           
                                         echo '<script>alert("Su apellido es incorrecto");</script>';

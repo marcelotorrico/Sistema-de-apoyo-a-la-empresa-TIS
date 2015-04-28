@@ -56,6 +56,7 @@
                  $booleanVerificarContrasenas = $validar->validarContrasenas($passwordAnterior, $PasswordRepetido);
                  $booleanNombreLargo = $validar->validarNombreLargo($nombreLGE);
                  $booleanNombreCorto = $validar->validarNombreLargo($nombreCGE);
+                 $booleanCorreo = $validar->validarCorreo($correoGE);
               
               if($booleanTelefono == true){
                   
@@ -67,6 +68,8 @@
                               
                               if($booleanNombreLargo){
                                   if($booleanNombreCorto){
+                                      
+                                      if($booleanCorreo){
                                     try 
                                       {
                                       $sql = 'INSERT INTO usuario (NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES (:value, :estado, :contrasena, :telefono, :correo);';
@@ -100,6 +103,10 @@
                                             $conn->rollback();
                                             echo $e->getMessage();
                                         }
+                                      }else{
+                                          echo '<script>alert("El correo es incorrecto");</script>';
+                                          echo '<script>window.location="../Vista/registro_administrador.php";</script>';
+                                      }
                                   }else{
                   
                                     echo '<script>alert("El nombre corto de la Grupo Empresa es muy corto");</script>';

@@ -53,6 +53,7 @@ $peticion3 = $conectar ->consulta("SELECT * FROM asesor");
          $booleanVerificarContrasenas = $validar->validarContrasenas($passwordAnterior, $PasswordRepetido);
          $booleanNombreReal = $validar ->validarNombre($addNombre);
          $booleanApellido = $validar->validarNombre($addApellido);
+         $booleanCorreo = $validar->validarCorreo($addEmail);
               
               if($booleanTelefono == true){
                   
@@ -66,6 +67,8 @@ $peticion3 = $conectar ->consulta("SELECT * FROM asesor");
                               if($booleanNombreReal){
                                   
                                   if($booleanApellido){
+                                      
+                                      if($booleanCorreo){
                   
                                         $peticion1 = $conectar ->consulta("INSERT INTO `usuario` (`NOMBRE_U`, `ESTADO_E`, `PASSWORD_U`, `TELEFONO_U`, `CORREO_ELECTRONICO_U`) VALUES ('$addUsuario', 'Habilitado', '$addContra', '$addTelefono', '$addEmail');");
                                         $peticion2 = $conectar ->consulta("INSERT INTO `usuario_rol` (`NOMBRE_U`, `ROL_R`) VALUES ('$addUsuario', 'administrador');");
@@ -76,6 +79,10 @@ $peticion3 = $conectar ->consulta("SELECT * FROM asesor");
                                            //volver a la pagina---------------
 
                                         echo"<script type=\"text/javascript\">alert('El registro se realizo exitosamente'); window.location='../Vista/registro_administrador.php';</script>";
+                                      }else{
+                                          echo '<script>alert("El correo es incorrecto");</script>';
+                                          echo '<script>window.location="../Vista/registro_administrador.php";</script>';
+                                      }
                                   }else{
                   
                                 echo '<script>alert("El apellido es incorrecto");</script>';

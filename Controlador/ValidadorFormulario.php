@@ -14,11 +14,15 @@
         }
         
         function verificarNombreUsuario($nombreUsuario){
-            if (ereg("^[a-zA-Z0-9]{5,14}$", $nombreUsuario)){
-                return true; 
-            } else {
-                return false; 
-            } 
+            $res = false;
+            if(strlen($nombreUsuario)>4 && strlen($nombreUsuario)<15){
+                if(preg_match('/^[aA-zZ]{5}/',$nombreUsuario)){
+                    if(ctype_alnum($nombreUsuario)){
+                        $res = true;
+                    }
+                }
+            }
+            return $res; 
         }
         
         function verificarContrasena($contrasena){
@@ -26,7 +30,7 @@
             if(strlen($contrasena) < 7 && strlen($contrasena) > 16){
                 return false;
             }else{
-                if (!preg_match('`[a-z]`',$contrasena) || !preg_match('`[A-Z]`',$contrasena) || !preg_match('`[0-9]`',$contrasena) || ctype_alnum($contrasena)){
+                if (!preg_match('/[a-z]/',$contrasena) || !preg_match('/[A-Z]/',$contrasena) || !preg_match('/[0-9]/',$contrasena) || ctype_alnum($contrasena)){
                     return false;
                 }
             }
@@ -39,12 +43,22 @@
             return false;
         }
         function validarNombre($nombre){
-            if(preg_match('/[^a-zA-Z]/',$nombre)){
+            if(strlen($nombre)<3 || strlen($nombre)>21){
+                return false;
+            }
+            
+            if(!preg_match('/^[A-Z]{1}[a-z]{2,20}$/',$nombre)){
                     return false;
             }
             return true;
         }
-        function validarNombreLargo($nombre){
+        function validarCorreo($correo){
+            if(!preg_match('/^([a-zA-Z0-9_\.\-])+\@(([hotmail]{7}|[yahoo]{5}|[gmail]{5})+\.)+([a-zA-Z0-9]{2,4})+$/',$correo)){
+                    return false;
+            }
+            return true;
+        }
+                function validarNombreLargo($nombre){
             if(strlen($nombre)>2){
                 return true;
             }
