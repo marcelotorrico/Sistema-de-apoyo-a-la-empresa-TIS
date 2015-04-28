@@ -1205,12 +1205,13 @@ INSERT INTO `usuario_rol` VALUES ('Colective', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('FreeValue', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Oasis', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Power', 'grupoEmpresa');
+-- ----------------------------
+-- Procedure structure for insert_gestion
+-- ----------------------------
 
--- ----------------------------
--- Procedure structure for `insert_gestion`
--- ----------------------------
-DROP PROCEDURE IF EXISTS insert_gestion;
-CREATE PROCEDURE insert_gestion(in gestion varchar(25), f_ini date, f_fin date)
+DROP PROCEDURE IF EXISTS `insert_gestion`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
 BEGIN
 DECLARE anio_actual, anio_f_ini integer;
 set anio_actual = YEAR(CURDATE()); 
@@ -1226,12 +1227,16 @@ IF(anio_f_ini >= anio_actual)THEN
 ELSE
     SELECT "Las gestiones deben ser posteriores a la fecha actual" as errno;
   END IF;
-END;
+END
+;;
+DELIMITER ;
+
 -- ----------------------------
--- Procedure structure for `insert_socio`
+-- Procedure structure for insert_socio
 -- ----------------------------
-DROP PROCEDURE IF EXISTS insert_socio;
-CREATE PROCEDURE insert_socio(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
+DROP PROCEDURE IF EXISTS `insert_socio`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_socio`(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
 BEGIN
 DECLARE cant integer;
 SET cant = (select count(*) from socio where NOMBRE_U=n_u);
@@ -1242,4 +1247,6 @@ THEN
  ELSE
   SELECT "Solo se pueden registrar 5 socios" as errno;
  END IF;
-END;
+END
+;;
+DELIMITER ;
