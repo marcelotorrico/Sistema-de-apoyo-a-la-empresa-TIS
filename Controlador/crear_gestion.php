@@ -15,6 +15,6 @@ $addRol = $_POST['rol'];
     $peticion = $conectar->consultaProcedimiento("call insert_gestion('$addRol','$addini','$addfin')") ;
     $result=$peticion['errno'];
     
-      echo "<script>alert('$result'); window.location='add_gestion.php';</script>";            
+      echo "<script>alert('$result'); window.location='../Vista/add_gestion.php';</script>";            
     
 ?>

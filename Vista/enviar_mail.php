@@ -212,7 +212,7 @@
                     </div> 
 		<h2><span>Enviar Email</span></h2>	
 		<div id="contenido">
-		<form action="crear_mail.php" method="post">
+                    <form action="../Controlador/crear_mail.php" method="post">
 		<left>
                  <table border=0 width=65%>
 		<tr>

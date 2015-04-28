@@ -5,9 +5,9 @@
     
     include_once '../Modelo/conexion.php';
     
-    require '../Controlador/ValidadorFormulario.php';
+    require 'ValidadorFormulario.php';
     
-    require '../Controlador/ValidadorInicioSesion.php';
+    require 'ValidadorInicioSesion.php';
 
     $conectar = new conexion();
     
@@ -75,7 +75,7 @@ $peticion3 = $conectar ->consulta("SELECT * FROM asesor");
 
                                            //volver a la pagina---------------
 
-                                        echo"<script type=\"text/javascript\">alert('El registro se realizo exitosamente'); window.location='registro_administrador.php';</script>";
+                                        echo"<script type=\"text/javascript\">alert('El registro se realizo exitosamente'); window.location='../Vista/registro_administrador.php';</script>";
                                   }else{
                   
                                 echo '<script>alert("El apellido es incorrecto");</script>';
@@ -108,6 +108,6 @@ $peticion3 = $conectar ->consulta("SELECT * FROM asesor");
               }
       }else{
      
-        echo"<script type=\"text/javascript\">alert('El nombre de usuario ya fue registrado por favor cambie de nombre'); window.location='registro_administrador.php';</script>";  
+        echo"<script type=\"text/javascript\">alert('El nombre de usuario ya fue registrado por favor cambie de nombre'); window.location='../Vista/registro_administrador.php';</script>";  
      }
 

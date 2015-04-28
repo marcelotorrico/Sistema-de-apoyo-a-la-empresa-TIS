@@ -217,7 +217,7 @@
                 <div class="col-lg-12"></div>
                 <h2><span>Nueva Gestion</span></h2>
 
-		<form action='crear_gestion.php' method='POST'>
+                <form action='../Controlador/crear_gestion.php' method='POST'>
 									
                 <table>
                 <tr>

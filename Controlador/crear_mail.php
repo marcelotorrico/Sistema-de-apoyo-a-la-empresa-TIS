@@ -88,11 +88,11 @@ $addFecha= $_POST['fec'];
     $mail->AltBody = 'This is a plain-text message body';
     //Enviamos el correo
     if(!$mail->Send()) {
-      echo"<script type=\"text/javascript\">alert('ERROR: mensaje no enviado intente nuevamente'); window.location='enviar_mail.php';</script>";
+      echo"<script type=\"text/javascript\">alert('ERROR: mensaje no enviado intente nuevamente'); window.location='../Vista/enviar_mail.php';</script>";
       
     } else {
         $peticion2 = $conectar->consulta("UPDATE `usuario` SET `ESTADO_E`='Habilitado' WHERE `NOMBRE_U`='$addDestino'");
-        echo"<script type=\"text/javascript\">alert('el mensaje se envio exitosamente'); window.location='principal.php';</script>";
+        echo"<script type=\"text/javascript\">alert('el mensaje se envio exitosamente'); window.location='../Vista/principal.php';</script>";
     }
 
 

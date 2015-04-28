@@ -346,7 +346,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                                     <td><a class="link-dos" target="_blank" href="<?php echo $rutaSubido ?>">Ver</a></td>
                                                                     <td> 
                                                                          <?php
-                                                                             echo "<a class='link-dos' href='eliminarDocumentoSubido.php?id_us=".$variable."'
+                                                                             echo "<a class='link-dos' href='../Controlador/eliminarDocumentoSubido.php?id_us=".$variable."'
                                                                             ><font color='blue'></font>Eliminar</a>";
                                                                          ?> 
                                                                      </td>

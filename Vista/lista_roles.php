@@ -213,7 +213,7 @@
 							?>			
 								<div id="contenido">
 			
-								<form action="crear_permisos.php" method="post">
+                                                                    <form action="../Controlador/crear_permisos.php" method="post">
 									<center>
 										<table border=0 width=80%>
 											<tr>

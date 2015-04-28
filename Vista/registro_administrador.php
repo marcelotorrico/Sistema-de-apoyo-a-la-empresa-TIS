@@ -201,7 +201,7 @@ $verificar->validarInicioSesion($uActivo);
             <div class="col-lg-12">
             <h2 class="page-header">Registrar Usuario:</h2>
             <div class="col-lg-6" >
-            <form id = "registroU" method = "post" action="crear_administrador.php" role="form" enctype="multipart/data-form" onsubmit="return validar(registroU)">
+                <form id = "registroU" method = "post" action="../Controlador/crear_administrador.php" role="form" enctype="multipart/data-form" onsubmit="return validar(registroU)">
 
             <div class="form-group">
             <div class="input-group">

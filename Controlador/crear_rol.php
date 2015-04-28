@@ -22,7 +22,7 @@ $addRol = $_POST['rol'];
 	 echo'
 	<html>
 		<head>
-			<meta http-equiv="REFRESH" content="0;url=add_roles.php">
+			<meta http-equiv="REFRESH" content="0;url=../Vista/add_roles.php">
 		</head>
 	</html>';
  

@@ -342,7 +342,7 @@ WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'administrador'");
                                     
                                                  <div class="contenedor-columna">
                                                         <?php
-                                                            echo "<a href ='eliminar_administrador.php?id_us=".$fila['NOMBRE_U']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+                                                            echo "<a href ='../Controlador/eliminar_administrador.php?id_us=".$fila['NOMBRE_U']."' class='verificar'><font color='blue'>Eliminar</font></a>";
                                                          ?>
                                                 </div>
                                                      </div>

@@ -216,7 +216,7 @@
             <div class="col-lg-12"></div>
 	    <h2><span>Nuevo Rol</span><br></h2>
 
-	    <form action='crear_rol.php' method='POST'>
+            <form action='../Controlador/crear_rol.php' method='POST'>
 		<div class="contenedor-fila">
 		<div class="contenedor-columna">
 		<p style="text-align:right;">Rol :</p>
