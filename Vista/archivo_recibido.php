@@ -251,7 +251,6 @@ $verificar->validarInicioSesion($uActivo);
                     <div class="col-lg-6" >
                             <div class="form-group">
                                 <?php
-                                
                                 if (isset($_POST['grupoempresa'])) {
                                     $seleccion=$_POST['grupoempresa'];
                                     if ($seleccion == 'Seleccione una grupo empresa') {
@@ -261,13 +260,11 @@ $verificar->validarInicioSesion($uActivo);
                                     if ($seleccion == 'TODOS') {
                                         $c_3="SELECT DISTINCT r.`NOMBRE_R`,d.`RUTA_D` FROM `registro` AS r,`documento` AS d WHERE d.`ID_R` = r.`ID_R` AND r.`TIPO_T` LIKE 'documento subido' AND r.`NOMBRE_U` IN (SELECT ge.`NOMBRE_U` FROM `inscripcion` AS i,`asesor` AS a,`grupo_empresa` AS `ge`,`gestion` AS g,`proyecto` AS p WHERE i.`NOMBRE_UA` = a.`NOMBRE_U` AND i.`NOMBRE_UGE` = ge.`NOMBRE_U` AND i.`ID_G` = g.`ID_G` AND i.`CODIGO_P` = p.`CODIGO_P` AND a.`NOMBRE_U` LIKE '".$_POST['idAsesor']."')";
                                     $r3=$con->consulta($c_3);
-                                    
                                     if(mysql_num_rows($r3) != 0)
                                     {
                                             echo "<h3><center>Listado de propuestas</center></h3><br>";
                                             echo "<form name='formularioComprimir' method='POST' action='descargar_zip.php' enctype='Multipart/form-data'>";
                                     while($var3 =  mysql_fetch_array($r3)){
-                                            
                                             echo "<a class='btn btn-default btn-lg btn-block' href='..".$var3['1']."'>".$var3[0]."</a><br>";
                                             
                                         }

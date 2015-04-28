@@ -210,7 +210,7 @@
                         
                             <div class="form-group">
                                 <?php
-                                   include './copiar_contenido_carpeta.php';
+                                   include '../Controlador/copiar_contenido_carpeta.php';
                                    
 
                                 //primero creamos la función que hace la magia
