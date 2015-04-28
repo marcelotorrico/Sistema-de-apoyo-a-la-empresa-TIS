@@ -13,7 +13,7 @@ $conect = new conexion();
 $usuario = $_SESSION['usuario'];
 $contrasena = $_SESSION['contrasena'];
 
-require '../Controlador/ValidadorInicioSesion.php';
+require 'ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($usuario,"asesor");

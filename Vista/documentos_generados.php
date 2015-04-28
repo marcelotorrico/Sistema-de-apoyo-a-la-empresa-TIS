@@ -306,7 +306,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                               <td> 
                                 <?php
                                 
-                                echo "<a class='link-dos' href='eliminar_contrato.php?id_us=".$var3[1]."'
+                                echo "<a class='link-dos' href='../Controlador/eliminar_contrato.php?id_us=".$var3[1]."'
                                 ><font color='blue'></font> Eliminar</a>";
                                 ?> </td>
                                 
