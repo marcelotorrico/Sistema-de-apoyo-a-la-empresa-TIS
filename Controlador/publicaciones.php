@@ -60,7 +60,7 @@ $verificar->validarInicioSesion($UsuarioActivo);
                        </td>
 			           <td>'.$aux.'
 			           </td>
-			           <td><a class="link-dos" href="../Vista/eliminar_publicacion.php?id_us='.$key['NOMBRE_R'].'">Eliminar</a></td>
+			           <td><a class="link-dos" href="eliminar_publicacion.php?id_us='.$key['NOMBRE_R'].'">Eliminar</a></td>
 			           </tr>';
 
                                   

@@ -254,7 +254,7 @@
 			
 		<div class="contenedor-columna">
 		<?php
-		echo "<a href ='eliminar_rol.php?id_us=".$fila['ROL_R']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+		echo "<a href ='../Controlador/eliminar_rol.php?id_us=".$fila['ROL_R']."' class='verificar'><font color='blue'>Eliminar</font></a>";
 		?>
 		</div>
 		</div>

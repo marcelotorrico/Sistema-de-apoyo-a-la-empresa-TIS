@@ -8,7 +8,7 @@
 $usuario= $_SESSION['usuario'];
 $contrasena= $_SESSION['contrasena'];
 
-require '../Controlador/ValidadorInicioSesion.php';
+require 'ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($usuario);
@@ -29,7 +29,7 @@ $peticion = $conectar->consulta ("DELETE FROM grupo_empresa WHERE grupo_empresa.
  echo'
 <html>
 	<head>
-		<meta http-equiv="REFRESH" content="0;url=lista_usuarios.php">
+		<meta http-equiv="REFRESH" content="0;url=../Vista/lista_usuarios.php">
 	</head>
 </html>';
 ?>

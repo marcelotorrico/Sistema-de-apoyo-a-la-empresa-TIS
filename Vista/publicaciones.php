@@ -308,7 +308,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                             </td>
 
                                                             <td>'.$Desc[2].'</td>
-                                                            <td><a class="link-dos" href="../Vista/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
+                                                            <td><a class="link-dos" href="../Controlador/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
                                                         </tr>';
                                                     }
 
@@ -364,7 +364,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                             <td>'.$Desc[1].
                                                             '</td>
                                                             <td>'.$Desc[2].'</td>
-                                                            <td><a class="link-dos" href="../Vista/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
+                                                            <td><a class="link-dos" href="../Controlador/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
                                                         </tr>';
                                                         $indiceA++;
                                                

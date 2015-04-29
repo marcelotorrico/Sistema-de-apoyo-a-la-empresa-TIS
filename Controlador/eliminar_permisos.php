@@ -9,7 +9,7 @@
 $usuario= $_SESSION['usuario'];
 $contrasena= $_SESSION['contrasena'];
 
-require '../Controlador/ValidadorInicioSesion.php';
+require 'ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($usuario);
@@ -24,7 +24,7 @@ $peticion = $con->consulta("DELETE FROM `permisos` WHERE id_permiso=$delRol");
  echo'
 <html>
 	<head>
-		<meta http-equiv="REFRESH" content="0;url=lista_roles.php">
+		<meta http-equiv="REFRESH" content="0;url=../Vista/lista_roles.php">
 	</head>
 </html>
 
