@@ -300,7 +300,7 @@
 			</div>                                                                    
 			<div class="contenedor-columna">
 			<?php
-			echo "<a href ='eliminar_gestion.php?id_us=".$fila['ID_G']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+			echo "<a href ='../Controlador/eliminar_gestion.php?id_us=".$fila['ID_G']."' class='verificar'><font color='blue'>Eliminar</font></a>";
 			?>
 			</div>
 									
