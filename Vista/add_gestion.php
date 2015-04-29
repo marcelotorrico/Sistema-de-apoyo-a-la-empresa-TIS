@@ -1,5 +1,6 @@
 <?php  
     session_start();
+if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     include '../Modelo/conexion.php';
     
@@ -337,6 +338,14 @@
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
+    <?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
+
 
 </body>
 
