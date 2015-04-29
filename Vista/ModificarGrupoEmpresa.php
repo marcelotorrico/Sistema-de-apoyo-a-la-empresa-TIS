@@ -1,6 +1,7 @@
 <?php
  include '../Modelo/conexion.php';
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
@@ -333,5 +334,10 @@
     <script src="../Librerias/js/sb-admin.js"></script>
 
 </body>
-
-</html><!DOCTYPE html>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
+</html>

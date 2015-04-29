@@ -5,6 +5,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
   
  session_start();
+if (isset($_SESSION['usuario'])) { 
  $uActivo = $_SESSION['usuario'];
  $conexion = new conexion();
 
@@ -280,6 +281,12 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
     <!-- SB Admin Scripts - Include with every page -->
     <script src="../Librerias/js/sb-admin.js"></script>
 
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
-</html><!DOCTYPE html>
+</html>

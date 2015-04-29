@@ -1,7 +1,8 @@
 <?php
     include '../Modelo/conexion.php';
-    session_start();
+    session_start(); 
     $con=new conexion();
+    if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     
     require '../Controlador/ValidadorInicioSesion.php';
@@ -309,7 +310,12 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
-
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>
