@@ -1,6 +1,7 @@
 <?php  
  
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
@@ -316,6 +317,12 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
 <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="../Librerias/js/sb-admin.js"></script>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>
