@@ -279,7 +279,7 @@
                 <h2><span>Modificar Informacion Personal</span></h2>
 		<div id="contenido">
                 <center>
-                 <form action="modificar_permiso_tabla.php" method="post"  >
+                    <form action="../Controlador/modificar_permiso_tabla.php" method="post"  >
 			<table border=0 width=50%> 
                         <tr>
 			<td >

@@ -14,7 +14,7 @@
     
     $alerta= $peticion['errno'];
 
-      echo "<script>alert('$alerta'); window.location='AnadirSocio.php';</script>";            
+      echo "<script>alert('$alerta'); window.location='../Vista/AnadirSocio.php';</script>";            
 ?>    
   
      

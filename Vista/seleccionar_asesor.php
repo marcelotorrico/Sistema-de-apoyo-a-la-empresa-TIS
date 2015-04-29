@@ -198,7 +198,7 @@
                           if(strnatcasecmp($repLegal[0], "") != 0){
                         ?>
                             <div class="form-group">
-                                <form method="POST" action="registrar_seleccion.php"><b>Asesor :</b>
+                                <form method="POST" action="../Controlador/registrar_seleccion.php"><b>Asesor :</b>
                                     <select name="asesor" class="form-control">
                                         <option>Seleccione un Asesor</option>
                                         <?php

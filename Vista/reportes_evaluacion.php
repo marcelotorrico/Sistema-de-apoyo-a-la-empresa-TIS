@@ -64,7 +64,7 @@
             <div class="modal-header">
      
             </div>
-            <form method="post" action="modificar_fechaBD.php">
+                <form method="post" action="../Controlador/modificar_fechaBD.php">
           
   
              <div class="bs-callout bs-callout-info">
