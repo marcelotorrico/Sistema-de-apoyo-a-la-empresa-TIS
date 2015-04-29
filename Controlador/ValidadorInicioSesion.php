@@ -5,7 +5,6 @@
         include_once '../Modelo/conexion.php';
          $conectar = new conexion();
          $user = isset($sesion);
-         $mensaje="Usted intento ingresar a una pagina que no le corresponde";
  
          if($user == ''){
              
@@ -15,14 +14,14 @@
             if($rol == "administrador"){
                 $consulta =$conectar->consulta("select * from administrador where NOMBRE_U = '".$sesion."'");
                 if(mysql_num_rows($consulta)==0){
-                    echo '<script>alert('.$mensaje.');</script>';
+                    echo '<script>alert("Usted intento ingresar a una pagina que no le corresponde");</script>';
                     echo '<script>window.location="../index.php";</script>';
                 }
             }else{
                 if($rol == "asesor"){
                     $consulta =$conectar->consulta("select * from asesor where NOMBRE_U = '".$sesion."'");
                     if(mysql_num_rows($consulta)==0){
-                        echo '<script>alert('.$mensaje.');</script>';
+                        echo '<script>alert("Usted intento ingresar a una pagina que no le corresponde");</script>';
                         echo '<script>window.location="../index.php";</script>';
                     }
             
@@ -30,7 +29,7 @@
                     if($rol == "grupoEmpresa"){
                         $consulta =$conectar->consulta("select * from grupo_empresa where NOMBRE_U = '".$sesion."'");
                         if(mysql_num_rows($consulta)==0){
-                            echo '<script>alert('.$mensaje.');</script>';
+                            echo '<script>alert("Usted intento ingresar a una pagina que no le corresponde");</script>';
                             echo '<script>window.location="../index.php";</script>';
                         }
                     }
