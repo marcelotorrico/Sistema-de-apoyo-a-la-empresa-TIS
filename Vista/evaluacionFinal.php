@@ -63,7 +63,7 @@
             <div class="modal-header">
                   <h4 class="modal-title">Evaluacion Grupo Empresa</h4>
             </div>
-                <form method="post" action="evaluacionFinalBD.php">
+                <form method="post" action="../Controlador/evaluacionFinalBD.php">
           
                <div class="bs-callout bs-callout-danger">
               <h4>Nota</h4>

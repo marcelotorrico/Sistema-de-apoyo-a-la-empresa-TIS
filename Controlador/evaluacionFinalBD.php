@@ -3,7 +3,7 @@
     $uActivo = $_SESSION['usuario'];
     include '../Modelo/conexion.php';
     
-    require '../Controlador/ValidadorInicioSesion.php';
+    require 'ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo);
@@ -64,7 +64,7 @@
              $conectar->consulta("UPDATE entrega SET `ENTREGADO_P` = '1' WHERE `entrega`.`ID_R` = '$IDPago' AND `entrega`.`ENTREGABLE_P` = '$entregable'");
             }   
           
-          echo"<script type=\"text/javascript\">alert('La evaluacion se guardo exitosamente'); window.location='lista_evaluacion.php';</script>";
+          echo"<script type=\"text/javascript\">alert('La evaluacion se guardo exitosamente'); window.location='../Vista/lista_evaluacion.php';</script>";
  ?> 
 
                       		
