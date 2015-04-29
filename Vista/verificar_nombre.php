@@ -77,7 +77,7 @@
                                         */?>
                                          </form>
                                         
-                                        <form action="ver_nombres.php" name="formulario2" role=form" method="post" target="_blank">
+                                        <form action="../Modelo/ver_nombres.php" name="formulario2" role=form" method="post" target="_blank">
                                             <button type="submit" class="btn btn-primary" target="_blank" >Ver Nombres Registrados</button><br><br>
                                             <?php
                                             //$idAsesor=$_POST['nombreAsesor'];

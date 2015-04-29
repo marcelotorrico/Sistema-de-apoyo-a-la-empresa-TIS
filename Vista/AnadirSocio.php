@@ -219,7 +219,7 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                 
                                 
                                         
-                                <button type="submit" onclick="this.form.action='registrarSocio.php'" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Registrar</button>
+                                <button type="submit" onclick="this.form.action='../Controlador/registrarSocio.php'" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Registrar</button>
                                 
                                 
                             </div>

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 include '../Librerias/fpdf.php';
-include '../Modelo/conexion.php';
+include 'conexion.php';
 
 class PDF extends FPDF
 {

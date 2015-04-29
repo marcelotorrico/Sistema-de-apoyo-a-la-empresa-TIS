@@ -10,7 +10,7 @@ $(document).ready(function() {
 
         if($("form")[0].checkValidity()) 
         {
-            var url = "../Vista/guardarFormulario.php"
+            var url = "../Controlador/guardarFormulario.php";
 
             $.ajax({
                 url: url,
@@ -19,7 +19,7 @@ $(document).ready(function() {
 
                 success: function(data){
 
-                $('#panelResultado').html(data)
+                $('#panelResultado').html(data);
 
                 }
 

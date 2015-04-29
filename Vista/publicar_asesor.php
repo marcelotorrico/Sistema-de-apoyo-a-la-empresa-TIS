@@ -295,7 +295,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 </div>
 
 <div id="page-wrapper">
-    <form action="tablas.php" method="post" name="fcontacto" onsubmit = "return validarCampos(this);">
+    <form action="../Controlador/tablas.php" method="post" name="fcontacto" onsubmit = "return validarCampos(this);">
         <div class ="form-horizontal">
             <div class="row">
                     <div class="col-lg-12">

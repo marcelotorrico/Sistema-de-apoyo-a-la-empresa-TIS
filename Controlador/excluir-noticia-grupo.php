@@ -16,5 +16,5 @@ alert ("Tema eliminado con exito.")
 
 </SCRIPT>
 <script>
-  location.href="lista-de-noticias-grupo.php";
+  location.href="../Vista/lista-de-noticias-grupo.php";
 </script>

@@ -313,7 +313,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                         {?>
                                      <span class="pull-right text-muted small"><em><?php echo"<td> <a  class='link-dos' href=\"noticia.php?id=$idNoti\">Ver </a></td>";?></em>
                                     </span>
-                                    <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"excluir-noticia.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
+                                    <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"../Controlador/excluir-noticia.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
                                     </span>
                                    
                                     <?php } 

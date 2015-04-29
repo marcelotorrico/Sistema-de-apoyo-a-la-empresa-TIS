@@ -163,7 +163,7 @@
         </div>
 
 
-        <form method="post" action="Vista/login.php">
+                <form method="post" action="Controlador/login.php">
         <div class="sidebar">
 
 

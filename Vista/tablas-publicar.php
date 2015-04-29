@@ -4,11 +4,6 @@ include '../Modelo/conexion.php';
 session_start();
 $conect = new conexion();
          $userAct = $_SESSION['usuario'];
-         
-         require '../Controlador/ValidadorInicioSesion.php';
-
-        $verificar = new ValidadorInicioSesion();
-        $verificar->validarInicioSesion($userAct);
 
          $grupo=$_POST['grupoempresa'];
        

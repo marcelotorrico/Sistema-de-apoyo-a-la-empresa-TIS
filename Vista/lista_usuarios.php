@@ -274,7 +274,7 @@ $verificar->validarInicioSesion($uActivo);
             </div>                                                                    
             <!--                                                                        <div class="contenedor-columna">
                 <?php
-                        echo "<a href ='eliminar_usuario.php?id_us=".$fila['NOMBRE_U']."'><font color='blue'>Eliminar</font></a>";
+                        echo "<a href ='../Controlador/eliminar_usuario.php?id_us=".$fila['NOMBRE_U']."'><font color='blue'>Eliminar</font></a>";
 
                 ?>
             </div>-->

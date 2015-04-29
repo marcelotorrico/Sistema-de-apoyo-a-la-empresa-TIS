@@ -233,7 +233,7 @@
                                     ?>
                             </select><br>
                              <div class   ="col-sm-8">
-                                 <input class ="btn btn-primary" type="submit" value= "Aceptar" id= "aceptar" name="Aceptar" onclick ="this.form.action='../Vista/registrarRP.php?id=0'"></input> &nbsp;&nbsp;              
+                                 <input class ="btn btn-primary" type="submit" value= "Aceptar" id= "aceptar" name="Aceptar" onclick ="this.form.action='../Controlador/registrarRP.php?id=0'"></input> &nbsp;&nbsp;              
                             </div>
                         </form>
                     </div>

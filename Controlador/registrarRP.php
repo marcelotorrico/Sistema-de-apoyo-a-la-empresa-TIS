@@ -3,11 +3,6 @@
     session_start();
     
     $nombreU = $_SESSION['usuario'];
-    
-    require '../Controlador/ValidadorInicioSesion.php';
-
-    $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($nombreU);
 
     $conexion = new conexion();
     
@@ -16,7 +11,7 @@
     
     if(strcmp($repL[0],"")!=0)
     {
-        echo"<script type=\"text/javascript\">alert('Usted ya registro un representante legal'); window.location='AnadirRL.php';</script>";
+        echo"<script type=\"text/javascript\">alert('Usted ya registro un representante legal'); window.location='../Vista/AnadirRL.php';</script>";
     }
     else
     {
@@ -24,12 +19,12 @@
         if(strnatcasecmp($nomRL, "Seleccione un representante legal")!=0)
         {
                $conexion->consulta(" UPDATE grupo_empresa SET REPRESENTANTE_LEGAL_GE='$nomRL' WHERE NOMBRE_U = '$nombreU'");   
-               echo"<script type=\"text/javascript\">alert('Se registro satisfactoriamente'); window.location='AnadirRL.php';</script>";
+               echo"<script type=\"text/javascript\">alert('Se registro satisfactoriamente'); window.location='../Vista/AnadirRL.php';</script>";
      
         }
         else
         {
-            echo"<script type=\"text/javascript\">alert('Por favor, seleccione un representante legal'); window.location='AnadirRL.php';</script>";
+            echo"<script type=\"text/javascript\">alert('Por favor, seleccione un representante legal'); window.location='../Vista/AnadirRL.php';</script>";
      
         }
      }

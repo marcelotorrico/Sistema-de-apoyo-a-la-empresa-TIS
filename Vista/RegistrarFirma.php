@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($UsuarioActivo);
+$verificar->validarInicioSesion($UsuarioActivo,"asesor");
 
  ?> 
   <!DOCTYPE html>

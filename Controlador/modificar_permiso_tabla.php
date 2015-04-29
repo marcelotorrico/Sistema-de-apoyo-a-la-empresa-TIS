@@ -20,7 +20,7 @@ $permiso = $_REQUEST['estado'];
 	 echo'
 	<html>
 		<head>
-			<meta http-equiv="REFRESH" content="0;url=asignar_permisos.php">
+			<meta http-equiv="REFRESH" content="0;url=../Vista/asignar_permisos.php">
 		</head>
 	</html>';
 
