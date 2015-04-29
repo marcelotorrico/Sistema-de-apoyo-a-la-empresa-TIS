@@ -239,7 +239,7 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                      {?>
                                                   <span class="pull-right text-muted small"><em><?php echo"<td> <a  class='link-dos' href=\"noticia-grupo.php?id=$idNoti\">Ver </a></td>";?></em>
                                                   </span>
-                                                  <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"excluir-noticia-grupo.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
+                                                  <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"../Controlador/excluir-noticia-grupo.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
                                                   </span>
                                    
                                     <?php
