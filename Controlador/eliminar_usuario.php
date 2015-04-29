@@ -8,11 +8,6 @@
 $usuario= $_SESSION['usuario'];
 $contrasena= $_SESSION['contrasena'];
 
-require 'ValidadorInicioSesion.php';
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($usuario);
-
 $delActiv = $_GET['id_us'];
 $rol = $conectar->consulta("SELECT ROL_R
 FROM usuario_rol 

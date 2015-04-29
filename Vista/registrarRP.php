@@ -3,11 +3,6 @@
     session_start();
     
     $nombreU = $_SESSION['usuario'];
-    
-    require '../Controlador/ValidadorInicioSesion.php';
-
-    $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($nombreU);
 
     $conexion = new conexion();
     

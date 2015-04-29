@@ -5,11 +5,6 @@
      session_start();
 
     $UserAct = $_SESSION['usuario'];
-    
-    require '../../Controlador/ValidadorInicioSesion.php';
-
-    $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($UserAct);
 
 	$grupo = $_POST['GrupoEscogido'];
     $Form = $_POST['IdFormularioUtilizado'];
