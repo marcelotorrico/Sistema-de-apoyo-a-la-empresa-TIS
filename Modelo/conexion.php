@@ -36,9 +36,12 @@ function consulta($consulta) {
 }
 
 function consultaProcedimiento($consulta) {
+	//$mysql = mysql_connect('localhost','root','') or die('No se pudo conectar con el servidor');
+    //mysql_select_db('saetis',$mysql) or die('Error en la consulta'.mysql_error()) ;
+   
 
-    $mysql = mysql_connect('localhost','root','') or die('No se pudo conectar con el servidor');
-    mysql_select_db('saetis',$mysql) or die('Error en la consulta'.mysql_error()) ;
+    $mysql = mysql_connect($servidor,$userName,$password) or die('No se pudo conectar con el servidor');
+    mysql_select_db($bdName,$mysql) or die('Error en la consulta'.mysql_error()) ;
    
     $consultaP = mysql_query($consulta,$mysql);
     $resultado = mysql_fetch_assoc($consultaP);
