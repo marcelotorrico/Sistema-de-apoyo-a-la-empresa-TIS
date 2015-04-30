@@ -1,8 +1,8 @@
- <?php  
- 
+ <?php
+session_start();
 error_reporting (5);    
 include '../Modelo/conexion.php';
-session_start();
+
 $con=new conexion();
 if (isset($_SESSION['usuario'])) {
 $uActivo = $_SESSION['usuario'];

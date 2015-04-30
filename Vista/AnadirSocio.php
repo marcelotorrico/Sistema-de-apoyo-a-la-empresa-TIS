@@ -1,10 +1,9 @@
 <?php
-
+session_start();
  include '../Modelo/conexion.php';
  
  require '../Controlador/ValidadorInicioSesion.php';
   
- session_start();
 if (isset($_SESSION['usuario'])) { 
  $uActivo = $_SESSION['usuario'];
  $conexion = new conexion();
