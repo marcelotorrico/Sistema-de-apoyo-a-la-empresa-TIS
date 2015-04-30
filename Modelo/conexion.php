@@ -36,10 +36,9 @@ function consulta($consulta) {
 }
 
 function consultaProcedimiento($consulta) {
-	$mysql = mysql_connect('2082',' innovatedev','eidbPAcP03.') or die('No se pudo conectar con el servidor');
-    mysql_select_db('saetis',$mysql) or die('Error en la consulta'.mysql_error()) ;
+    global $link;
    
-    $consultaP = mysql_query($consulta,$mysql);
+    $consultaP = mysql_query($consulta,$link);
     $resultado = mysql_fetch_assoc($consultaP);
     
     return $resultado;
