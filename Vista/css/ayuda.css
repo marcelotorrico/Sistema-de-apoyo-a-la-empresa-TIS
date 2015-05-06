@@ -1,0 +1,20 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-05-2015, 05:27:52 PM
+    Author     : Antonio
+*/
+
+body {
+  position: relative;
+}
+.bs-docs-sidebar .nav > .active:focus > a, .bs-docs-sidebar .nav > .active:hover > a, .bs-docs-sidebar .nav > .active > a {
+  background-color: transparent;
+  border-left: 2px solid rgb(86, 61, 124);
+  color: rgb(86, 61, 124);
+  font-weight: 700;
+  padding-left: 18px;
+}

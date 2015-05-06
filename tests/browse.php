@@ -318,7 +318,7 @@ function isimgtype($file) {
 function isprotecteddir($dir) {
 	if ($dir != '' && $dir != '/') $dir = '.'.$dir;
 	elseif ($dir == '') $dir = './';
-	if (in_array($dir,$GLOBALS['CONFIG']['PROTECTED_DIRS']) || TRUE) return true;
+	if (in_array($dir,$GLOBALS['CONFIG']['PROTECTED_DIRS'])) return true;
 	else return FALSE;
 }
 

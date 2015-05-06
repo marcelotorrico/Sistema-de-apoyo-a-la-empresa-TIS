@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,8 +38,7 @@
             </fieldset>
         </form>        
         
-        <?php
-        session_start();
+        <?php        
         include '../Modelo/conexion.php';
         $conectar = new conexion();        
         
