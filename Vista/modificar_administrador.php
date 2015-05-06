@@ -242,7 +242,7 @@
             <span class='input-group-addon'>
             <span class='glyphicon glyphicon-user'></span>
             </span>
-            <input class='form-control' type='text' name='login' id='UserName'  value='".$fila['NOMBRE_U']."' readonly='readonly' required/>
+            <input class='form-control' type='text' name='login' id='UserName'  value='".$fila['NOMBRE_U']."' title='Minimo 5 y Maximo 14 caracteres...Ejm: Bittle123, Bitle' required/>
             </div>
             </div>
             </td>

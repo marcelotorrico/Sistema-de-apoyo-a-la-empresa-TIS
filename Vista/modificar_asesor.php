@@ -324,7 +324,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" value=" <?php echo $uActivo ?>"  readonly='readonly' >
+                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" value="<?php echo $uActivo ?>" >
                                             </div>
                                         </div>
                                         
