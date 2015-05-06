@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Modelo/conexion_pd.php</file>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/tests/browse.php</file>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/descargar_zip.php</file>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/tests/sql.php</file>
-            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Controlador/copiar_contenido_carpeta.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Controlador/Ayuda/ayuda.js</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/css/ayuda.css</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/inicio_grupo_empresa.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/index.php</file>
+            <file>file:/U:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/ayuda/ayudaGrupoEmpresa.html</file>
         </group>
     </open-files>
 </project-private>
