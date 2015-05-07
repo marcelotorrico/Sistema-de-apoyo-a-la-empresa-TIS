@@ -61,14 +61,14 @@
                 <div class="col-lg-12">
                     <h2 class="page-header">Registrar Grupo Empresa:</h2>
                     <div class="col-lg-6" >
-                                    <form method = "post" id="FormularioRegistroUsuarioGE">
+                                    <form method = "post" id="FormularioRegistroUsuarioGE" action="#">
                                         
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreU" id="nombreU" placeholder="Nombre de Usuario" pattern="\b[a-zA-z]{3}[a-zA-z0-9]{0,11}" title="Minimo 3 caracteres y Maximo 14. Los primeros tres caracteres tienen que ser letras, despues se permite: Letras, numeros y '_' Ejm: Bittle123, Bitle" required>
+                                                <input class="form-control" type="text" name="nombreU" id="nombreU" placeholder="Nombre de Usuario" pattern="^[a-zA-Zñ0-9_\\_\ü]{3,16}$" title="Nombre de usuario de 3 a 16 caracteres Ejm: Bittle123, Bitle" required>
                                             </div>
                                         </div>
                                         
@@ -77,7 +77,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena1" id="contrasena1" placeholder="Contraseña" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+                                                <input class="form-control" type="password" name="contrasena1" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
                                             </div>
                                         </div>
                                         
@@ -86,7 +86,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
                                             </div>
                                         </div>
                                         
@@ -97,7 +97,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreL" id="nombreL" placeholder="Nombre largo" minlength="3" pattern=".{3,}" title="Minimo 3 caracteres" required  onkeypress="return validarLetras(event)">
+                                                <input class="form-control" type="text" name="nombreL" id="nombreL" placeholder="Nombre largo" minlength="3" pattern=".{3,}" title="Minimo 3 caracteres" required>
                                             </div>
                                         </div>
                                         
@@ -106,17 +106,17 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreC" id="nombreC" placeholder="Nombre corto" minlength="3" pattern=".{3,}" title="Minimo 3 caracteres" required  onkeypress="return validarLetras(event)">
+                                                <input class="form-control" type="text" name="nombreC" id="nombreC" placeholder="Nombre corto" minlength="3" pattern=".{3,}" title="Minimo 3 caracteres" required>
                                             </div>
                                         </div>
                                         
                                         
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <span class="input-group-addon">
+                                              <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" title="Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" required  onkeypress="return validarEmail(event)">
+                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern="^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" title="Ingrese un correo valido. Ejm: admin@hotmail.com" required>
                                             </div>
                                         </div>
                                         
@@ -125,7 +125,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599" pattern="\b[467][0-9]{6,7}"  required  onkeypress="return validarNumeros(event)">
+                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 6789000" pattern="^[4|7|6][0-9]{6,7}$"  required>
                                             </div>
                                         </div>
                                         
@@ -140,7 +140,8 @@
                                 
 
                                         
-                                        <button type="submit" onclick="this.form.action='../Modelo/BD/ProcesarRegistroGrupoE.php'" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Registrarme</button>
+                                        <button type="submit" class="btn btn-primary" onclick="this.form.action='../Modelo/BD/ProcesarRegistroGrupoE.php'" > <span class="glyphicon glyphicon-ok"></span> Registrarme</button>
+
                                     </form>              
                             <div id="panelResultadoGE">
                                 
