@@ -1,150 +1,196 @@
-<?php
-
-    $Name = htmlentities($_POST['nombreUsuario'], ENT_QUOTES);
-    $RealName = htmlentities($_POST['nombreReal'], ENT_QUOTES);
-    //$Pass = md5($_POST['password']);
-    $PasswordAnterior = htmlentities($_POST['password'], ENT_QUOTES);
-    $PasswordRepetido = htmlentities($_POST['contrasena2'], ENT_QUOTES);
-    $Email = htmlentities($_POST['email'], ENT_QUOTES);
-    $rol = htmlentities($_POST['UsuarioRol'], ENT_QUOTES);
-    $Apellido = htmlentities($_POST['apellido'], ENT_QUOTES);
-    $Telefono = htmlentities($_POST['telefono'], ENT_QUOTES);
-
-    include '../conexion.php';
-    require '../PHPMailerAutoload.php';
-    require '../class.phpmailer.php';
+<!DOCTYPE html>
+<html>
+<head>
     
-    require '../../Controlador/ValidadorFormulario.php';
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de Apoyo a la Empresa TIS</title>
+   
+    <link rel="stylesheet" type="text/css" href="../Librerias/lib/css/docs.css">
+
+    <!-- Core CSS - Include with every page -->
+    <link href="../Librerias/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../Librerias/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../Librerias/css/bootstrap-dialog.css" rel="stylesheet">
+
+
+    <!-- SB Admin CSS - Include with every page -->
+    <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../Librerias/css/jquery-te-1.4.0.css">
     
-    $conect = new conexion();
-    $mail = new PHPMailer();
+    <script src="../Librerias/js/jquery-1.10.2.js"></script>
+   
+    <script src="../Librerias/js/jquery-2.1.0.min.js"></script>
+    <!--script src="../Librerias/js/jquery-ui.js"></script-->
+    <script src="../Librerias/js/bootstrap-dialog.js"></script>
     
-    $validar = new ValidadorFormulario();
-
-    $Sel_U = $conect->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$Name' ");
-    $Sel_U2 = mysql_fetch_row($Sel_U);
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-  
-
-    $mystring = $Email;
-    $findme1   = 'hotmail';
-    $findme2   = 'gmail';
-    $findme3   = 'yahoo';
-    $pos1 = strpos($mystring, $findme1);
-    $pos2 = strpos($mystring, $findme2);
-    $pos3 = strpos($mystring, $findme3);
-    if ($pos1 === false) 
-    {
-        if($pos2 === false)
-        {
-            if($pos3 === false)
-                {
-                 $numeroCorreo=0;
-                }
-            else
-               {
-                 $numeroCorreo=1;
-               }
-        }
-        else
-        {
-           $numeroCorreo=1;
-        }
-         
+     <link href="css/style.css" rel="stylesheet" type="text/css" />
     
-    } 
-    else 
-    {
-    $numeroCorreo=1;
-    }
+    <script type="text/javascript" src="../Librerias/js/validar_registro.js"></script>
+     
+</head>
 
-    
-    
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    if($numeroCorreo=="1")
-    {
-     if (!is_array($Sel_U2)) 
-     {
-              
-              $booleanTelefono = $validar->verificarNumeroValido($Telefono);
-              $booleanUsuario = $validar->verificarNombreUsuario($Name);
-              $booleanContrasena = $validar->verificarContrasena($PasswordAnterior);
-              $booleanVerificarContrasenas = $validar->validarContrasenas($PasswordAnterior, $PasswordRepetido);
-              $booleanNombreReal = $validar ->validarNombre($RealName);
-              $booleanApellido = $validar->validarNombre($Apellido);
-              $booleanCorreo = $validar->validarCorreo($Email);
-              
-              if($booleanTelefono){
-                  
-                  if($booleanUsuario){
-                      
-                      if($booleanContrasena){
-                          if($booleanVerificarContrasenas){
-                          
-                                $Pass = md5($PasswordAnterior);
-                                
-                                if($booleanNombreReal){
-                                    
-                                    if($booleanApellido){
-                                        
-                                        if($booleanCorreo){
+<body>
 
-                                        $conect->consulta("INSERT INTO usuario(NOMBRE_U, ESTADO_E, PASSWORD_U, TELEFONO_U, CORREO_ELECTRONICO_U) VALUES('$Name','Deshabilitado','$Pass','$Telefono','$Email')"); 
-
-                                        $conect->consulta("INSERT INTO asesor(NOMBRE_U, NOMBRES_A, APELLIDOS_A) VALUES('$Name','$RealName','$Apellido')");  
-                                        $conect->consulta("INSERT INTO usuario_rol(NOMBRE_U, ROL_R) VALUES('$Name','$rol')");  
-                                        $conect->consulta("INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES('$Name','PUNTAJE','4')");
-
-                                        echo '<script>alert("Su solicitud se envio correctamente");</script>';
-                                        echo '<script>window.location="../../index.php";</script>';
-                                        }else{
-                                          echo '<script>alert("El correo es incorrecto");</script>';
-                                          echo '<script>window.location="../Vista/registro_administrador.php";</script>';
-                                      }
-                                    }else{
-                          
-                                        echo '<script>alert("Su apellido es incorrecto");</script>';
-                                        echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-                                    }
-                                }else{
-                          
-                                    echo '<script>alert("Su nombre es incorrecto");</script>';
-                                    echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-                                }
-                          }else{
-                          
-                            echo '<script>alert("La contrasena no coinciden");</script>';
-                            echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-                      }
-                      }else{
-                          
-                          echo '<script>alert("La contrasena no cumple con lo requerido");</script>';
-                          echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-                      }
-                  }else{
-                      
-                      echo '<script>alert("El nombre de usuario es incorrecto");</script>';
-                      echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-                  }
-              }else{
-                  
-                  echo '<script>alert("El numero de telefono es incorrecto");</script>';
-                  echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-              }
-         // }
-    }else{
-
-
-        echo '<script>alert("El nombre de usuario ya esta registrado");</script>';
-        echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
+   
+    <div id="wrapper">
+       
         
+    <!--<h2>design by <a href="#" title="flash templates">flash-templates-today.com</a></h2>-->
+        
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.php">Inicio </a>
+            </div>
+            <!-- /.navbar-header -->
 
-    }
-    }
-    else
-    {
-        echo '<script>alert("Correo Ingresado no Valido");</script>';
-        echo '<script>window.location="../../Vista/RegistrarUsuario.php";</script>';
-    }
+            
+            <!-- /.navbar-top-links -->
+        </nav>
+
+<!-------------------------------------------NUEVAS PUBLICACIONES------------------------------------------>
+<div id="page-wrapper">
+    <form method = "post" id="FormularioRegistroUsuario" action="../Modelo/BD/ProcesarRegistroUsuario.php" role="form" enctype="multipart/data-form" onsubmit="return validar(FormularioRegistroUsuario)">
+                                  
+        <div class ="form-horizontal">
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <div class="bs-callout bs-callout-danger">
+                   
+                     <p>
+                         <strong>Nota: </strong> Servicio de Correro valido  <strong>hotmail, gmail, yahoo.</strong>
+                      </p>
+                    </div> 
+                 
+                    <h2 class="page-header">Registrar Usuario:</h2>
+                    
+
+                    <div class="col-lg-6" >
+                                         
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Zñ0-9_\\_\ü]{3,16}$" title="Minimo 3 caracteres y Maximo 16.Ejm: _Fernando_, Rolando2" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-lock"></span>
+                                                </span>
+                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-lock"></span>
+                                                </span>
+                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
+                                            </div>
+                                        </div>                                        
+                                        
+                                        <br> </br>
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El nombre debe ser mayor a 2 caracteres y menor a 30 Ejm: Daniel Marcelo, Rolando" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El apellido debe ser mayor a 2 caracteres y menor a 30  Ejm: Santivañez, Suarez" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-earphone"></span>
+                                                </span>
+                                                <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599" pattern="^[4|7|6][0-9]{6,7}$" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-envelope"></span>
+                                                </span>
+                                                <input class="form-control" type="email" name="email" id="UserEmail" placeholder="Correo" pattern="^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" title="Ejm: admin@hotmail.com" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-th-list"></span>
+                                                </span>
+                                                <select class="form-control" id="UserRol" name="UsuarioRol" required> 
+                                                   
+                                                <?php
+                                                    $i=0;
+                                                    include '../Modelo/conexion.php';
+        
+                                                    $conect = new conexion();
+                                                    $ResRoles = $conect->consulta("SELECT * FROM `rol` WHERE ROL_R != 'administrador' and  ROL_R != 'grupoEmpresa' ");
+                                                  
+                                                    while($row = mysql_fetch_row($ResRoles))
+                                                    {
+                                                        $roles[] = $row;
+                                                        echo '<option>'.$roles[$i][0].'</option>';
+                                                        $i++;
+                                                    }
+                                                ?>
+                                                 </select> 
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" name="submit" class="btn btn-primary" id="btn-registrarUser"> <span class="glyphicon glyphicon-ok"></span> Registrarme</button>
+                                        </div>
+                                               
+                            <div id="panelResultado">
+                                
+                            </div>        
+                        </div>
+                </div>
+            </div><!-- /.row -->       
+    </div>
+   </form>   
+    </div>
+    </div> 
     
-?>
+    <script src="../Librerias/js/bootstrap.min.js"></script>
+    <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+
+    <!-- SB Admin Scripts - Include with every page -->
+    <script src="../Librerias/js/sb-admin.js"></script>
+  
+    <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
+    <script src="../Librerias/js/demo/dashboard-demo.js"></script>
+    <!-- Combo Box scripts -->
+
+    
+ 
+</body>
+
+</html>
+
