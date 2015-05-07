@@ -15,7 +15,7 @@
 
     $nuevoNombre = $conexion->consulta("SELECT * FROM usuario WHERE NOMBRE_U = '$nombreUsuario' ");
     $fila = mysql_fetch_row($nuevoNombre);
-    if(!is_array($fila)){
+    if(!is_array($fila) || $nombreUsuario == $nombreUGE){
         
         $conexion->consulta(" UPDATE usuario SET PASSWORD_U='$contrasena', TELEFONO_U='$telef', CORREO_ELECTRONICO_U='$correo', NOMBRE_U='$nombreUsuario' WHERE NOMBRE_U = '$nombreUGE'");
         $conexion->consulta(" UPDATE grupo_empresa SET NOMBRE_CORTO_GE='$nombreCorto', NOMBRE_LARGO_GE='$nombreLargo', DIRECCION_GE='$direc', NOMBRE_U='$nombreUsuario' WHERE NOMBRE_U = '$nombreUsuario'");

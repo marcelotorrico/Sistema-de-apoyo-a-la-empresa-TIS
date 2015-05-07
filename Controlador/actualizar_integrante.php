@@ -21,7 +21,7 @@
  
  $nuevoNombre = $conectar->consulta("SELECT * FROM usuario WHERE NOMBRE_U = '$updLogin' ");
  $fila = mysql_fetch_row($nuevoNombre);
- if(!is_array($fila)){
+ if(!is_array($fila) || $updLogin == $usuario){
  
     $conectar->consulta("UPDATE usuario SET NOMBRE_U='$updLogin',PASSWORD_U='$updPassword',TELEFONO_U='$updTelefono',CORREO_ELECTRONICO_U='$updEmail'
     WHERE  NOMBRE_U='$usuario'");
@@ -32,7 +32,7 @@
 
     $_SESSION['usuario'] = $updLogin;
 
-   echo"<script type=\"text/javascript\">alert('Se modificaron los datos satisfactoriamente'); window.location='../Vista/principal.php';</script>";
+   echo"<script type=\"text/javascript\">alert('Se modificaron los datos satisfactoriamente'); window.location='../Vista/modificar_administrador.php';</script>";
  }else{
         echo"<script type=\"text/javascript\">alert('El nombre de usuario ya fue registrado, por favor cambie de nombre'); window.location='../Vista/modificar_administrador.php';</script>";  
      }
