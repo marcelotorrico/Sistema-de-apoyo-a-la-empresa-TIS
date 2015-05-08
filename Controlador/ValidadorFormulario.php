@@ -16,7 +16,7 @@
         function verificarNombreUsuario($nombreUsuario){
             $res = false;
             if(strlen($nombreUsuario)>4 && strlen($nombreUsuario)<15){
-                if(preg_match('/^[aA-zZ]{5}/',$nombreUsuario)){
+                if(preg_match('[a-zA-Z]{3}[a-zA-z0-9]{0,11}',$nombreUsuario)){
                     if(ctype_alnum($nombreUsuario)){
                         $res = true;
                     }
