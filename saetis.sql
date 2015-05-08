@@ -1249,3 +1249,50 @@ THEN
 END
 ;;
 DELIMITER ;
+-- ----------------------------
+-- Procedure structure for registro_grupo_empresa
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `registro_grupo_empresa`;
+DELIMITER ;;
+CREATE PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(25), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
+BEGIN
+
+ declare t INTEGER;
+ declare e INTEGER;
+ declare n INTEGER;
+ declare n_u INTEGER;
+ declare p INTEGER;
+ declare n_l INTEGER;
+ declare n_c INTEGER;
+ 
+  set n_u = (SELECT nom_u REGEXP '^[a-zA-Zñ0-9_\\_\ü]{3,16}$');
+  set t = (SELECT telef REGEXP '^[4|7|6][0-9]{6,7}$');
+  set p = (select passwd REGEXP '.{8}');
+  set e = (SELECT email REGEXP '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$');
+  set n_l = (select nge_largo REGEXP '.{3}');
+  set n_c = (select nge_corto REGEXP '.{3}');                         
+  
+  CASE 0
+
+   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 5 a 16 caracteres" as errno);
+   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as errno);
+   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as errno);
+   WHEN e THEN (select "Ingrese un correo valido" as errno);
+   WHEN n_l THEN (select "Nombre largo para grupo empresa tiene q tener mas de 3 caracteres" as errno);
+   WHEN n_c THEN (select "Nombre corto para grupo empresa tiene q tener mas de 3 caracteres" as errno);  
+
+  ELSE 
+
+  INSERT INTO usuario VALUES (nom_u,'habilitado',MD5(passwd),telef,email);
+
+  INSERT INTO grupo_empresa VALUES (nom_u,nge_corto, nge_largo,direcc,"",5);
+
+  INSERT INTO usuario_rol VALUES (nom_u,'grupoEmpresa');
+  
+  SELECT "Registro satisfactorio" as errno;
+  END CASE;
+  
+  END
+;;
+DELIMITER ;
+
