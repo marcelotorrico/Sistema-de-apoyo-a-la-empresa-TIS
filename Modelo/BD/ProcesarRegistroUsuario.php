@@ -19,7 +19,7 @@
     
     $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombre','$apellido','$nombreU','$telefono','$password','$correo','$rol')");
     
-    $mensaje= $peticion['errno'];
+    $mensaje= $peticion['mensaje'];
 
       echo "<script>alert('$mensaje'); window.location='../../index.php';</script>";            
    
