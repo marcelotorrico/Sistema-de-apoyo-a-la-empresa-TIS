@@ -202,14 +202,14 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <div class="col-lg-12">
             <h2 class="page-header">Registrar Usuario:</h2>
             <div class="col-lg-6" >
-                <form id = "registroU" method = "post" action="../Controlador/crear_administrador.php" role="form" enctype="multipart/data-form" onsubmit="return validar(registroU)">
+                <form id = "registroU" method = "post" action="../Controlador/crear_administrador.php">
 
             <div class="form-group">
             <div class="input-group">
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="usuario" id="UserName" placeholder="Nombre de Usuario" pattern="\b[a-zA-z]{3}[a-zA-z0-9]{0,11}" title="Minimo 3 caracteres y Maximo 14. Los primeros tres caracteres tienen que ser letras, despues se permite: Letras, numeros y '_' Ejm: Leticia1, Rolando2" required>
+            <input class="form-control" type="text" name="usuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Zñ0-9_\\_\ü]{3,16}$" title="Minimo 3 caracteres y Maximo 14. Los primeros tres caracteres tienen que ser letras, despues se permite: Letras, numeros y '_' Ejm: Leticia1, Rolando2" required>
             </div>
             </div>
             <div class="form-group">
@@ -217,7 +217,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-lock"></span>
             </span>
-            <input class="form-control" type="password" name="contrasena" id="contrasena1" placeholder="Contraseña" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+            <input class="form-control" type="password" name="contrasena" id="contrasena1" placeholder="Contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
             </div>
             </div>
                 
@@ -226,7 +226,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-lock"></span>
                     </span>
-                    <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+                    <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
                 </div>
             </div>                
                 
@@ -237,7 +237,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="nombre" id="RealName" placeholder="Nombre" pattern="\b[A-Z]{1}[a-z]{2,20}" title="El nombre debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Daniel Marcelo, Rolando" required>
+            <input class="form-control" type="text" name="nombre" id="RealName" placeholder="Nombre" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El nombre debe ser mayor a 2 caracteres y menor a 30 Ejm: Daniel Marcelo, rolando" required>
             </div>
             </div>
             <div class="form-group">
@@ -245,7 +245,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="\b[A-Z]{1}[a-z]{2,20}\b" title="El apellido debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Vargas, Morales, Medrano" required>
+            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El apellido debe ser mayor a 2 caracteres  y menor a 30 Ejm: vargas, Morales, medrano" required>
             </div>
             </div>
 
@@ -255,7 +255,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-earphone"></span>
             </span>
-            <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599" pattern="\b[467][0-9]{6,7}" required>
+            <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 67241212" pattern="^[4|7|6][0-9]{6,7}$" required>
             </div>
             </div>
             <div class="form-group">
@@ -263,7 +263,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-envelope"></span>
             </span>
-            <input class="form-control" type="text" name="email" id="UserEmail" placeholder="Correo" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" title="Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" required>
+            <input class="form-control" type="text" name="email" id="UserEmail" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@saetis.com, admin@gmail.com" required>
             </div>
             </div>
 
