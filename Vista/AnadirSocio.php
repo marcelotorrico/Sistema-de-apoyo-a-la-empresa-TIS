@@ -244,10 +244,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                         {
                             echo '<div class="form-group">
                                     <div class="alert alert-warning">
-                                        <strong>Aún puede registrar </strong>
-                                    </div>
-                                </div>';
-                            echo $restantes;    ////esta variable no me reconoce
+                                        <strong>Aún puede registrar: </strong>'.$restantes.
+                                    '</div>
+                                </div>';                            
                         }  
 
 
