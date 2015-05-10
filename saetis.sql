@@ -1237,14 +1237,18 @@ DROP PROCEDURE IF EXISTS `insert_socio`;
 DELIMITER ;;
 CREATE PROCEDURE `insert_socio`(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
 BEGIN
-DECLARE cant integer;
-SET cant = (select count(*) from socio where NOMBRE_U=n_u);
-IF (cant < 5) 
+DECLARE cantT integer;
+DECLARE numSocP integer;
+DECLARE rest integer;
+SET cantT = (select count(*) from socio where NOMBRE_U=n_u);
+SET numSocP = (select NUM_SOCIOS FROM grupo_empresa WHERE  NOMBRE_U=n_u);
+SET rest = (numSocP - cantT);
+IF (rest > 0) 
 THEN
   INSERT INTO socio(NOMBRE_U,NOMBRES_S,APELLIDOS_S) VALUES (n_u,nombre,apellido);
   SELECT "Se registro correctamente" as errno;
  ELSE
-  SELECT "Solo se pueden registrar 5 socios" as errno;
+  SELECT "Ya se registraron todos los socios" as errno;
  END IF;
 END
 ;;
@@ -1274,12 +1278,12 @@ BEGIN
   
   CASE 0
 
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 5 a 16 caracteres" as errno);
-   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as errno);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as errno);
-   WHEN e THEN (select "Ingrese un correo valido" as errno);
-   WHEN n_l THEN (select "Nombre largo para grupo empresa tiene q tener mas de 3 caracteres" as errno);
-   WHEN n_c THEN (select "Nombre corto para grupo empresa tiene q tener mas de 3 caracteres" as errno);  
+   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 5 a 16 caracteres" as mensaje);
+   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
+   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" asmensaje);
+   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
+   WHEN n_l THEN (select "Nombre largo para grupo empresa tiene q tener mas de 3 caracteres" as mensaje);
+   WHEN n_c THEN (select "Nombre corto para grupo empresa tiene q tener mas de 3 caracteres" as mensaje);  
 
   ELSE 
 
@@ -1289,7 +1293,7 @@ BEGIN
 
   INSERT INTO usuario_rol VALUES (nom_u,'grupoEmpresa');
   
-  SELECT "Registro satisfactorio" as errno;
+  SELECT "Registro satisfactorio" as mensaje;
   END CASE;
   
   END
@@ -1321,12 +1325,12 @@ BEGIN
   
   CASE 0
   
-   WHEN n THEN (select "Los nombres deben contener caracteres válidos de 2 a 30 caracteres" as errno);
-   WHEN a THEN (select "Los apellidos deben contener caracteres válidos de 2 a 30 caracteres" as errno);
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as errno);
-   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as errno);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as errno);
-   WHEN e THEN (select "Ingrese un correo valido" as errno);
+   WHEN n THEN (select "Los nombres deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
+   WHEN a THEN (select "Los apellidos deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
+   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as mensaje);
+   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
+   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as mensaje);
+   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
    
   ELSE 
 
@@ -1335,7 +1339,7 @@ BEGIN
    INSERT INTO usuario_rol VALUES(nom_u,rol);  
    INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES(nom_u,'PUNTAJE','4');
   
-  SELECT "Se registro correctamente" as errno;
+  SELECT "Se registro correctamente" as mensaje;
 
   END CASE;
   
