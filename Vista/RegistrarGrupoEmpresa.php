@@ -17,9 +17,10 @@
     <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../Librerias/css/jquery-te-1.4.0.css">
     
-    <script src="../Librerias/js/jquery-1.10.2.js"></script>
-   
+    
     <script src="../Librerias/js/jquery-2.1.0.min.js"></script>
+    <script src="../Librerias/js/jquery.validate.min.js"></script>
+
     <!--script src="../Librerias/js/jquery-ui.js"></script-->
     <script src="../Librerias/js/bootstrap-dialog.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
