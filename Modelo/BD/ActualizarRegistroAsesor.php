@@ -51,6 +51,7 @@ if($user == ''){
 
             $conectar->consulta("UPDATE noticias SET POSTEADO='$name' WHERE POSTEADO = '$updLogin'");
             $_SESSION['usuario'] = $name;
+            $_SESSION['contrasena'] = $password;
 
             echo"<script type=\"text/javascript\">alert('Se modificaron los datos satisfactoriamente'); window.location='../Vista/modificar_asesor.php';</script>";
         }

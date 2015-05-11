@@ -34,6 +34,7 @@
 
             $conexion->consulta("UPDATE noticias SET POSTEADO='$nombreUsuario' WHERE POSTEADO = '$nombreUGE'");
             $_SESSION['usuario'] = $nombreUsuario;
+            $_SESSION['contrasena'] = $contrasena;
 
             echo"<script type=\"text/javascript\">alert('Se modificaron los datos satisfactoriamente'); window.location='../../Vista/ModificarGrupoEmpresa.php';</script>";
         }       
