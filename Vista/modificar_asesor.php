@@ -333,7 +333,8 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="password" id="UserPassword" value="<?php echo $contrasena ?>" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+                                                <input class="form-control" type="text" name="password" id="UserPassword" value="<?php echo $contrasena ?>" required>                                                
+                                                <!input class="form-control" type="text" name="password" id="UserPassword" value="<?php echo $contrasena ?>" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required-->
                                             </div>
                                         </div>
                                         <br> </br>
