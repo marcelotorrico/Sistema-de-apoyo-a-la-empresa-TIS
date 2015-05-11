@@ -92,6 +92,7 @@
                                                 </span>
                                                 <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
                                             </div>
+                                            <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
                                         
                                         <div class="form-group">
