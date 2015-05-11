@@ -80,6 +80,7 @@
                                                 </span>
                                                 <input class="form-control" type="password" name="contrasena1" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
                                             </div>
+                                            <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
                                         
                                         <div class="form-group">
