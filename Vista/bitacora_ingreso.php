@@ -1,12 +1,13 @@
 <?php 
     session_start();
+    if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     include '../Modelo/conexion.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conectar = new conexion();
 ?>
@@ -290,7 +291,7 @@
 		</div>
                 <div class="contenedor-columna">
 		<?php
-		echo "<a href ='eliminar_bitacora.php?id_us=".$fila['ID_S']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+		echo "<a href ='../Controlador/eliminar_bitacora.php?id_us=".$fila['ID_S']."' class='verificar'><font color='blue'>Eliminar</font></a>";
 		?>
 		</div>
                                                                       
@@ -308,7 +309,7 @@
                  $peticion333=$conectar->consulta("SELECT * FROM `sesion`");
                  $tamano=mysql_num_rows($peticion333);
                 if($tamano>1){
-                echo "<a href ='eliminar_bitacora_total.php?id_us=".$fila['ID_S']."' class='verificar'><font color='blue'>Eliminar Todo</font></a>"; }
+                echo "<a href ='../Controlador/eliminar_bitacora_total.php?id_us=".$fila['ID_S']."' class='verificar'><font color='blue'>Eliminar Todo</font></a>"; }
                  ?>
 		</div>
                 </div>                                         
@@ -343,6 +344,13 @@
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
 
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
 </body>
 
 </html>

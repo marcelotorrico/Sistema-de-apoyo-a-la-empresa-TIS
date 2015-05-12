@@ -1,0 +1,50 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 05-05-2015, 05:27:52 PM
+    Author     : Antonio
+*/
+body{
+    background: #fefdde;
+}
+
+footer{
+    text-align: center;
+    margin: 20px;
+}
+
+p{
+    text-align: justify;
+}
+
+.menu-superior {
+  background-color: #074202;
+  border-color: #e7e7e7;
+}
+
+.menu-superior .navbar-brand {
+  color: #f8f8f5;
+}
+
+.bs-docs-header {
+    background: #d9d455;
+    color: #8a6d3b;
+    font-size: 18px;
+    padding: 20px 0px;
+}
+
+.bs-docs-header h1{
+    font-size: 36px;
+    margin-right: 0;
+}
+
+.bs-docs-header p{
+    margin-right: 0;
+}
+
+.bs-docs-container{
+    margin-bottom: 50px;
+}

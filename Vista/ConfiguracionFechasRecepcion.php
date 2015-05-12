@@ -1,15 +1,16 @@
- <?php  
- 
+ <?php
+session_start();
 error_reporting (5);    
 include '../Modelo/conexion.php';
-session_start();
+
 $con=new conexion();
+if (isset($_SESSION['usuario'])) {
 $uActivo = $_SESSION['usuario'];
 
 require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
 include 'forms/actions/seleccionarDocumentoConfiguracionFechas.php';
  ?> 
@@ -457,6 +458,12 @@ include 'forms/actions/seleccionarDocumentoConfiguracionFechas.php';
 
 <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="../Librerias/js/sb-admin.js"></script>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>

@@ -1,12 +1,13 @@
 <?php  
     session_start();
+if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     include '../Modelo/conexion.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conectar = new conexion();
  ?> 
@@ -217,7 +218,7 @@
                 <div class="col-lg-12"></div>
                 <h2><span>Nueva Gestion</span></h2>
 
-		<form action='crear_gestion.php' method='POST'>
+                <form action='../Controlador/crear_gestion.php' method='POST'>
 									
                 <table>
                 <tr>
@@ -300,7 +301,7 @@
 			</div>                                                                    
 			<div class="contenedor-columna">
 			<?php
-			echo "<a href ='eliminar_gestion.php?id_us=".$fila['ID_G']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+			echo "<a href ='../Controlador/eliminar_gestion.php?id_us=".$fila['ID_G']."' class='verificar'><font color='blue'>Eliminar</font></a>";
 			?>
 			</div>
 									
@@ -337,6 +338,14 @@
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
+    <?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
+
 
 </body>
 

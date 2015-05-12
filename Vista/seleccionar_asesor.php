@@ -2,12 +2,13 @@
 
     include '../Modelo/conexion.php';
     session_start();
+    if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
     $conexion = new conexion();
 
@@ -198,7 +199,7 @@
                           if(strnatcasecmp($repLegal[0], "") != 0){
                         ?>
                             <div class="form-group">
-                                <form method="POST" action="registrar_seleccion.php"><b>Asesor :</b>
+                                <form method="POST" action="../Controlador/registrar_seleccion.php"><b>Asesor :</b>
                                     <select name="asesor" class="form-control">
                                         <option>Seleccione un Asesor</option>
                                         <?php
@@ -244,6 +245,12 @@
     <!-- SB Admin Scripts - Include with every page -->
     <script src="../Librerias/js/sb-admin.js"></script>
 
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
-</html><!DOCTYPE html>
+</html>

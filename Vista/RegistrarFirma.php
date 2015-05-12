@@ -6,7 +6,7 @@
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($UsuarioActivo);
+$verificar->validarInicioSesion($UsuarioActivo,"asesor");
 
  ?> 
   <!DOCTYPE html>
@@ -294,7 +294,7 @@ $verificar->validarInicioSesion($UsuarioActivo);
                   
                     <div class="col-lg-12">
                                 
-                        <form action="../Vista/ProcesarFirmaContrato.php" method="POST">
+                        <form action="../Modelo/BD/ProcesarFirmaContrato.php" method="POST">
 
                             <div class="form-group">
                                 <select name="grupoempresa" id="" class="form-control" required>

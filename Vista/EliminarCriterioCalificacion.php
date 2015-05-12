@@ -1,12 +1,13 @@
 <?php  
  
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $UsuarioActivo = $_SESSION['usuario'];
 
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($UsuarioActivo);
+$verificar->validarInicioSesion($UsuarioActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -270,11 +271,11 @@ $verificar->validarInicioSesion($UsuarioActivo);
         <div class="col-lg-12">
             <h2 class="page-header">Eliminar Criterio de Calificacion</h2>
             <div class="col-lg-6">
-                <form method = "post" id="HabilitarFormulario" action="ProcesarEliminarCriterioCalificacion.php">   
+                <form method = "post" id="HabilitarFormulario" action="../Modelo/BD/ProcesarEliminarCriterioCalificacion.php">   
 
                     <?php 
 
-                    include '../Modelo/conexion.php';
+                    include_once '../Modelo/conexion.php';
 
                     $conect = new conexion();
 
@@ -335,6 +336,12 @@ $verificar->validarInicioSesion($UsuarioActivo);
 
 <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="../Librerias/js/sb-admin.js"></script>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>

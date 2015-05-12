@@ -1,12 +1,13 @@
 <?php  
  
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -279,7 +280,7 @@ $verificar->validarInicioSesion($uActivo);
                         <div class="panel-body">     
                             
                             <?php 
-                            include '../Modelo/conexion.php';
+                            include_once '../Modelo/conexion.php';
                             $conect = new conexion();
                             
                             $Sel_Form = $conect->consulta("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$uActivo'");
@@ -442,6 +443,12 @@ $verificar->validarInicioSesion($uActivo);
 
     <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../Librerias/js/sb-admin.js"></script>
+    <?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>

@@ -57,7 +57,7 @@
 
 <!-------------------------------------------NUEVAS PUBLICACIONES------------------------------------------>
 <div id="page-wrapper">
-    <form method = "post" id="FormularioRegistroUsuario" action="ProcesarRegistroUsuario.php" role="form" enctype="multipart/data-form" onsubmit="return validar(FormularioRegistroUsuario)">
+    <form method = "post" id="FormularioRegistroUsuario" action="../Modelo/BD/ProcesarRegistroUsuario.php" role="form" enctype="multipart/data-form" onsubmit="return validar(FormularioRegistroUsuario)">
                                   
         <div class ="form-horizontal">
             <div class="row">
@@ -81,7 +81,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="\b[a-zA-z]{5}[a-zA-z0-9]{0,9}" title="Minimo 5 y Maximo 14 caracteres...Ejm: Leticia1, Rolando2" required>
+                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Zñ0-9_\\_\ü]{3,16}$" title="Minimo 3 caracteres y Maximo 16.Ejm: _Fernando_, Rolando2" required>
                                             </div>
                                         </div>
                                         
@@ -90,8 +90,9 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="5" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="la contraseña debe contener mayusculas, minusculas, caracteres y numeros" required>
+                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
                                             </div>
+                                            <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
                                         
                                         <div class="form-group">
@@ -99,7 +100,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
                                             </div>
                                         </div>                                        
                                         
@@ -110,7 +111,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="^[a-zA-Z\s]{3,25}" title="Ejm: Daniel Marcelo, Rolando" required>
+                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El nombre debe ser mayor a 2 caracteres y menor a 30 Ejm: Daniel Marcelo, Rolando" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -118,7 +119,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="^[a-zA-Z\s]{3,25}" title="Ejm: Quiroga Santivanez, Suarez" required>
+                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El apellido debe ser mayor a 2 caracteres y menor a 30  Ejm: Santivañez, Suarez" required>
                                             </div>
                                         </div>
                                         
@@ -127,7 +128,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599" pattern="\b[467][0-9]{6,7}" required>
+                                                <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 67458923" pattern="^[4|7|6][0-9]{6,7}$" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -135,7 +136,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="email" id="UserEmail" placeholder="Correo" pattern="^([a-zA-Z0-9_\.\-])+\@(([hotmail]{7}|[yahoo]{5}|[gmail]{5})+\.)+([a-zA-Z0-9]{2,4})+$" title="Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com"required>
+                                                <input class="form-control" type="email" name="email" id="UserEmail" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ejm: admin@hotmail.com" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -193,3 +194,4 @@
 </body>
 
 </html>
+

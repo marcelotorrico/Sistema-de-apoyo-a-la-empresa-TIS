@@ -6,7 +6,7 @@
   require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
   $con=new conexion();
  ?> 
@@ -308,7 +308,7 @@ $verificar->validarInicioSesion($uActivo);
                                                             </td>
 
                                                             <td>'.$Desc[2].'</td>
-                                                            <td><a class="link-dos" href="../Vista/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
+                                                            <td><a class="link-dos" href="../Controlador/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
                                                         </tr>';
                                                     }
 
@@ -364,7 +364,7 @@ $verificar->validarInicioSesion($uActivo);
                                                             <td>'.$Desc[1].
                                                             '</td>
                                                             <td>'.$Desc[2].'</td>
-                                                            <td><a class="link-dos" href="../Vista/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
+                                                            <td><a class="link-dos" href="../Controlador/eliminar_publicacion.php?id_us='.$Desc[1].'">Eliminar</a></td>
                                                         </tr>';
                                                         $indiceA++;
                                                

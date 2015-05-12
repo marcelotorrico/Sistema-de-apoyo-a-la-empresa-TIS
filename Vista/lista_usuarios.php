@@ -1,12 +1,14 @@
 <?php  
  session_start();
+ if (isset($_SESSION['usuario'])) {
+
  $uActivo = $_SESSION['usuario'];
  include '../Modelo/conexion.php';
  
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"administrador");
 
  $conectar = new conexion();
  ?> 
@@ -274,7 +276,7 @@ $verificar->validarInicioSesion($uActivo);
             </div>                                                                    
             <!--                                                                        <div class="contenedor-columna">
                 <?php
-                        echo "<a href ='eliminar_usuario.php?id_us=".$fila['NOMBRE_U']."'><font color='blue'>Eliminar</font></a>";
+                        echo "<a href ='../Controlador/eliminar_usuario.php?id_us=".$fila['NOMBRE_U']."'><font color='blue'>Eliminar</font></a>";
 
                 ?>
             </div>-->
@@ -320,6 +322,14 @@ $verificar->validarInicioSesion($uActivo);
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
+
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
 
 </body>
 

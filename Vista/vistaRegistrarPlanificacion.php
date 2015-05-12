@@ -12,7 +12,7 @@
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
     $con = new conexion();
     $Ver_Usr = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");

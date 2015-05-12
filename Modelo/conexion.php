@@ -35,6 +35,16 @@ function consulta($consulta) {
     
 }
 
+function consultaProcedimiento($consulta) {
+    global $link;
+   
+    $consultaP = mysql_query($consulta,$link);
+    $resultado = mysql_fetch_assoc($consultaP);
+    
+    return $resultado;
+}
+
+
 function cerrarConexion() {
     global $link;
     mysql_close($link);

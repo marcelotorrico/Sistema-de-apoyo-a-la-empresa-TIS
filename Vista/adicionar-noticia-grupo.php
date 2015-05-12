@@ -7,7 +7,7 @@
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
     $con=new conexion();
     $VerificarUsuario = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");

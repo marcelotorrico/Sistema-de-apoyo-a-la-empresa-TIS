@@ -6,7 +6,7 @@
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conectar = new conexion();
  ?> 
@@ -213,7 +213,7 @@
 							?>			
 								<div id="contenido">
 			
-								<form action="crear_permisos.php" method="post">
+                                                                    <form action="../Controlador/crear_permisos.php" method="post">
 									<center>
 										<table border=0 width=80%>
 											<tr>
@@ -305,7 +305,7 @@
 									
 									<div class="contenedor-columna">
 										<?php
-											echo "<a href ='eliminar_permisos.php?id_us=".$fila['id_permiso']."'><font color='blue'>Eliminar</font></a>";
+											echo "<a href ='../Controlador/eliminar_permisos.php?id_us=".$fila['id_permiso']."'><font color='blue'>Eliminar</font></a>";
 										?>
 									</div>
 									

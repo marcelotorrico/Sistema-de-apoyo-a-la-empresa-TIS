@@ -88,7 +88,7 @@ $(document).ready(function(){
                     if($("form")[0].checkValidity()) 
                     {
          
-                        var url = "GuardarCriterios.php"
+                        var url = "../Modelo/BD/GuardarCriterios.php"
 
                         $.ajax({
                             url: url,

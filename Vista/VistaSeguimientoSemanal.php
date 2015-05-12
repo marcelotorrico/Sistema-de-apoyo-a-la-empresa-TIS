@@ -8,7 +8,7 @@
         require '../Controlador/ValidadorInicioSesion.php';
 
         $verificar = new ValidadorInicioSesion();
-        $verificar->validarInicioSesion($usuario);
+        $verificar->validarInicioSesion($usuario,"asesor");
 
 	$conexion = new conexion();
 	$conexion->conectar();

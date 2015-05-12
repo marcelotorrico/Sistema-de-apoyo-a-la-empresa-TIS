@@ -2,12 +2,13 @@
 
  include '../Modelo/conexion.php';
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
  $conexion = new conexion();
  
@@ -239,7 +240,7 @@ $verificar->validarInicioSesion($uActivo);
                                      {?>
                                                   <span class="pull-right text-muted small"><em><?php echo"<td> <a  class='link-dos' href=\"noticia-grupo.php?id=$idNoti\">Ver </a></td>";?></em>
                                                   </span>
-                                                  <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"excluir-noticia-grupo.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
+                                                  <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"../Controlador/excluir-noticia-grupo.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
                                                   </span>
                                    
                                     <?php
@@ -296,7 +297,12 @@ $verificar->validarInicioSesion($uActivo);
 
     <!-- SB Admin Scripts - Include with every page -->
     <script src="../Librerias/js/sb-admin.js"></script>
-
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
-</html><!DOCTYPE html>
+</html>

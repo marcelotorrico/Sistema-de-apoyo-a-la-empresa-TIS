@@ -1,12 +1,13 @@
 <?php 
     session_start();
+    if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     include '../Modelo/conexion.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conectar = new conexion();
 
@@ -212,7 +213,7 @@
                     </div> 
 		<h2><span>Enviar Email</span></h2>	
 		<div id="contenido">
-		<form action="crear_mail.php" method="post">
+                    <form action="../Controlador/crear_mail.php" method="post">
 		<left>
                  <table border=0 width=65%>
 		<tr>
@@ -316,6 +317,14 @@
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
+
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
 
 </body>
 

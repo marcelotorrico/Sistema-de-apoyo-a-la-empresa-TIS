@@ -1,11 +1,12 @@
 <?php  
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
- require '../Controlador/ValidadorInicioSesion.php';
+ require_once '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  ?> 
   <!DOCTYPE html>
@@ -301,7 +302,7 @@ $verificar->validarInicioSesion($uActivo);
                                      </tr> 
 
                             <?php
-                                include '../Modelo/conexion.php';
+                                include_once '../Modelo/conexion.php';
                                 $con=new conexion();
 
                               
@@ -346,7 +347,7 @@ $verificar->validarInicioSesion($uActivo);
                                                                     <td><a class="link-dos" target="_blank" href="<?php echo $rutaSubido ?>">Ver</a></td>
                                                                     <td> 
                                                                          <?php
-                                                                             echo "<a class='link-dos' href='eliminarDocumentoSubido.php?id_us=".$variable."'
+                                                                             echo "<a class='link-dos' href='../Controlador/eliminarDocumentoSubido.php?id_us=".$variable."'
                                                                             ><font color='blue'></font>Eliminar</a>";
                                                                          ?> 
                                                                      </td>
@@ -387,6 +388,12 @@ $verificar->validarInicioSesion($uActivo);
 
     <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../Librerias/js/sb-admin.js"></script>
+    <?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>              

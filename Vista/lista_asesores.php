@@ -1,12 +1,13 @@
 <?php 
     include '../Modelo/conexion.php';
     session_start();
+    if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conect = new conexion();
 ?>
@@ -332,7 +333,7 @@ WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'asesor'");
                                     
                                        <div class="contenedor-columna">
                                         <?php
-                                            echo "<a href ='eliminar_asesor.php?id_us=".$asesor['NOMBRE_U']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+                                            echo "<a href ='../Controlador/eliminar_asesor.php?id_us=".$asesor['NOMBRE_U']."' class='verificar'><font color='blue'>Eliminar</font></a>";
                                         ?>
                                     </div>
                                                                                                   
@@ -387,6 +388,14 @@ WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'asesor'");
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
 
+
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
 </body>
 
 </html>

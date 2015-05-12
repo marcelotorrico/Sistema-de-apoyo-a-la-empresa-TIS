@@ -2,12 +2,13 @@
 
     include '../Modelo/conexion.php';
     session_start();
+    if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
     $conexion = new conexion();
 
@@ -232,7 +233,7 @@
                                     <br>
                                     <input type='hidden' name='ge' value=<?php echo $uActivo; ?>>
                                     <div class="form-group">
-                                        <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='RegistrarProyectoGE.php'">  <span class="glyphicon glyphicon-ok"></span> Aceptar</button>
+                                        <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='../Modelo/BD/RegistrarProyectoGE.php'">  <span class="glyphicon glyphicon-ok"></span> Aceptar</button>
                                    </div>       
                                 </form>
                             </div>
@@ -272,7 +273,12 @@
 
     <!-- SB Admin Scripts - Include with every page -->
     <script src="../Librerias/js/sb-admin.js"></script>
-
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
-</html><!DOCTYPE html>
+</html>

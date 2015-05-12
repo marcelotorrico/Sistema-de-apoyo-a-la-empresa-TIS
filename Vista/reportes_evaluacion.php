@@ -6,7 +6,7 @@
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"asesor");
 
     $conectar=new conexion();
 
@@ -64,7 +64,7 @@
             <div class="modal-header">
      
             </div>
-            <form method="post" action="modificar_fechaBD.php">
+                <form method="post" action="../Controlador/modificar_fechaBD.php">
           
   
              <div class="bs-callout bs-callout-info">

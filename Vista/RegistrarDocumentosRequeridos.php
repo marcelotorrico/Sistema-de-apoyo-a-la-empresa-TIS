@@ -3,12 +3,13 @@
  include '../Modelo/conexion.php';
  $con = new conexion(); 
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  ?> 
  <!DOCTYPE html>
@@ -282,7 +283,7 @@ $verificar->validarInicioSesion($uActivo);
                 <div class="col-lg-12">
                     <div class="panel panel-default" id="configuracionFechas">
                         <div class="panel-body"> 
-                            <form  method="POST" name="formulario" id="formulario" action="GuardarDocumento.php">
+                            <form  method="POST" name="formulario" id="formulario" action="../Modelo/BD/GuardarDocumento.php">
                                 <p>
                                     <label class="default" >Escriba el nombre del documento requerido</label>
                                 </p>
@@ -392,6 +393,12 @@ $verificar->validarInicioSesion($uActivo);
 
 <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="../Librerias/js/sb-admin.js"></script>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
 </html>

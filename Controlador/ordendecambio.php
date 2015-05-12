@@ -8,16 +8,11 @@
 
 <?php
 
-include '../Modelo/conexion_pd.php';
-include '../Modelo/crear_oc_pdf.php';
-
-require '../Controlador/ValidadorInicioSesion.php';
+include_once '../Modelo/conexion_pd.php';
+include_once '../Modelo/crear_oc_pdf.php';
 
 session_start();
 $nombreUA = $_SESSION['usuario'] ;
-
-$verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($nombreUA);
 
 $conexion = new conexion();
 
@@ -116,7 +111,6 @@ if (isset($_POST['lista']))
                             }
 
 
-
                             $queryProy = "SELECT proyecto.CODIGO_P FROM proyecto, inscripcion_proyecto WHERE proyecto.CODIGO_P = inscripcion_proyecto.CODIGO_P AND NOMBRE_U = '$nombreUGE'";
                             $selProy = $conexion->query($queryProy);
                             $rowProy = $selProy->fetchObject();
@@ -128,7 +122,6 @@ if (isset($_POST['lista']))
                             $consulta = $conexion->query("SELECT * FROM registro WHERE NOMBRE_U='$nombreUGE' AND TIPO_T='documento subido'");
                             $DocSub = $consulta->rowCount();
 
-                        
                             if(($DocSub == $docR) and $DocSub>=1)
                             { 
                                 if(isset($_GET['id']))

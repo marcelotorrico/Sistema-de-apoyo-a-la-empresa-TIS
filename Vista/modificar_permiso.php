@@ -6,7 +6,7 @@
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conectar = new conexion();
 ?>
@@ -212,7 +212,7 @@
                  while($fila = mysql_fetch_array($peticion))
 		{
 	         echo"
-                <form action='actualizar_integrante.php' method='post'>
+                <form action='../Controlador/actualizar_integrante.php' method='post'>
 		<center>
 		<table border=0 width=50%>
 		<tr>
@@ -279,7 +279,7 @@
                 <h2><span>Modificar Informacion Personal</span></h2>
 		<div id="contenido">
                 <center>
-                 <form action="modificar_permiso_tabla.php" method="post"  >
+                    <form action="../Controlador/modificar_permiso_tabla.php" method="post"  >
 			<table border=0 width=50%> 
                         <tr>
 			<td >

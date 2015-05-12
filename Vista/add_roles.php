@@ -1,12 +1,14 @@
 <?php  
     session_start();
+if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
+
     include '../Modelo/conexion.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
-    $verificar->validarInicioSesion($uActivo);
+    $verificar->validarInicioSesion($uActivo,"administrador");
 
     $conectar = new conexion();
  ?> 
@@ -216,7 +218,7 @@
             <div class="col-lg-12"></div>
 	    <h2><span>Nuevo Rol</span><br></h2>
 
-	    <form action='crear_rol.php' method='POST'>
+            <form action='../Controlador/crear_rol.php' method='POST'>
 		<div class="contenedor-fila">
 		<div class="contenedor-columna">
 		<p style="text-align:right;">Rol :</p>
@@ -254,7 +256,7 @@
 			
 		<div class="contenedor-columna">
 		<?php
-		echo "<a href ='eliminar_rol.php?id_us=".$fila['ROL_R']."' class='verificar'><font color='blue'>Eliminar</font></a>";
+		echo "<a href ='../Controlador/eliminar_rol.php?id_us=".$fila['ROL_R']."' class='verificar'><font color='blue'>Eliminar</font></a>";
 		?>
 		</div>
 		</div>
@@ -293,6 +295,13 @@
 
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
 
 </body>
 

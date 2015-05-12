@@ -1,11 +1,12 @@
 <?php
 session_start();
+if (isset($_SESSION['usuario'])) {
 $uActivo = $_SESSION['usuario'];
 
 require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
 ?>
 <!DOCTYPE html>
@@ -252,7 +253,7 @@ $verificar->validarInicioSesion($uActivo);
                             <div class="col-lg-12">
                                 <form method = "post" id="FormEvaluar">
                                     <?php
-                                    include '../Modelo/conexion.php';
+                                    include_once '../Modelo/conexion.php';
                                     $conect = new conexion();
                                     $SelectGI = $conect->consulta("SELECT NOMBRE_UGE FROM inscripcion
                                                         WHERE NOMBRE_UA='$uActivo'");
@@ -304,16 +305,21 @@ $verificar->validarInicioSesion($uActivo);
                                                                         <td>' . $Rep[$i] . '</td>
                                                                         <td>' . $Estado[$i] . '</td>
                                                                         <td>
-                                                                            <a href="HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Habilitar"
+                                                                            <a href="../Modelo/BD/HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Habilitar"
                                                                             class="btn btn-default btn-xs">Habilitar</a>
-                                                                            <a href="HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Deshabilitar"
+                                                                            <a href="../Modelo/BD/HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Deshabilitar"
                                                                             class="btn btn-default btn-xs">Deshabilitar</a>
                                                                             <a href="ModificarEvaluacionGrupoEmpresa.php?GE=' . $GruposIn[$i] . '"
-                                                                            class="btn btn-default btn-xs">Modificar Evaluacion</a>
+                                                                            class="btn btn-default btn-xs">Modificar Evaluacion </a>
+
+                                                                            <a href="permitirUnSextoSocio.php?GE='.$GruposIn[$i].'"
+                                                                            class="btn btn-default btn-xs">Permitir añadir a un 6to socio. </a>
+
                                                                         </td>
                                                             </tr>';
                                                 }
-                                                
+
+
                                             echo '</tbody>
                                                         </table>';
                                     } else {
@@ -321,11 +327,13 @@ $verificar->validarInicioSesion($uActivo);
                                         echo '<div class="alert alert-warning">
                                                     <strong>No tiene ninguna grupo empresa inscrita</strong>
                                                 </div>';
-                                        
-                           
                                     }
                                     ?>
+
+
                                 </form>
+
+
                             </div>
                         </div>
                         <!-- /.row -->
@@ -334,5 +342,12 @@ $verificar->validarInicioSesion($uActivo);
                 </div>
                 <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
                 <script src="../Librerias/js/sb-admin.js"></script>
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
+
             </body>
         </html>

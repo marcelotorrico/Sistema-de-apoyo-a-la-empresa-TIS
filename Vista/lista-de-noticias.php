@@ -1,12 +1,13 @@
 <?php  
  include '../Modelo/conexion.php';
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"asesor");
 
  $conect=new conexion();
  ?> 
@@ -313,7 +314,7 @@ $verificar->validarInicioSesion($uActivo);
                                         {?>
                                      <span class="pull-right text-muted small"><em><?php echo"<td> <a  class='link-dos' href=\"noticia.php?id=$idNoti\">Ver </a></td>";?></em>
                                     </span>
-                                    <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"excluir-noticia.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
+                                    <span class="pull-right text-muted small"><em><?php echo "<td> <a  class='link-dos'href=\"../Controlador/excluir-noticia.php?id=$idNoti\">Eliminar</a></td>"; ?></em>
                                     </span>
                                    
                                     <?php } 
@@ -344,6 +345,14 @@ $verificar->validarInicioSesion($uActivo);
 
     <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../Librerias/js/sb-admin.js"></script>
+
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
+    
 </body>
 
 </html>

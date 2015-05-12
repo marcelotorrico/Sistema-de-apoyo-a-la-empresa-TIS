@@ -1,11 +1,12 @@
 <?php 
 session_start();
+if (isset($_SESSION['usuario'])) {
 $uActivo = $_SESSION['usuario'];
 
 require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"administrador");
 
 ?>
 <!DOCTYPE html>
@@ -223,6 +224,15 @@ $verificar->validarInicioSesion($uActivo);
     <!-- Page-Level Demo Scripts - Dashboard - Use for reference -->
     <script src="../Librerias/js/demo/dashboard-demo.js"></script>
 
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+
+?>
+
 </body>
+
 
 </html>

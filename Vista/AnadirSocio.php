@@ -1,15 +1,15 @@
 <?php
-
+session_start();
  include '../Modelo/conexion.php';
  
  require '../Controlador/ValidadorInicioSesion.php';
   
- session_start();
+if (isset($_SESSION['usuario'])) { 
  $uActivo = $_SESSION['usuario'];
  $conexion = new conexion();
 
 $verificar = new ValidadorInicioSesion();
-$verificar->validarInicioSesion($uActivo);
+$verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
 ?>
 <html>
@@ -219,7 +219,7 @@ $verificar->validarInicioSesion($uActivo);
                                 
                                 
                                         
-                                <button type="submit" onclick="this.form.action='registrarSocio.php'" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Registrar</button>
+                                <button type="submit" onclick="this.form.action='../Controlador/registrarSocio.php'" class="btn btn-primary"> <span class="glyphicon glyphicon-ok"></span> Registrar</button>
                                 
                                 
                             </div>
@@ -228,8 +228,13 @@ $verificar->validarInicioSesion($uActivo);
                         <?php 
 
                         $consSocios = $conexion->consulta("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
-
                         $socios = mysql_num_rows($consSocios);
+                      
+                        $cantPermitida = $conexion->consulta("SELECT NUM_SOCIOS as cantidad FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+                        $cantP = mysql_fetch_array($cantPermitida);
+                        $cantP= $cantP['cantidad'];
+
+                        $restantes = ($cantP-$socios);
 
                         if($socios < 3)
                         {
@@ -238,9 +243,16 @@ $verificar->validarInicioSesion($uActivo);
                                         <strong>* Recuerde que debe registrar al menos 3 socios</strong>
                                     </div>
                                 </div>';
-
                         }  
-
+                        else 
+                        {
+                            echo '<div class="form-group">
+                                    <div class="alert alert-warning">
+                                        <strong>Aún puede registrar: </strong>'.$restantes.
+                                    '</div>
+                                </div>';                            
+                         }
+                        
                         ?>
 
                         
@@ -267,6 +279,12 @@ $verificar->validarInicioSesion($uActivo);
     <!-- SB Admin Scripts - Include with every page -->
     <script src="../Librerias/js/sb-admin.js"></script>
 
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
-</html><!DOCTYPE html>
+</html>

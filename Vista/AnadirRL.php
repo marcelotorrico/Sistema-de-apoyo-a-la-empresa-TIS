@@ -5,11 +5,12 @@
   require '../Controlador/ValidadorInicioSesion.php';
   
  session_start();
+ if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
  $conexion = new conexion();
  
  $verificar = new ValidadorInicioSesion();
- $verificar->validarInicioSesion($uActivo);
+ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
 ?>
 <html>
@@ -233,7 +234,7 @@
                                     ?>
                             </select><br>
                              <div class   ="col-sm-8">
-                                 <input class ="btn btn-primary" type="submit" value= "Aceptar" id= "aceptar" name="Aceptar" onclick ="this.form.action='../Vista/registrarRP.php?id=0'"></input> &nbsp;&nbsp;              
+                                 <input class ="btn btn-primary" type="submit" value= "Aceptar" id= "aceptar" name="Aceptar" onclick ="this.form.action='../Controlador/registrarRP.php?id=0'"></input> &nbsp;&nbsp;              
                             </div>
                         </form>
                     </div>
@@ -266,7 +267,12 @@
 
     <!-- SB Admin Scripts - Include with every page -->
     <script src="../Librerias/js/sb-admin.js"></script>
-
+<?php  
+}else{
+   echo '<script>alert("Inicie sesion para ingresar");</script>';
+   echo '<script>window.location="../index.php";</script>';
+}
+?>
 </body>
 
-</html><!DOCTYPE html>
+</html>
