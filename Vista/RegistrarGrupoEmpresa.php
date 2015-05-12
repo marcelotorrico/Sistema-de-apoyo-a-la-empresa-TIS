@@ -118,7 +118,7 @@
                                               <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ingrese un correo valido. Ejm: admin@hotmail.com" required>
+                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern=^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$  title="Ingrese un correo valido. Ejm: admin@hotmail.com" required>
                                             </div>
                                         </div>
                                         
