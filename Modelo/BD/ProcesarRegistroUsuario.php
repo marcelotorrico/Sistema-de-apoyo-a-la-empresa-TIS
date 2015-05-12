@@ -15,9 +15,13 @@
     //require '../PHPMailerAutoload.php';
     //require '../class.phpmailer.php';
     
+    //nombre y apellido capitalizado
+    $nombreC = ucwords(strtolower($nombre));
+    $apellidoC = ucwords(strtolower($apellido));
+       
     require '../../Controlador/ValidadorFormulario.php';
     
-    $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombre','$apellido','$nombreU','$telefono','$password','$correo','$rol')");
+    $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombreC','$apellidoC','$nombreU','$telefono','$password','$correo','$rol')");
     
     $mensaje= $peticion['mensaje'];
 

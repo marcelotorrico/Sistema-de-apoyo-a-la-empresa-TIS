@@ -81,7 +81,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Zñ0-9_\\_\ü]{3,16}$" title="Minimo 3 caracteres y Maximo 16.Ejm: _Fernando_, Rolando2" required>
+                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Minimo 3 caracteres y Maximo 16.Ejm: _Fernando_, Rolando2" required>
                                             </div>
                                         </div>
                                         
@@ -90,7 +90,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
+                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
                                             </div>
                                             <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
@@ -100,7 +100,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="5" pattern=".{5,}" title="Ingrese una contraseña segura, debe tener como minimo 5 caracteres" required>
+                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
                                             </div>
                                         </div>                                        
                                         
@@ -111,7 +111,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El nombre debe ser mayor a 2 caracteres y menor a 30 Ejm: Daniel Marcelo, Rolando" required>
+                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="[A-Z]{1}[a-z]{2,20}$" title="El nombre debe ser mayor a 3 caracteres y comenzar por una letra mayuscula Ejm: Daniel Marcelo, Rolando" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -119,7 +119,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[a-zA-ZÑñáéíóú]{2,30}" title="El apellido debe ser mayor a 2 caracteres y menor a 30  Ejm: Santivañez, Suarez" required>
+                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" title="El apellido debe ser mayor a 2 caracteres  y comenzar por una letra mayuscula Ejm: Santivañez, Suarez" required>
                                             </div>
                                         </div>
                                         
@@ -128,7 +128,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 67458923" pattern="^[4|7|6][0-9]{6,7}$" required>
+                                                <input class="form-control" type="text" name="telefono" id="UserPhone" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 67458923" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
