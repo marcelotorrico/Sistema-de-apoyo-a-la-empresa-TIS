@@ -1315,7 +1315,7 @@ BEGIN
  declare n_l INTEGER;
  declare n_c INTEGER;
  
-  set n_u = (SELECT nom_u REGEXP '^[a-zA-Zñ0-9_\\_\ü]{8,16}$');
+  set n_u = (SELECT nom_u REGEXP '^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$');
   set t = (SELECT telef REGEXP '^(([4][0-9]{6})|([7|6][0-9]{7}))$');
   set p = (select passwd REGEXP '.{8,}');
   set e = (SELECT email REGEXP '^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$');
@@ -1324,12 +1324,12 @@ BEGIN
   
   CASE 0
 
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as errno);
-   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as errno);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 8 caracteres" as errno);
-   WHEN e THEN (select "Ingrese un correo valido" as errno);
-   WHEN n_l THEN (select "Nombre largo para grupo empresa tiene q tener mas de 3 caracteres" as errno);
-   WHEN n_c THEN (select "Nombre corto para grupo empresa tiene q tener mas de 3 caracteres" as errno);  
+   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as mensaje);
+   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
+   WHEN p THEN (select "La contraseña debe de ser mayor a 8 caracteres" as mensaje);
+   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
+   WHEN n_l THEN (select "Nombre largo para grupo empresa tiene q tener mas de 3 caracteres" as mensaje);
+   WHEN n_c THEN (select "Nombre corto para grupo empresa tiene q tener mas de 3 caracteres" as mensaje);  
 
   ELSE 
 
@@ -1339,7 +1339,7 @@ BEGIN
 
   INSERT INTO usuario_rol VALUES (nom_u,'grupoEmpresa');
   
-  SELECT "Se registro correctamente" as errno;
+  SELECT "Se registro correctamente" as mensaje;
   END CASE;
   
   END
@@ -1371,12 +1371,12 @@ BEGIN
   
   CASE 0
   
-   WHEN n THEN (select "Los nombres deben contener caracteres válidos de 2 a 30 caracteres" as errno);
-   WHEN a THEN (select "Los apellidos deben contener caracteres válidos de 2 a 30 caracteres" as errno);
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as errno);
-   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as errno);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as errno);
-   WHEN e THEN (select "Ingrese un correo valido" as errno);
+   WHEN n THEN (select "Los nombres deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
+   WHEN a THEN (select "Los apellidos deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
+   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as mensaje);
+   WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
+   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as mensaje);
+   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
    
   ELSE 
 
@@ -1385,7 +1385,7 @@ BEGIN
    INSERT INTO usuario_rol VALUES(nom_u,rol);  
    INSERT INTO criteriocalificacion(NOMBRE_U,NOMBRE_CRITERIO_C,TIPO_CRITERIO) VALUES(nom_u,'PUNTAJE','4');
   
-  SELECT "Se registro correctamente" as errno;
+  SELECT "Se registro correctamente" as mensaje;
 
   END CASE;
   
