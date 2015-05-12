@@ -24,7 +24,7 @@ $(document).ready(function() {
         if($("form")[0].checkValidity()) 
 	{
 
-            var url = "../Modelo/BD/GenerarNota.php";
+            var url = "../Controlador/GenerarNota.php";
 
             $.ajax({
                 url: url,
