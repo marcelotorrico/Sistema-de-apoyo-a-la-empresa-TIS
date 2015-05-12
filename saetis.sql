@@ -473,13 +473,13 @@ CREATE TABLE `grupo_empresa` (
 -- ----------------------------
 -- Records of grupo_empresa
 -- ----------------------------
-INSERT INTO `grupo_empresa` VALUES ('AgileA', 'Agile', 'AgileAction', 'Calle Agil', 'Nombre1 Apellido1');
-INSERT INTO `grupo_empresa` VALUES ('Arkano', 'Arkano', 'Arkano Soft', 'Av Santa Cruz', '');
-INSERT INTO `grupo_empresa` VALUES ('Camaleon', 'Camaleon', 'Camaleon Soft', 'Calle 3', 'Jimena Salazar');
-INSERT INTO `grupo_empresa` VALUES ('Colective', 'Colectivo', 'Colectivo Virtual SRL', 'Av Oquendo', '');
-INSERT INTO `grupo_empresa` VALUES ('FreeValue', 'FreeValue', 'FreeValue SRL', 'Calle F', 'Oscar Gamboa Acho');
-INSERT INTO `grupo_empresa` VALUES ('Oasis', 'Oasis', 'Oasis SRL', 'Calle Jordan', 'Pablo Sahonero');
-INSERT INTO `grupo_empresa` VALUES ('Power', 'Power', 'Power Soft SRL', 'Calle Power', 'Javier Rojas');
+INSERT INTO `grupo_empresa` VALUES ('AgileA', 'Agile', 'AgileAction', 'Calle Agil', 'Nombre1 Apellido1', '5');
+INSERT INTO `grupo_empresa` VALUES ('Arkano', 'Arkano', 'Arkano Soft', 'Av Santa Cruz', '','5');
+INSERT INTO `grupo_empresa` VALUES ('Camaleon', 'Camaleon', 'Camaleon Soft', 'Calle 3', 'Jimena Salazar','5');
+INSERT INTO `grupo_empresa` VALUES ('Colective', 'Colectivo', 'Colectivo Virtual SRL', 'Av Oquendo', '','5');
+INSERT INTO `grupo_empresa` VALUES ('FreeValue', 'FreeValue', 'FreeValue SRL', 'Calle F', 'Oscar Gamboa Acho','5');
+INSERT INTO `grupo_empresa` VALUES ('Oasis', 'Oasis', 'Oasis SRL', 'Calle Jordan', 'Pablo Sahonero','5');
+INSERT INTO `grupo_empresa` VALUES ('Power', 'Power', 'Power Soft SRL', 'Calle Power', 'Javier Rojas','5');
 
 -- ----------------------------
 -- Table structure for `indicador`
