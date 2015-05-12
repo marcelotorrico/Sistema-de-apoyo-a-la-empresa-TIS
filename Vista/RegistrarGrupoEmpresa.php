@@ -17,9 +17,10 @@
     <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="../Librerias/css/jquery-te-1.4.0.css">
     
-    <script src="../Librerias/js/jquery-1.10.2.js"></script>
-   
+    
     <script src="../Librerias/js/jquery-2.1.0.min.js"></script>
+    <script src="../Librerias/js/jquery.validate.min.js"></script>
+
     <!--script src="../Librerias/js/jquery-ui.js"></script-->
     <script src="../Librerias/js/bootstrap-dialog.js"></script>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -79,6 +80,7 @@
                                                 </span>
                                                 <input class="form-control" type="password" name="contrasena1" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
                                             </div>
+                                            <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
                                         
                                         <div class="form-group">
@@ -116,7 +118,7 @@
                                               <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern="^([\da-z_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$" title="Ingrese un correo valido. Ejm: admin@hotmail.com" required>
+                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ingrese un correo valido. Ejm: admin@hotmail.com" required>
                                             </div>
                                         </div>
                                         

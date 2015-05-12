@@ -310,11 +310,16 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                                             <a href="../Modelo/BD/HabilitarGrupoEmpresa.php?GE=' . $GruposIn[$i] . '&Operacion=Deshabilitar"
                                                                             class="btn btn-default btn-xs">Deshabilitar</a>
                                                                             <a href="ModificarEvaluacionGrupoEmpresa.php?GE=' . $GruposIn[$i] . '"
-                                                                            class="btn btn-default btn-xs">Modificar Evaluacion</a>
+                                                                            class="btn btn-default btn-xs">Modificar Evaluacion </a>
+
+                                                                            <a href="permitirUnSextoSocio.php?GE='.$GruposIn[$i].'"
+                                                                            class="btn btn-default btn-xs">Permitir añadir a un 6to socio. </a>
+
                                                                         </td>
                                                             </tr>';
                                                 }
-                                                
+
+
                                             echo '</tbody>
                                                         </table>';
                                     } else {
@@ -322,11 +327,13 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                         echo '<div class="alert alert-warning">
                                                     <strong>No tiene ninguna grupo empresa inscrita</strong>
                                                 </div>';
-                                        
-                           
                                     }
                                     ?>
+
+
                                 </form>
+
+
                             </div>
                         </div>
                         <!-- /.row -->

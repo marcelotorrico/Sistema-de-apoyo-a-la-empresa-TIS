@@ -246,10 +246,11 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="contrasena1" id="contrasena1" value="<?php echo $contrase ?>" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required>
+                                                <input class="form-control" type="text" name="contrasena1" id="contrasena1" value="<?php echo $contrase ?>" required>                                                
+                                                <!input class="form-control" type="text" name="contrasena1" id="contrasena1" value="<?php echo $contrase ?>" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required-->
                                             </div>
                                         </div>
-                                        <br> </br>
+                                        <br>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
@@ -295,7 +296,7 @@
                                                 <input class="form-control" type="text" name="direccion" id="direccion" value="<?php echo $direccion ?>" required>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                              <button type="submit" name="submit" class="btn btn-primary" onclick="this.form.action='../Modelo/BD/ModificarGE.php'">  <span class="glyphicon glyphicon-ok"></span> Actualizar</button>
                                         </div>

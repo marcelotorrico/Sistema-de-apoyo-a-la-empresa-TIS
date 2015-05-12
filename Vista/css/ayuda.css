@@ -11,6 +11,15 @@ body{
     background: #fefdde;
 }
 
+footer{
+    text-align: center;
+    margin: 20px;
+}
+
+p{
+    text-align: justify;
+}
+
 .menu-superior {
   background-color: #074202;
   border-color: #e7e7e7;
@@ -23,4 +32,19 @@ body{
 .bs-docs-header {
     background: #d9d455;
     color: #8a6d3b;
+    font-size: 18px;
+    padding: 20px 0px;
+}
+
+.bs-docs-header h1{
+    font-size: 36px;
+    margin-right: 0;
+}
+
+.bs-docs-header p{
+    margin-right: 0;
+}
+
+.bs-docs-container{
+    margin-bottom: 50px;
 }

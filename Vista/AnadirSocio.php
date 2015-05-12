@@ -228,9 +228,13 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                         <?php 
 
                         $consSocios = $conexion->consulta("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
-
                         $socios = mysql_num_rows($consSocios);
-                        $restantes = (5- $socios);
+                      
+                        $cantPermitida = $conexion->consulta("SELECT NUM_SOCIOS as cantidad FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+                        $cantP = mysql_fetch_array($cantPermitida);
+                        $cantP= $cantP['cantidad'];
+
+                        $restantes = ($cantP-$socios);
 
                         if($socios < 3)
                         {
@@ -240,20 +244,15 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     </div>
                                 </div>';
                         }  
-                        if($socios <= 5)
+                        else 
                         {
                             echo '<div class="form-group">
                                     <div class="alert alert-warning">
-                                        <strong>Aún puede registrar </strong>
-                                    </div>
-                                </div>';
-                            echo $restantes;    ////esta variable no me reconoce
-                        }  
-
-
-
-
-
+                                        <strong>Aún puede registrar: </strong>'.$restantes.
+                                    '</div>
+                                </div>';                            
+                         }
+                        
                         ?>
 
                         
