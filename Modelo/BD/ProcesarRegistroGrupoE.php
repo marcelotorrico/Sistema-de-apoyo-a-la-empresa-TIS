@@ -17,5 +17,5 @@
     
     $mensaje= $peticion['mensaje'];
 
-      echo "<script>alert('$mensaje'); window.location='../../index.php';</script>";            
+      echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";            
 ?>
