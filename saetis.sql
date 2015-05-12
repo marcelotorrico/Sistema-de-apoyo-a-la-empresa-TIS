@@ -455,9 +455,8 @@ INSERT INTO `gestion` VALUES ('4', '2', '2020-03-04', '2030-01-01');
 INSERT INTO `gestion` VALUES ('5', '2', '2000-01-01', '2003-01-01');
 INSERT INTO `gestion` VALUES ('6', '1', '2015-04-16', '2030-01-01');
 INSERT INTO `gestion` VALUES ('7', '1222', '2015-01-01', '2016-01-01');
-
 -- ----------------------------
--- Table structure for `grupo_empresa`
+-- Table structure for grupo_empresa
 -- ----------------------------
 DROP TABLE IF EXISTS `grupo_empresa`;
 CREATE TABLE `grupo_empresa` (
@@ -466,8 +465,9 @@ CREATE TABLE `grupo_empresa` (
   `NOMBRE_LARGO_GE` varchar(50) NOT NULL,
   `DIRECCION_GE` varchar(50) NOT NULL,
   `REPRESENTANTE_LEGAL_GE` varchar(45) DEFAULT NULL,
+  `NUM_SOCIOS` int(11) DEFAULT NULL,
   PRIMARY KEY (`NOMBRE_U`) USING BTREE,
-  CONSTRAINT `FK_USUARIO__GRUPO_EMPRESA` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
+  CONSTRAINT `FK_USUARIO__GRUPO_EMPRESA` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=4096;
 
 -- ----------------------------
