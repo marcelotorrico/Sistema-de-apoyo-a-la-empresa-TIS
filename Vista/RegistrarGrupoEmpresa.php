@@ -69,7 +69,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreU" id="nombreU" placeholder="Nombre de Usuario" pattern="^[a-zA-Zñ0-9_\\_\ü]{3,16}$" title="Nombre de usuario de 3 a 16 caracteres Ejm: Bittle123, Bitle" required>
+                                                <input class="form-control" type="text" name="nombreU" id="nombreU" placeholder="Nombre de Usuario" pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Nombre de usuario de 3 a 16 caracteres Ejm: Bittle123, Bit764" required>
                                             </div>
                                         </div>
                                         
@@ -127,11 +127,12 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 6789000" pattern="^[4|7|6][0-9]{6,7}$"  required>
+                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 6789000" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$"  required>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group">
+
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
