@@ -258,7 +258,7 @@
             <span class='input-group-addon'>
             <span class='glyphicon glyphicon-lock'></span>
             </span>
-            <input class='form-control' type='text' name='password' id='UserPassword'    minlength='8' title='Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial' value='".$fila['PASSWORD_U']."' required/>
+            <input class='form-control' type='text' name='password' id='UserPassword' value='".$fila['PASSWORD_U']."' required/>
             </div>
             </div>  
 

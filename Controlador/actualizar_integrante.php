@@ -28,7 +28,7 @@
         $actualizar = FALSE;
         if(strcmp($_SESSION['contrasena'],$updPassword)!==0){
             if(!$validador->verificarContrasena($updPassword)){
-                echo "<script type=\"text/javascript\">alert('Ingrese una contrase\u00f1a segura, debe tener al menos una letra mayuscula, una minuscula, un numero y un caracter especial. El numero de caracteres como minimo debe ser 7 y como maximo 16.'); window.location='../Vista/modificar_asesor.php';</script>";
+                echo "<script type=\"text/javascript\">alert('Ingrese una contrase\u00f1a segura, debe tener al menos una letra mayuscula, una minuscula, un numero y un caracter especial. El numero de caracteres como minimo debe ser 7 y como maximo 16.'); window.location='../Vista/modificar_administrador.php';</script>";
             }else{
                 $updPassword=  md5($updPassword);
                 $actualizar = TRUE;
