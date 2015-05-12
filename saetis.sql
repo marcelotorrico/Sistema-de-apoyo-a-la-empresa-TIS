@@ -1258,7 +1258,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_administrador`;
 DELIMITER ;;
-CREATE PROCEDURE `registro_administrador`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(25))
+CREATE PROCEDURE `registro_administrador`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50))
 BEGIN
 
  declare n INTEGER;
@@ -1304,7 +1304,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_grupo_empresa`;
 DELIMITER ;;
-CREATE PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(25), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
+CREATE PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
 BEGIN
 
  declare t INTEGER;
@@ -1351,7 +1351,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_usuario`;
 DELIMITER ;;
-CREATE PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(25), rol varchar(25))
+CREATE PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
 BEGIN
 
  declare n INTEGER;
@@ -1392,4 +1392,3 @@ BEGIN
   END
 ;;
 DELIMITER ;
-
