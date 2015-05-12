@@ -246,7 +246,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" title="El apellido debe ser mayor a 3 caracteres  y empezar con letras mayusculas Ejm: vargas, Morales, medrano" required>
+            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?" title="El apellido debe ser mayor a 3 caracteres  y empezar con mayuscula Ejm: Vargas, Morales, Medrano" required>
             </div>
             </div>
 

@@ -119,7 +119,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" title="El apellido debe ser mayor a 2 caracteres  y comenzar por una letra mayuscula Ejm: Santivañez, Suarez" required>
+                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?" title="El apellido debe ser mayor a 2 caracteres  y comenzar con mayuscula Ejm: Santivañez, Suarez" required>
                                             </div>
                                         </div>
                                         
