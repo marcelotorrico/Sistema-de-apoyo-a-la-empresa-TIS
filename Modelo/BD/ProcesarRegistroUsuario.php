@@ -15,16 +15,22 @@
     //require '../PHPMailerAutoload.php';
     //require '../class.phpmailer.php';
     
-    //nombre y apellido capitalizado
-    $nombreC = ucwords(strtolower($nombre));
-    $apellidoC = ucwords(strtolower($apellido));
        
     require '../../Controlador/ValidadorFormulario.php';
-    
-    $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombreC','$apellidoC','$nombreU','$telefono','$password','$correo','$rol')");
-    
-    $mensaje= $peticion['mensaje'];
+   //query para verificar si existe el nombre de usuario
+    $cantidad = $conectar->consulta("select count(*) as cant from usuario where NOMBRE_U='$nombreU'");
+    $cantidad = mysql_fetch_assoc($cantidad);    
+    if ($cantidad['cant'] >= 1) {
+       $mensaje = "El nombre de usuario no se encuentra disponible";
+       echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
 
-      echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
-   
+     } else {
+        $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombreC','$apellidoC','$nombreU','$telefono','$password','$correo','$rol')");
+        $mensaje= $peticion['mensaje'];
+        echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
+       
+    }
+    
+
+    
 ?>
