@@ -69,7 +69,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreU" id="nombreU" placeholder="Nombre de Usuario" pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Nombre de usuario de 3 a 16 caracteres Ejm: Bittle123, Bit764" required>
+                                                <input class="form-control" type="text" name="nombreU" id="nombreU" placeholder="Nombre de Usuario" pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Minimo 3 caracteres y Maximo 12. Los primeros tres caracteres tienen que ser letras. Ejm: Bittle123, Bitle" required>
                                             </div>
                                         </div>
                                         
@@ -118,7 +118,7 @@
                                               <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern=^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$  title="Ingrese un correo valido. Ejm: admin@hotmail.com" required>
+                                                <input class="form-control" type="email" name="correo" id="correo" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$"  title="Ingrese un correo correcto Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" required>
                                             </div>
                                         </div>
                                         
@@ -127,7 +127,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371 o 71759599 o 6789000" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$"  required>
+                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371, 71759599, 6789000" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$"  required>
                                             </div>
                                         </div>
                                         
