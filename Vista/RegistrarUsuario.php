@@ -90,7 +90,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
+                                                <input class="form-control" type="password" name="password" id="contrasena1" placeholder="Contraseña" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
                                             </div>
                                             <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
@@ -100,7 +100,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
+                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
                                             </div>
                                         </div>                                        
                                         

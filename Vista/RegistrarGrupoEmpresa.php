@@ -78,7 +78,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena1" id="contrasena1" placeholder="Contraseña" minlength="8" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
+                                                <input class="form-control" type="password" name="contrasena1" id="contrasena1" placeholder="Contraseña" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
                                             </div>
                                             <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
                                         </div>
@@ -88,7 +88,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" minlength="8" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
+                                                <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" pattern=".{8,}" title="Debe tener minimamente 8 caracteres" required>
                                             </div>
                                         </div>
                                         
@@ -99,7 +99,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreL" id="nombreL" placeholder="Nombre largo" minlength="3" pattern=".{3,}" title="Minimo 3 caracteres" required>
+                                                <input class="form-control" type="text" name="nombreL" id="nombreL" placeholder="Nombre largo" pattern=".{3,}" title="Minimo 3 caracteres" required>
                                             </div>
                                         </div>
                                         
@@ -108,7 +108,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreC" id="nombreC" placeholder="Nombre corto" minlength="3" pattern=".{3,}" title="Minimo 3 caracteres" required>
+                                                <input class="form-control" type="text" name="nombreC" id="nombreC" placeholder="Nombre corto" pattern=".{3,}" title="Minimo 3 caracteres" required>
                                             </div>
                                         </div>
                                         
@@ -127,7 +127,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371, 71759599, 6789000" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$"  required>
+                                                <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono" title="Ejemplo: 4022371, 71759599, 6789000" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$" required>
                                             </div>
                                         </div>
                                         

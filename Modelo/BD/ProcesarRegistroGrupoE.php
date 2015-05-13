@@ -28,15 +28,15 @@
 
 
     if ($cantidadU > 0) {
-        $mensaje = "El nombre de usuario no esta disponible";
+        $mensaje = "El nombre de usuario ya fue registrado. Por favor cambie de nombre";
         echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
       } else {
           if ($cantidadG > 0) {
-            $mensaje = "El nombre largo de grupo empresa no esta disponible";
+            $mensaje = "El nombre largo de grupo empresa ya fue registrado. Por favor cambie de nombre";
             echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
           } else {
                if ($cantidadCG > 0) {
-                   $mensaje = "El nombre corto de grupo empresa no esta disponible";
+                   $mensaje = "El nombre corto de grupo empresa ya fue registrado. Por favor cambie de nombre";
                    echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
                } else {
                         $peticion=$conectar->consultaProcedimiento("CALL registro_grupo_empresa('$nombreUGE','$telefGE','$password','$correoGE','$dirGE','$nombreLGE','$nombreCGE')");

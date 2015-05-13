@@ -21,7 +21,7 @@
     $cantidad = $conectar->consulta("select count(*) as cant from usuario where NOMBRE_U='$nombreU'");
     $cantidad = mysql_fetch_assoc($cantidad);    
     if ($cantidad['cant'] >= 1) {
-       $mensaje = "El nombre de usuario no se encuentra disponible";
+       $mensaje = "El nombre de usuario ya fue registrado. Por favor cambie de nombre";
        echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
 
      } else {

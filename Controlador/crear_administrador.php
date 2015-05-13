@@ -17,7 +17,7 @@
     $cantidad = $cantidad['cant'];
     
     if ($cantidad > 0) {
-      $mensaje = "El nombre de usuario ya fue registrado por favor cambie de nombre ";
+      $mensaje = "El nombre de usuario ya fue registrado. Por favor cambie de nombre";
       echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
     } else {
         $peticion=$conectar->consultaProcedimiento("CALL registro_administrador('$nombre','$apellido','$nombreU','$telefono','$password','$correo')");
