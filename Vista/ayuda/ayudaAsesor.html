@@ -83,14 +83,17 @@
                                 </ul>
                             </li>
                             <li><a href="#publicaciones">Publicaciones</a></li>
-                            <li><a href="#foro-asesor">Foro</a></li>
-                            <li><a href="#nombre-usuario-asesor">Nombre de Usuario</a>
+                            <li><a href="#foro">Foro</a></li>
+                            <li><a href="#nombre-usuario">Nombre de Usuario</a>
                                 <ul class="nav">
-                                    <li><a href="#modificar-datos-personales-asesor">Modificar Datos Personales</a></li>
-                                    <li><a href="#salir-asesor">Salir</a></li>
+                                    <li><a href="#modificar-datos-personales">Modificar Datos Personales</a></li>
+                                    <li><a href="#salir">Salir</a></li>
                                 </ul>
                             </li>
                         </ul>
+                        <a class="back-to-top" href="#top">
+                            <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span> Subir
+                        </a>
                     </nav>
                 </div>
                 <div class="col-md-9" role="main">
@@ -168,56 +171,91 @@
                     <div class="bs-docs-section">
                         <h1 id="seguimiento-semanal" class="page-header">Seguimiento Semanal<a class="anchorjs-link" href="#seguimiento-semanal"><span class="anchorjs-icon"></span></a></h1>
                         <p>En esta sección puede realizar operaciones sobre las Grupo-Empresas que asesora. Verá una lista
-                            con los datos de la Grupo-Empresa y las acciones que puede realizar sobre las Grupo-Empresas.</p>
-                        <p>Para generar reportes de un usuario (asesor, cliente, jefe de proyecto) presione en <kbd>Reportes</kbd>, seleccione el rol de la lista desplegable, llene el formulario correctamente y
+                            con los datos de la Grupo-Empresa y las acciones que puede realizar sobre estas.</p>
+                        <p>Para generar reportes de actividades como asesor, cliente o jefe de proyecto, presione en <kbd>Reportes</kbd>, seleccione un rol de la lista desplegable, llene el formulario correctamente y
                             presione en <kbd>Registrar reportes</kbd>. Para registrar más de un reporte presione en <kbd>Agregar rol</kbd>. Para eliminar un reporte presione en <kbd>X</kbd>.</p>
                         <p>Para ver la información de los reportes creados presione en <kbd>Ver seguimientos</kbd>.</p>
-                        <p><strong>Nota:</strong> Sólo se puede crear un reporte de cada rol.</p>
-                        <p>Para revisar los avances de las actividades de las Grupo-Empresas presione en <kbd>Revisión de Hito</kbd> y se mostrará información de cada actividad de las Grupo-Empresas.
-                            En el cual para emitir una calificación a cada entregable de una actividad de la Grupo-Empresa presione en <kbd>Evaluacion</kbd> y en <kbd>Aceptar</kbd>. Posteriormente
-                            se mostrara el valor en porcentaje correspondiente a la actividad y el equivalente de la nota emitida calculado según el porcentaje. Presione en <kbd>Guardar</kbd> para 
-                            emitir la calificación y en <kbd>Aceptar</kbd> en el mensaje de confirmación, o presione en <kbd>Cancelar</kbd> para no emitir una calificación.</p>
-                        <p>Para ver la información de la calificación emitida a una actividad presione en <kbd>Reportes</kbd> y para volver a la vista anterior presione en <kbd>Aceptar</kbd>.</p>
-                        <p>Para modificar la fecha de entrega de una actividad de una Grupo-Empresa presione en <kbd>Modificar</kbd>,
-                            seleccione la fecha en la cual se realizara la entrega de la actividad. Presione en <kbd>Aceptar</kbd> para guardar los cambios y en <kbd>Aceptar</kbd>
-                            en el mensaje de confirmación, o presione en <kbd>Cancelar</kbd> para que no se realice ninguna modificación.</p>
-                        <p><strong>Nota:</strong> La opción <kbd>Revision de hito</kbd> solo estará disponible si la fecha coincide con la fecha de entrega de una actividad.</p>
-                        <p><strong>Nota:</strong> La opción <kbd>Evaluacion</kbd> de las actividades sólo estará disponible en las Grupo-Empresas que asesora.</p>
-                        <p></p>
-                        <p><strong>Nota:</strong> El registro de evaluación solo se realiza una vez.</p>
-                        <p><strong>Nota:</strong> Despues de registrar una evaluacion a una actividad la opción <kbd>Evaluacion</kbd> y <kbd>Modificar</kbd> se deshabilita y se habilita la opción <kbd>Reportes</kbd>.</p>
-                        <p><strong>Nota:</strong> Si el estado de una actividad es "En Proceso" la opción <kbd>Modificar</kbd> esta deshabilitada porque no se puede modificar la fecha 
-                            de entrega.</p>
-                        <p><strong>Nota:</strong> La suma de la calificación emitida debe ser sobre 100.</p>
+                        <p><strong>Nota:</strong> Sólo se puede crear un reporte de cada rol por cada registro de reporte.</p>
+                        <p>Para revisar los avances de las actividades de las Grupo-Empresas presione en <kbd>Revisión de Hito</kbd>, este es un enlace a <a href="#evaluacion-2-fase">Evaluación 2 Face</a>. </p>
+                        <p><strong>Nota:</strong> La opción <kbd>Revision de hito</kbd> sólo esta disponible si la fecha de su ordenador coincide con la fecha de entrega de una actividad.</p>                        
                     </div>
                     <div class="bs-docs-section">
                         <h1 id="evaluacion" class="page-header">Evaluación<a class="anchorjs-link" href="#evaluacion"><span class="anchorjs-icon"></span></a></h1>
-                        <p>En esta sección </p>
                         <h2 id="evaluacion-2-fase">Evaluacion 2 Fase</h2>
+                        <p>Para calificar los entregables de una actividad de Grupo-Empresa presione en <kbd>Evaluación</kbd>, califique los entregables y presione en <kbd>Aceptar</kbd> para continuar. 
+                            Posteriormente se mostrará el valor en porcentaje correspondiente a la actividad y el equivalente de la nota emitida calculado según el porcentaje. 
+                            Presione en <kbd>Guardar</kbd> para emitir la calificación y en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
+                        <p>Para ver la información de la calificación emitida a una actividad presione en <kbd>Reportes</kbd>. 
+                            Para volver a la vista anterior presione en <kbd>Aceptar</kbd>.</p>
+                        <p>Para modificar la fecha de entrega de una actividad de una Grupo-Empresa presione en <kbd>Modificar</kbd>,
+                            seleccione la fecha en la cual se realizará la entrega de la actividad. Presione en <kbd>Aceptar</kbd> para guardar los cambios y en <kbd>Aceptar</kbd>
+                            en el mensaje de confirmación.</p>                        
+                        <p><strong>Nota:</strong> La opción <kbd>Evaluacion</kbd> de las actividades sólo estará disponible en las Grupo-Empresas que asesora.</p>
+                        <p><strong>Nota:</strong> El registro de evaluación sólo se realiza una vez y no puede modificarse.</p>
+                        <p><strong>Nota:</strong> Despues de registrar una evaluación a una actividad la opción <kbd>Evaluación</kbd> y <kbd>Modificar</kbd> se deshabilita y se habilita la opción <kbd>Reportes</kbd>.</p>
+                        <p><strong>Nota:</strong> Si el estado de una actividad es "En Proceso" la opción <kbd>Modificar</kbd> esta deshabilitada ya que aún está dentro del plazo.</p>
                         <h2 id="evaluacion-3-fase">Evaluacion 3 Fase</h2>
                         <h3 id="criterio-evaluacion">Criterio de Evaluación</h3>
+                        <p>Para crear un nuevo criterio de evaluación llene el campo solicitado y presione en <kbd>Agregar</kbd>, luego presione en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
+                        <p>Para borrar los datos del formualrio presione en <kbd>Limpiar</kbd>.</p>
                         <h3 id="criterio-calificacion">Criterio de Calificación</h3>
                         <h4 id="crear-criterio-calificacion">Crear Criterio de Calificación</h4>
+                        <p>Para crear un nuevo criterio de calificación selecione un elemento de la lista desplegable. 
+                            Dependiendo del criterio selecionado llene los campos:</p>
+                        <dl class="dl-horizontal">
+                            <dt>Selección Multiple</dt>
+                            <dd>Llene un nombre de indicador y su puntaje correspondiente. Presione en <kbd>+ Agregar</kbd> para añadir indicadores.</dd>
+                            <dt>Verdadero/Falso</dt>
+                            <dd>Llene los puntajes para Verdadero y Falso.</dd>
+                            <dt>Si/No</dt>
+                            <dd>Llene los puntajes para Si y No.</dd>
+                        </dl>
+                        <p>Presione en <kbd>Guardar</kbd>, luego en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
                         <h4 id="eliminar-criterio-calificacion">Eliminar Criterio de Calificación</h4>
-                        <h3 id="formulario-evaluacion">Formulario de Evaluación</h3>
+                        <p>Para eliminar un criterio de calificación seleccione uno de la lista desplegable y presione en <kbd>Eliminar</kbd>, luego en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
+                        <h3 id="formulario-evaluacion">Formulario de Evaluación</h3>                        
                         <h4 id="crear-formulario-evaluacion">Crear Formulario de Evaluación</h4>
+                        <p>Para crear un nuevo formulario de evaluación llene el nombre (sólo minusculas seguida de un número), seleccione un criterio de evaluación, un criterio de calificación y asigne un puntaje al formuario. 
+                            Debe agregar más de un criterio a evaluar presionando en <kbd>Agregar</kbd>. 
+                            Si agregó más de un criterio tiene la opción de eliminarlo presionando en <kbd>- Eliminar</kbd>.</p>
+                        <p>Para guardar el nuevo formulario presione en <kbd>Guardar</kbd>, luego en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
+                        <p><strong>Nota:</strong> Los criterios a evaluar y los criterios de calificación deben haber sido creados anteriormente.</p>
+                        <p><strong>Nota:</strong> La suma de los puntajes en el formuladio debe ser 100.</p>
+                        <p><strong>Nota:</strong> No se puede evaluar el mismo criterio de evaluación más de una vez.</p>
+                        <p><strong>Nota:</strong> El puntaje de un criterio de evaluación debe ser entre 10 y 90, por lo que necesariamente debe haber más de un criterio de evaluación.</p>
                         <h4 id="habilitar-formulario-evaluacion">Habilitar Formulario de Evaluación</h4>
+                        <p>Para habilitar un formulario (previamente creado), seleccione uno de la lista desplegable y presione en <kbd>Aceptar</kbd>, luego en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
                         <h4 id="eliminar-formulario-evaluacion">Eliminar Formulario de Evaluación</h4>
+                        <p class="text-warning bg-danger">Para eliminar un formulario de evaluación, seleccione uno de la lista desplegable...</p>
                         <h3 id="evaluar-grupo-empresa">Evaluar Grupo Empresa</h3>
+                        <p>Para evaluar a una Grupo-Empresa, primero debe <a href="#habilitar-formulario-evaluacion">Habilitar el Formulario de Evaluación</a> con el que desea evaluarla.</p>
+                        <p>Seleccione una Grupo-Empresa de la lista desplegable, evalue los distintos criterios y presione en <kbd>Evaluar</kbd>, luego en <kbd>Aceptar</kbd> en el mensaje de confirmación.</p>
+                        <p>Para borrar los datos del formualrio presione en <kbd>Nuevo</kbd>.</p>
+                        <p><strong>Nota:</strong> Antes debe realizar la <a href="#evaluacion-2-fase">Evaluacion 2 Fase</a> de todas las actividades.</p>
                         <h3 id="evaluacion-final">Evaluación Final</h3>
+                        <p>Para realizar una evaluación final seleccione una Grupo-Empresa de la lista desplegable y presione en <kbd>Evaluar</kbd></p>
                         <h2 id="publicaciones">Publicaciones</h2>
-                        <br><br><br><br><br><br><br><br>
+                        <p>En esta sección se muestra la información de los documentos y anuncios que creo el asesor.</p>
+                        <p>Para acceder a un documento presione en su nombre. Para eliminar algun documento o anuncio presione en <kbd>Eliniar</kbd>.</p>
+                        <p>Para crear una nueva publicación presione en <kbd>+ Agregar recurso</kbd> y siga los pasos de <a href="#crear-publicacion">Crear Publicación</a>.</p>
                     </div>
                     <div class="bs-docs-section">
-                        <h1 id="foro-asesor" class="page-header">Foro<a class="anchorjs-link" href="#foro-asesor"><span class="anchorjs-icon"></span></a></h1>
-                        <p>Adicionar nuevo tema</p>
-                        <br><br><br><br><br><br><br><br>
+                        <h1 id="foro" class="page-header">Foro<a class="anchorjs-link" href="#foro"><span class="anchorjs-icon"></span></a></h1>
+                        <p>En esta sección puede ver la información sobre los diferentes temas de discusión realizados por los Asesores y Grupo-Empresas.</p>
+                        <p>Para visualizar el contenido y comentarios de algún tema presione en <kbd>Ver</kbd>. Para comentar escriba en el editor de texto (ubicado al final de la página) y presione en <kbd>Enviar Comentario</kbd>.</p>
+                        <p>Para crear un nuevo tema de discusión presione en <kbd>Adicionar nuevo tema</kbd>, llene los campos título y texto, y presione en <kbd>Adicionar Tema</kbd> para que sea guardado y mostrado en el foro.</p>
+                        <p>Para eliminar algún tema creado por usted presione en <kbd>Eliminar</kbd></p>
+                        <p><strong>Nota:</strong> La opción "Eliminar" sólo está disponible en los temas de discusión que usted adicionó.</p>                        
                     </div>
                     <div class="bs-docs-section">
-                        <h1 id="nombre-usuario-asesor" class="page-header">Nombre de Usuario<a class="anchorjs-link" href="#nombre-usuario-asesor"><span class="anchorjs-icon"></span></a></h1>
-                        <h2 id="modificar-datos-personales-asesor">Modificar Datos Personales</h2>
-                        <h2 id="salir-asesor">Salir</h2>
-                        <br><br><br><br><br><br><br><br>
+                        <h1 id="nombre-usuario" class="page-header">Nombre de Usuario<a class="anchorjs-link" href="#nombre-usuario"><span class="anchorjs-icon"></span></a></h1>
+                        <p>Esta sección se encuentra en la parte derecha de la cabecera de la página, a lado de <a href="#foro">Foro</a> con su nombre de usuario con el que inició sesión.</p>
+                        <h2 id="modificar-datos-personales">Modificar Datos Personales</h2>
+                        <p>Puede modificar cualquiera de los campos del formulario para actualizar su información personal, sin embargo es necesario que siga las restricciones que tienen algunos campos. Presione en <kbd>Actualizar</kbd> para guardar sus cambios. 
+                            Presione en <kbd>Aceptar</kbd> en el mensaje "Se modificaron sus datos satisfactoriamente".</p>
+                        <p><strong>Nota:</strong> La contraseña está encriptada, por ello se muestra diferente a la contraseña que registró.</p>
+                        <h2 id="salir">Salir</h2>
+                        <p>Esta opción es para cerrar su sesión de manera segura.</p>
                     </div>
                 </div>
             </div>
