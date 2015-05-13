@@ -271,6 +271,9 @@ $verificar->validarInicioSesion($uActivo,"asesor");
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"  >Bienvenido a SAETIS!</h1>
+            <a href="ayuda/ayudaAsesor.html" class="pull-right" style="color: #123">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                        Ayuda</a>
         </div>
         <!-- /.col-lg-12 -->
     </div>

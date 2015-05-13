@@ -198,6 +198,9 @@ $verificar->validarInicioSesion($uActivo,"administrador");
                 <div class="col-lg-12">
  
                        <h2 class="page-header"  > Bienvenido  </h2>
+                    <a href="ayuda/ayudaAdministrador.html" class="pull-right" style="color: #123">
+                        <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                        Ayuda</a>
                     
                 </div>
                 <!-- /.col-lg-12 -->

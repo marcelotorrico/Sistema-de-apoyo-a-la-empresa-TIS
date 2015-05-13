@@ -237,7 +237,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreU" id="nombreU" value=<?php echo $uActivo?> " pattern="\b[a-zA-z]{3}[a-zA-z0-9]{0,11}" title="Minimo 3 caracteres y Maximo 14. Los primeros tres caracteres tienen que ser letras, despues se permite: Letras, numeros y '_' ... Ejm: Bittle123, Bitle" required>
+                                                <input class="form-control" type="text" name="nombreU" id="nombreU" value=<?php echo $uActivo?> " pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Minimo 3 caracteres y Maximo 12. Los primeros tres caracteres tienen que ser letras. Ejm: Bittle123, Bitle" required>
                                             </div>
                                         </div>
                                         
@@ -246,8 +246,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-lock"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="contrasena1" id="contrasena1" value="<?php echo $contrase ?>" required>                                                
-                                                <!input class="form-control" type="text" name="contrasena1" id="contrasena1" value="<?php echo $contrase ?>" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres y como maximo 15, al menos una letra mayuscula, una minuscula, un numero y un caracter especial" required-->
+                                                <input class="form-control" type="text" name="contrasena1" id="contrasena1" value="<?php echo $contrase ?>" required>
                                             </div>
                                         </div>
                                         <br>
@@ -275,7 +274,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="correo" id="correo" value="<?php echo $correo ?>" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" title="Ingrese un correo correcto Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" required  onkeypress="return validarEmail(event)">
+                                                <input class="form-control" type="email" name="correo" id="correo" value="<?php echo $correo ?>" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ingrese un correo correcto Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" required  onkeypress="return validarEmail(event)">
                                             </div>
                                         </div>
 
@@ -284,7 +283,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-earphone"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="telefono" id="telefono" value="<?php echo $telefono?>" title="Ejemplo: 4022371 o 71759599" pattern="\b[467][0-9]{6,7}"  required  onkeypress="return validarNumeros(event)">
+                                                <input class="form-control" type="text" name="telefono" id="telefono" value="<?php echo $telefono?>" title="Ejemplo: 4022371, 71759599, 6789000" pattern="^(([4][0-9]{6})|([7|6][0-9]{7}))$"  required  onkeypress="return validarNumeros(event)">
                                             </div>
                                         </div>
 

@@ -81,7 +81,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Minimo 3 caracteres y Maximo 16.Ejm: _Fernando_, Rolando2" required>
+                                                <input class="form-control" type="text" name="nombreUsuario" id="UserName" placeholder="Nombre de Usuario" pattern="^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$" title="Minimo 3 caracteres y Maximo 12. Los primeros tres caracteres tienen que ser letras. Ejm: Leticia1, Rolando2" required>
                                             </div>
                                         </div>
                                         
@@ -111,7 +111,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="[A-Z]{1}[a-z]{2,20}$" title="El nombre debe ser mayor a 3 caracteres y comenzar por una letra mayuscula Ejm: Daniel Marcelo, Rolando" required>
+                                                <input class="form-control" type="text" name="nombreReal" id="RealName" placeholder="Nombre" pattern="[A-Z]{1}[a-z]{2,20}$" title="El nombre debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Daniel, Marcelo, Rolando" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -119,7 +119,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-user"></span>
                                                 </span>
-                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?" title="El apellido debe ser mayor a 2 caracteres  y comenzar con mayuscula Ejm: Santivañez, Suarez" required>
+                                                <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?" title="El apellido debe empezar con mayuscula y como minimo debe poseer 3 caracteres. Ejm: Quiroga Santivanez, Suarez" required>
                                             </div>
                                         </div>
                                         
@@ -136,7 +136,7 @@
                                                 <span class="input-group-addon">
                                                   <span class="glyphicon glyphicon-envelope"></span>
                                                 </span>
-                                                <input class="form-control" type="email" name="email" id="UserEmail" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ejm: admin@hotmail.com" required>
+                                                <input class="form-control" type="email" name="email" id="UserEmail" placeholder="Correo" pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$" title="Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
