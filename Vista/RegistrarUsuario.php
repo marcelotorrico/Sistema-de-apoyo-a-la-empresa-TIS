@@ -62,14 +62,6 @@
         <div class ="form-horizontal">
             <div class="row">
                 <div class="col-lg-12">
-                    
-                    <div class="bs-callout bs-callout-danger">
-                   
-                     <p>
-                         <strong>Nota: </strong> Servicio de Correro valido  <strong>hotmail, gmail, yahoo.</strong>
-                      </p>
-                    </div> 
-                 
                     <h2 class="page-header">Registrar Usuario:</h2>
                     
 
