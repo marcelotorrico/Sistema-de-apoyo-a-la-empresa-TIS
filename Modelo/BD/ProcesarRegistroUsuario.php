@@ -25,7 +25,7 @@
        echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
 
      } else {
-        $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombreC','$apellidoC','$nombreU','$telefono','$password','$correo','$rol')");
+        $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombre','$apellido','$nombreU','$telefono','$password','$correo','$rol')");
         $mensaje= $peticion['mensaje'];
         echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
        

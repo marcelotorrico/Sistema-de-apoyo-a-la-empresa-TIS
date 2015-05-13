@@ -13,9 +13,11 @@
       if ($resultado < 6) {
       	
       	$conexion->consulta("UPDATE grupo_empresa SET NUM_SOCIOS=6 WHERE  NOMBRE_U='$empresa'");
-        echo"<script>alert('Se modificaron los datos satisfactoriamente $resultado'); window.location='../Vista/AdministrarGrupoEmpresa.php';</script>";
+        $mensaje ="Se concedio el permiso para registrar un sexto socio a $empresa";
+        echo"<script>alert($mensaje); window.location='../Vista/AdministrarGrupoEmpresa.php';</script>";
       } else {
-         echo"<script>alert('La grupo empresa ya tiene permiso para registrar un sexto socio'); window.location='../Vista/AdministrarGrupoEmpresa.php';</script>";           	
+        $mensaje = "$empresa ya tiene permiso para registrar un sexto socio";
+         echo"<script>alert($mensaje); window.location='../Vista/AdministrarGrupoEmpresa.php';</script>";           	
       }
       
  ?>
