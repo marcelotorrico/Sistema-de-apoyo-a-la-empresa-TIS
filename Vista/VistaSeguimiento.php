@@ -1,14 +1,13 @@
 
 
 <?php
+session_start();
+require_once '../Modelo/conexion.php';
+require_once '../Modelo/Model/GrupoEmpresa.php';   
+$usuario = $_SESSION['usuario'];
 
-        require_once '../Modelo/conexion.php';
-        require_once '../Modelo/Model/GrupoEmpresa.php';   
-        session_start();
-        $usuario = $_SESSION['usuario'];
-
-	$conexion = new conexion();
-	$conexion->conectar();
+$conexion = new conexion();
+$conexion->conectar();
 	
     $ap = $conexion->consultarTabla("SELECT id_r, nombre_u, estado_e, nombre_r FROM registro , inscripcion WHERE tipo_t = 'actividad planificacion' AND estado_e = 'en proceso' and NOMBRE_UGE=nombre_u and NOMBRE_UA='$usuario';");
     
