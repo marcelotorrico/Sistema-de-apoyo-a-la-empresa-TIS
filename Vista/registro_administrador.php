@@ -218,8 +218,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="glyphicon glyphicon-lock"></span>
             </span>
             <input class="form-control" type="password" name="contrasena" id="contrasena1" placeholder="Contraseña" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
-            </div>
-                <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
+            </div>  
             </div>
                 
             <div class="form-group">
@@ -229,9 +228,10 @@ $verificar->validarInicioSesion($uActivo,"administrador");
                     </span>
                     <input class="form-control" type="password" name="contrasena2" id="contrasena2" placeholder="Introduzca nuevamente la contraseña" pattern=".{8,}" title="Ingrese una contraseña segura, debe tener como minimo 8 caracteres" required>
                 </div>
+                <input type="checkbox" onchange="document.getElementById('contrasena1').type = this.checked ? 'text' : 'password',document.getElementById('contrasena2').type = this.checked ? 'text' : 'password'" > Ver contraseña
             </div>                
                 
-            <br> </br>    
+            <br>
                 
             <div class="form-group">
             <div class="input-group">
