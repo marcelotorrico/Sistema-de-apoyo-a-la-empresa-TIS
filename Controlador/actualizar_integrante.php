@@ -1,8 +1,9 @@
- <?php
+<?php
+session_start();
      include '../Modelo/conexion.php';
      include 'ValidadorFormulario.php';
      $conectar = new conexion();
-     session_start();
+     
  
  //Crear variables--------------------------
  
