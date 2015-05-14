@@ -238,7 +238,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="nombre" id="RealName" placeholder="Nombre" pattern="[A-Z]{1}[a-z]{2,20}$" title="El nombre debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Daniel, Marcelo, Rolando" required>
+            <input class="form-control" type="text" name="nombre" id="RealName" placeholder="Nombre" pattern="[A-Z]{1}[a-záéíóú]{2,20}$" title="El nombre debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Daniel, Marcelo, Rolando" required>
             </div>
             </div>
             <div class="form-group">
@@ -246,7 +246,7 @@ $verificar->validarInicioSesion($uActivo,"administrador");
             <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?" title="El apellido debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Vargas, Morales, Medrano" required>
+            <input class="form-control" type="text" name="apellido" id="LastName" placeholder="Apellido" pattern="[A-Z]{1}[a-záéíóú]{2,20}\s?([A-Z]{1}[a-záéíóú]{2,20})?" title="El apellido debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Vargas, Morales, Medrano" required>
             </div>
             </div>
 
