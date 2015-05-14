@@ -1,12 +1,11 @@
 <?php
 //include('../Vista/recursosasesor.php');
 include('../Modelo/crearimagen.php');
+include('../Modelo/conexion.php');
 
-    $conexion = mysql_connect("localhost","root","");
+    
+    $conexion = new conexion();
    // $conexion = mysql_connect("192.168.2.5","mbittle","5rtZAGYq");
-	//Control
-	if(!$conexion){die('La conexion ha fallado por:'.mysql_error());}
-	mysql_select_db("saetis",$conexion);
 	//mysql_select_db("tis_mbittle",$conexion);
    session_start();
 	 $UsuarioActivo = $_SESSION['usuario'];

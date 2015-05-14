@@ -3,13 +3,8 @@
 //require('registro.php');
 //require('guardarDocumento.php');
 session_start();
-
-//$conexion = mysql_connect("192.168.2.5","mbittle","5rtZAGYq");
-$conexion = mysql_connect("localhost","root","");
-    //Control
-    if(!$conexion){die('La conexion ha fallado por:'.mysql_error());}
-   // mysql_select_db("tis_mbittle",$conexion);
-     mysql_select_db("saetis",$conexion);
+include('conexion.php');
+$conexion = new conexion();
  
  $UsuarioActivo = $_SESSION['usuario'];
 
@@ -39,17 +34,17 @@ $asesor = $UsuarioActivo;
                 $hora=  date("G:H:i");
 
                 
-                $comentario_add = mysql_query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$asesor','documento subido','Habilitado','$nombre','$fecha','$hora')")or
+                $comentario_add = $conexion->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$asesor','documento subido','Habilitado','$nombre','$fecha','$hora')")or
             die("Error al s");
 
-            $query= mysql_query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+            $query= $conexion->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
  if ($row = mysql_fetch_row($query)) 
  {
    $id = trim($row[0]);
  }
  //var_dump($row);
  echo $id;
- $guardar_doc = mysql_query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+ $guardar_doc = $conexion->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
         VALUES('$id','1024','$new_ruta',TRUE,TRUE)");
                // $registro= new Registro($asesor,'documento subido','habilitado',$nombre,$fecha,$hora);
                // $idRegistro = $registro->getIdRegistro();
