@@ -288,7 +288,7 @@
         </div>
         </div>
         <div align=center>
-        <font color='black'>Esta pagina desarrollada por  <a class="registrar" href=''>Bittle.S.R.L.</a>
+        <font color='black'>Implementado por <a class="registrar" href='http://www.innovate.dev.bo/'>InnovaTe</a>
         </div>
 
 
