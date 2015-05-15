@@ -1269,8 +1269,8 @@ BEGIN
  declare e INTEGER;
  
 
-  set n = (SELECT nom REGEXP '[A-Z]{1}[a-z]{2,20}$');
-  set a = (SELECT ape REGEXP '[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?');
+  set n = (SELECT nom REGEXP '[A-Z]{1}[a-záéíóú]{2,20}');
+  set a = (SELECT ape REGEXP '[A-Z]{1}[a-záéíóú]{2,20}');
   set n_u = (SELECT nom_u REGEXP '^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$');
   set t = (SELECT telef REGEXP '^(([4][0-9]{6})|([7|6][0-9]{7}))$');
   set p = (select passwd REGEXP '.{8,}');
@@ -1362,8 +1362,8 @@ BEGIN
  declare e INTEGER;
  
 
-  set n = (SELECT nom REGEXP '[A-Z]{1}[a-z]{2,20}$');
-  set a = (SELECT ape REGEXP '[A-Z]{1}[a-z]{2,20}\s?([A-Z]{1}[a-z]{2,20})?');
+  set n = (SELECT nom REGEXP '[A-Z]{1}[a-záéíóú]{2,20}');
+  set a = (SELECT ape REGEXP '[A-Z]{1}[a-záéíóú]{2,20}');
   set n_u = (SELECT nom_u REGEXP '^[a-zA-Z]{3}[a-zA-z0-9_\\_\ü]{0,9}$');
   set t = (SELECT telef REGEXP '^(([4][0-9]{6})|([7|6][0-9]{7}))$');
   set p = (select passwd REGEXP '.{8,}');
