@@ -1278,12 +1278,12 @@ BEGIN
   
   CASE 0
   
-   WHEN n THEN (select "Los nombres deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
-   WHEN a THEN (select "Los apellidos deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as mensaje);
+   WHEN n THEN (select "El nombre debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Daniel, Marcelo, Rolando" as mensaje);
+   WHEN a THEN (select "El apellido debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Vargas, Morales, Medrano" as mensaje);
+   WHEN n_u THEN (select "Minimo 3 caracteres y Maximo 12. Los primeros tres caracteres tienen que ser letras. Ejm: Leticia1, Rolando2" as mensaje);
    WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as mensaje);
-   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
+   WHEN p THEN (select "Ingrese una contraseña segura, debe tener como minimo 8 caracteres" as mensaje);
+   WHEN e THEN (select "Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" as mensaje);
    
   ELSE 
 
@@ -1324,12 +1324,12 @@ BEGIN
   
   CASE 0
 
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as mensaje);
+   WHEN n_u THEN (select "Minimo 3 caracteres y Maximo 12. Los primeros tres caracteres tienen que ser letras. Ejm: Bittle123, Bitle" as mensaje);
    WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 8 caracteres" as mensaje);
-   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
-   WHEN n_l THEN (select "Nombre largo para grupo empresa tiene q tener mas de 3 caracteres" as mensaje);
-   WHEN n_c THEN (select "Nombre corto para grupo empresa tiene q tener mas de 3 caracteres" as mensaje);  
+   WHEN p THEN (select "Debe tener minimamente 8 caracteres" as mensaje);
+   WHEN e THEN (select "Ingrese un correo correcto Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" as mensaje);
+   WHEN n_l THEN (select "Minimo 3 caracteres" as mensaje);
+   WHEN n_c THEN (select "Minimo 3 caracteres" as mensaje);  
 
   ELSE 
 
@@ -1371,12 +1371,12 @@ BEGIN
   
   CASE 0
   
-   WHEN n THEN (select "Los nombres deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
-   WHEN a THEN (select "Los apellidos deben contener caracteres válidos de 2 a 30 caracteres" as mensaje);
-   WHEN n_u THEN (select "Nombre de usuario debe contener caracteres y numeros validos de 8 a 16 caracteres" as mensaje);
+   WHEN n THEN (select "El nombre debe empezar con mayuscula y como minimio debe poseer 3 caracteres. Ejm: Daniel, Marcelo, Rolando" as mensaje);
+   WHEN a THEN (select "El apellido debe empezar con mayuscula y como minimo debe poseer 3 caracteres. Ejm: Quiroga Santivanez, Suarez" as mensaje);
+   WHEN n_u THEN (select "Minimo 3 caracteres y Maximo 12. Los primeros tres caracteres tienen que ser letras. Ejm: Leticia1, Rolando2" as mensaje);
    WHEN t THEN (select "Los numeros telefonicos tiene que empezar por 4,6 o 7 y deben tener un tamaño de 7 a 8 caracteres" as mensaje);
-   WHEN p THEN (select "La contraseña debe de ser mayor a 5 caracteres" as mensaje);
-   WHEN e THEN (select "Ingrese un correo valido" as mensaje);
+   WHEN p THEN (select "Ingrese una contraseña segura, debe tener como minimo 8 caracteres" as mensaje);
+   WHEN e THEN (select "Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" as mensaje);
    
   ELSE 
 
