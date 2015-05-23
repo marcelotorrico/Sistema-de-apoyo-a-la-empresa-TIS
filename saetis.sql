@@ -1333,7 +1333,7 @@ BEGIN
 
   ELSE 
 
-  INSERT INTO usuario VALUES (nom_u,'habilitado',passwd,telef,email);
+  INSERT INTO usuario VALUES (nom_u,'Habilitado',MD5(passwd),telef,email);
 
   INSERT INTO grupo_empresa VALUES (nom_u,nge_corto, nge_largo,direcc,"",5);
 
