@@ -1333,7 +1333,7 @@ BEGIN
 
   ELSE 
 
-  INSERT INTO usuario VALUES (nom_u,'habilitado',passwd,telef,email);
+  INSERT INTO usuario VALUES (nom_u,'Habilitado',MD5(passwd),telef,email);
 
   INSERT INTO grupo_empresa VALUES (nom_u,nge_corto, nge_largo,direcc,"",5);
 
@@ -1348,7 +1348,7 @@ DELIMITER ;
 
 -- ----------------------------
 -- Procedure structure for registro_usuario
--- ----------------------------
+-- ----------------------------0
 DROP PROCEDURE IF EXISTS `registro_usuario`;
 DELIMITER ;;
 CREATE PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
