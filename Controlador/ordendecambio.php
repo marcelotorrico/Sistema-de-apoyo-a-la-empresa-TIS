@@ -85,6 +85,12 @@ class CREAR_DIRECTORIO
               mkdir($rutaOC);
             }
        }
+       else{
+            if(!file_exists($rutaOC)){
+                  mkdir($rutaOC);
+                }
+       }
+
      }
 }
 

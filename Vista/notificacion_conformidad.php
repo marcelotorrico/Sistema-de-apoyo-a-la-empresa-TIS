@@ -327,7 +327,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Cumplimiento de especificaciones del proponente</td>
                           <td>15 puntos</td>
                           <td> 
-                           <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[1]" id="textfield1" onkeypress="return validarNumeros(event)">
+                           <input type="text" class="form-control" style ="width:45px;height:45px;" name="text1" id="textfield1" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
                         <tr>
@@ -335,7 +335,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Claridad en la organizaci&oacute;n de la empresa proponente</td>
                           <td>10 puntos</td>
                           <td>
-                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[2]" id="textfield2" onkeypress="return validarNumeros(event)">
+                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text2" id="textfield2" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
                         <tr>
@@ -343,7 +343,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Cumplimiento de especificaciones t&eacute;cnicas</td>
                           <td>30 puntos</td>
                           <td>
-                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[3]" id="textfield3" onkeypress="return validarNumeros(event)">
+                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text3" id="textfield3" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
 
@@ -352,7 +352,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Claridad en el proceso de desarrollo</td>
                           <td>10 puntos</td>
                           <td>
-                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[4]" id="textfield4" onkeypress="return validarNumeros(event)">
+                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text4" id="textfield4" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
                         <tr>
@@ -360,7 +360,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Plazo de Ejecuci&oacute;n</td>
                           <td>10 puntos</td>
                           <td>
-                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[5]" id="textfield5" onkeypress="return validarNumeros(event)">
+                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text5" id="textfield5" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
                         <tr>
@@ -368,7 +368,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Precio total</td>
                           <td>15 puntos</td>
                           <td>
-                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[6]" id="textfield6" onkeypress="return validarNumeros(event)">
+                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text6" id="textfield6" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
                         <tr>
@@ -376,7 +376,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                           <td>Uso de herramientas en el proceso de desarrollo</td>
                           <td>10 puntos</td>
                           <td>
-                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text[7]" id="textfield7" onkeypress="return validarNumeros(event)">
+                              <input type="text" class="form-control" style ="width:45px;height:45px;" name="text7" id="textfield7" onkeypress="return validarNumeros(event)">
                           </td>
                         </tr>
 
