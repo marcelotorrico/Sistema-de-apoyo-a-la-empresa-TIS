@@ -1,7 +1,7 @@
 <?php
  
-    include '../Modelo/conexion.php';
-    $conectar = new conexion();
+    include '../Modelo/conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
 
       $nombre = $_POST['nombre'];
@@ -12,15 +12,16 @@
       $correo= $_POST['email'];
  
 
-    $cantidad = $conectar->consulta("select count(*) as cant from usuario where NOMBRE_U='$nombreU'");
-    $cantidad = mysql_fetch_assoc($cantidad);    
+    $cantidad = $conectar->query("select count(*) as cant from usuario where NOMBRE_U='$nombreU'");
+    $cantidad = $cantidad->fetch(PDO::FETCH_ASSOC);
     $cantidad = $cantidad['cant'];
     
     if ($cantidad > 0) {
       $mensaje = "El nombre de usuario ya fue registrado. Por favor cambie de nombre";
       echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
     } else {
-        $peticion=$conectar->consultaProcedimiento("CALL registro_administrador('$nombre','$apellido','$nombreU','$telefono','$password','$correo')");
+        $peticion=$conectar->query("CALL registro_administrador('$nombre','$apellido','$nombreU','$telefono','$password','$correo')");
+        $peticion = $peticion->fetch(PDO::FETCH_ASSOC);
         $mensaje= $peticion['mensaje'];
           echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
         }
