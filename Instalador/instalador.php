@@ -18,7 +18,7 @@ and open the template in the editor.
             <fieldset>
                 <legend>Configuracion de la Base de Datos</legend>
                 <label for="nombre">Nombre:</label>
-                <input id="nombre" name="nombre" value="saetis2" readonly>
+                <input id="nombre" name="nombre" type="text">
                 <label for="host">Host:</label>
                 <input id="host" name="host" type="text">
                 <label for="usuario">Usuario:</label>
@@ -31,10 +31,12 @@ and open the template in the editor.
 <?php
     require 'CreadorDirectorios.php';
     $creador = new CreadorDirectorios();
+   
     if(isset($_POST['instalar']) && isset($_POST['host']) && isset($_POST['usuario'])){
-        ejecutarSqlScript("../saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],$_POST['nombre']);  
-        $creador->copiar("../../ApoyoEmpresaTIS", "../../SAETIS");
-        $creador->removeDirectory("../../SAETIS/Instalador");
+        $nombre = $_POST['nombre'];
+        ejecutarSqlScript("../saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],"saetis2");  
+        $creador->copiar("../../public_html", "../../$nombre");
+        $creador->removeDirectory("../../$nombre/Instalador");
         header('Location: ../../SAETIS/');
     }
     function conectar($host, $usuario, $contrasena){
