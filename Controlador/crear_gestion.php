@@ -1,6 +1,6 @@
 <?php
 include '../Modelo/conexionPDO.php';
-$conectar = new conexion();
+$conectar = new Conexion();
 session_start();
 
 $usuario = $_SESSION['usuario'];
@@ -11,7 +11,8 @@ $rol = $_POST['rol'];
 
      
 
-    $peticion = $conectar->consultaP("call insert_gestion(:rol,:ini,:fin)",array('rol' => $rol,'ini' => $ini,'fin' => $fin)) ;
+    $peticion = $conectar->query("call insert_gestion(:rol,:ini,:fin)",array('rol' => $rol,'ini' => $ini,'fin' => $fin)) ;
+    $peticion = $peticion->fetchAll();
     $result=$peticion[0]['errno'];
     
       echo "<script>alert('$result'); window.location='../Vista/add_gestion.php';</script>";            
