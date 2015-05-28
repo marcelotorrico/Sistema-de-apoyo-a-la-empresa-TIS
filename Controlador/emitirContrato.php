@@ -1,18 +1,18 @@
 <?php
   
-  include '../Modelo/conexion.php';
+  include '../Modelo/conexionPDO.php';
   
   session_start();
   $uActivo = $_SESSION['usuario'];
   
-  $conexion = new conexion();
+  $conexion = new Conexion();
 
   if (isset($_POST['grupoempresa']))
   {
       $nLargoGE = $_REQUEST['grupoempresa'];
       $consulta="SELECT DISTINCT NOMBRE_R FROM `registro` AS r,`receptor` AS w WHERE  r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND w.`RECEPTOR_R` = '$nLargoGE'";
-      $contrato= $conexion->consulta($consulta);
-      $cantC= mysql_num_rows($contrato);  
+      $contrato= $conexion->query($consulta);
+      $cantC= $contrato->rowCount();
       
       if($cantC != 0 )
       {
@@ -31,32 +31,32 @@
             if(strnatcasecmp($nLargoGE, "Seleccione una grupo empresa") != 0)
             {
                 $seleccion="SELECT `NOMBRE_CORTO_GE` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'";            
-                $consulta = $conexion->consulta($seleccion);
-                $nCortoGE =  mysql_fetch_array($consulta);
+                $consulta = $conexion->query($seleccion);
+                $nCortoGE =  $consulta->fetch();
                 
                 $nombreUA = $_SESSION['usuario'] ;
-                $nomAp = $conexion->consulta("SELECT NOMBRES_A, APELLIDOS_A FROM asesor WHERE NOMBRE_U =  '$nombreUA' ");
-                $nombreAp = mysql_fetch_row($nomAp);
+                $nomAp = $conexion->query("SELECT NOMBRES_A, APELLIDOS_A FROM asesor WHERE NOMBRE_U =  '$nombreUA' ");
+                $nombreAp = $nomAp->fetch(PDO::FETCH_NUM);
                 $asesor = $nombreAp[0]." ".$nombreAp[1] ;
     
                 $seleccion = "SELECT `REPRESENTANTE_LEGAL_GE` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'";            
-                $consulta = $conexion->consulta($seleccion);
-                $represen = mysql_fetch_array($consulta);
+                $consulta = $conexion->query($seleccion);
+                $represen = $consulta->fetch();
                 
                 $seleccion = "SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'";            
-                $consulta = $conexion->consulta($seleccion);
-                $nombreUGE = mysql_fetch_array($consulta);
+                $consulta = $conexion->query($seleccion);
+                $nombreUGE = $consulta->fetch();
                 
                 $seleccion = "SELECT p.`NOMBRE_P` FROM `proyecto` AS p, `inscripcion_proyecto` AS ip WHERE ip.`NOMBRE_U` = '$nombreUGE[0]' AND ip.`CODIGO_P` = p.`CODIGO_P`";
-                $consulta = $conexion->consulta($seleccion);
-                $sistema = mysql_fetch_array($consulta);
+                $consulta = $conexion->query($seleccion);
+                $sistema = $consulta->fetch();
                 
                 $seleccion = "SELECT p.`CONVOCATORIA` FROM `proyecto` AS p, `inscripcion_proyecto` AS ip WHERE ip.`NOMBRE_U` = '$nombreUGE[0]' AND ip.`CODIGO_P` = p.`CODIGO_P`";
-                $consulta = $conexion->consulta($seleccion);
-                $convo = mysql_fetch_array($consulta);
+                $consulta = $conexion->query($seleccion);
+                $convo = $consulta->fetch();
 
-                $consulta = $conexion->consulta("SELECT * FROM planificacion WHERE NOMBRE_U='$nombreUGE[0]' AND ESTADO_E='planificacion registrada'");
-                $planifi = mysql_fetch_row($consulta);
+                $consulta = $conexion->query("SELECT * FROM planificacion WHERE NOMBRE_U='$nombreUGE[0]' AND ESTADO_E='planificacion registrada'");
+                $planifi = $consulta->fetch(PDO::FETCH_NUM);
 
                 if (is_array($planifi))
                 {       
@@ -130,24 +130,24 @@
                     $hora = date("G:H:i");
                     $visible = "TRUE";
                     $descargar = "TRUE";
-                    $comentar = $conexion->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$nombreUA','Contrato','Habilitado','$pdf','$fecha','$hora')")or
+                    $comentar = $conexion->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$nombreUA','Contrato','Habilitado','$pdf','$fecha','$hora')")or
                     die("Error");
                                                    
-                    $consultar= $conexion->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+                    $consultar= $conexion->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
                     
-                    if ($regis = mysql_fetch_row($consultar)) 
+                    if ($regis = $consultar->fetch(PDO::FETCH_NUM)) 
                     {
                         $idRegis = trim($regis[0]);
                     }
                                                    
-                    $guardar = $conexion->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES('$idRegis','1024','$descrip','$visible','$descargar')");
-                    $desD = $conexion->consulta("INSERT INTO descripcion (ID_R,DESCRIPCION_D) VALUES('$idRegis','Contrato')");
-                    $destinat = $conexion->consulta("INSERT INTO receptor (ID_R,RECEPTOR_R) VALUES('$idRegis','$nLargoGE')");
+                    $guardar = $conexion->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES('$idRegis','1024','$descrip','$visible','$descargar')");
+                    $desD = $conexion->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D) VALUES('$idRegis','Contrato')");
+                    $destinat = $conexion->query("INSERT INTO receptor (ID_R,RECEPTOR_R) VALUES('$idRegis','$nLargoGE')");
                      
-                     $selGE=$conexion->consulta("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'");
-                     $nomGE=mysql_fetch_array($selGE);
+                     $selGE=$conexion->query("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'");
+                     $nomGE=$selGE->fetch(PDO::FETCH_NUM);
 
-                     $estaFir=  $conexion->consulta("UPDATE `inscripcion_proyecto`
+                     $estaFir=  $conexion->query("UPDATE `inscripcion_proyecto`
                      SET `ESTADO_CONTRATO`= 'Firmado'                   
                     WHERE `NOMBRE_U` = '$nomGE[0]'");  
                     //rename("Contrato.pdf", $pdf);

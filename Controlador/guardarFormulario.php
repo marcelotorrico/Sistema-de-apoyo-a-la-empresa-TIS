@@ -1,13 +1,13 @@
 <?php  
 
-include '../Modelo/conexion.php';
+include '../Modelo/conexionPDO.php';
 
     session_start();
 
     $UserAct = $_SESSION['usuario'];
 
     $nameForm = $_POST['nombreFormulario'];                                      
-    $conect = new conexion();
+    $conect = new Conexion();
 
     $Crit_E = $_POST['EvaEscogidos'];
     $Crit_C = $_POST['CritEscogidos'];
@@ -34,9 +34,9 @@ include '../Modelo/conexion.php';
     
     }else{
 
-        $Ver_Nom = $conect->consulta("SELECT NOMBRE_FORM FROM formulario WHERE NOMBRE_FORM = '$nameForm' AND NOMBRE_U = '$UserAct' ");
+        $Ver_Nom = $conect->query("SELECT NOMBRE_FORM FROM formulario WHERE NOMBRE_FORM = '$nameForm' AND NOMBRE_U = '$UserAct' ");
         
-        $Verif_Nom = mysql_fetch_row($Ver_Nom);
+        $Verif_Nom = $Ver_Nom->fetch(PDO::FETCH_NUM);
         
         if(!is_array($Verif_Nom))
         {
@@ -51,28 +51,28 @@ include '../Modelo/conexion.php';
                     if($Res == 100)
                     {
 
-                        $In_Form = $conect->consulta("INSERT INTO formulario(NOMBRE_U, NOMBRE_FORM, ESTADO_FORM) VALUES('$UserAct', '$nameForm', 'Deshabilitado')");
+                        $In_Form = $conect->query("INSERT INTO formulario(NOMBRE_U, NOMBRE_FORM, ESTADO_FORM) VALUES('$UserAct', '$nameForm', 'Deshabilitado')");
 
-                        $Sel_Id =$conect->consulta("SELECT MAX(ID_FORM) FROM formulario WHERE NOMBRE_U = '$UserAct'");
+                        $Sel_Id =$conect->query("SELECT MAX(ID_FORM) FROM formulario WHERE NOMBRE_U = '$UserAct'");
 
-                        $Id_Form = mysql_fetch_row($Sel_Id);
+                        $Id_Form = $Sel_Id->fetch(PDO::FETCH_NUM);
 
                         for ($cont1=0; $cont1 < count($Crit_E); $cont1++) { 
 
 
-                                $Sel_IdE = $conect->consulta("SELECT ID_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_CRITERIO_E = '$Crit_E[$cont1]' AND NOMBRE_U = '$UserAct'");
+                                $Sel_IdE = $conect->query("SELECT ID_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_CRITERIO_E = '$Crit_E[$cont1]' AND NOMBRE_U = '$UserAct'");
                             
-                                $Sel_IdC = $conect->consulta("SELECT ID_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_CRITERIO_C = '$Crit_C[$cont1]' AND NOMBRE_U = '$UserAct'");
+                                $Sel_IdC = $conect->query("SELECT ID_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_CRITERIO_C = '$Crit_C[$cont1]' AND NOMBRE_U = '$UserAct'");
 
-                                $idE = mysql_fetch_row($Sel_IdE);
+                                $idE = $Sel_IdE->fetch(PDO::FETCH_NUM);
 
-                                $idC = mysql_fetch_row($Sel_IdC);
+                                $idC = $Sel_IdC->fetch(PDO::FETCH_NUM);
 
-                                $In_CritE = $conect->consulta("INSERT INTO form_crit_e(ID_FORM, ID_CRITERIO_E) VALUES('$Id_Form[0]','$idE[0]') ");
+                                $In_CritE = $conect->query("INSERT INTO form_crit_e(ID_FORM, ID_CRITERIO_E) VALUES('$Id_Form[0]','$idE[0]') ");
 
-                                $In_CritC = $conect->consulta("INSERT INTO from_crit_c(ID_CRITERIO_C, ID_FORM) VALUES('$idC[0]','$Id_Form[0]') ");
+                                $In_CritC = $conect->query("INSERT INTO from_crit_c(ID_CRITERIO_C, ID_FORM) VALUES('$idC[0]','$Id_Form[0]') ");
 
-                                $In_Ptje = $conect->consulta("INSERT INTO puntaje(ID_FORM, PUNTAJE) VALUES('$Id_Form[0]','$puntaje[$cont1]')");                           
+                                $In_Ptje = $conect->query("INSERT INTO puntaje(ID_FORM, PUNTAJE) VALUES('$Id_Form[0]','$puntaje[$cont1]')");                           
                         }
 
                     
@@ -96,20 +96,6 @@ include '../Modelo/conexion.php';
        {
 
             echo '<script>alert("Ya existe un formulario con ese nombre registrado");</script>';
-        
-            
-     
        }
     }
-
-    
-
-
-
-
-
-
-        
-            
-
 ?>

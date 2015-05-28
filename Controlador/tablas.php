@@ -1,8 +1,8 @@
 <?php
 
-  include '../Modelo/conexion.php';
+  include '../Modelo/conexionPDO.php';
   session_start();
-  $conect = new conexion();
+  $conect = new Conexion();
          $userAct = $_SESSION['usuario'];
         
 	if(isset($_POST["enviar"])){
@@ -24,22 +24,22 @@
                 $descargable="TRUE";  
 
 
-                $comentario_add = $conect->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
+                $comentario_add = $conect->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
                 die("Error al s");
 
-               $query= $conect->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
-               if ($row = mysql_fetch_row($query)) 
+               $query= $conect->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+               if ($row = $query->fetch(PDO::FETCH_NUM)) 
                {
                    $idDoc = trim($row[0]);
                }
  
-               $guardar_doc = $conect->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+               $guardar_doc = $conect->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
                VALUES('$idDoc','1024','$rutap','TRUE','TRUE')");
-               $des_D=$conect->consulta("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
+               $des_D=$conect->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
                VALUES('$idDoc','$desDoc')");
-              $destinatario=$conect->consulta("INSERT INTO receptor (ID_R,RECEPTOR_R)
+              $destinatario=$conect->query("INSERT INTO receptor (ID_R,RECEPTOR_R)
               VALUES('$idDoc','$grupoE')");
-              $guardar = $conect->consulta("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
+              $guardar = $conect->query("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
               die("Error al s");
 
               header("location:../Vista/publicar_asesor.php");
@@ -65,22 +65,22 @@
                   $descargable="TRUE";  
 
 
-                  $comentario_add = $conect->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
+                  $comentario_add = $conect->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
                   die("Error al s");
 
-                  $query= $conect->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
-                 if ($row = mysql_fetch_row($query)) 
+                  $query= $conect->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+                 if ($row = $query->fetch(PDO::FETCH_NUM)) 
                  {
                    $idDoc = trim($row[0]);
                  }
  
-                 $guardar_doc = $conect->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+                 $guardar_doc = $conect->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
                  VALUES('$idDoc','1024','$rutap','TRUE','TRUE')");
-                $des_D=$conect->consulta("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
+                $des_D=$conect->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
                 VALUES('$idDoc','$desDoc')");
-                $destinatario=$conect->consulta("INSERT INTO receptor (ID_R,RECEPTOR_R)
+                $destinatario=$conect->query("INSERT INTO receptor (ID_R,RECEPTOR_R)
                 VALUES('$idDoc','$destinoG')");
-               $guardar = $conect->consulta("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
+               $guardar = $conect->query("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
                die("Error al s");
 
                 header("location:../Vista/publicar_asesor.php");
@@ -107,22 +107,22 @@
                       $descargable="TRUE";  
 
 
-                      $comentario_add = $conect->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
+                      $comentario_add = $conect->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
                       die("Error al s");
 
-                      $query= $conect->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
-                      if ($row = mysql_fetch_row($query)) 
+                      $query= $conect->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+                      if ($row = $query->fetch(PDO::FETCH_NUM)) 
                       {
                           $idDoc = trim($row[0]);
                       }
  
-                       $guardar_doc = $conect->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+                       $guardar_doc = $conect->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
                        VALUES('$idDoc','1024','$rutap','TRUE','TRUE')");
-                      $des_D=$conect->consulta("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
+                      $des_D=$conect->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
                       VALUES('$idDoc','$desDoc')");
-                      $destinatario=$conect->consulta("INSERT INTO receptor (ID_R,RECEPTOR_R)
+                      $destinatario=$conect->query("INSERT INTO receptor (ID_R,RECEPTOR_R)
                       VALUES('$idDoc','$grupoEmp')");
-                      $guardar = $conect->consulta("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
+                      $guardar = $conect->query("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
                       die("Error al s");
 
                         header("location:../Vista/publicar_asesor.php");
@@ -150,22 +150,22 @@
                   $descargable="TRUE";  
 
 
-                  $comentario_add = $conect->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
+                  $comentario_add = $conect->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
                   die("Error al s");
 
-                  $query= $conect->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
-                 if ($row = mysql_fetch_row($query)) 
+                  $query= $conect->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+                 if ($row = $query->fetch(PDO::FETCH_NUM)) 
                  {
                    $idDoc = trim($row[0]);
                  }
  
-                 $guardar_doc = $conect->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+                 $guardar_doc = $conect->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
                  VALUES('$idDoc','1024','$rutap','TRUE','TRUE')");
-                $des_D=$conect->consulta("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
+                $des_D=$conect->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
                 VALUES('$idDoc','$desDoc')");
-                $destinatario=$conect->consulta("INSERT INTO receptor (ID_R,RECEPTOR_R)
+                $destinatario=$conect->query("INSERT INTO receptor (ID_R,RECEPTOR_R)
                 VALUES('$idDoc','$destinoG')");
-               $guardar = $conect->consulta("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
+               $guardar = $conect->query("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
                die("Error al s");
 
                 header("location:../Vista/publicar_asesor.php");
@@ -192,33 +192,28 @@
                       $descargable="TRUE";  
 
 
-                      $comentario_add = $conect->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
+                      $comentario_add = $conect->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$userAct','publicaciones','Habilitado','$titulo','$fecha','$hora')")or
                       die("Error al s");
 
-                      $query= $conect->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
-                      if ($row = mysql_fetch_row($query)) 
+                      $query= $conect->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+                      if ($row = $query->fetch(PDO::FETCH_NUM)) 
                       {
                           $idDoc = trim($row[0]);
                       }
  
-                       $guardar_doc = $conect->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+                       $guardar_doc = $conect->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
                        VALUES('$idDoc','1024','$rutap','TRUE','TRUE')");
-                      $des_D=$conect->consulta("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
+                      $des_D=$conect->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D)
                       VALUES('$idDoc','$desDoc')");
-                      $destinatario=$conect->consulta("INSERT INTO receptor (ID_R,RECEPTOR_R)
+                      $destinatario=$conect->query("INSERT INTO receptor (ID_R,RECEPTOR_R)
                       VALUES('$idDoc','$proyecto')");
-                      $guardar = $conect->consulta("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
+                      $guardar = $conect->query("INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES ('$idDoc','$fechap','$horap')") or
                       die("Error al s");
 
                         header("location:../Vista/publicar_asesor.php");
 
                   }
                 }
-
             }
-
-
-     
           }
-            
 ?>
