@@ -9,10 +9,9 @@ $ini = $_POST['ini'];
 $fin = $_POST['fin'];
 $rol = $_POST['rol'];
 
-     
-
-    $peticion = $conectar->query("call insert_gestion(:rol,:ini,:fin)",array('rol' => $rol,'ini' => $ini,'fin' => $fin)) ;
-    $peticion = $peticion->fetchAll();
+    $sql = $conectar->prepare("call insert_gestion(:rol,:ini,:fin)");
+    $sql->execute(array('rol' => $rol,'ini' => $ini,'fin' => $fin));
+    $peticion = $sql->fetchAll();
     $result=$peticion[0]['errno'];
     
       echo "<script>alert('$result'); window.location='../Vista/add_gestion.php';</script>";            

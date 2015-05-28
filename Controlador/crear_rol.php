@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-include '../Modelo/conexion.php';
-$conectar = new conexion();
+include '../Modelo/conexionPDO.php';
+$conectar = new Conexion();
 //Crear variables--------------------------
 
 $usuario = $_SESSION['usuario'];
@@ -15,7 +15,7 @@ $addRol = $_POST['rol'];
 //conexion-------------
 
 	//Peticion
-	$peticion = $conectar-> consulta("INSERT INTO `rol` (`ROL_R`) VALUES ('$addRol');");
+	$peticion = $conectar->query("INSERT INTO `rol` (`ROL_R`) VALUES ('$addRol');");
 	//cerrar conexion--------------------------
 	
 	 //volver a la pagina---------------
