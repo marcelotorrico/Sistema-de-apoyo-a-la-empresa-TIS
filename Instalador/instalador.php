@@ -29,77 +29,80 @@ and open the template in the editor.
             </fieldset>
         </form>
 <?php
-    require 'CreadorDirectorios.php';
-    
-    $creador = new CreadorDirectorios();
-    
-    
-    echo 'Antes de realizar la condicion ';
     if(isset($_POST['instalar']) && isset($_POST['host']) && isset($_POST['usuario'])){
-        //ejecutarSqlScript("saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],$_POST['nombre']);
-        $creador->copiar("../../ApoyoEmpresaTIS","../../ApoyoEmpresaTIS1");
-        $creador->removeDirectory("../../ApoyoEmpresaTIS1/Instalador");
-        //$conexion = new mysqli($_POST['host'],$_POST['usuario'],$_POST['contrasena']);
-        //if($conexion->connect_error){
-        /*if(!$conexion){
-           die("La conexion fallo: " .$conexion->connect_error); 
-        }
-        else{
-            $sql = "create database ".$_POST['nombre'];
-            importarTablas("script.sql");
-        }*/
-        //echo 'Conexion realizada '.$sql;
-        //Crear la Base de Datos
-        /*if($conexion->query($sql) === TRUE){
-            echo 'Base de Datos creada satisfactoriamente';
-            $dirScript = "saetis.sql";
+        ejecutarSqlScript("saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],$_POST['nombre']);
+        
+    }
+    function conectar($host, $usuario, $contrasena){
+        $enlace = mysqli_connect($host, $usuario, $contrasena);
+        return $enlace;
+    }
+    function desconectar($enlace){
+        mysqli_close($enlace);
+    }
+    function ejecutarSqlScript($dirScript,$host,$usuario,$contrasena,$nombreBD){
+        $enlace = conectar($host,$usuario,$contrasena);
+        if($enlace){
+            $dirScriptSinComentarios = eliminarComentariosScript($dirScript);
+            $consulta = "create database ".$nombreBD." default character set=utf8";
+            ejecutarConsulta($enlace,$consulta);
+            if (!mysqli_select_db($enlace,$nombreBD))
+            {
+                echo "Error seleccionando la base de datos: ".  mysqli_error($enlace);
+            }
+            $sql = explode(";",file_get_contents($dirScriptSinComentarios));
+            ejecutarScript($enlace, $sql);
+            desconectar($enlace);
+            eliminarArchivo($dirScriptSinComentarios);
         }else{
-            echo 'Error creando la Base de Datos: '.$conexion->error;
+            echo 'Error al conectar a la base de Datos';
+        }   
+    }
+    function ejecutarScript($enlace,$sql){
+        $procedimiento = "";
+        $delimitador = false;
+        foreach($sql as $consulta){
+            if(strpos($consulta, 'DELIMITER') !== FALSE){
+                $delimitador = !$delimitador;
+                $consulta = preg_replace("/DELIMITER/","", $consulta);
+                if($delimitador == FALSE){
+                    $consulta = $procedimiento;
+                    $procedimiento = "";
+                }
+            }
+            if($delimitador == TRUE && !empty($consulta) && preg_match("/[a-z]/i", $consulta)){
+                $procedimiento=$procedimiento.$consulta."; ";
+            }
+            if($delimitador == FALSE && ejecutarConsulta($enlace,$consulta) === TRUE){
+                //echo 'Ejecutado la consulta: '.$consulta."<br />";
+            }else{
+                //echo 'Error al ejecutar la consulta : '. $consulta. " ".mysqli_error($enlace);
+            }
         }
-        $conexion->close();*/
     }
-    function conectar($host, $user, $password){
-        $link = mysqli_connect($host, $user, $password);
-        return $link;
+    function ejecutarConsulta($enlace,$consulta){
+        $res = mysqli_query($enlace,$consulta);
+        return $res;
     }
-    function desconectar($link){
-        mysqli_close($link);
-    }
-    function ejecutarSqlScript($dirScript,$host,$user,$password){
-        /*$fr = fopen("saetis.sql", "r");
-        $fw = fopen("saetis1.sql", "w");
+    function eliminarComentariosScript($dirScript){
+        $dirScriptSinComentario = "scriptSinComentarios.sql";
+        $fw = fopen($dirScriptSinComentario, "w");
+        $fr = fopen($dirScript, "r");
         while(!feof($fr)) {
             $linea = fgets($fr);
             if(strpos($linea, '--')=== FALSE){
                 fputs($fw, $linea);
             }
-            echo $linea . "<br />";
+            //echo $linea . "<br />";
         }
         fclose($fr);
-        fclose($fw);*/
-        $p = explode(";", "Hola;;como;estas;;");
-        echo count($p);
-        $cont = 0;
-        foreach($p as $value){
-            echo $p[$cont].'-';
-            $cont++;
+        fclose($fw);
+        return $dirScriptSinComentario;
+    }
+    function eliminarArchivo($dirArchivo){
+        if(!unlink($dirArchivo)){
+            echo 'Error al eliminar: '.$dirArchivo;
         }
-        /*
-        $sql = explode(";",file_get_contents($dirScript));
-        $cont = 0;
-        foreach($sql as $value){
-            echo $sql[$cont].'/n';
-            $cont++;
-        }*/
-        /*$link = conectar($host,$user,$password);
-        if($link){
-            mysqli_query($link,"create database ".$_POST['nombre']."default character set=utf8");
-            foreach($sql as $query)
-                mysqli_query($link,$query);
-            desconectar($link);
-        }else{
-            echo 'Error al conectar a la base de Datos';
-        }*/
     }
 ?>
     </body>
