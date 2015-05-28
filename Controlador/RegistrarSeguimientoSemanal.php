@@ -1,14 +1,14 @@
 <?php
 	
-	require_once '../Modelo/conexion.php';
+	require_once '../Modelo/conexionPDO.php';
 
 	$funcion = $_POST['funcion'];
 	$grupoE = $_POST['grupoE'];
-	$conexion = new conexion();
+	$conexion = new Conexion();
 	session_start();
 	$uActivo = $_SESSION['usuario'];
         
-	date_default_timezone_set('America/Puerto_Rico');
+	date_default_timezone_set('America/La_Paz');
 	$horaReg = date("H:i:s");
 	$fechaReg = date('Y:m:j');
 
@@ -18,13 +18,13 @@
         	$codigos = explode(',', $_POST['codigos']);
         	$asistencias = explode(',', $_POST['asistencias']);
 
-        	$conexion->consulta("START TRANSACTION");
+        	$conexion->query("START TRANSACTION");
 
-        	$insReg = $conexion->consulta("INSERT INTO registro(NOMBRE_U, TIPO_T, ESTADO_E, NOMBRE_R, FECHA_R, HORA_R)VALUES('$uActivo', 'asistencia', 'asistencia registrada', 'asistencia', '$fechaReg', '$horaReg');");
+        	$insReg = $conexion->query("INSERT INTO registro(NOMBRE_U, TIPO_T, ESTADO_E, NOMBRE_R, FECHA_R, HORA_R)VALUES('$uActivo', 'asistencia', 'asistencia registrada', 'asistencia', '$fechaReg', '$horaReg');");
 
-        	$selIdReg = $conexion->consulta("SELECT MAX(ID_R) FROM registro WHERE TIPO_T = 'asistencia' AND NOMBRE_U='$uActivo'");
+        	$selIdReg = $conexion->query("SELECT MAX(ID_R) FROM registro WHERE TIPO_T = 'asistencia' AND NOMBRE_U='$uActivo'");
 
-        	$idReg = mysql_fetch_row($selIdReg);
+        	$idReg = $selIdReg->fetch(PDO::FETCH_NUM);
 
         	for ($i = 0; $i < count($codigos); $i++) { 
         		$codigo = $codigos[$i];
@@ -39,17 +39,17 @@
 					}
 				}
 
-				$insAsis = $conexion->consulta("INSERT INTO asistencia_semanal(id_r, grupo_as, codigo_socio_as, asistencia_as, licencia_as)VALUES('$idReg[0]','$grupoE','$codigo', '$presente', $licencia);");
+				$insAsis = $conexion->query("INSERT INTO asistencia_semanal(id_r, grupo_as, codigo_socio_as, asistencia_as, licencia_as)VALUES('$idReg[0]','$grupoE','$codigo', '$presente', $licencia);");
 			}
 
 			if($insReg and $selIdReg and $insAsis)
 			{
-				$conexion->consulta("COMMIT");
+				$conexion->query("COMMIT");
 
 			}
 			else
         	{
-        		$conexion->consulta("ROLLBACK");	
+        		$conexion->query("ROLLBACK");	
         	}
 
             break;
@@ -63,13 +63,13 @@
         	$conclusiones = explode(',', $_POST['conclusiones']);
         	$observaciones = explode(',', $_POST['observaciones']);
 
-        	$conexion->consulta("START TRANSACTION");
+        	$conexion->query("START TRANSACTION");
 
-        	$insReg = $conexion->consulta("INSERT INTO registro(NOMBRE_U, TIPO_T, ESTADO_E, NOMBRE_R, FECHA_R, HORA_R)VALUES('$uActivo', 'seguimiento', 'seguimiento registrado', 'revision', '$fechaReg', '$horaReg');");
+        	$insReg = $conexion->query("INSERT INTO registro(NOMBRE_U, TIPO_T, ESTADO_E, NOMBRE_R, FECHA_R, HORA_R)VALUES('$uActivo', 'seguimiento', 'seguimiento registrado', 'revision', '$fechaReg', '$horaReg');");
 
-        	$selIdReg = $conexion->consulta("SELECT MAX(ID_R) FROM registro WHERE TIPO_T = 'seguimiento' AND NOMBRE_U='$uActivo'");
+        	$selIdReg = $conexion->query("SELECT MAX(ID_R) FROM registro WHERE TIPO_T = 'seguimiento' AND NOMBRE_U='$uActivo'");
 
-        	$idReg = mysql_fetch_row($selIdReg);
+        	$idReg = $selIdReg->fetch(PDO::FETCH_NUM);
 
         	for ($i = 0; $i < count($roles); $i++) { 
         		$rol = $roles[$i];
@@ -83,17 +83,17 @@
 					$hecho = 0;
 				}
 
-				$insSeg = $conexion->consulta("INSERT INTO seguimiento(id_r, rol_s, grupo_s, actividad_s, hecho_s, resultado_s, conclusion_s, observacion_s,fecha_s)VALUES('$idReg[0]','$rol','$grupoE', '$actividad', $hecho, '$resultado', '$conclusion', '$observacion','$fechaReg');");
+				$insSeg = $conexion->query("INSERT INTO seguimiento(id_r, rol_s, grupo_s, actividad_s, hecho_s, resultado_s, conclusion_s, observacion_s,fecha_s)VALUES('$idReg[0]','$rol','$grupoE', '$actividad', $hecho, '$resultado', '$conclusion', '$observacion','$fechaReg');");
 			}
 
 			if($insReg and $selIdReg and $insSeg)
 			{
-				$conexion->consulta("COMMIT");
+				$conexion->query("COMMIT");
 
 			}
 			else
         	{
-        		$conexion->consulta("ROLLBACK");	
+        		$conexion->query("ROLLBACK");	
         	}
 			
             break;
