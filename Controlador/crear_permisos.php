@@ -2,7 +2,7 @@
 
 session_start();
 include '../Modelo/conexionPDO.php';
-$conectar = new conexion();
+$conectar = new Conexion();
 //Crear variables--------------------------
 
 $usuario = $_SESSION['usuario'];
@@ -14,8 +14,8 @@ $asesor = $_POST['id_rol'];
 
 //conexion-------------
 
-	$peticion = $conectar->consultaP("INSERT INTO permisos VALUES (nomMenu,nul,asesor)",array('Nombre' => $nomMenu,'nul' => NULL,'asesor' => $asesor));
-  
+        $sql = $conectar->prepare("INSERT INTO permisos VALUES (nomMenu,nul,asesor)");
+	$sql->execute(array('Nombre' => $nomMenu,'nul' => NULL,'asesor' => $asesor));
    
 	//cerrar conexion--------------------------
 	 //volver a la pagina---------------
