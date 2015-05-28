@@ -1,7 +1,7 @@
 <?php
 
-    include '../conexion.php';
-    $conectar = new conexion();
+    include '../conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
 
     $nombreUGE = htmlentities($_POST['nombreU'], ENT_QUOTES);
@@ -14,16 +14,16 @@
   
 
 
-   $cantidadU = $conectar->consulta("select count(*) as cant from usuario where NOMBRE_U='$nombreUGE'");
-   $cantidadU = mysql_fetch_assoc($cantidadU);    
+   $cantidadU = $conectar->query("select count(*) as cant from usuario where NOMBRE_U='$nombreUGE'");
+   $cantidadU = $cantidadU->fetch(PDO::FETCH_ASSOC);
    $cantidadU = $cantidadU['cant'];
   
-   $cantidadG = $conectar->consulta("select count(*) as cant from grupo_empresa where NOMBRE_LARGO_GE='$nombreLGE'");
-   $cantidadG = mysql_fetch_assoc($cantidadG);    
+   $cantidadG = $conectar->query("select count(*) as cant from grupo_empresa where NOMBRE_LARGO_GE='$nombreLGE'");
+   $cantidadG = $cantidadG->fetch(PDO::FETCH_ASSOC);
    $cantidadG = $cantidadG['cant'];
 
-   $cantidadCG = $conectar->consulta("select count(*) as cant from grupo_empresa where NOMBRE_CORTO_GE='$nombreCGE'");
-   $cantidadCG = mysql_fetch_assoc($cantidadCG);    
+   $cantidadCG = $conectar->query("select count(*) as cant from grupo_empresa where NOMBRE_CORTO_GE='$nombreCGE'");
+   $cantidadCG = $cantidadCG->fetch(PDO::FETCH_ASSOC);
    $cantidadCG = $cantidadCG['cant'];
 
 
@@ -39,12 +39,11 @@
                    $mensaje = "El nombre corto de grupo empresa ya fue registrado. Por favor cambie de nombre";
                    echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
                } else {
-                        $peticion=$conectar->consultaProcedimiento("CALL registro_grupo_empresa('$nombreUGE','$telefGE','$password','$correoGE','$dirGE','$nombreLGE','$nombreCGE')");
+                        $peticion=$conectar->query("CALL registro_grupo_empresa('$nombreUGE','$telefGE','$password','$correoGE','$dirGE','$nombreLGE','$nombreCGE')");
+                        $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
                         $mensaje= $peticion['mensaje'];
                         echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
                }
-                          
           }
     }
-    
 ?>

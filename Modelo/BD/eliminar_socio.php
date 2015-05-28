@@ -1,7 +1,7 @@
 <?php
-    include '../conexion.php';
+    include '../conexionPDO.php';
     
-    $conectar = new conexion();
+    $conectar = new Conexion();
     session_start();
     $usuario = $_SESSION['usuario'];
 
@@ -11,12 +11,8 @@ $contrasena = $_SESSION['contrasena'];
 
 $idgp = $_GET['id_us'];
 
-
-
-	$peticion = $conectar->consulta(" DELETE FROM `socio` WHERE CODIGO_S='$idgp'");
+	$peticion = $conectar->query(" DELETE FROM `socio` WHERE CODIGO_S='$idgp'");
 
          echo '<script>alert("Se elimino  correctamente");</script>';
          echo '<script>window.location="../../Vista/lista_grupoEmpresa.php";</script>';
-
- 
 ?>

@@ -3,13 +3,13 @@
 $Form = $_POST['EscogidoEliminar'];
 
 
-include '../conexion.php';
+include '../conexionPDO.php';
 
-    $conect = new conexion();
+    $conect = new Conexion();
 
-    $Sel_Nota = $conect->consulta("SELECT * FROM nota WHERE ID_FORM = '$Form'");
+    $Sel_Nota = $conect->query("SELECT * FROM nota WHERE ID_FORM = '$Form'");
 
-    $Nota = mysql_fetch_row($Sel_Nota);
+    $Nota = $Sel_Nota->fetch(PDO::FETCH_NUM);
 
     if(is_array($Nota))
     {
@@ -20,13 +20,13 @@ include '../conexion.php';
     }
     else{
 
-        $Del_FCE = $conect->consulta("DELETE FROM form_crit_e WHERE ID_FORM = '$Form'");
+        $Del_FCE = $conect->query("DELETE FROM form_crit_e WHERE ID_FORM = '$Form'");
 
-        $Del_FCC = $conect->consulta("DELETE FROM from_crit_c WHERE ID_FORM = '$Form'");
+        $Del_FCC = $conect->query("DELETE FROM from_crit_c WHERE ID_FORM = '$Form'");
 
-        $Del_Pje = $conect->consulta("DELETE FROM puntaje WHERE ID_FORM = '$Form'");
+        $Del_Pje = $conect->query("DELETE FROM puntaje WHERE ID_FORM = '$Form'");
 
-        $Del_Form = $conect->consulta("DELETE FROM formulario WHERE ID_FORM = '$Form'");
+        $Del_Form = $conect->query("DELETE FROM formulario WHERE ID_FORM = '$Form'");
 
         if($Del_FCE and $Del_FCC and $Del_Pje and $Del_Form) 
         {

@@ -1,6 +1,6 @@
 <?php
-    include '../conexion.php';
-    $conectar = new conexion();
+    include '../conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
 
     $nombreU = htmlentities($_POST['nombreUsuario'], ENT_QUOTES);
@@ -18,19 +18,17 @@
        
     require '../../Controlador/ValidadorFormulario.php';
    //query para verificar si existe el nombre de usuario
-    $cantidad = $conectar->consulta("select count(*) as cant from usuario where NOMBRE_U='$nombreU'");
-    $cantidad = mysql_fetch_assoc($cantidad);    
+    $cantidad = $conectar->query("select count(*) as cant from usuario where NOMBRE_U='$nombreU'");
+    $cantidad = $cantidad->fetch(PDO::FETCH_ASSOC);
     if ($cantidad['cant'] >= 1) {
        $mensaje = "El nombre de usuario ya fue registrado. Por favor cambie de nombre";
        echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
 
      } else {
-        $peticion=$conectar->consultaProcedimiento("CALL registro_usuario('$nombre','$apellido','$nombreU','$telefono','$password','$correo','$rol')");
+        $peticion=$conectar->query("CALL registro_usuario('$nombre','$apellido','$nombreU','$telefono','$password','$correo','$rol')");
+        $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
         $mensaje= $peticion['mensaje'];
         echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
        
-    }
-    
-
-    
+    } 
 ?>

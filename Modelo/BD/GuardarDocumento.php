@@ -1,8 +1,8 @@
 <?php
 
-include '../conexion.php';
-$conect = new conexion();
-date_default_timezone_set('America/Puerto_Rico');
+include '../conexionPDO.php';
+$conect = new Conexion();
+date_default_timezone_set('America/La_Paz');
 
 session_start();
 $UsuarioActivo = $_SESSION['usuario'];
@@ -19,9 +19,9 @@ $DescripcionDocumento = $_POST['DescripcionDocumento'];
 $HoraRegistrado = date("H:i:s");
 $FechaRegistrado = date('Y:m:j');
 
-$VerificarExistenciaDoc = $conect->consulta("SELECT * FROM registro WHERE NOMBRE_U = '$UsuarioActivo' AND NOMBRE_R = '$nombreDoc'");
+$VerificarExistenciaDoc = $conect->query("SELECT * FROM registro WHERE NOMBRE_U = '$UsuarioActivo' AND NOMBRE_R = '$nombreDoc'");
 
-$ExistenciaDoc = mysql_fetch_row($VerificarExistenciaDoc);
+$ExistenciaDoc = $VerificarExistenciaDoc->fetch(PDO::FETCH_NUM);
 
 if (is_array($ExistenciaDoc)) {
 
@@ -31,20 +31,20 @@ if (is_array($ExistenciaDoc)) {
 }
 else{
 
-	$InsertarDocumento = $conect->consulta("INSERT INTO registro(NOMBRE_U, TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES('$UsuarioActivo','documento requerido','Habilitado','$nombreDoc','$FechaRegistrado', '$HoraRegistrado')");
-	$SeleccionDocumentoID = $conect->consulta("SELECT MAX(ID_R) FROM registro WHERE NOMBRE_U='$UsuarioActivo' AND TIPO_T = 'documento requerido'");
+	$InsertarDocumento = $conect->query("INSERT INTO registro(NOMBRE_U, TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES('$UsuarioActivo','documento requerido','Habilitado','$nombreDoc','$FechaRegistrado', '$HoraRegistrado')");
+	$SeleccionDocumentoID = $conect->query("SELECT MAX(ID_R) FROM registro WHERE NOMBRE_U='$UsuarioActivo' AND TIPO_T = 'documento requerido'");
 
-	$DocId = mysql_fetch_row($SeleccionDocumentoID);
+	$DocId = $SeleccionDocumentoID->fetch(PDO::FETCH_NUM);
 
-	$InsertarPlazo = $conect->consulta("INSERT INTO plazo VALUES('$DocId[0]','$FechaInicioEntrega','$FechaFinalEntrega','$HoraInicioEntrega','$HoraFinalEntrega')");
+	$InsertarPlazo = $conect->query("INSERT INTO plazo VALUES('$DocId[0]','$FechaInicioEntrega','$FechaFinalEntrega','$HoraInicioEntrega','$HoraFinalEntrega')");
 
-	$InsertarDescripcion  = $conect->consulta("INSERT INTO descripcion VALUES('$DocId[0]', '$DescripcionDocumento')");
-	$proyecto_id = $conect->consulta("SELECT CODIGO_P FROM proyecto WHERE NOMBRE_P='$proyecto'");
-	$p_id = mysql_fetch_row($proyecto_id);
+	$InsertarDescripcion  = $conect->query("INSERT INTO descripcion VALUES('$DocId[0]', '$DescripcionDocumento')");
+	$proyecto_id = $conect->query("SELECT CODIGO_P FROM proyecto WHERE NOMBRE_P='$proyecto'");
+	$p_id = $proyecto_id->fetch(PDO::FETCH_NUM);
 
 	
 	
-  $InsertarProyecto = $conect->consulta("INSERT INTO documento_r VALUES('$DocId[0]', '$p_id[0]')");
+  $InsertarProyecto = $conect->query("INSERT INTO documento_r VALUES('$DocId[0]', '$p_id[0]')");
 
 	if ($InsertarDocumento and $InsertarPlazo and $InsertarDescripcion) {
 
@@ -59,5 +59,4 @@ else{
 		            " document.location=('../../Vista/RegistrarDocumentosRequeridos.php');</SCRIPT>";
 	}	
 }
-
 ?>
