@@ -29,9 +29,16 @@ and open the template in the editor.
             </fieldset>
         </form>
 <?php
+    require 'CreadorDirectorios.php';
+    
+    $creador = new CreadorDirectorios();
+    
+    
     echo 'Antes de realizar la condicion ';
     if(isset($_POST['instalar']) && isset($_POST['host']) && isset($_POST['usuario'])){
-        ejecutarSqlScript("saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],$_POST['nombre']);
+        //ejecutarSqlScript("saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],$_POST['nombre']);
+        $creador->copiar("../../ApoyoEmpresaTIS","../../ApoyoEmpresaTIS1");
+        $creador->removeDirectory("../../ApoyoEmpresaTIS1/Instalador");
         //$conexion = new mysqli($_POST['host'],$_POST['usuario'],$_POST['contrasena']);
         //if($conexion->connect_error){
         /*if(!$conexion){
