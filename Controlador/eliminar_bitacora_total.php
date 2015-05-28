@@ -1,6 +1,6 @@
 <?php
-    include '../Modelo/conexion.php';
-    $conectar = new conexion();
+    include '../Modelo/conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
 
 
@@ -10,7 +10,7 @@ $contrasena= $_SESSION['contrasena'];
 $delActiv = 0;
 
 //Peticion
-$peticion = $conectar->consulta("DELETE FROM `sesion` WHERE 1");
+$peticion = $conectar->query("DELETE FROM `sesion` WHERE 1");
 //cerrar conexion--------------------------
 
  //volver a la pagina---------------

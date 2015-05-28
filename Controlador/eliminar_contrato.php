@@ -1,8 +1,8 @@
 <?php
  
 session_start();
-include_once '../Modelo/conexion.php';
-$conect = new conexion();
+include_once '../Modelo/conexionPDO.php';
+$conect = new Conexion();
 
 
 
@@ -22,17 +22,17 @@ error_reporting(E_ALL ^ E_NOTICE);
 $idgp = $_GET['id_us'];
 
 
- $peticion_registro =$conect->consulta(" SELECT ID_R FROM `documento` WHERE RUTA_D ='$idgp'");
-$peticion_regis=mysql_num_rows($peticion_registro);
+ $peticion_registro =$conect->query(" SELECT ID_R FROM `documento` WHERE RUTA_D ='$idgp'");
+$peticion_regis=$peticion_registro->rowCount();
 if($peticion_regis>0){
-    	$fila = mysql_fetch_row($peticion_registro);
+    	$fila = $peticion_registro->fetch(PDO::FETCH_NUM);
     	
     	 $id=$fila[0];
     	 
-    	    $doc_eliminar=$conect->consulta(" DELETE FROM `descripcion` WHERE ID_R='$id'");
-            $doc_eliminar=$conect->consulta(" DELETE FROM `documento` WHERE ID_R='$id'");
-            $receptor_c=$conect->consulta(" DELETE FROM `receptor` WHERE ID_R='$id'");
-             $registro_eliminar = $conect->consulta("DELETE FROM registro WHERE ID_R = '$id' "); 
+    	    $doc_eliminar=$conect->query(" DELETE FROM `descripcion` WHERE ID_R='$id'");
+            $doc_eliminar=$conect->query(" DELETE FROM `documento` WHERE ID_R='$id'");
+            $receptor_c=$conect->query(" DELETE FROM `receptor` WHERE ID_R='$id'");
+             $registro_eliminar = $conect->query("DELETE FROM registro WHERE ID_R = '$id' "); 
 
 //conexion-------------
 	

@@ -1,6 +1,6 @@
 <?php
-    include '../Modelo/conexion.php';
-    $conectar = new conexion();
+    include '../Modelo/conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
 
 
@@ -13,7 +13,7 @@ $delActiv = $_GET['id_us'];
     
 
             //Peticion
-            $peticion = $conectar->consulta("DELETE FROM `sesion` WHERE `sesion`.`ID_S` ='".$delActiv."'");
+            $peticion = $conectar->query("DELETE FROM `sesion` WHERE `sesion`.`ID_S` ='".$delActiv."'");
             //cerrar conexion--------------------------
 
              //volver a la pagina---------------

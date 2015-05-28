@@ -1,6 +1,6 @@
 <?php
-    include '../Modelo/conexion.php';
-    $conectar = new conexion();
+    include '../Modelo/conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
 
 
@@ -10,7 +10,7 @@ $contrasena= $_SESSION['contrasena'];
 $delRol = $_GET['id_us'];
 
 //Peticion
-$peticion = $conectar->consulta("DELETE FROM rol WHERE ROL_R='".$delRol."'");
+$peticion = $conectar->query("DELETE FROM rol WHERE ROL_R='".$delRol."'");
 //cerrar conexion--------------------------
 
  //volver a la pagina---------------
