@@ -1,6 +1,6 @@
 <?php
-    include '../Modelo/conexion.php';
-    $con=new conexion();
+    include '../Modelo/conexionPDO.php';
+    $con=new Conexion();
     session_start();
 
 
@@ -12,7 +12,7 @@ $contrasena= $_SESSION['contrasena'];
 $delRol = $_GET['id_us'];
 
 //Peticion
-$peticion = $con->consulta("DELETE FROM `permisos` WHERE id_permiso=$delRol");
+$peticion = $con->query("DELETE FROM `permisos` WHERE id_permiso=$delRol");
 //cerrar conexion--------------------------
 
  //volver a la pagina---------------

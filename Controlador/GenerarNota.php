@@ -1,6 +1,6 @@
 <?php  
 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
 
      session_start();
 
@@ -11,11 +11,11 @@
 
         $nota = 0;
 
-        $conect = new conexion();
+        $conect = new Conexion();
 
-        $Sel_Plan = $conect->consulta("SELECT ID_R FROM registro WHERE NOMBRE_U='$grupo' AND TIPO_T='actividad planificacion'");
+        $Sel_Plan = $conect->query("SELECT ID_R FROM registro WHERE NOMBRE_U='$grupo' AND TIPO_T='actividad planificacion'");
     
-        while ($Row_Plan = mysql_fetch_row($Sel_Plan)) {
+        while ($Row_Plan = $Sel_Plan->fetch(PDO::FETCH_NUM)) {
 
             $Planif[] = $Row_Plan[0];
     
@@ -25,9 +25,9 @@
         {
             for ($i=0; $i <count($Planif) ; $i++) { 
         
-                $Sel_Ev2 = $conect->consulta("SELECT NOTA_E FROM evaluacion WHERE ID_R = '$Planif[$i]'");
+                $Sel_Ev2 = $conect->query("SELECT NOTA_E FROM evaluacion WHERE ID_R = '$Planif[$i]'");
                        
-                    while ($Row_Ev2 = mysql_fetch_row($Sel_Ev2)) {
+                    while ($Row_Ev2 = $Sel_Ev2->fetch(PDO::FETCH_NUM)) {
 
                         $Eval2[] = $Row_Ev2[0];
                     
@@ -39,16 +39,16 @@
 
                 if(count($Eval2) == count($Planif))
                 {
-                    $Ver_Form = $conect->consulta("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$UserAct'");
+                    $Ver_Form = $conect->query("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$UserAct'");
                                     
-                    $IdForm = mysql_fetch_row($Ver_Form);
+                    $IdForm = $Ver_Form->fetch(PDO::FETCH_NUM);
 
                     $IdForm2 = $IdForm[0];
                     $cont2=0;
                     
-                    $Sel_Ptje = $conect->consulta("SELECT PUNTAJE FROM puntaje WHERE ID_FORM = '$Form'");
+                    $Sel_Ptje = $conect->query("SELECT PUNTAJE FROM puntaje WHERE ID_FORM = '$Form'");
                                      
-                    while($Row_Ptje = mysql_fetch_row($Sel_Ptje))
+                    while($Row_Ptje = $Sel_Ptje->fetch(PDO::FETCH_NUM))
                     {
                         $puntajes[] = $Row_Ptje;
                         
@@ -88,24 +88,24 @@
 
                             }
 
-                            $Ver_Nota = $conect->consulta("SELECT * FROM nota WHERE NOMBRE_U = '$grupo'");
+                            $Ver_Nota = $conect->query("SELECT * FROM nota WHERE NOMBRE_U = '$grupo'");
 
-                            $Verif_N = mysql_fetch_row($Ver_Nota);
+                            $Verif_N = $Ver_Nota->fetch(PDO::FETCH_NUM);
 
                             $op = $_POST['Operacion'];
 
                             if($op == 'ReEvaluar')
                             {
 
-                                $conect->consulta("UPDATE nota SET CALIF_N = '$nota' WHERE NOMBRE_U='$grupo'");
+                                $conect->query("UPDATE nota SET CALIF_N = '$nota' WHERE NOMBRE_U='$grupo'");
 
-                                $Sel_IdN = $conect->consulta("SELECT MAX(ID_N) FROM nota WHERE NOMBRE_U='$grupo'");
+                                $Sel_IdN = $conect->query("SELECT MAX(ID_N) FROM nota WHERE NOMBRE_U='$grupo'");
 
-                                $IdNota = mysql_fetch_row($Sel_IdN);
+                                $IdNota = $Sel_IdN->fetch(PDO::FETCH_NUM);
 
                                     for ($i=0; $i < count($Escogido) ; $i++) { 
                                         
-                                        $conect->consulta("UPDATE puntaje_ge SET CALIFICACION = '$Escogido[$i]' WHERE ID_N ='$IdNota[0]' AND  NUM_CE ='$i'");
+                                        $conect->query("UPDATE puntaje_ge SET CALIFICACION = '$Escogido[$i]' WHERE ID_N ='$IdNota[0]' AND  NUM_CE ='$i'");
                                 
                                     }
 
@@ -125,14 +125,14 @@
                                 else
                                 {
 
-                                    $conect->consulta('INSERT INTO nota(ID_FORM, NOMBRE_U, CALIF_N) VALUES("'.$Form.'","'.$grupo.'","'.$nota.'")');
+                                    $conect->query('INSERT INTO nota(ID_FORM, NOMBRE_U, CALIF_N) VALUES("'.$Form.'","'.$grupo.'","'.$nota.'")');
 
-                                    $Sel_IdN = $conect->consulta("SELECT MAX(ID_N) FROM nota WHERE NOMBRE_U='$grupo'");
+                                    $Sel_IdN = $conect->query("SELECT MAX(ID_N) FROM nota WHERE NOMBRE_U='$grupo'");
 
-                                    $IdNota = mysql_fetch_row($Sel_IdN);
+                                    $IdNota = $Sel_IdN->fetch(PDO::FETCH_NUM);
 
                                     for ($i=0; $i < count($Escogido) ; $i++) { 
-                                        $conect->consulta('INSERT INTO puntaje_ge(ID_N, NUM_CE, CALIFICACION) VALUES("'.$IdNota[0].'","'.$i.'","'.$Escogido[$i].'")');
+                                        $conect->query('INSERT INTO puntaje_ge(ID_N, NUM_CE, CALIFICACION) VALUES("'.$IdNota[0].'","'.$i.'","'.$Escogido[$i].'")');
 
                                     }
 
@@ -173,8 +173,5 @@
         else
         {
             echo '<script>alert("Primero debe realizar la evaluacion correspondiente a la 2da etapa");</script>';
-
         }
-
-
 ?>

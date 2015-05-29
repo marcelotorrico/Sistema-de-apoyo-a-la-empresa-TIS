@@ -1,12 +1,7 @@
 <?php
 //include('../Vista/recursosasesor.php');
 include('../Modelo/crearimagen.php');
-include('../Modelo/conexion.php');
 
-    
-    $conexion = new conexion();
-   // $conexion = mysql_connect("192.168.2.5","mbittle","5rtZAGYq");
-	//mysql_select_db("tis_mbittle",$conexion);
    session_start();
 	 $UsuarioActivo = $_SESSION['usuario'];
         

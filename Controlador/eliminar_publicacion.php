@@ -1,8 +1,8 @@
 <?php
  
 session_start();
-include '../Modelo/conexion.php';
-$conect = new conexion();
+include '../Modelo/conexionPDO.php';
+$conect = new Conexion();
 
 
 //Crear variables--------------------------
@@ -15,18 +15,18 @@ $idPubli = $_GET['id_us'];
 //conexion-------------
 	
 	//Peticion
-    $selRegis =$conect->consulta(" SELECT ID_R  FROM `registro` WHERE NOMBRE_R ='$idPubli'");
-    $tamRegis=mysql_num_rows($selRegis);
+    $selRegis =$conect->query(" SELECT ID_R  FROM `registro` WHERE NOMBRE_R ='$idPubli'");
+    $tamRegis=$selRegis->rowCount();
     if($tamRegis>0){
-    	$filaRegi = mysql_fetch_array($selRegis);
+    	$filaRegi = $selRegis->fetch(PDO::FETCH_NUM);
     	 $idRegis=$filaRegi[0];
     	
-                    $delDes=$conect->consulta(" DELETE FROM `descripcion` WHERE ID_R='$idRegis'");
-                    $delDoc=$conect->consulta(" DELETE FROM `documento` WHERE ID_R='$idRegis'");
-                    $delPerio = $conect->consulta("DELETE FROM periodo WHERE ID_R = '$idRegis' ");
-                    $delPlazo = $conect->consulta("DELETE FROM plazo WHERE ID_R = '$idRegis' ");
-                    $delRecep = $conect->consulta("DELETE FROM receptor WHERE ID_R = '$idRegis' ");
-                    $delRegis= $conect->consulta("DELETE FROM registro WHERE ID_R = '$idRegis' ");
+                    $delDes=$conect->query(" DELETE FROM `descripcion` WHERE ID_R='$idRegis'");
+                    $delDoc=$conect->query(" DELETE FROM `documento` WHERE ID_R='$idRegis'");
+                    $delPerio = $conect->query("DELETE FROM periodo WHERE ID_R = '$idRegis' ");
+                    $delPlazo = $conect->query("DELETE FROM plazo WHERE ID_R = '$idRegis' ");
+                    $delRecep = $conect->query("DELETE FROM receptor WHERE ID_R = '$idRegis' ");
+                    $delRegis= $conect->query("DELETE FROM registro WHERE ID_R = '$idRegis' ");
            
  
 

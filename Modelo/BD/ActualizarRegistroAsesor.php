@@ -10,9 +10,9 @@ if($user == ''){
     echo '<script>window.location="../../index.php";</script>';
 }
 
-    include '../conexion.php';
+    include '../conexionPDO.php';
     include '../../Controlador/ValidadorFormulario.php';
-    $conectar = new conexion();
+    $conectar = new Conexion();
     $name = $_POST['nombreUsuario'];
     $RealName = $_POST['nombreReal'];
     $password = $_POST['password'];
@@ -28,8 +28,8 @@ if($user == ''){
 
 //Peticion------------------------------------------
     
-    $nuevoNombre = $conectar->consulta("SELECT * FROM usuario WHERE NOMBRE_U = '$name' ");
-    $fila = mysql_fetch_row($nuevoNombre);
+    $nuevoNombre = $conectar->query("SELECT * FROM usuario WHERE NOMBRE_U = '$name' ");
+    $fila = $nuevoNombre->fetch(PDO::FETCH_NUM);
     if(!is_array($fila) || $name == $updLogin){
         $validador = new ValidadorFormulario();
         $actualizar = FALSE;
@@ -42,14 +42,14 @@ if($user == ''){
             }
         }
         if($actualizar || strcmp($password, $_SESSION['contrasena'])==0){
-            $conectar->consulta("UPDATE usuario SET NOMBRE_U='$name',PASSWORD_U='$password',TELEFONO_U='$telefonoUsuario',CORREO_ELECTRONICO_U='$emailUsuario'
+            $conectar->query("UPDATE usuario SET NOMBRE_U='$name',PASSWORD_U='$password',TELEFONO_U='$telefonoUsuario',CORREO_ELECTRONICO_U='$emailUsuario'
             WHERE  NOMBRE_U='$updLogin'");
-            $conectar->consulta("UPDATE asesor SET NOMBRE_U='$name',NOMBRES_A='$RealName',APELLIDOS_A='$apellidoUsuario'
+            $conectar->query("UPDATE asesor SET NOMBRE_U='$name',NOMBRES_A='$RealName',APELLIDOS_A='$apellidoUsuario'
             WHERE  NOMBRE_U='$name'");
-            $conectar->consulta("UPDATE usuario_rol SET NOMBRE_U='$name'
+            $conectar->query("UPDATE usuario_rol SET NOMBRE_U='$name'
             WHERE  NOMBRE_U='$name'");
 
-            $conectar->consulta("UPDATE noticias SET POSTEADO='$name' WHERE POSTEADO = '$updLogin'");
+            $conectar->query("UPDATE noticias SET POSTEADO='$name' WHERE POSTEADO = '$updLogin'");
             $_SESSION['usuario'] = $name;
             $_SESSION['contrasena'] = $password;
 
@@ -57,11 +57,5 @@ if($user == ''){
         }
         }else{
         echo"<script type=\"text/javascript\">alert('El nombre de usuario ya fue registrado, por favor cambie de nombre'); window.location='../Vista/modificar_asesor.php';</script>";  
-     }
-
-
-
-   
- 
-   
+     }  
 ?>

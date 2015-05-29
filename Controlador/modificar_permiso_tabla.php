@@ -6,9 +6,9 @@ session_start();
 
 $usuario = $_SESSION['usuario'];
 $contrasena = $_SESSION['contrasena'];
-include '../Modelo/conexion.php';
+include '../Modelo/conexionPDO.php';
 
-$conectar = new conexion();
+$conectar = new Conexion();
 
 $rolAnt=$_SESSION["Variable1"];
 $idgp=$_SESSION["Variable2"];
@@ -16,7 +16,7 @@ $permiso = $_REQUEST['estado'];
 
 
 
-	$peticion = $conectar-> consulta( "UPDATE usuario SET ESTADO_E = '$permiso' WHERE usuario.NOMBRE_U = '$idgp';");
+	$peticion = $conectar->query( "UPDATE usuario SET ESTADO_E = '$permiso' WHERE usuario.NOMBRE_U = '$idgp';");
 	 echo'
 	<html>
 		<head>

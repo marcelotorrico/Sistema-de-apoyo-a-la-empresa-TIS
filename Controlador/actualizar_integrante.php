@@ -1,8 +1,8 @@
 <?php
 session_start();
-     include '../Modelo/conexion.php';
+     include '../Modelo/conexionPDO.php';
      include 'ValidadorFormulario.php';
-     $conectar = new conexion();
+     $conectar = new Conexion();
      
  
  //Crear variables--------------------------
@@ -21,8 +21,8 @@ session_start();
  //Peticion
  //Peticion------------------------------------------
  
- $nuevoNombre = $conectar->consulta("SELECT * FROM usuario WHERE NOMBRE_U = '$updLogin' ");
- $fila = mysql_fetch_row($nuevoNombre);
+ $nuevoNombre = $conectar->query("SELECT * FROM usuario WHERE NOMBRE_U = '$updLogin' ");
+ $fila = $nuevoNombre->fetch(PDO::FETCH_NUM);
  if(!is_array($fila) || $updLogin == $usuario){
      
      $validador = new ValidadorFormulario();
@@ -37,11 +37,11 @@ session_start();
         }
         if($actualizar || strcmp($updPassword, $_SESSION['contrasena'])==0){
             
-            $conectar->consulta("UPDATE usuario SET NOMBRE_U='$updLogin',PASSWORD_U='$updPassword',TELEFONO_U='$updTelefono',CORREO_ELECTRONICO_U='$updEmail'
+            $conectar->query("UPDATE usuario SET NOMBRE_U='$updLogin',PASSWORD_U='$updPassword',TELEFONO_U='$updTelefono',CORREO_ELECTRONICO_U='$updEmail'
             WHERE  NOMBRE_U='$usuario'");
-            $conectar->consulta("UPDATE administrador SET NOMBRE_U='$updLogin',NOMBRES_AD='$updNombre',APELLIDOS_AD='$updApellido'
+            $conectar->query("UPDATE administrador SET NOMBRE_U='$updLogin',NOMBRES_AD='$updNombre',APELLIDOS_AD='$updApellido'
             WHERE  NOMBRE_U='$updLogin'");
-            $conectar->consulta("UPDATE usuario_rol SET NOMBRE_U='$updLogin'
+            $conectar->query("UPDATE usuario_rol SET NOMBRE_U='$updLogin'
             WHERE  NOMBRE_U='$updLogin'");
 
             $_SESSION['usuario'] = $updLogin;

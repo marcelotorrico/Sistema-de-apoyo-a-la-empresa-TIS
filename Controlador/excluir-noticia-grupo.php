@@ -1,12 +1,12 @@
 <?php
-include '../Modelo/conexion.php';
-$conect = new conexion();
+include '../Modelo/conexionPDO.php';
+$conect = new Conexion();
 $noticia = $_GET['id'];
 
 
 
-$delComen = $conect->consulta("DELETE FROM comentarios WHERE   ID_N= '$noticia'");
-$delNoti = $conect->consulta("DELETE FROM noticias WHERE   ID_N= '$noticia'");
+$delComen = $conect->query("DELETE FROM comentarios WHERE   ID_N= '$noticia'");
+$delNoti = $conect->query("DELETE FROM noticias WHERE   ID_N= '$noticia'");
 
 ?>
 

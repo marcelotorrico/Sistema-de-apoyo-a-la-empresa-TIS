@@ -3,19 +3,19 @@
 	$UserAct = $_SESSION['usuario'];
 	$Crit_C = $_POST['CriterioEliminar'];
 
-	include '../conexion.php';
+	include '../conexionPDO.php';
 						                    
-	$conect = new conexion();
+	$conect = new Conexion();
 
 	$formularios = "";
 
-	$ResIdC = $conect->consulta("SELECT ID_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_CRITERIO_C = '$Crit_C' AND NOMBRE_U = '$UserAct'");
+	$ResIdC = $conect->query("SELECT ID_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_CRITERIO_C = '$Crit_C' AND NOMBRE_U = '$UserAct'");
 
-	$IdC = mysql_fetch_row($ResIdC);
+	$IdC = $ResIdC->fetch(PDO::FETCH_NUM);
 
-	$Ver_Form = $conect->consulta("SELECT ID_FORM FROM from_crit_c WHERE ID_CRITERIO_C = '$IdC[0]'");
+	$Ver_Form = $conect->query("SELECT ID_FORM FROM from_crit_c WHERE ID_CRITERIO_C = '$IdC[0]'");
 
-	while ($Row_Form = mysql_fetch_row($Ver_Form)) {
+	while ($Row_Form = $Ver_Form->fetch(PDO::FETCH_NUM)) {
 		
 		$Form[] = $Row_Form;
 	}
@@ -25,9 +25,9 @@
 
 		for ($i=0; $i < count($Form) ; $i++) { 
 
-			$Sel_Form = $conect->consulta('SELECT NOMBRE_FORM FROM formulario WHERE ID_FORM = '.$Form[$i][0].'');
+			$Sel_Form = $conect->query('SELECT NOMBRE_FORM FROM formulario WHERE ID_FORM = '.$Form[$i][0].'');
 
-			$NomForm = mysql_fetch_row($Sel_Form);	
+			$NomForm = $Sel_Form->fetch(PDO::FETCH_NUM);
 	
 		}
 
@@ -37,9 +37,9 @@
 	}
 	else
 	{
-		$Del_Ind = $conect->consulta("DELETE FROM indicador WHERE ID_CRITERIO_C = '$IdC[0]'");
+		$Del_Ind = $conect->query("DELETE FROM indicador WHERE ID_CRITERIO_C = '$IdC[0]'");
 
-		$Del_Crit = $conect->consulta("DELETE FROM criteriocalificacion WHERE ID_CRITERIO_C = '$IdC[0]'");
+		$Del_Crit = $conect->query("DELETE FROM criteriocalificacion WHERE ID_CRITERIO_C = '$IdC[0]'");
 
 		if ($Del_Ind and $Del_Crit) {
 

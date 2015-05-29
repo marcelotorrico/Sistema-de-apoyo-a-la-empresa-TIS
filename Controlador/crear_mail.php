@@ -1,7 +1,7 @@
 <?php
    
-include '../Modelo/conexion.php';
-$conectar = new conexion();
+include '../Modelo/conexionPDO.php';
+$conectar = new Conexion();
     
 $addDestino = $_POST['dest'];
 $addAsunto = $_POST['asunto'];
@@ -17,8 +17,8 @@ $addFecha= $_POST['fec'];
     
 	
 	//Peticion
-	$peticion1 = $conectar->consulta("SELECT `CORREO_ELECTRONICO_U` FROM `usuario` WHERE `NOMBRE_U`='$addDestino'"); 
-        while ($correo = mysql_fetch_array($peticion1))
+	$peticion1 = $conectar->query("SELECT `CORREO_ELECTRONICO_U` FROM `usuario` WHERE `NOMBRE_U`='$addDestino'"); 
+        while ($correo = $peticion1->fetch(PDO::FETCH_ASSOC))
         {        
         $correo1=$correo["CORREO_ELECTRONICO_U"];}
 	  
@@ -91,9 +91,7 @@ $addFecha= $_POST['fec'];
       echo"<script type=\"text/javascript\">alert('ERROR: mensaje no enviado intente nuevamente'); window.location='../Vista/enviar_mail.php';</script>";
       
     } else {
-        $peticion2 = $conectar->consulta("UPDATE `usuario` SET `ESTADO_E`='Habilitado' WHERE `NOMBRE_U`='$addDestino'");
+        $peticion2 = $conectar->query("UPDATE `usuario` SET `ESTADO_E`='Habilitado' WHERE `NOMBRE_U`='$addDestino'");
         echo"<script type=\"text/javascript\">alert('el mensaje se envio exitosamente'); window.location='../Vista/principal.php';</script>";
     }
-
-
 ?>

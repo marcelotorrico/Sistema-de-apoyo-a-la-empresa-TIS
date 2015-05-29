@@ -1,9 +1,9 @@
  <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';  
+    include '../Modelo/conexionPDO.php';  
 
-    $conectar=new conexion();
+    $conectar=new Conexion();
     
 
      $_SESSION["ID"];
@@ -11,7 +11,7 @@
      $fecha = $_POST['campo'];
     
           
-        $conectar->consulta("  UPDATE `fecha_realizacion` SET `FECHA_FR` = '$fecha' WHERE `ID_R` ='$ID'");
+        $conectar->query("  UPDATE `fecha_realizacion` SET `FECHA_FR` = '$fecha' WHERE `ID_R` ='$ID'");
           
           echo"<script type=\"text/javascript\">alert('La fecha se modifico exitosamente'); window.location='../Vista/lista_evaluacion.php';</script>";
  ?> 

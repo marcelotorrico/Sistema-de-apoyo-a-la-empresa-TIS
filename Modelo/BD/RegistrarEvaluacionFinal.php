@@ -1,14 +1,14 @@
 <?php  
 
-	include '../conexion.php';
-	$conect = new conexion();  
+	include '../conexionPDO.php';
+	$conect = new Conexion();  
 
 	$GrupoEF = $_POST['GrupoE'];
 	$NotaFn = $_POST['NotaFn'];
 
-	$Verif_NF = $conect->consulta("SELECT * FROM nota_final WHERE NOMBRE_U='$GrupoEF'");
+	$Verif_NF = $conect->query("SELECT * FROM nota_final WHERE NOMBRE_U='$GrupoEF'");
 
-	$NotaFinal = mysql_fetch_row($Verif_NF);
+	$NotaFinal = $Verif_NF->fetch(PDO::FETCH_NUM);
 
 	if (is_array($NotaFinal)) {
 
@@ -19,12 +19,10 @@
 	else
 	{
 	
-		$conect->consulta('INSERT INTO nota_final(NOMBRE_U, NOTA_F) VALUES("'.$GrupoEF.'","'.$NotaFn.'")');
+		$conect->query('INSERT INTO nota_final(NOMBRE_U, NOTA_F) VALUES("'.$GrupoEF.'","'.$NotaFn.'")');
 
 		echo '<script>alert("Se registro la nota correctamente");
 				window.location="../../Vista/EvaluacionGeneral.php";
 				</script>';
-
 	}
-
 ?>

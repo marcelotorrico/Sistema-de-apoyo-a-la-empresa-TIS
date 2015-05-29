@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-include '../Modelo/conexion.php';
+include '../Modelo/conexionPDO.php';
 
 function LimpiaEspacios($CadenaConMuchosEspacios)
 {
@@ -27,11 +27,11 @@ date_default_timezone_set('America/La_Paz');
 $fecha=  date('Y-m-d');
 $hora=  date("G:H:i");
 
-$conexion= new conexion();
-$consulta=$conexion->consulta("SELECT NOMBRE_LARGO,NOMBRE_CORTO FROM lista_ge");
+$conexion= new Conexion();
+$consulta=$conexion->query("SELECT NOMBRE_LARGO,NOMBRE_CORTO FROM lista_ge");
 $existe=FALSE;
 $existe2=FALSE;
-while ($fila=  mysql_fetch_array($consulta))
+while ($fila= $consulta->fetch())
 {
     if($nombre== $fila[0] || $nombre == $fila[1])
     {
@@ -72,5 +72,5 @@ if ($existe== FALSE && $existe2==FALSE)
     echo"<script type=\"text/javascript\">alert('El nombre largo: $nombre est\u00e1 disponible.... \\n\\n El nombre corto: $nombreCorto est\u00e1 disponible....'); window.history.back();</script>";
 }
 
-$conexion->cerrarConexion();
+$conexion = NULL;
 ?>

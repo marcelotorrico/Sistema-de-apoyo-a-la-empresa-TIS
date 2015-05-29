@@ -1,16 +1,15 @@
 <?php  
     
-    include '../Modelo/conexion.php';
-    $conectar = new conexion();
+    include '../Modelo/conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
   
     $nombreU = $_SESSION['usuario'];
     $nombreS = $_POST['nombre'];
     $apellidoS = $_POST['apellido'];
       
-    $conect = new conexion();
-
-    $peticion=$conectar->consultaProcedimiento("CALL insert_socio('$nombreU','$nombreS','$apellidoS')");
+    $peticion=$conectar->query("CALL insert_socio('$nombreU','$nombreS','$apellidoS')");
+    $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
     
     $alerta= $peticion['errno'];
 

@@ -1,7 +1,7 @@
 <?php
 
-    include '../Modelo/conexion.php';
-    $conectar = new conexion();
+    include '../Modelo/conexionPDO.php';
+    $conectar = new Conexion();
     session_start();
     
     $usuario= htmlentities($_POST['usuario'], ENT_QUOTES);
@@ -11,8 +11,8 @@
     $permiso3="grupoEmpresa";
     
     
-    
-    $hora = date("h:i:s");
+    date_default_timezone_set('America/La_Paz');
+    $hora = date("H:i:s");
     $fecha= date ("Y-m-d");
  
 
@@ -20,10 +20,10 @@
     $navegador = $_SERVER["HTTP_USER_AGENT"];
     
     
-    $peticion =$conectar->consulta("SELECT u.NOMBRE_U,u.ESTADO_E, u.PASSWORD_U, r.ROL_R FROM usuario u, usuario_rol r
+    $peticion =$conectar->query("SELECT u.NOMBRE_U,u.ESTADO_E, u.PASSWORD_U, r.ROL_R FROM usuario u, usuario_rol r
     WHERE u.NOMBRE_U=r.NOMBRE_U");
 
-    while(($fila = mysql_fetch_array($peticion)))
+    while(($fila = $peticion->fetch(PDO::FETCH_ASSOC)))
     {
 
             $usuariobd=$fila['NOMBRE_U'];
@@ -36,7 +36,7 @@
                     $_SESSION['usuario'] = $usuario;
                     $_SESSION['contrasena'] = $contrasena;
                     $_SESSION['administrador'] = $permisosenbase;
-                    $peticion1 = $conectar->consulta("INSERT INTO `sesion` (`ID_S`, `NOMBRE_U`, `FECHA_S`, `HORA_S`, `IP_S`)" . " VALUES (NULL, '$usuario', '$fecha', '$hora', '$ip');");
+                    $peticion1 = $conectar->query("INSERT INTO `sesion` (`ID_S`, `NOMBRE_U`, `FECHA_S`, `HORA_S`, `IP_S`)" . " VALUES (NULL, '$usuario', '$fecha', '$hora', '$ip');");
                     echo'<html><head><meta http-equiv="REFRESH" content="0;url=../Vista/principal.php"></head></html>';
                   
             }
@@ -47,7 +47,7 @@
                             $_SESSION['usuario'] = $usuario;
                             $_SESSION['contrasena'] = $contrasena;
                             $_SESSION['asesor'] = $permisosenbase;
-                            $peticion1 = $conectar->consulta("INSERT INTO `sesion` (`ID_S`, `NOMBRE_U`, `FECHA_S`, `HORA_S`, `IP_S`)" . " VALUES (NULL, '$usuario', '$fecha', '$hora', '$ip');");
+                            $peticion1 = $conectar->query("INSERT INTO `sesion` (`ID_S`, `NOMBRE_U`, `FECHA_S`, `HORA_S`, `IP_S`)" . " VALUES (NULL, '$usuario', '$fecha', '$hora', '$ip');");
                             echo'<html><head><meta http-equiv="REFRESH" content="0;url=../Vista/inicio_asesor.php"></head></html>';
                         
                     }  
@@ -58,7 +58,7 @@
                             $_SESSION['usuario'] = $usuario;
                             $_SESSION['contrasena'] = $contrasena;
                             $_SESSION['grupoEmpresa'] = $permisosenbase;
-                            $peticion1 = $conectar->consulta("INSERT INTO `sesion` (`ID_S`, `NOMBRE_U`, `FECHA_S`, `HORA_S`, `IP_S`)" . " VALUES (NULL, '$usuario', '$fecha', '$hora', '$ip');");
+                            $peticion1 = $conectar->query("INSERT INTO `sesion` (`ID_S`, `NOMBRE_U`, `FECHA_S`, `HORA_S`, `IP_S`)" . " VALUES (NULL, '$usuario', '$fecha', '$hora', '$ip');");
                             echo'<html><head><meta http-equiv="REFRESH" content="0;url=../Vista/inicio_grupo_empresa.php"></head></html>';
                             
                         }
@@ -66,13 +66,7 @@
                         {
                             echo'<html><head><meta http-equiv="REFRESH" content="1;url=../index.php"></head></html>';
                         }
-
-
                     }
-
              }
-
     }
-
-
 ?>

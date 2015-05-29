@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php 
  
-    include 'Modelo/conexion.php';
-    $conectar = new conexion();
+    include 'Modelo/conexionPDO.php';
+    $conectar = new Conexion();
 ?>
 <html>
 
@@ -70,8 +70,8 @@
             <?php                                  
 
                    $valor='0';
-                   $peticion11 = $conectar->consulta("select count(*) from receptor where RECEPTOR_R='PUBLICO'"); 
-                   while($fila = mysql_fetch_array($peticion11))
+                   $peticion11 = $conectar->query("select count(*) from receptor where RECEPTOR_R='PUBLICO'"); 
+                   while($fila = $peticion11->fetch(PDO::FETCH_ASSOC))
                    $valor= $fila["count(*)"] ;                         
                    $row_Recordset1='Descargar';
                    if($valor<'4'){ $valor='4'; }
@@ -100,8 +100,8 @@
 
         <?php
         $numero='0';
-        $peticion = $conectar->consulta("SELECT registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R, asesor.NOMBRES_A, asesor.APELLIDOS_A , documento.RUTA_D, descripcion.DESCRIPCION_D FROM registro , asesor , documento , receptor , descripcion WHERE registro.NOMBRE_U=asesor.NOMBRE_U and  `TIPO_T`='publicaciones' and documento.ID_R=registro.ID_R and descripcion.ID_R=registro.ID_R and receptor.ID_R=registro.ID_R and RECEPTOR_R='PUBLICO'");                                                            
-        while($fila = mysql_fetch_array($peticion))
+        $peticion = $conectar->query("SELECT registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R, asesor.NOMBRES_A, asesor.APELLIDOS_A , documento.RUTA_D, descripcion.DESCRIPCION_D FROM registro , asesor , documento , receptor , descripcion WHERE registro.NOMBRE_U=asesor.NOMBRE_U and  `TIPO_T`='publicaciones' and documento.ID_R=registro.ID_R and descripcion.ID_R=registro.ID_R and receptor.ID_R=registro.ID_R and RECEPTOR_R='PUBLICO'");                                                            
+        while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
         {  
             ?>       
 

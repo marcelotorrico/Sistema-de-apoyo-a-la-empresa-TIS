@@ -1,8 +1,8 @@
 <?php
  
 session_start();
-include '../Modelo/conexion.php';
-$conect = new conexion();
+include '../Modelo/conexionPDO.php';
+$conect = new Conexion();
 
 
 
@@ -20,17 +20,17 @@ $idgp = $_GET['id_us'];
 //conexion-------------
 	
 	//Peticion
-    $peticion_registro =$conect->consulta(" SELECT ID_R , NOMBRE_R FROM `registro` WHERE NOMBRE_R ='$idgp'");
-    $peticion_regis=mysql_num_rows($peticion_registro);
+    $peticion_registro =$conect->query(" SELECT ID_R , NOMBRE_R FROM `registro` WHERE NOMBRE_R ='$idgp'");
+    $peticion_regis=$peticion_registro->rowCount();
     if($peticion_regis>0){
-    	$fila = mysql_fetch_array($peticion_registro);
+    	$fila = $peticion_registro->fetch(PDO::FETCH_NUM);
     	 $id=$fila[0];
     	 $id1=$fila[1];
     	 $ruta="../Repositorio/asesor/"."$idgp";
 
 	unlink($ruta);
-            $doc_eliminar=$conect->consulta(" DELETE FROM `documento` WHERE ID_R='$id'");
-             $registro_eliminar = $conect->consulta("DELETE FROM registro WHERE ID_R = '$id' "); 
+            $doc_eliminar=$conect->query(" DELETE FROM `documento` WHERE ID_R='$id'");
+             $registro_eliminar = $conect->query("DELETE FROM registro WHERE ID_R = '$id' "); 
 }
  
 #sthash.8WXaDU1F.dpuf
