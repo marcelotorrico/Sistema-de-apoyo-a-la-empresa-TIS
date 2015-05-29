@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50527
 Source Host           : localhost:3306
-Source Database       : saetis
+Source Database       : saaa
 
 Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-04-16 09:13:55
+Date: 2015-05-29 14:20:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -173,19 +173,16 @@ CREATE TABLE `criteriocalificacion` (
   PRIMARY KEY (`ID_CRITERIO_C`,`NOMBRE_U`),
   KEY `fk_criterioCalificacion_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_criterioCalificacion_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of criteriocalificacion
 -- ----------------------------
-INSERT INTO `criteriocalificacion` VALUES ('1', 'LeticiaB', 'PUNTAJE', '4');
-INSERT INTO `criteriocalificacion` VALUES ('2', 'Patricia', 'PUNTAJE', '4');
-INSERT INTO `criteriocalificacion` VALUES ('3', 'Corina', 'PUNTAJE', '4');
-INSERT INTO `criteriocalificacion` VALUES ('4', 'MarcoA', 'PUNTAJE', '4');
-INSERT INTO `criteriocalificacion` VALUES ('5', 'David', 'PUNTAJE', '4');
 INSERT INTO `criteriocalificacion` VALUES ('6', 'LeticiaB', 'A(100)B(80)C(60)D(30)', '1');
 INSERT INTO `criteriocalificacion` VALUES ('7', 'LeticiaB', 'Verdadero(100)Falso(50)', '2');
 INSERT INTO `criteriocalificacion` VALUES ('8', 'LeticiaB', 'Excelente(100)Bueno(80)Regular(50)Malo(30)Pes', '1');
+INSERT INTO `criteriocalificacion` VALUES ('9', 'LeticiaB', 'Si(80)No(20)', '3');
+INSERT INTO `criteriocalificacion` VALUES ('10', 'LeticiaB', 'Si(90)No(20)', '3');
 
 -- ----------------------------
 -- Table structure for `descripcion`
@@ -209,6 +206,28 @@ INSERT INTO `descripcion` VALUES ('83', 'Contrato');
 INSERT INTO `descripcion` VALUES ('84', 'Parte R Descripicion');
 INSERT INTO `descripcion` VALUES ('86', 'Orden de Cambio');
 INSERT INTO `descripcion` VALUES ('88', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('95', 'el documento contiene las partes A y B que deberan ser presentados..........');
+INSERT INTO `descripcion` VALUES ('96', 'Entregar toda la documentacion');
+INSERT INTO `descripcion` VALUES ('97', 'E');
+INSERT INTO `descripcion` VALUES ('100', 'En este documento......');
+INSERT INTO `descripcion` VALUES ('113', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('114', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('115', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('116', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('117', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('118', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('121', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('122', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('123', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('124', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('125', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('126', 'Notificacion de Conformidad');
+INSERT INTO `descripcion` VALUES ('169', 'Contrato');
+INSERT INTO `descripcion` VALUES ('200', 'Contrato');
+INSERT INTO `descripcion` VALUES ('201', 'Contrato');
+INSERT INTO `descripcion` VALUES ('202', 'Contrato');
+INSERT INTO `descripcion` VALUES ('203', 'Contrato');
+INSERT INTO `descripcion` VALUES ('204', 'Contrato');
 
 -- ----------------------------
 -- Table structure for `documento`
@@ -224,21 +243,44 @@ CREATE TABLE `documento` (
   PRIMARY KEY (`ID_D`) USING BTREE,
   KEY `FK_REGISTRO_DOCUMENTO` (`ID_R`) USING BTREE,
   CONSTRAINT `FK_REGISTRO_DOCUMENTO` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of documento
 -- ----------------------------
-INSERT INTO `documento` VALUES ('14', '68', '1024', '', '0', '0');
-INSERT INTO `documento` VALUES ('15', '69', '1024', '', '0', '0');
-INSERT INTO `documento` VALUES ('16', '70', '120214', '/Repositorio/FreeValue/APLICACION DE LA NORMA ISO 9126.pdf', '1', '1');
-INSERT INTO `documento` VALUES ('17', '71', '91746', '/Repositorio/FreeValue/ise_38_creacion_cajs_negras.pdf', '1', '1');
-INSERT INTO `documento` VALUES ('18', '72', '1024', '../Repositorio/FreeValue/NC/NotificacionConformidad.pdf', '0', '0');
-INSERT INTO `documento` VALUES ('19', '83', '1024', '../Repositorio/LeticiaB/Contratos/ContratoFreeValue.pdf', '0', '0');
-INSERT INTO `documento` VALUES ('20', '85', '91746', '/Repositorio/Oasis/ise_38_creacion_cajs_negras (1).pdf', '1', '1');
-INSERT INTO `documento` VALUES ('21', '86', '1024', '../Repositorio/Oasis/OC/OrdenCambio.pdf', '0', '0');
-INSERT INTO `documento` VALUES ('22', '87', '126054', '/Repositorio/Power/CronogramaVerano3-2014yGestion1-2015v2_2014-12-19_04-00.pdf', '1', '1');
-INSERT INTO `documento` VALUES ('23', '88', '1024', '../Repositorio/Power/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('27', '98', '1024', '/Repositorio/asesor/CPTIS.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('28', '99', '1024', '/Repositorio/asesor/FETIS.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('29', '100', '1024', 'http://bittle.cs.umss.edu.bo/Repositorio/asesor/CPTIS.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('30', '101', '964992', '/Repositorio/SLOW/ParteA_SLOWCODE.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('31', '102', '925210', '/Repositorio/SLOW/ParteB_SLOWCODE.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('32', '103', '1447698', '/Repositorio/InnovaTe/ParteA_Innovate.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('33', '104', '1327903', '/Repositorio/InnovaTe/ParteB_InnovaTe.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('34', '105', '32441', '/Repositorio/SAADS/ActaConstitucion.docx', '1', '1');
+INSERT INTO `documento` VALUES ('35', '106', '265360', '/Repositorio/SAADS/PropuestaTecnica.docx', '1', '1');
+INSERT INTO `documento` VALUES ('36', '107', '676307', '/Repositorio/NetSky/ParteA_NetSky.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('37', '108', '804432', '/Repositorio/NetSky/ParteB_NetSky.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('38', '109', '639524', '/Repositorio/MAD/ActaDeConstitucion.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('39', '110', '720426', '/Repositorio/MAD/PropuestaTecnica.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('40', '111', '607194', '/Repositorio/Devs/DevsGroup_ParteA.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('41', '112', '1584338', '/Repositorio/Devs/DevsGroup_parteB.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('42', '113', '1024', '../Repositorio/Devs/OC/OrdenCambio.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('43', '114', '1024', '../Repositorio/InnovaTe/OC/OrdenCambio.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('44', '115', '1024', '../Repositorio/MAD/OC/OrdenCambio.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('45', '116', '1024', '../Repositorio/NetSky/OC/OrdenCambio.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('46', '117', '1024', '../Repositorio/SAADS/OC/OrdenCambio.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('47', '118', '1024', '../Repositorio/SLOW/OC/OrdenCambio.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('48', '121', '1024', '../Repositorio/Devs/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('49', '122', '1024', '../Repositorio/InnovaTe/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('50', '123', '1024', '../Repositorio/MAD/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('51', '124', '1024', '../Repositorio/NetSky/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('52', '125', '1024', '../Repositorio/SAADS/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('53', '126', '1024', '../Repositorio/SLOW/NC/NotificacionConformidad.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('54', '169', '1024', '../Repositorio/LeticiaB/Contratos/ContratoNetSky.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('55', '200', '1024', '../Repositorio/LeticiaB/Contratos/ContratoSAADS.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('56', '201', '1024', '../Repositorio/LeticiaB/Contratos/ContratoSLOWCODE.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('57', '202', '1024', '../Repositorio/LeticiaB/Contratos/ContratoDevsGroup.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('58', '203', '1024', '../Repositorio/LeticiaB/Contratos/ContratoMAD.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('59', '204', '1024', '../Repositorio/LeticiaB/Contratos/ContratoInnovaTe.pdf', '0', '0');
 
 -- ----------------------------
 -- Table structure for `documento_r`
@@ -248,14 +290,13 @@ CREATE TABLE `documento_r` (
   `ID_R` int(11) NOT NULL AUTO_INCREMENT,
   `CODIGO_P` int(11) NOT NULL,
   PRIMARY KEY (`ID_R`)
-) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of documento_r
 -- ----------------------------
-INSERT INTO `documento_r` VALUES ('66', '4');
-INSERT INTO `documento_r` VALUES ('67', '4');
-INSERT INTO `documento_r` VALUES ('84', '5');
+INSERT INTO `documento_r` VALUES ('96', '4');
+INSERT INTO `documento_r` VALUES ('97', '4');
 
 -- ----------------------------
 -- Table structure for `entrega`
@@ -272,14 +313,41 @@ CREATE TABLE `entrega` (
 -- ----------------------------
 -- Records of entrega
 -- ----------------------------
-INSERT INTO `entrega` VALUES ('78', 'Diagramas UML', '0');
-INSERT INTO `entrega` VALUES ('79', 'HU', '0');
-INSERT INTO `entrega` VALUES ('79', 'Sw', '0');
-INSERT INTO `entrega` VALUES ('80', 'HU', '0');
-INSERT INTO `entrega` VALUES ('80', 'Manuales', '0');
-INSERT INTO `entrega` VALUES ('81', 'HU', '0');
-INSERT INTO `entrega` VALUES ('81', 'Sw', '0');
-INSERT INTO `entrega` VALUES ('82', 'Manuales', '0');
+INSERT INTO `entrega` VALUES ('165', 'documentaciÃ³n', '0');
+INSERT INTO `entrega` VALUES ('166', 'documentaciÃ³n', '0');
+INSERT INTO `entrega` VALUES ('167', 'documentaciÃ³n', '0');
+INSERT INTO `entrega` VALUES ('168', 'documentaciÃ³n', '0');
+INSERT INTO `entrega` VALUES ('170', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('171', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('172', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('173', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('174', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('175', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('176', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('177', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('178', 'Documento', '1');
+INSERT INTO `entrega` VALUES ('179', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('180', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('181', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('182', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('183', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('184', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('185', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('186', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('187', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('188', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('189', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('190', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('191', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('192', 'Documento', '0');
+INSERT INTO `entrega` VALUES ('192', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('193', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('194', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('195', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('196', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('197', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('198', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('199', 'Informe', '0');
 
 -- ----------------------------
 -- Table structure for `entregable`
@@ -296,11 +364,16 @@ CREATE TABLE `entregable` (
 -- ----------------------------
 -- Records of entregable
 -- ----------------------------
-INSERT INTO `entregable` VALUES ('FreeValue', 'Diagramas UML', ' Tecnico y de Instalacion\n');
-INSERT INTO `entregable` VALUES ('FreeValue', 'HU', 'Diagramas');
-INSERT INTO `entregable` VALUES ('FreeValue', 'Manuales', 'Usuario');
-INSERT INTO `entregable` VALUES ('FreeValue', 'Sw', 'Software');
-INSERT INTO `entregable` VALUES ('Power', '', '');
+INSERT INTO `entregable` VALUES ('Devs', 'Documento', 'Documento del contrato');
+INSERT INTO `entregable` VALUES ('Devs', 'Informe', 'Informe sobre el estado del proyecto');
+INSERT INTO `entregable` VALUES ('InnovaTe', 'CD', 'Ultima versiÃ³n del cÃ³digo fuente');
+INSERT INTO `entregable` VALUES ('InnovaTe', 'Informe', 'DescripciÃ³n del sistema actual');
+INSERT INTO `entregable` VALUES ('MAD', 'Documento', 'Documento de evaluaciÃ³n y pruebas');
+INSERT INTO `entregable` VALUES ('MAD', 'Informe', 'Informe QC');
+INSERT INTO `entregable` VALUES ('NetSky', 'documentaciÃ³n', 'Protocolo de validaciÃ³n');
+INSERT INTO `entregable` VALUES ('SAADS', 'Informe', 'descripciÃ³n del sistema actual');
+INSERT INTO `entregable` VALUES ('SLOW', 'Documento', 'Protocolo de validaciÃ³n de los Sprint');
+INSERT INTO `entregable` VALUES ('SLOW', 'Informe', 'Informe de la iteraciÃ³n');
 
 -- ----------------------------
 -- Table structure for `estado`
@@ -337,11 +410,18 @@ CREATE TABLE `evaluacion` (
   PRIMARY KEY (`ID_R`,`ID_E`) USING BTREE,
   UNIQUE KEY `ID_E` (`ID_E`),
   CONSTRAINT `FK_REGISTRO__EVALUACION` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluacion
 -- ----------------------------
+INSERT INTO `evaluacion` VALUES ('120', '1', '16', '20');
+INSERT INTO `evaluacion` VALUES ('159', '2', '4', '5');
+INSERT INTO `evaluacion` VALUES ('160', '3', '3', '5');
+INSERT INTO `evaluacion` VALUES ('161', '4', '11', '20');
+INSERT INTO `evaluacion` VALUES ('162', '5', '13', '20');
+INSERT INTO `evaluacion` VALUES ('163', '6', '9', '20');
+INSERT INTO `evaluacion` VALUES ('164', '7', '7', '10');
 
 -- ----------------------------
 -- Table structure for `fecha_realizacion`
@@ -357,20 +437,80 @@ CREATE TABLE `fecha_realizacion` (
 -- ----------------------------
 -- Records of fecha_realizacion
 -- ----------------------------
-INSERT INTO `fecha_realizacion` VALUES ('73', '2015-03-28');
-INSERT INTO `fecha_realizacion` VALUES ('74', '2015-04-08');
-INSERT INTO `fecha_realizacion` VALUES ('75', '2015-04-17');
-INSERT INTO `fecha_realizacion` VALUES ('76', '2015-04-23');
-INSERT INTO `fecha_realizacion` VALUES ('77', '2015-05-05');
-INSERT INTO `fecha_realizacion` VALUES ('78', '0000-00-00');
-INSERT INTO `fecha_realizacion` VALUES ('79', '0000-00-00');
-INSERT INTO `fecha_realizacion` VALUES ('80', '0000-00-00');
-INSERT INTO `fecha_realizacion` VALUES ('81', '0000-00-00');
-INSERT INTO `fecha_realizacion` VALUES ('82', '0000-00-00');
-INSERT INTO `fecha_realizacion` VALUES ('89', '2015-03-27');
-INSERT INTO `fecha_realizacion` VALUES ('90', '2015-04-10');
-INSERT INTO `fecha_realizacion` VALUES ('91', '2015-04-20');
-INSERT INTO `fecha_realizacion` VALUES ('92', '2015-04-30');
+INSERT INTO `fecha_realizacion` VALUES ('119', '2015-03-28');
+INSERT INTO `fecha_realizacion` VALUES ('120', '2015-04-01');
+INSERT INTO `fecha_realizacion` VALUES ('127', '2015-03-27');
+INSERT INTO `fecha_realizacion` VALUES ('128', '2015-03-27');
+INSERT INTO `fecha_realizacion` VALUES ('129', '2015-04-26');
+INSERT INTO `fecha_realizacion` VALUES ('130', '2015-04-02');
+INSERT INTO `fecha_realizacion` VALUES ('131', '2015-04-16');
+INSERT INTO `fecha_realizacion` VALUES ('132', '2015-04-30');
+INSERT INTO `fecha_realizacion` VALUES ('133', '2015-05-14');
+INSERT INTO `fecha_realizacion` VALUES ('134', '2015-06-05');
+INSERT INTO `fecha_realizacion` VALUES ('135', '2015-06-15');
+INSERT INTO `fecha_realizacion` VALUES ('136', '2015-03-26');
+INSERT INTO `fecha_realizacion` VALUES ('137', '2015-03-26');
+INSERT INTO `fecha_realizacion` VALUES ('138', '2015-03-26');
+INSERT INTO `fecha_realizacion` VALUES ('139', '2015-03-16');
+INSERT INTO `fecha_realizacion` VALUES ('140', '2015-03-30');
+INSERT INTO `fecha_realizacion` VALUES ('141', '2015-04-03');
+INSERT INTO `fecha_realizacion` VALUES ('142', '2015-04-17');
+INSERT INTO `fecha_realizacion` VALUES ('143', '2015-05-01');
+INSERT INTO `fecha_realizacion` VALUES ('144', '2015-05-15');
+INSERT INTO `fecha_realizacion` VALUES ('145', '2015-05-29');
+INSERT INTO `fecha_realizacion` VALUES ('146', '2015-06-12');
+INSERT INTO `fecha_realizacion` VALUES ('147', '2015-03-27');
+INSERT INTO `fecha_realizacion` VALUES ('148', '2016-04-10');
+INSERT INTO `fecha_realizacion` VALUES ('149', '2015-04-24');
+INSERT INTO `fecha_realizacion` VALUES ('150', '2015-05-08');
+INSERT INTO `fecha_realizacion` VALUES ('151', '2015-05-22');
+INSERT INTO `fecha_realizacion` VALUES ('152', '2015-06-05');
+INSERT INTO `fecha_realizacion` VALUES ('153', '2015-06-12');
+INSERT INTO `fecha_realizacion` VALUES ('154', '2015-06-19');
+INSERT INTO `fecha_realizacion` VALUES ('155', '2015-03-30');
+INSERT INTO `fecha_realizacion` VALUES ('156', '2015-04-17');
+INSERT INTO `fecha_realizacion` VALUES ('157', '2015-05-16');
+INSERT INTO `fecha_realizacion` VALUES ('158', '2015-06-17');
+INSERT INTO `fecha_realizacion` VALUES ('159', '2015-03-27');
+INSERT INTO `fecha_realizacion` VALUES ('160', '2015-04-03');
+INSERT INTO `fecha_realizacion` VALUES ('161', '2015-03-17');
+INSERT INTO `fecha_realizacion` VALUES ('162', '2015-05-01');
+INSERT INTO `fecha_realizacion` VALUES ('163', '2015-05-15');
+INSERT INTO `fecha_realizacion` VALUES ('164', '2015-05-29');
+INSERT INTO `fecha_realizacion` VALUES ('165', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('166', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('167', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('168', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('170', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('171', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('172', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('173', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('174', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('175', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('176', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('177', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('178', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('179', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('180', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('181', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('182', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('183', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('184', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('185', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('186', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('187', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('188', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('189', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('190', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('191', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('192', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('193', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('194', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('195', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('196', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('197', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('198', '0000-00-00');
+INSERT INTO `fecha_realizacion` VALUES ('199', '0000-00-00');
 
 -- ----------------------------
 -- Table structure for `form_crit_e`
@@ -385,7 +525,7 @@ CREATE TABLE `form_crit_e` (
   KEY `fk_formulario_has_criterio_evaluacion_formulario1_idx` (`ID_FORM`),
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_criterio_evaluacion1` FOREIGN KEY (`ID_CRITERIO_E`) REFERENCES `criterio_evaluacion` (`ID_CRITERIO_E`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of form_crit_e
@@ -405,7 +545,7 @@ CREATE TABLE `formulario` (
   PRIMARY KEY (`ID_FORM`,`NOMBRE_U`),
   KEY `fk_formulario_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_formulario_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of formulario
@@ -443,20 +583,16 @@ CREATE TABLE `gestion` (
   `FECHA_INICIO_G` date NOT NULL,
   `FECHA_FIN_G` date NOT NULL,
   PRIMARY KEY (`ID_G`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
 
 -- ----------------------------
 -- Records of gestion
 -- ----------------------------
 INSERT INTO `gestion` VALUES ('1', 'I/2015', '2015-01-01', '2015-06-30');
-INSERT INTO `gestion` VALUES ('2', '1', '2020-03-04', '2030-01-01');
-INSERT INTO `gestion` VALUES ('3', '4', '2020-03-04', '1990-12-12');
-INSERT INTO `gestion` VALUES ('4', '2', '2020-03-04', '2030-01-01');
-INSERT INTO `gestion` VALUES ('5', '2', '2000-01-01', '2003-01-01');
-INSERT INTO `gestion` VALUES ('6', '1', '2015-04-16', '2030-01-01');
-INSERT INTO `gestion` VALUES ('7', '1222', '2015-01-01', '2016-01-01');
+INSERT INTO `gestion` VALUES ('8', 'I/2015', '2015-03-25', '2015-06-25');
+
 -- ----------------------------
--- Table structure for grupo_empresa
+-- Table structure for `grupo_empresa`
 -- ----------------------------
 DROP TABLE IF EXISTS `grupo_empresa`;
 CREATE TABLE `grupo_empresa` (
@@ -473,13 +609,26 @@ CREATE TABLE `grupo_empresa` (
 -- ----------------------------
 -- Records of grupo_empresa
 -- ----------------------------
-INSERT INTO `grupo_empresa` VALUES ('AgileA', 'Agile', 'AgileAction', 'Calle Agil', 'Nombre1 Apellido1','5');
-INSERT INTO `grupo_empresa` VALUES ('Arkano', 'Arkano', 'Arkano Soft', 'Av Santa Cruz', '','5');
-INSERT INTO `grupo_empresa` VALUES ('Camaleon', 'Camaleon', 'Camaleon Soft', 'Calle 3', 'Jimena Salazar','5');
-INSERT INTO `grupo_empresa` VALUES ('Colective', 'Colectivo', 'Colectivo Virtual SRL', 'Av Oquendo', '','5');
-INSERT INTO `grupo_empresa` VALUES ('FreeValue', 'FreeValue', 'FreeValue SRL', 'Calle F', 'Oscar Gamboa Acho','5');
-INSERT INTO `grupo_empresa` VALUES ('Oasis', 'Oasis', 'Oasis SRL', 'Calle Jordan', 'Pablo Sahonero','5');
-INSERT INTO `grupo_empresa` VALUES ('Power', 'Power', 'Power Soft SRL', 'Calle Power', 'Javier Rojas','5');
+INSERT INTO `grupo_empresa` VALUES ('AgileA', 'Agile', 'AgileAction', 'Calle Agil', 'Nombre1 Apellido1', '5');
+INSERT INTO `grupo_empresa` VALUES ('AiraSoft', 'AiraSoft', 'AiraSoft SRL', 'ppppppppp', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Akira', 'Akira', 'Akira Soft', 'dfghjklhgfhkkhhg', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Altec', 'Altec', 'Experiencia y Alata Tecno', 'jnijnijjnjnn', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('ANDE', 'ANDESOFT', 'ANDESOFT SRL', 'cbdwciwbcwb', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Angel', 'Angel Fire', 'Angel Fire SRL', 'xkcdbckk', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('ANKA', 'ANKA SOFT', 'ANKA SOFT SRL', 'hvvhdov', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Answer', 'Answer', 'Answer SRL', 'usuhbcubus', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Aracorp', 'Aracorp', 'Aracorp SRL', 'bjdbvhbdvb', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('ARGOS', 'ARGOS', 'ARGOS SRL', 'ivnfivnidfvndnv', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Arkano', 'Arkano', 'Arkano Soft', 'Av Santa Cruz', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Aska', 'Aska', 'Aska SRL', 'hbvhfdvhdbv', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('ASSI', 'ASSI', 'ASSI SRL', 'shhjsbcsb', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Devs', 'Devs Group', 'DevsGroup SRL', 'Av.Ladislao Cabrera N°567', 'Vania Marisela Catorceno Carballo', '5');
+INSERT INTO `grupo_empresa` VALUES ('FreeValue', 'FreeValue', 'FreeValue SRL', 'Calle F', 'Oscar Gamboa Acho', '5');
+INSERT INTO `grupo_empresa` VALUES ('InnovaTe', 'InnovaTe', 'Innovando Tecnologia SRL', 'C. Tarija N°1520', 'Antonio Alurralde', '5');
+INSERT INTO `grupo_empresa` VALUES ('MAD', 'MAD', 'MAD SOFTWARE SRL', 'Av. Rodriguez Morales N&d', 'Juan Manuel Castro Arnez', '5');
+INSERT INTO `grupo_empresa` VALUES ('NetSky', 'NetSky', 'NetSky System SRL', 'Sipe Sipe Calle Gualberto', 'Ruben Villca FernÃ¡ndez', '5');
+INSERT INTO `grupo_empresa` VALUES ('SAADS', 'SAADS', 'SAADS SRL', 'Av. Melchor Perez #1312', 'Kenji Gabriel Lozano Rosales', '5');
+INSERT INTO `grupo_empresa` VALUES ('SLOW', 'SLOW CODE', 'SLOW CODE SRL', 'C/ Dario Monta&ntilde;o #', 'Rodrigo David Rivera Ortega', '5');
 
 -- ----------------------------
 -- Table structure for `indicador`
@@ -493,7 +642,7 @@ CREATE TABLE `indicador` (
   PRIMARY KEY (`ID_INDICADOR`,`ID_CRITERIO_C`),
   KEY `fk_indicador_criterioCalificacion1_idx` (`ID_CRITERIO_C`),
   CONSTRAINT `fk_indicador_criterioCalificacion1` FOREIGN KEY (`ID_CRITERIO_C`) REFERENCES `criteriocalificacion` (`ID_CRITERIO_C`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of indicador
@@ -509,6 +658,10 @@ INSERT INTO `indicador` VALUES ('8', '8', 'Bueno', '80');
 INSERT INTO `indicador` VALUES ('9', '8', 'Regular', '50');
 INSERT INTO `indicador` VALUES ('10', '8', 'Malo', '30');
 INSERT INTO `indicador` VALUES ('11', '8', 'Pesimo', '10');
+INSERT INTO `indicador` VALUES ('12', '9', 'Si', '80');
+INSERT INTO `indicador` VALUES ('13', '9', 'No', '20');
+INSERT INTO `indicador` VALUES ('14', '10', 'Si', '90');
+INSERT INTO `indicador` VALUES ('15', '10', 'No', '20');
 
 -- ----------------------------
 -- Table structure for `inscripcion`
@@ -528,11 +681,12 @@ CREATE TABLE `inscripcion` (
 -- ----------------------------
 -- Records of inscripcion
 -- ----------------------------
-INSERT INTO `inscripcion` VALUES ('LeticiaB', 'AgileA', 'Habilitado');
-INSERT INTO `inscripcion` VALUES ('LeticiaB', 'Camaleon', 'Deshabilitado');
-INSERT INTO `inscripcion` VALUES ('LeticiaB', 'FreeValue', 'Habilitado');
-INSERT INTO `inscripcion` VALUES ('LeticiaB', 'Power', 'Habilitado');
-INSERT INTO `inscripcion` VALUES ('Patricia', 'Oasis', 'Habilitado');
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'Devs', 'Habilitado');
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'InnovaTe', 'Habilitado');
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'MAD', 'Habilitado');
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'NetSky', 'Habilitado');
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'SAADS', 'Habilitado');
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'SLOW', 'Habilitado');
 
 -- ----------------------------
 -- Table structure for `inscripcion_proyecto`
@@ -552,10 +706,12 @@ CREATE TABLE `inscripcion_proyecto` (
 -- ----------------------------
 -- Records of inscripcion_proyecto
 -- ----------------------------
-INSERT INTO `inscripcion_proyecto` VALUES ('4', 'AgileA', 'Sin Firmar');
-INSERT INTO `inscripcion_proyecto` VALUES ('4', 'FreeValue', 'Firmado');
-INSERT INTO `inscripcion_proyecto` VALUES ('5', 'Oasis', 'Sin Firmar');
-INSERT INTO `inscripcion_proyecto` VALUES ('5', 'Power', 'Sin Firmar');
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'Devs', 'Firmado');
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'InnovaTe', 'Firmado');
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'MAD', 'Firmado');
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'NetSky', 'Firmado');
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'SAADS', 'Firmado');
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'SLOW', 'Firmado');
 
 -- ----------------------------
 -- Table structure for `lista_ge`
@@ -575,6 +731,12 @@ INSERT INTO `lista_ge` VALUES ('FreeValue', 'FreeValue SRL', 'Calle F', null);
 INSERT INTO `lista_ge` VALUES ('Oasis', 'Oasis SRL', 'Calle Jordan', null);
 INSERT INTO `lista_ge` VALUES ('Power', 'Power Soft SRL', 'Calle Power', null);
 INSERT INTO `lista_ge` VALUES ('Agile', 'AgileAction', 'Calle Agil', null);
+INSERT INTO `lista_ge` VALUES ('InnovaTe', 'Innovando Tecnologia SRL', 'C. Tarija N&deg;1520', null);
+INSERT INTO `lista_ge` VALUES ('Devs Group', 'DevsGroup SRL', 'Av.Ladislao Cabrera N&deg', null);
+INSERT INTO `lista_ge` VALUES ('MAD', 'MAD SOFTWARE SRL', 'Av. Rodriguez Morales N&d', null);
+INSERT INTO `lista_ge` VALUES ('SLOW CODE', 'SLOW CODE SRL', 'C/ Dario Monta&ntilde;o #', null);
+INSERT INTO `lista_ge` VALUES ('SAADS', 'SAADS SRL', 'Av. Melchor Perez #1312', null);
+INSERT INTO `lista_ge` VALUES ('NetSky', 'NetSky System SRL', 'Sipe Sipe Calle Gualberto', null);
 
 -- ----------------------------
 -- Table structure for `mensaje`
@@ -621,11 +783,12 @@ CREATE TABLE `nota` (
   KEY `fk_nota_formulario_idx` (`ID_FORM`),
   CONSTRAINT `fk_nota_formulario` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_grupo_empresa1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nota
 -- ----------------------------
+INSERT INTO `nota` VALUES ('1', '3', 'MAD', '71');
 
 -- ----------------------------
 -- Table structure for `nota_final`
@@ -659,13 +822,14 @@ CREATE TABLE `noticias` (
   PRIMARY KEY (`ID_N`,`NOMBRE_U`),
   KEY `fk_noticias_usuario1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_noticias_usuario1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of noticias
 -- ----------------------------
-INSERT INTO `noticias` VALUES ('2', 'LeticiaB', 'Entrega de Partes A y B', '2015-03-28 20:32:40', '3', 'Subir los documentos hasta la fecha indicada, cualquier duda por aca....<br>', 'LeticiaB');
-INSERT INTO `noticias` VALUES ('3', 'Oasis', 'Dudas', '2015-03-28 20:37:07', '8', 'En la parte...<br>', 'Oasis');
+INSERT INTO `noticias` VALUES ('2', 'LeticiaB', 'Entrega de Partes A y B', '2015-03-28 20:32:40', '5', 'Subir los documentos hasta la fecha indicada, cualquier duda por aca....<br>', 'LeticiaB');
+INSERT INTO `noticias` VALUES ('3', 'Oasis', 'Dudas', '2015-03-28 20:37:07', '9', 'En la parte...<br>', 'Oasis');
+INSERT INTO `noticias` VALUES ('4', 'SLOW', 'Parte A', '2015-05-26 07:43:26', '0', 'kdohvifvkdkfvds', 'SLOW');
 
 -- ----------------------------
 -- Table structure for `pago`
@@ -682,11 +846,40 @@ CREATE TABLE `pago` (
 -- ----------------------------
 -- Records of pago
 -- ----------------------------
-INSERT INTO `pago` VALUES ('78', '20000', '20');
-INSERT INTO `pago` VALUES ('79', '25000', '25');
-INSERT INTO `pago` VALUES ('80', '25000', '25');
-INSERT INTO `pago` VALUES ('81', '20000', '20');
-INSERT INTO `pago` VALUES ('82', '10000', '10');
+INSERT INTO `pago` VALUES ('165', '11226', '15');
+INSERT INTO `pago` VALUES ('166', '22452', '30');
+INSERT INTO `pago` VALUES ('167', '26194', '35');
+INSERT INTO `pago` VALUES ('168', '14968', '20');
+INSERT INTO `pago` VALUES ('170', '13600', '20');
+INSERT INTO `pago` VALUES ('171', '6800', '10');
+INSERT INTO `pago` VALUES ('172', '6800', '10');
+INSERT INTO `pago` VALUES ('173', '8160', '12');
+INSERT INTO `pago` VALUES ('174', '8160', '12');
+INSERT INTO `pago` VALUES ('175', '8160', '12');
+INSERT INTO `pago` VALUES ('176', '9520', '14');
+INSERT INTO `pago` VALUES ('177', '6800', '10');
+INSERT INTO `pago` VALUES ('178', '24415', '20');
+INSERT INTO `pago` VALUES ('179', '6104', '5');
+INSERT INTO `pago` VALUES ('180', '6104', '5');
+INSERT INTO `pago` VALUES ('181', '24415', '20');
+INSERT INTO `pago` VALUES ('182', '24415', '20');
+INSERT INTO `pago` VALUES ('183', '24415', '20');
+INSERT INTO `pago` VALUES ('184', '12208', '10');
+INSERT INTO `pago` VALUES ('185', '7944', '20');
+INSERT INTO `pago` VALUES ('186', '3972', '10');
+INSERT INTO `pago` VALUES ('187', '5958', '15');
+INSERT INTO `pago` VALUES ('188', '5958', '15');
+INSERT INTO `pago` VALUES ('189', '3972', '10');
+INSERT INTO `pago` VALUES ('190', '3972', '10');
+INSERT INTO `pago` VALUES ('191', '3972', '10');
+INSERT INTO `pago` VALUES ('192', '3972', '10');
+INSERT INTO `pago` VALUES ('193', '11976', '18');
+INSERT INTO `pago` VALUES ('194', '11976', '18');
+INSERT INTO `pago` VALUES ('195', '11976', '18');
+INSERT INTO `pago` VALUES ('196', '11976', '18');
+INSERT INTO `pago` VALUES ('197', '6653', '10');
+INSERT INTO `pago` VALUES ('198', '3327', '5');
+INSERT INTO `pago` VALUES ('199', '8649', '13');
 
 -- ----------------------------
 -- Table structure for `periodo`
@@ -703,11 +896,20 @@ CREATE TABLE `periodo` (
 -- ----------------------------
 -- Records of periodo
 -- ----------------------------
-INSERT INTO `periodo` VALUES ('68', '2014-03-28', '12:30:00');
-INSERT INTO `periodo` VALUES ('69', '2015-03-28', '12:30:00');
-INSERT INTO `periodo` VALUES ('72', '2015-03-29', '01:01:39');
-INSERT INTO `periodo` VALUES ('86', '2015-03-29', '01:01:58');
-INSERT INTO `periodo` VALUES ('88', '2015-03-29', '03:03:03');
+INSERT INTO `periodo` VALUES ('95', '2015-03-16', '08:00:00');
+INSERT INTO `periodo` VALUES ('100', '2015-05-26', '06:58:00');
+INSERT INTO `periodo` VALUES ('113', '2015-05-26', '14:14:28');
+INSERT INTO `periodo` VALUES ('114', '2015-05-26', '14:14:35');
+INSERT INTO `periodo` VALUES ('115', '2015-05-26', '14:14:44');
+INSERT INTO `periodo` VALUES ('116', '2015-05-26', '14:14:55');
+INSERT INTO `periodo` VALUES ('117', '2015-05-26', '15:15:23');
+INSERT INTO `periodo` VALUES ('118', '2015-05-26', '15:15:26');
+INSERT INTO `periodo` VALUES ('121', '2015-05-26', '16:16:11');
+INSERT INTO `periodo` VALUES ('122', '2015-05-26', '16:16:13');
+INSERT INTO `periodo` VALUES ('123', '2015-05-26', '16:16:14');
+INSERT INTO `periodo` VALUES ('124', '2015-05-26', '16:16:15');
+INSERT INTO `periodo` VALUES ('125', '2015-05-26', '16:16:16');
+INSERT INTO `periodo` VALUES ('126', '2015-05-26', '16:16:17');
 
 -- ----------------------------
 -- Table structure for `permisos`
@@ -746,10 +948,12 @@ CREATE TABLE `planificacion` (
 -- ----------------------------
 -- Records of planificacion
 -- ----------------------------
-INSERT INTO `planificacion` VALUES ('AgileA', 'registrar planificacion', '2014-12-12', '2020-12-12');
-INSERT INTO `planificacion` VALUES ('FreeValue', 'planificacion registrada', '2014-12-12', '2020-12-12');
-INSERT INTO `planificacion` VALUES ('Oasis', 'registrar planificacion', '2014-12-12', '2020-12-12');
-INSERT INTO `planificacion` VALUES ('Power', 'registrar plan pagos', '2014-12-12', '2020-12-12');
+INSERT INTO `planificacion` VALUES ('Devs', 'planificacion registrada', '2015-03-16', '2015-06-19');
+INSERT INTO `planificacion` VALUES ('InnovaTe', 'planificacion registrada', '2015-03-16', '2015-06-19');
+INSERT INTO `planificacion` VALUES ('MAD', 'planificacion registrada', '2015-03-16', '2015-06-19');
+INSERT INTO `planificacion` VALUES ('NetSky', 'planificacion registrada', '2015-03-16', '2015-06-19');
+INSERT INTO `planificacion` VALUES ('SAADS', 'planificacion registrada', '2015-03-16', '2015-06-19');
+INSERT INTO `planificacion` VALUES ('SLOW', 'planificacion registrada', '2015-03-16', '2015-06-19');
 
 -- ----------------------------
 -- Table structure for `plazo`
@@ -768,9 +972,8 @@ CREATE TABLE `plazo` (
 -- ----------------------------
 -- Records of plazo
 -- ----------------------------
-INSERT INTO `plazo` VALUES ('66', '2015-03-12', '2015-04-12', '12:12:00', '12:12:00');
-INSERT INTO `plazo` VALUES ('67', '2015-03-12', '2015-04-12', '12:12:00', '12:12:00');
-INSERT INTO `plazo` VALUES ('84', '2015-03-22', '2015-04-12', '12:12:00', '12:12:00');
+INSERT INTO `plazo` VALUES ('96', '2015-05-26', '2015-05-27', '07:55:00', '17:00:00');
+INSERT INTO `plazo` VALUES ('97', '2015-05-26', '2015-05-27', '07:55:00', '17:00:00');
 
 -- ----------------------------
 -- Table structure for `precio`
@@ -787,8 +990,12 @@ CREATE TABLE `precio` (
 -- ----------------------------
 -- Records of precio
 -- ----------------------------
-INSERT INTO `precio` VALUES ('FreeValue', '100000', '70');
-INSERT INTO `precio` VALUES ('Power', '100000', '68');
+INSERT INTO `precio` VALUES ('Devs', '68000', '80');
+INSERT INTO `precio` VALUES ('InnovaTe', '27370', '70');
+INSERT INTO `precio` VALUES ('MAD', '122075', '70');
+INSERT INTO `precio` VALUES ('NetSky', '74840', '75');
+INSERT INTO `precio` VALUES ('SAADS', '66532', '70');
+INSERT INTO `precio` VALUES ('SLOW', '39718', '75');
 
 -- ----------------------------
 -- Table structure for `proyecto`
@@ -803,13 +1010,12 @@ CREATE TABLE `proyecto` (
   PRIMARY KEY (`CODIGO_P`,`ID_G`) USING BTREE,
   KEY `fk_proyecto_gestion1_idx` (`ID_G`),
   CONSTRAINT `fk_proyecto_gestion1` FOREIGN KEY (`ID_G`) REFERENCES `gestion` (`ID_G`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
 
 -- ----------------------------
 -- Records of proyecto
 -- ----------------------------
 INSERT INTO `proyecto` VALUES ('4', '1', 'SAETIS', 'Sistema de apoyo a la empresa TIS', 'CPTIS2015');
-INSERT INTO `proyecto` VALUES ('5', '1', 'Proyecto2', 'Descripcion del proyecto', 'CPTISS2015');
 
 -- ----------------------------
 -- Table structure for `puntaje`
@@ -842,11 +1048,13 @@ CREATE TABLE `puntaje_ge` (
   PRIMARY KEY (`ID_PGE`),
   KEY `fk_ PUNTAJE_GE_nota_idx` (`ID_N`),
   CONSTRAINT `fk_PUNTAJE_GE_nota` FOREIGN KEY (`ID_N`) REFERENCES `nota` (`ID_N`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of puntaje_ge
 -- ----------------------------
+INSERT INTO `puntaje_ge` VALUES ('1', '1', '0', '80');
+INSERT INTO `puntaje_ge` VALUES ('2', '1', '1', '50');
 
 -- ----------------------------
 -- Table structure for `receptor`
@@ -862,12 +1070,26 @@ CREATE TABLE `receptor` (
 -- ----------------------------
 -- Records of receptor
 -- ----------------------------
-INSERT INTO `receptor` VALUES ('68', 'PUBLICO');
-INSERT INTO `receptor` VALUES ('69', 'PUBLICO');
-INSERT INTO `receptor` VALUES ('72', 'FreeValue SRL');
-INSERT INTO `receptor` VALUES ('83', 'FreeValue SRL');
-INSERT INTO `receptor` VALUES ('86', 'Oasis SRL');
-INSERT INTO `receptor` VALUES ('88', 'Power Soft SRL');
+INSERT INTO `receptor` VALUES ('95', 'Todas las Grupo Empresas');
+INSERT INTO `receptor` VALUES ('100', 'Todas las Grupo Empresas');
+INSERT INTO `receptor` VALUES ('113', 'DevsGroup SRL');
+INSERT INTO `receptor` VALUES ('114', 'Innovando Tecnologia SRL');
+INSERT INTO `receptor` VALUES ('115', 'MAD SOFTWARE SRL');
+INSERT INTO `receptor` VALUES ('116', 'NetSky System SRL');
+INSERT INTO `receptor` VALUES ('117', 'SAADS SRL');
+INSERT INTO `receptor` VALUES ('118', 'SLOW CODE SRL');
+INSERT INTO `receptor` VALUES ('121', 'DevsGroup SRL');
+INSERT INTO `receptor` VALUES ('122', 'Innovando Tecnologia SRL');
+INSERT INTO `receptor` VALUES ('123', 'MAD SOFTWARE SRL');
+INSERT INTO `receptor` VALUES ('124', 'NetSky System SRL');
+INSERT INTO `receptor` VALUES ('125', 'SAADS SRL');
+INSERT INTO `receptor` VALUES ('126', 'SLOW CODE SRL');
+INSERT INTO `receptor` VALUES ('169', 'NetSky System SRL');
+INSERT INTO `receptor` VALUES ('200', 'SAADS SRL');
+INSERT INTO `receptor` VALUES ('201', 'SLOW CODE SRL');
+INSERT INTO `receptor` VALUES ('202', 'DevsGroup SRL');
+INSERT INTO `receptor` VALUES ('203', 'MAD SOFTWARE SRL');
+INSERT INTO `receptor` VALUES ('204', 'Innovando Tecnologia SRL');
 
 -- ----------------------------
 -- Table structure for `registro`
@@ -888,38 +1110,122 @@ CREATE TABLE `registro` (
   CONSTRAINT `FK_ESTADO__REGISTRO` FOREIGN KEY (`ESTADO_E`) REFERENCES `estado` (`ESTADO_E`),
   CONSTRAINT `FK_TIPO__REGISTRO` FOREIGN KEY (`TIPO_T`) REFERENCES `tipo` (`TIPO_T`),
   CONSTRAINT `FK_USUARIO_REGISTRO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
 
 -- ----------------------------
 -- Records of registro
 -- ----------------------------
-INSERT INTO `registro` VALUES ('66', 'LeticiaB', 'documento requerido', 'Habilitado', 'Parte A', '2015-03-28', '20:31:04');
-INSERT INTO `registro` VALUES ('67', 'LeticiaB', 'documento requerido', 'Habilitado', 'Parte Z', '2015-03-28', '20:31:29');
-INSERT INTO `registro` VALUES ('68', 'LeticiaB', 'publicaciones', 'Habilitado', 'Convocatoria publica', '2015-03-29', '01:01:34');
-INSERT INTO `registro` VALUES ('69', 'Patricia', 'publicaciones', 'Habilitado', 'Lider', '2015-03-29', '01:01:36');
-INSERT INTO `registro` VALUES ('70', 'FreeValue', 'documento subido', 'habilitado', 'Parte A', '2015-03-28', '20:20:38');
-INSERT INTO `registro` VALUES ('71', 'FreeValue', 'documento subido', 'habilitado', 'Parte Z', '2015-03-28', '20:20:38');
-INSERT INTO `registro` VALUES ('72', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de FreeValue', '2015-03-29', '01:01:39');
-INSERT INTO `registro` VALUES ('73', 'FreeValue', 'actividad planificacion', 'en proceso', 'Sprint 0', '2015-03-28', '20:46:44');
-INSERT INTO `registro` VALUES ('74', 'FreeValue', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-03-28', '20:46:45');
-INSERT INTO `registro` VALUES ('75', 'FreeValue', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-03-28', '20:46:45');
-INSERT INTO `registro` VALUES ('76', 'FreeValue', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-03-28', '20:46:45');
-INSERT INTO `registro` VALUES ('77', 'FreeValue', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-03-28', '20:46:45');
-INSERT INTO `registro` VALUES ('78', 'FreeValue', 'pago planificacion', 'en proceso', 'Sprint 0', '2015-03-28', '20:49:05');
-INSERT INTO `registro` VALUES ('79', 'FreeValue', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-03-28', '20:49:05');
-INSERT INTO `registro` VALUES ('80', 'FreeValue', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-03-28', '20:49:06');
-INSERT INTO `registro` VALUES ('81', 'FreeValue', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-03-28', '20:49:06');
-INSERT INTO `registro` VALUES ('82', 'FreeValue', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-03-28', '20:49:06');
-INSERT INTO `registro` VALUES ('83', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoFreeValue.pdf', '2015-03-29', '01:01:49');
-INSERT INTO `registro` VALUES ('84', 'Patricia', 'documento requerido', 'Habilitado', 'Parte R', '2015-03-28', '20:53:11');
-INSERT INTO `registro` VALUES ('85', 'Oasis', 'documento subido', 'habilitado', 'Parte R', '2015-03-28', '20:20:57');
-INSERT INTO `registro` VALUES ('86', 'Patricia', 'publicaciones', 'Habilitado', 'Orden de Cambio de Oasis', '2015-03-29', '01:01:58');
-INSERT INTO `registro` VALUES ('87', 'Power', 'documento subido', 'habilitado', 'Parte R', '2015-03-28', '21:21:02');
-INSERT INTO `registro` VALUES ('88', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de Power', '2015-03-29', '03:03:03');
-INSERT INTO `registro` VALUES ('89', 'Power', 'actividad planificacion', 'en proceso', 'Sprint 0', '2015-03-28', '21:05:00');
-INSERT INTO `registro` VALUES ('90', 'Power', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-03-28', '21:05:00');
-INSERT INTO `registro` VALUES ('91', 'Power', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-03-28', '21:05:00');
-INSERT INTO `registro` VALUES ('92', 'Power', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-03-28', '21:05:00');
+INSERT INTO `registro` VALUES ('94', 'LeticiaB', 'documento subido', 'Habilitado', 'CPTIS.PDF', '2015-05-25', '16:16:31');
+INSERT INTO `registro` VALUES ('95', 'LeticiaB', 'publicaciones', 'Habilitado', 'CPTIS', '2015-05-25', '23:23:44');
+INSERT INTO `registro` VALUES ('96', 'LeticiaB', 'documento requerido', 'Habilitado', 'Parte A', '2015-05-25', '18:04:41');
+INSERT INTO `registro` VALUES ('97', 'LeticiaB', 'documento requerido', 'Habilitado', 'Parte B', '2015-05-25', '18:29:56');
+INSERT INTO `registro` VALUES ('98', 'LeticiaB', 'documento subido', 'Habilitado', 'CPTIS.pdf', '2015-05-26', '07:07:47');
+INSERT INTO `registro` VALUES ('99', 'LeticiaB', 'documento subido', 'Habilitado', 'FETIS.pdf', '2015-05-26', '07:07:47');
+INSERT INTO `registro` VALUES ('100', 'LeticiaB', 'publicaciones', 'Habilitado', 'Partes A y B', '2015-05-26', '13:13:55');
+INSERT INTO `registro` VALUES ('101', 'SLOW', 'documento subido', 'habilitado', 'Parte A', '2015-05-26', '07:07:58');
+INSERT INTO `registro` VALUES ('102', 'SLOW', 'documento subido', 'habilitado', 'Parte B', '2015-05-26', '07:07:58');
+INSERT INTO `registro` VALUES ('103', 'InnovaTe', 'documento subido', 'habilitado', 'Parte A', '2015-05-26', '08:08:00');
+INSERT INTO `registro` VALUES ('104', 'InnovaTe', 'documento subido', 'habilitado', 'Parte B', '2015-05-26', '08:08:00');
+INSERT INTO `registro` VALUES ('105', 'SAADS', 'documento subido', 'habilitado', 'Parte A', '2015-05-26', '08:08:02');
+INSERT INTO `registro` VALUES ('106', 'SAADS', 'documento subido', 'habilitado', 'Parte B', '2015-05-26', '08:08:03');
+INSERT INTO `registro` VALUES ('107', 'NetSky', 'documento subido', 'habilitado', 'Parte A', '2015-05-26', '08:08:15');
+INSERT INTO `registro` VALUES ('108', 'NetSky', 'documento subido', 'habilitado', 'Parte B', '2015-05-26', '08:08:16');
+INSERT INTO `registro` VALUES ('109', 'MAD', 'documento subido', 'habilitado', 'Parte A', '2015-05-26', '08:08:18');
+INSERT INTO `registro` VALUES ('110', 'MAD', 'documento subido', 'habilitado', 'Parte B', '2015-05-26', '08:08:19');
+INSERT INTO `registro` VALUES ('111', 'Devs', 'documento subido', 'habilitado', 'Parte A', '2015-05-26', '08:08:20');
+INSERT INTO `registro` VALUES ('112', 'Devs', 'documento subido', 'habilitado', 'Parte B', '2015-05-26', '08:08:20');
+INSERT INTO `registro` VALUES ('113', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de Devs Group', '2015-05-26', '14:14:28');
+INSERT INTO `registro` VALUES ('114', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de InnovaTe', '2015-05-26', '14:14:35');
+INSERT INTO `registro` VALUES ('115', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de MAD', '2015-05-26', '14:14:44');
+INSERT INTO `registro` VALUES ('116', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de NetSky', '2015-05-26', '14:14:55');
+INSERT INTO `registro` VALUES ('117', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de SAADS', '2015-05-26', '15:15:23');
+INSERT INTO `registro` VALUES ('118', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de SLOW CODE', '2015-05-26', '15:15:26');
+INSERT INTO `registro` VALUES ('119', 'Devs', 'actividad planificacion', 'en proceso', 'GestiÃ³n del pryecto', '2015-05-26', '09:43:40');
+INSERT INTO `registro` VALUES ('120', 'MAD', 'actividad planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '10:06:09');
+INSERT INTO `registro` VALUES ('121', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de Devs Group', '2015-05-26', '16:16:11');
+INSERT INTO `registro` VALUES ('122', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de InnovaTe', '2015-05-26', '16:16:13');
+INSERT INTO `registro` VALUES ('123', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de MAD', '2015-05-26', '16:16:14');
+INSERT INTO `registro` VALUES ('124', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de NetSky', '2015-05-26', '16:16:15');
+INSERT INTO `registro` VALUES ('125', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de SAADS', '2015-05-26', '16:16:16');
+INSERT INTO `registro` VALUES ('126', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de SLOW CODE', '2015-05-26', '16:16:17');
+INSERT INTO `registro` VALUES ('127', 'Devs', 'actividad planificacion', 'en proceso', 'PlanificaciÃ³n', '2015-05-26', '11:35:33');
+INSERT INTO `registro` VALUES ('128', 'Devs', 'actividad planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '11:52:32');
+INSERT INTO `registro` VALUES ('129', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '11:52:32');
+INSERT INTO `registro` VALUES ('130', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '11:52:32');
+INSERT INTO `registro` VALUES ('131', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '11:52:32');
+INSERT INTO `registro` VALUES ('132', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '11:52:32');
+INSERT INTO `registro` VALUES ('133', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '11:52:32');
+INSERT INTO `registro` VALUES ('134', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '11:52:33');
+INSERT INTO `registro` VALUES ('135', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '11:52:33');
+INSERT INTO `registro` VALUES ('136', 'InnovaTe', 'actividad planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '12:19:18');
+INSERT INTO `registro` VALUES ('137', 'InnovaTe', 'actividad planificacion', 'en proceso', 'firma de contrato', '2015-05-26', '12:33:23');
+INSERT INTO `registro` VALUES ('138', 'InnovaTe', 'actividad planificacion', 'en proceso', 'PlanificaciÃ³n', '2015-05-26', '12:51:32');
+INSERT INTO `registro` VALUES ('139', 'InnovaTe', 'actividad planificacion', 'en proceso', 'PlanificaciÃ³n', '2015-05-26', '12:57:35');
+INSERT INTO `registro` VALUES ('140', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('141', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('142', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('143', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('144', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('145', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('146', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '13:59:53');
+INSERT INTO `registro` VALUES ('147', 'SLOW', 'actividad planificacion', 'en proceso', 'EvaluaciÃ³n', '2015-05-26', '14:15:35');
+INSERT INTO `registro` VALUES ('148', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('149', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('150', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('151', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('152', 'SLOW', 'actividad planificacion', 'en proceso', 'Entrega ', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('153', 'SLOW', 'actividad planificacion', 'en proceso', 'capacitaciÃ³n', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('154', 'SLOW', 'actividad planificacion', 'en proceso', 'ConclusiÃ³n ', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('155', 'NetSky', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '14:26:12');
+INSERT INTO `registro` VALUES ('156', 'NetSky', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '14:26:12');
+INSERT INTO `registro` VALUES ('157', 'NetSky', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '14:26:13');
+INSERT INTO `registro` VALUES ('158', 'NetSky', 'actividad planificacion', 'en proceso', 'CapacitaciÃ³n', '2015-05-26', '14:26:13');
+INSERT INTO `registro` VALUES ('159', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '14:46:38');
+INSERT INTO `registro` VALUES ('160', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '14:46:38');
+INSERT INTO `registro` VALUES ('161', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '14:46:38');
+INSERT INTO `registro` VALUES ('162', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '14:46:38');
+INSERT INTO `registro` VALUES ('163', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '14:46:38');
+INSERT INTO `registro` VALUES ('164', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '14:46:38');
+INSERT INTO `registro` VALUES ('165', 'NetSky', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '20:42:29');
+INSERT INTO `registro` VALUES ('166', 'NetSky', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '20:42:29');
+INSERT INTO `registro` VALUES ('167', 'NetSky', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '20:42:30');
+INSERT INTO `registro` VALUES ('168', 'NetSky', 'pago planificacion', 'en proceso', 'CapacitaciÃ³n', '2015-05-26', '20:42:30');
+INSERT INTO `registro` VALUES ('169', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoNetSky.pdf', '2015-05-27', '02:02:45');
+INSERT INTO `registro` VALUES ('170', 'Devs', 'pago planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '20:56:55');
+INSERT INTO `registro` VALUES ('171', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '20:56:55');
+INSERT INTO `registro` VALUES ('172', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '20:56:56');
+INSERT INTO `registro` VALUES ('173', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '20:56:56');
+INSERT INTO `registro` VALUES ('174', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '20:56:56');
+INSERT INTO `registro` VALUES ('175', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '20:56:56');
+INSERT INTO `registro` VALUES ('176', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '20:56:56');
+INSERT INTO `registro` VALUES ('177', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '20:56:57');
+INSERT INTO `registro` VALUES ('178', 'MAD', 'pago planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '21:10:18');
+INSERT INTO `registro` VALUES ('179', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '21:10:18');
+INSERT INTO `registro` VALUES ('180', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '21:10:18');
+INSERT INTO `registro` VALUES ('181', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '21:10:19');
+INSERT INTO `registro` VALUES ('182', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '21:10:19');
+INSERT INTO `registro` VALUES ('183', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '21:10:19');
+INSERT INTO `registro` VALUES ('184', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '21:10:19');
+INSERT INTO `registro` VALUES ('185', 'SLOW', 'pago planificacion', 'en proceso', 'EvaluaciÃ³n', '2015-05-26', '21:21:09');
+INSERT INTO `registro` VALUES ('186', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '21:21:09');
+INSERT INTO `registro` VALUES ('187', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '21:21:09');
+INSERT INTO `registro` VALUES ('188', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '21:21:09');
+INSERT INTO `registro` VALUES ('189', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '21:21:10');
+INSERT INTO `registro` VALUES ('190', 'SLOW', 'pago planificacion', 'en proceso', 'Entrega ', '2015-05-26', '21:21:10');
+INSERT INTO `registro` VALUES ('191', 'SLOW', 'pago planificacion', 'en proceso', 'capacitaciÃ³n', '2015-05-26', '21:21:10');
+INSERT INTO `registro` VALUES ('192', 'SLOW', 'pago planificacion', 'en proceso', 'ConclusiÃ³n ', '2015-05-26', '21:21:10');
+INSERT INTO `registro` VALUES ('193', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '21:39:10');
+INSERT INTO `registro` VALUES ('194', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '21:39:10');
+INSERT INTO `registro` VALUES ('195', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '21:39:10');
+INSERT INTO `registro` VALUES ('196', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '21:39:10');
+INSERT INTO `registro` VALUES ('197', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '21:39:11');
+INSERT INTO `registro` VALUES ('198', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '21:39:11');
+INSERT INTO `registro` VALUES ('199', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '21:39:11');
+INSERT INTO `registro` VALUES ('200', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoSAADS.pdf', '2015-05-27', '04:04:00');
+INSERT INTO `registro` VALUES ('201', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoSLOWCODE.pdf', '2015-05-27', '04:04:00');
+INSERT INTO `registro` VALUES ('202', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoDevsGroup.pdf', '2015-05-27', '04:04:00');
+INSERT INTO `registro` VALUES ('203', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoMAD.pdf', '2015-05-27', '04:04:01');
+INSERT INTO `registro` VALUES ('204', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoInnovaTe.pdf', '2015-05-27', '04:04:27');
 
 -- ----------------------------
 -- Table structure for `reporte`
@@ -1031,56 +1337,113 @@ CREATE TABLE `sesion` (
   PRIMARY KEY (`ID_S`) USING BTREE,
   KEY `FK_USUARIO_SESION` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_USUARIO_SESION` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesion
 -- ----------------------------
-INSERT INTO `sesion` VALUES ('53', 'Admin1', '2015-03-29', '01:25:55', '::1');
-INSERT INTO `sesion` VALUES ('54', 'Oasis', '2015-03-29', '01:26:22', '::1');
-INSERT INTO `sesion` VALUES ('55', 'FreeValue', '2015-03-29', '01:27:20', '::1');
-INSERT INTO `sesion` VALUES ('56', 'Camaleon', '2015-03-29', '01:28:30', '::1');
-INSERT INTO `sesion` VALUES ('57', 'Admin1', '2015-03-29', '01:29:21', '::1');
-INSERT INTO `sesion` VALUES ('58', 'LeticiaB', '2015-03-29', '01:29:32', '::1');
-INSERT INTO `sesion` VALUES ('59', 'Camaleon', '2015-03-29', '01:29:42', '::1');
-INSERT INTO `sesion` VALUES ('60', 'LeticiaB', '2015-03-29', '01:29:54', '::1');
-INSERT INTO `sesion` VALUES ('61', 'Patricia', '2015-03-29', '01:34:42', '::1');
-INSERT INTO `sesion` VALUES ('62', 'Patricia', '2015-03-29', '01:36:26', '::1');
-INSERT INTO `sesion` VALUES ('63', 'Oasis', '2015-03-29', '01:36:53', '::1');
-INSERT INTO `sesion` VALUES ('64', 'FreeValue', '2015-03-29', '01:37:16', '::1');
-INSERT INTO `sesion` VALUES ('65', 'LeticiaB', '2015-03-29', '01:39:03', '::1');
-INSERT INTO `sesion` VALUES ('66', 'Camaleon', '2015-03-29', '01:44:59', '::1');
-INSERT INTO `sesion` VALUES ('67', 'FreeValue', '2015-03-29', '01:45:12', '::1');
-INSERT INTO `sesion` VALUES ('68', 'LeticiaB', '2015-03-29', '01:49:15', '::1');
-INSERT INTO `sesion` VALUES ('69', 'Admin1', '2015-03-29', '01:50:36', '::1');
-INSERT INTO `sesion` VALUES ('70', 'Oasis', '2015-03-29', '01:51:55', '::1');
-INSERT INTO `sesion` VALUES ('71', 'Patricia', '2015-03-29', '01:52:09', '::1');
-INSERT INTO `sesion` VALUES ('72', 'Oasis', '2015-03-29', '01:53:17', '::1');
-INSERT INTO `sesion` VALUES ('73', 'Patricia', '2015-03-29', '01:53:46', '::1');
-INSERT INTO `sesion` VALUES ('74', 'Oasis', '2015-03-29', '01:56:53', '::1');
-INSERT INTO `sesion` VALUES ('75', 'Patricia', '2015-03-29', '01:57:58', '::1');
-INSERT INTO `sesion` VALUES ('76', 'Oasis', '2015-03-29', '01:58:49', '::1');
-INSERT INTO `sesion` VALUES ('77', 'Admin1', '2015-03-29', '01:59:46', '::1');
-INSERT INTO `sesion` VALUES ('78', 'Power', '2015-03-29', '03:01:19', '::1');
-INSERT INTO `sesion` VALUES ('79', 'LeticiaB', '2015-03-29', '03:02:18', '::1');
-INSERT INTO `sesion` VALUES ('80', 'Power', '2015-03-29', '03:02:35', '::1');
-INSERT INTO `sesion` VALUES ('81', 'LeticiaB', '2015-03-29', '03:03:08', '::1');
-INSERT INTO `sesion` VALUES ('82', 'Power', '2015-03-29', '03:04:04', '::1');
-INSERT INTO `sesion` VALUES ('83', 'AgileA', '2015-03-29', '03:06:28', '::1');
-INSERT INTO `sesion` VALUES ('84', 'LeticiaB', '2015-03-29', '03:07:26', '::1');
-INSERT INTO `sesion` VALUES ('85', 'AgileA', '2015-03-29', '03:07:47', '::1');
-INSERT INTO `sesion` VALUES ('86', 'Patricia', '2015-03-29', '03:08:54', '::1');
-INSERT INTO `sesion` VALUES ('87', 'Patricia', '2015-03-29', '03:10:36', '::1');
-INSERT INTO `sesion` VALUES ('88', 'Admin1', '2015-04-15', '02:18:34', '::1');
-INSERT INTO `sesion` VALUES ('89', 'LeticiaB', '2015-04-15', '02:30:58', '::1');
-INSERT INTO `sesion` VALUES ('90', 'FreeValue', '2015-04-15', '02:31:31', '::1');
-INSERT INTO `sesion` VALUES ('91', 'Admin1', '2015-04-15', '02:35:28', '::1');
-INSERT INTO `sesion` VALUES ('92', 'Admin1', '2015-04-15', '03:04:17', '::1');
-INSERT INTO `sesion` VALUES ('93', 'Admin1', '2015-04-15', '01:11:08', '127.0.0.1');
-INSERT INTO `sesion` VALUES ('94', 'Admin1', '2015-04-15', '01:20:39', '127.0.0.1');
-INSERT INTO `sesion` VALUES ('95', 'Admin1', '2015-04-15', '01:21:30', '127.0.0.1');
-INSERT INTO `sesion` VALUES ('96', 'LeticiaB', '2015-04-15', '02:03:34', '127.0.0.1');
-INSERT INTO `sesion` VALUES ('97', 'FreeValue', '2015-04-15', '02:05:35', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('124', 'LeticiaB', '2015-05-25', '10:02:21', '::1');
+INSERT INTO `sesion` VALUES ('125', 'InnovaTe', '2015-05-25', '11:13:38', '::1');
+INSERT INTO `sesion` VALUES ('126', 'LeticiaB', '2015-05-25', '11:21:58', '::1');
+INSERT INTO `sesion` VALUES ('127', 'InnovaTe', '2015-05-25', '11:24:18', '::1');
+INSERT INTO `sesion` VALUES ('128', 'LeticiaB', '2015-05-25', '11:30:26', '::1');
+INSERT INTO `sesion` VALUES ('129', 'SAADS', '2015-05-25', '11:45:05', '::1');
+INSERT INTO `sesion` VALUES ('130', 'SLOW', '2015-05-25', '11:48:12', '::1');
+INSERT INTO `sesion` VALUES ('131', 'LeticiaB', '2015-05-25', '11:53:13', '::1');
+INSERT INTO `sesion` VALUES ('132', 'InnovaTe', '2015-05-26', '12:00:03', '::1');
+INSERT INTO `sesion` VALUES ('133', 'LeticiaB', '2015-05-26', '12:00:54', '::1');
+INSERT INTO `sesion` VALUES ('134', 'InnovaTe', '2015-05-26', '12:07:15', '::1');
+INSERT INTO `sesion` VALUES ('135', 'LeticiaB', '2015-05-26', '12:08:26', '::1');
+INSERT INTO `sesion` VALUES ('136', 'InnovaTe', '2015-05-26', '12:10:45', '::1');
+INSERT INTO `sesion` VALUES ('137', 'LeticiaB', '2015-05-26', '12:11:44', '::1');
+INSERT INTO `sesion` VALUES ('138', 'InnovaTe', '2015-05-26', '12:17:06', '::1');
+INSERT INTO `sesion` VALUES ('139', 'LeticiaB', '2015-05-26', '12:22:42', '::1');
+INSERT INTO `sesion` VALUES ('140', 'InnovaTe', '2015-05-26', '12:32:01', '::1');
+INSERT INTO `sesion` VALUES ('141', 'SAADS', '2015-05-26', '12:34:56', '::1');
+INSERT INTO `sesion` VALUES ('142', 'LeticiaB', '2015-05-26', '12:36:02', '::1');
+INSERT INTO `sesion` VALUES ('143', 'SAADS', '2015-05-26', '12:38:31', '::1');
+INSERT INTO `sesion` VALUES ('144', 'Admin1', '2015-05-26', '12:53:14', '::1');
+INSERT INTO `sesion` VALUES ('145', 'LeticiaB', '2015-05-26', '12:58:07', '::1');
+INSERT INTO `sesion` VALUES ('146', 'LeticiaB', '2015-05-26', '01:05:18', '::1');
+INSERT INTO `sesion` VALUES ('147', 'LeticiaB', '2015-05-26', '01:14:35', '::1');
+INSERT INTO `sesion` VALUES ('148', 'Camaleon', '2015-05-26', '01:15:20', '::1');
+INSERT INTO `sesion` VALUES ('149', 'LeticiaB', '2015-05-26', '01:18:20', '::1');
+INSERT INTO `sesion` VALUES ('150', 'LeticiaB', '2015-05-26', '01:30:51', '::1');
+INSERT INTO `sesion` VALUES ('151', 'LeticiaB', '2015-05-26', '01:32:17', '::1');
+INSERT INTO `sesion` VALUES ('152', 'InnovaTe', '2015-05-26', '01:36:34', '::1');
+INSERT INTO `sesion` VALUES ('153', 'Admin1', '2015-05-26', '01:38:17', '::1');
+INSERT INTO `sesion` VALUES ('154', 'LeticiaB', '2015-05-26', '01:40:50', '::1');
+INSERT INTO `sesion` VALUES ('155', 'SLOW', '2015-05-26', '01:41:58', '::1');
+INSERT INTO `sesion` VALUES ('156', 'LeticiaB', '2015-05-26', '01:44:27', '::1');
+INSERT INTO `sesion` VALUES ('157', 'SLOW', '2015-05-26', '01:51:24', '::1');
+INSERT INTO `sesion` VALUES ('158', 'LeticiaB', '2015-05-26', '01:52:14', '::1');
+INSERT INTO `sesion` VALUES ('159', 'SLOW', '2015-05-26', '01:55:56', '::1');
+INSERT INTO `sesion` VALUES ('160', 'InnovaTe', '2015-05-26', '01:59:41', '::1');
+INSERT INTO `sesion` VALUES ('161', 'SAADS', '2015-05-26', '02:00:45', '::1');
+INSERT INTO `sesion` VALUES ('162', 'NetSky', '2015-05-26', '02:08:35', '::1');
+INSERT INTO `sesion` VALUES ('163', 'LeticiaB', '2015-05-26', '02:09:27', '::1');
+INSERT INTO `sesion` VALUES ('164', 'NetSky', '2015-05-26', '02:10:38', '::1');
+INSERT INTO `sesion` VALUES ('165', 'MAD', '2015-05-26', '02:11:33', '::1');
+INSERT INTO `sesion` VALUES ('166', 'InnovaTe', '2015-05-26', '02:12:19', '::1');
+INSERT INTO `sesion` VALUES ('167', 'LeticiaB', '2015-05-26', '02:12:40', '::1');
+INSERT INTO `sesion` VALUES ('168', 'NetSky', '2015-05-26', '02:15:13', '::1');
+INSERT INTO `sesion` VALUES ('169', 'MAD', '2015-05-26', '02:17:03', '::1');
+INSERT INTO `sesion` VALUES ('170', 'Devs', '2015-05-26', '02:19:50', '::1');
+INSERT INTO `sesion` VALUES ('171', 'LeticiaB', '2015-05-26', '02:22:40', '::1');
+INSERT INTO `sesion` VALUES ('172', 'Devs', '2015-05-26', '02:50:22', '::1');
+INSERT INTO `sesion` VALUES ('173', 'LeticiaB', '2015-05-26', '02:51:34', '::1');
+INSERT INTO `sesion` VALUES ('174', 'Devs', '2015-05-26', '03:27:30', '::1');
+INSERT INTO `sesion` VALUES ('175', 'LeticiaB', '2015-05-26', '03:30:29', '::1');
+INSERT INTO `sesion` VALUES ('176', 'Devs', '2015-05-26', '03:32:56', '::1');
+INSERT INTO `sesion` VALUES ('177', 'Devs', '2015-05-26', '03:44:16', '::1');
+INSERT INTO `sesion` VALUES ('178', 'InnovaTe', '2015-05-26', '03:53:13', '::1');
+INSERT INTO `sesion` VALUES ('179', 'LeticiaB', '2015-05-26', '03:56:10', '::1');
+INSERT INTO `sesion` VALUES ('180', 'InnovaTe', '2015-05-26', '03:57:14', '::1');
+INSERT INTO `sesion` VALUES ('181', 'MAD', '2015-05-26', '03:58:15', '::1');
+INSERT INTO `sesion` VALUES ('182', 'LeticiaB', '2015-05-26', '04:08:25', '::1');
+INSERT INTO `sesion` VALUES ('183', 'Devs', '2015-05-26', '04:18:51', '::1');
+INSERT INTO `sesion` VALUES ('184', 'LeticiaB', '2015-05-26', '04:48:17', '::1');
+INSERT INTO `sesion` VALUES ('185', 'Devs', '2015-05-26', '04:48:52', '::1');
+INSERT INTO `sesion` VALUES ('186', 'MAD', '2015-05-26', '05:30:02', '::1');
+INSERT INTO `sesion` VALUES ('187', 'Devs', '2015-05-26', '05:31:16', '::1');
+INSERT INTO `sesion` VALUES ('188', 'Devs', '2015-05-26', '05:37:21', '::1');
+INSERT INTO `sesion` VALUES ('189', 'LeticiaB', '2015-05-26', '05:59:27', '::1');
+INSERT INTO `sesion` VALUES ('190', 'Devs', '2015-05-26', '06:00:59', '::1');
+INSERT INTO `sesion` VALUES ('191', 'InnovaTe', '2015-05-26', '06:03:30', '::1');
+INSERT INTO `sesion` VALUES ('192', 'LeticiaB', '2015-05-26', '06:12:40', '::1');
+INSERT INTO `sesion` VALUES ('193', 'InnovaTe', '2015-05-26', '06:13:49', '::1');
+INSERT INTO `sesion` VALUES ('194', 'LeticiaB', '2015-05-26', '06:15:35', '::1');
+INSERT INTO `sesion` VALUES ('195', 'InnovaTe', '2015-05-26', '06:16:40', '::1');
+INSERT INTO `sesion` VALUES ('196', 'LeticiaB', '2015-05-26', '06:27:30', '::1');
+INSERT INTO `sesion` VALUES ('197', 'InnovaTe', '2015-05-26', '06:28:38', '::1');
+INSERT INTO `sesion` VALUES ('198', 'InnovaTe', '2015-05-26', '06:56:31', '::1');
+INSERT INTO `sesion` VALUES ('199', 'Devs', '2015-05-26', '07:23:29', '::1');
+INSERT INTO `sesion` VALUES ('200', 'LeticiaB', '2015-05-26', '07:37:18', '::1');
+INSERT INTO `sesion` VALUES ('201', 'InnovaTe', '2015-05-26', '07:46:13', '::1');
+INSERT INTO `sesion` VALUES ('202', 'SAADS', '2015-05-26', '07:46:52', '::1');
+INSERT INTO `sesion` VALUES ('203', 'LeticiaB', '2015-05-26', '08:02:42', '::1');
+INSERT INTO `sesion` VALUES ('204', 'SLOW', '2015-05-26', '08:03:32', '::1');
+INSERT INTO `sesion` VALUES ('205', 'LeticiaB', '2015-05-26', '08:15:56', '::1');
+INSERT INTO `sesion` VALUES ('206', 'NetSky', '2015-05-26', '08:16:51', '::1');
+INSERT INTO `sesion` VALUES ('207', 'LeticiaB', '2015-05-26', '08:26:34', '::1');
+INSERT INTO `sesion` VALUES ('208', 'MAD', '2015-05-26', '08:29:16', '::1');
+INSERT INTO `sesion` VALUES ('209', 'LeticiaB', '2015-05-27', '01:41:11', '::1');
+INSERT INTO `sesion` VALUES ('210', 'SAADS', '2015-05-27', '01:43:08', '::1');
+INSERT INTO `sesion` VALUES ('211', 'LeticiaB', '2015-05-27', '02:10:12', '::1');
+INSERT INTO `sesion` VALUES ('212', 'InnovaTe', '2015-05-27', '02:11:11', '::1');
+INSERT INTO `sesion` VALUES ('213', 'Devs', '2015-05-27', '02:19:36', '::1');
+INSERT INTO `sesion` VALUES ('214', 'NetSky', '2015-05-27', '02:34:10', '::1');
+INSERT INTO `sesion` VALUES ('215', 'LeticiaB', '2015-05-27', '02:45:41', '::1');
+INSERT INTO `sesion` VALUES ('216', 'NetSky', '2015-05-27', '02:49:19', '::1');
+INSERT INTO `sesion` VALUES ('217', 'Devs', '2015-05-27', '02:50:06', '::1');
+INSERT INTO `sesion` VALUES ('218', 'MAD', '2015-05-27', '03:00:50', '::1');
+INSERT INTO `sesion` VALUES ('219', 'SLOW', '2015-05-27', '03:11:54', '::1');
+INSERT INTO `sesion` VALUES ('220', 'SAADS', '2015-05-27', '03:25:12', '::1');
+INSERT INTO `sesion` VALUES ('221', 'LeticiaB', '2015-05-27', '03:39:40', '::1');
+INSERT INTO `sesion` VALUES ('222', 'LeticiaB', '2015-05-27', '03:59:50', '::1');
+INSERT INTO `sesion` VALUES ('223', 'InnovaTe', '2015-05-27', '04:13:03', '::1');
+INSERT INTO `sesion` VALUES ('224', 'LeticiaB', '2015-05-27', '04:26:32', '::1');
+INSERT INTO `sesion` VALUES ('225', 'LeticiaB', '2015-05-27', '02:51:19', '::1');
 
 -- ----------------------------
 -- Table structure for `socio`
@@ -1094,29 +1457,37 @@ CREATE TABLE `socio` (
   PRIMARY KEY (`CODIGO_S`) USING BTREE,
   KEY `FK_GRUPO_EMPRESA__SOCIO` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_GRUPO_EMPRESA__SOCIO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
 
 -- ----------------------------
 -- Records of socio
 -- ----------------------------
-INSERT INTO `socio` VALUES ('22', 'Oasis', 'Pablo', 'Sahonero');
-INSERT INTO `socio` VALUES ('23', 'Oasis', 'Jimmy', 'Rojas');
-INSERT INTO `socio` VALUES ('24', 'Oasis', 'Alejandro', 'Guzman');
-INSERT INTO `socio` VALUES ('25', 'Oasis', 'Rolando', 'Ro...');
-INSERT INTO `socio` VALUES ('26', 'FreeValue', 'Oscar', 'Gamboa Acho');
-INSERT INTO `socio` VALUES ('27', 'FreeValue', 'Oscar', 'Torrez Salas');
-INSERT INTO `socio` VALUES ('28', 'FreeValue', 'Valeri', 'Crespo Gutierrez');
-INSERT INTO `socio` VALUES ('29', 'FreeValue', 'Ruddy', 'Marquina Escobar');
-INSERT INTO `socio` VALUES ('30', 'FreeValue', 'Adelio', 'Ayllon Machicado');
-INSERT INTO `socio` VALUES ('31', 'Camaleon', 'Jimena', 'Salazar');
-INSERT INTO `socio` VALUES ('32', 'Camaleon', 'Victor', 'Nnnn');
-INSERT INTO `socio` VALUES ('33', 'Camaleon', 'Socio3', 'ApSocio3');
-INSERT INTO `socio` VALUES ('34', 'Power', 'Javier', 'Rojas');
-INSERT INTO `socio` VALUES ('35', 'Power', 'Alex', 'fLORES');
-INSERT INTO `socio` VALUES ('36', 'Power', 'Alan', 'Fuentes');
-INSERT INTO `socio` VALUES ('37', 'AgileA', 'Nombre1', 'Apellido1');
-INSERT INTO `socio` VALUES ('38', 'AgileA', 'Nombre2', 'Apellido2');
-INSERT INTO `socio` VALUES ('39', 'AgileA', 'Nombre3', 'Apellido3');
+INSERT INTO `socio` VALUES ('40', 'Devs', 'Vania Marisela ', 'Catorceno Carballo');
+INSERT INTO `socio` VALUES ('41', 'Devs', 'Dan Joel', 'Canqui Aviles');
+INSERT INTO `socio` VALUES ('42', 'Devs', 'Daniel', 'Rocha Perez');
+INSERT INTO `socio` VALUES ('43', 'Devs', 'Denis', 'Vazques Flores');
+INSERT INTO `socio` VALUES ('44', 'Devs', 'Diego Armando', 'Zambrana Arze');
+INSERT INTO `socio` VALUES ('45', 'InnovaTe', 'Antonio', 'Alurralde');
+INSERT INTO `socio` VALUES ('46', 'InnovaTe', 'Andreina', 'Cota');
+INSERT INTO `socio` VALUES ('47', 'InnovaTe', 'Fernando', 'Gutierrez');
+INSERT INTO `socio` VALUES ('48', 'InnovaTe', 'Marcelo', 'Torrico');
+INSERT INTO `socio` VALUES ('49', 'InnovaTe', 'Winder', 'Chiri');
+INSERT INTO `socio` VALUES ('50', 'MAD', 'Juan Manuel', 'Castro Arnez');
+INSERT INTO `socio` VALUES ('51', 'MAD', 'Alison', 'Fernandez Blanco');
+INSERT INTO `socio` VALUES ('52', 'MAD', 'Diego Gabriel', 'Nuñez Duran');
+INSERT INTO `socio` VALUES ('53', 'NetSky', 'Norman', 'Antezana Pinto');
+INSERT INTO `socio` VALUES ('54', 'NetSky', 'Dario Edson', 'Chacon Paichucama');
+INSERT INTO `socio` VALUES ('55', 'NetSky', 'Erlinda', 'Chambi Manzano');
+INSERT INTO `socio` VALUES ('56', 'NetSky', 'Claudia Dolinda', 'Torrico');
+INSERT INTO `socio` VALUES ('57', 'NetSky', 'Ruben ', 'Villca Fernandez');
+INSERT INTO `socio` VALUES ('58', 'SAADS', 'Enrique Daniel ', 'Antezana Vargas');
+INSERT INTO `socio` VALUES ('59', 'SAADS', 'Beimar E. ', 'Huarachi Mamani');
+INSERT INTO `socio` VALUES ('60', 'SAADS', 'Jorge ', 'Avila Baldiviezo');
+INSERT INTO `socio` VALUES ('61', 'SAADS', 'Kenji Gabriel ', 'Lozano Rosales');
+INSERT INTO `socio` VALUES ('62', 'SLOW', 'Melisa Stefani', 'Carballo Valencia');
+INSERT INTO `socio` VALUES ('63', 'SLOW', 'Cristhian', 'Lima Sarabia');
+INSERT INTO `socio` VALUES ('64', 'SLOW', 'Santiago', 'Quiroga Turdera');
+INSERT INTO `socio` VALUES ('65', 'SLOW', 'Rodrigo David', 'Rivera Ortega');
 
 -- ----------------------------
 -- Table structure for `tipo`
@@ -1162,18 +1533,36 @@ CREATE TABLE `usuario` (
 -- ----------------------------
 INSERT INTO `usuario` VALUES ('Admin1', 'Habilitado', 'dbb050cddf3a78fd6b861eb577d1f5dc', '4442336', 'adm.saetis@gmail.com');
 INSERT INTO `usuario` VALUES ('Admin2', 'Habilitado', '62132d33742969b9b1db54e2d4145009', '4329092', 'joaquin@rodriguez.com');
+INSERT INTO `usuario` VALUES ('ADSysCorp', 'Habilitado', 'dc5d00cea0d628067d7d5399102233eb', '71494555', 'adsyscorp@gmail.com');
 INSERT INTO `usuario` VALUES ('AgileA', 'Habilitado', 'f4326bafda468fdca9511f4468cea9c9', '4443200', 'agile@action.com');
+INSERT INTO `usuario` VALUES ('AiraSoft', 'Habilitado', 'fc03609dccb03ed065360c7672f13942', '65353545', 'airasoft@outlook.com');
+INSERT INTO `usuario` VALUES ('Akira', 'Habilitado', 'e5f9cfc5526a5933366a943ae344110c', '4564646', 'akira@gmail.com');
+INSERT INTO `usuario` VALUES ('Altec', 'Habilitado', '3509fe2708b1d6c4f92e32187d2c19d0', '73722777', 'altec@hotmail.com');
+INSERT INTO `usuario` VALUES ('ANDE', 'Habilitado', '73f6d4c77463ff99f74523490bf5d18f', '4454574', 'andesoft@outlook.com');
+INSERT INTO `usuario` VALUES ('Angel', 'Habilitado', 'f8878656e7d4b4c750fc4c94cee9a158', '76765754', 'angel.fire@outlook.com');
+INSERT INTO `usuario` VALUES ('ANKA', 'Habilitado', 'f6bc2d991dc97bc61729d639e7302efc', '76868763', 'ankasoft@hotmail.com');
+INSERT INTO `usuario` VALUES ('Answer', 'Habilitado', '5016a78bc8eec05c82f049deb8f48ccb', '4666734', 'answer@hotmail.com');
+INSERT INTO `usuario` VALUES ('Aracorp', 'Habilitado', '92eeb9010bcc6fa962d0dd6ea55729ed', '64343437', 'aracorp@hotmail.com');
+INSERT INTO `usuario` VALUES ('ARGOS', 'Habilitado', 'da06de41f4e5c7c64394439f7d103ad1', '4343545', 'argos.srl@gmail.com');
 INSERT INTO `usuario` VALUES ('Arkano', 'Habilitado', 'd87b0418cd506677986e7a3ae41b2c54', '4233322', 'arkano@arkanos.com');
+INSERT INTO `usuario` VALUES ('Aska', 'Habilitado', '3bb23cff49551b3eca19e9240f725080', '4443443', 'aska@gmail.com');
+INSERT INTO `usuario` VALUES ('ASSI', 'Habilitado', '4d999b1200f60196f2c921a9f49563a1', '74242324', 'asii@outlook.com');
 INSERT INTO `usuario` VALUES ('Camaleon', 'Habilitado', '88936961971d538e693935a6ffb40a20', '4442299', 'camaleon@soft.com');
 INSERT INTO `usuario` VALUES ('Colective', 'Habilitado', 'b9becbb405f0fd5524071709a02b5330', '4432211', 'colectivo@virtual.com');
 INSERT INTO `usuario` VALUES ('Corina', 'Deshabilitado', '83175e301fe440e2fa85463a987037ba', '4241122', 'corina@hotmail.com');
 INSERT INTO `usuario` VALUES ('David', 'Deshabilitado', '0076fa0d70724c52f22a82f7ed3f5e23', '4443321', 'davides@gmail.com');
+INSERT INTO `usuario` VALUES ('Devs', 'Habilitado', '1c9c37e7922d4b506d53bb1fcc7ed107', '67451583', 'devsgroup@outlookl.com');
 INSERT INTO `usuario` VALUES ('FreeValue', 'Habilitado', 'f87f9d72ff9dfb09182cffa68762c2c8', '4329092', 'free@value.com');
+INSERT INTO `usuario` VALUES ('InnovaTe', 'Habilitado', 'b505ee29745ce8d9fc12fa8af65df9b0', '70751815', 'contacto@innovate.dev.bo');
 INSERT INTO `usuario` VALUES ('LeticiaB', 'Habilitado', '1fec3b9b292b7c95d5287012c1ea3052', '4440099', 'leticia@gmail.com');
+INSERT INTO `usuario` VALUES ('MAD', 'Habilitado', 'ade8b436f8f320a38a157e56c048a114', '69438193', 'mad.software.srl@gmail.com');
 INSERT INTO `usuario` VALUES ('MarcoA', 'Deshabilitado', '0c7895d527f7680d6a715fc6a47a720e', '4440099', 'marcoantonio@hotmail.com');
+INSERT INTO `usuario` VALUES ('NetSky', 'Habilitado', '6cc63f8b72596e177a372949437dee50', '79735925', 'netskysystemsrl@outlook.com');
 INSERT INTO `usuario` VALUES ('Oasis', 'Habilitado', 'c810a44fc32898ae6ab495d89510d75f', '4331222', 'oasis@oasis.com');
 INSERT INTO `usuario` VALUES ('Patricia', 'Habilitado', '1f08de3d6b9e572ba8f5da4c1dd2c30d', '4298765', 'patricia@hotmail.com');
 INSERT INTO `usuario` VALUES ('Power', 'Habilitado', '7a4f8e9647073ee9a5564f81cf3a1082', '4329090', 'power@power.com');
+INSERT INTO `usuario` VALUES ('SAADS', 'Habilitado', 'f13b522e0c82cd0fa7c24c67436b8e69', '79967675', 'saadssoft@gmail.com');
+INSERT INTO `usuario` VALUES ('SLOW', 'Habilitado', 'a73da1d7391398b7d7bf5e13d885fbda', '4251675', 'slow.code.srl@gmail.com');
 
 -- ----------------------------
 -- Table structure for `usuario_rol`
@@ -1198,15 +1587,34 @@ INSERT INTO `usuario_rol` VALUES ('David', 'asesor');
 INSERT INTO `usuario_rol` VALUES ('LeticiaB', 'asesor');
 INSERT INTO `usuario_rol` VALUES ('MarcoA', 'asesor');
 INSERT INTO `usuario_rol` VALUES ('Patricia', 'asesor');
+INSERT INTO `usuario_rol` VALUES ('ADSysCorp', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('AgileA', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('AiraSoft', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Akira', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Altec', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('ANDE', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Angel', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('ANKA', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Answer', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Aracorp', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('ARGOS', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Arkano', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Aska', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('ASSI', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Camaleon', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Colective', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('Devs', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('FreeValue', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('InnovaTe', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('MAD', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('NetSky', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Oasis', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('Power', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('SAADS', 'grupoEmpresa');
+INSERT INTO `usuario_rol` VALUES ('SLOW', 'grupoEmpresa');
+
 -- ----------------------------
--- Procedure structure for insert_gestion
+-- Procedure structure for `insert_gestion`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_gestion`;
 DELIMITER ;;
@@ -1226,12 +1634,11 @@ IF(anio_f_ini >= anio_actual)THEN
 ELSE
     SELECT "Las gestiones deben ser posteriores a la fecha actual" as errno;
   END IF;
-END
-;;
+END;;
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for insert_socio
+-- Procedure structure for `insert_socio`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_socio`;
 DELIMITER ;;
@@ -1250,11 +1657,11 @@ THEN
  ELSE
   SELECT "Ya se registraron todos los socios" as errno;
  END IF;
-END
-;;
+END;;
 DELIMITER ;
+
 -- ----------------------------
--- Procedure structure for registro_administrador
+-- Procedure structure for `registro_administrador`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_administrador`;
 DELIMITER ;;
@@ -1295,12 +1702,11 @@ BEGIN
 
   END CASE;
   
-  END
-;;
+  END;;
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for registro_grupo_empresa
+-- Procedure structure for `registro_grupo_empresa`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_grupo_empresa`;
 DELIMITER ;;
@@ -1342,13 +1748,12 @@ BEGIN
   SELECT "Se registro correctamente" as mensaje;
   END CASE;
   
-  END
-;;
+  END;;
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for registro_usuario
--- ----------------------------0
+-- Procedure structure for `registro_usuario`
+-- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_usuario`;
 DELIMITER ;;
 CREATE PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
@@ -1389,7 +1794,5 @@ BEGIN
 
   END CASE;
   
-  END
-;;
+  END;;
 DELIMITER ;
-
