@@ -1,6 +1,6 @@
 <?php
 
- include '../Modelo/conexion.php';
+ //include '../Modelo/conexion.php';
  session_start();
 if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
