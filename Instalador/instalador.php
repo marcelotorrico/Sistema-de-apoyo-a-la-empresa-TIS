@@ -35,7 +35,7 @@ and open the template in the editor.
     if(isset($_POST['instalar']) && isset($_POST['host']) && isset($_POST['usuario'])){
         $nombre = $_POST['nombre'];
         ejecutarSqlScript("../saetis.sql",$_POST['host'],$_POST['usuario'],$_POST['contrasena'],"saetis2");  
-        $creador->copiar("Ruta del cd", "C:/xampp/htdocs/$nombre");
+        $creador->copiar("../../Sistema-de-apoyo-a-la-empresa-TIS", "C:/xampp/htdocs/$nombre");
         $creador->removeDirectory("C:/xampp/htdocs/$nombre/Instalador");
         header("Location: ../../$nombre/");
     }
