@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php 
- 
+    include 'Controlador/validadorPaginaPrincipal.php';
     include 'Modelo/conexionPDO.php';
+    
     $conectar = new Conexion();
 ?>
 <html>
@@ -27,11 +28,11 @@
     
     
     
-        	<link href="Librerias/css/style11.css" rel="stylesheet" type="text/css" />
-		<link href="Librerias/css/tabla-div.css" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" type="text/css" href="Librerias/css/coin-slider.css" />
-                <link href="archivos/estilos.css" rel="stylesheet" type="text/css">
-                <script language="JavaScript" src="archivos/script.js" type="text/javascript"></script>
+    <link href="Librerias/css/style11.css" rel="stylesheet" type="text/css" />
+    <link href="Librerias/css/tabla-div.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="Librerias/css/coin-slider.css" />
+    <link href="archivos/estilos.css" rel="stylesheet" type="text/css">
+    <script language="JavaScript" src="archivos/script.js" type="text/javascript"></script>
 
 </head>
 
