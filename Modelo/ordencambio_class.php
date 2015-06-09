@@ -1,5 +1,4 @@
 <?php 
-//include ( 'conexion_pd.php' );
 //require_once ( 'documento_class.php' );
 /*
 *Modelo del documento ORDEN DE CAMBIO 

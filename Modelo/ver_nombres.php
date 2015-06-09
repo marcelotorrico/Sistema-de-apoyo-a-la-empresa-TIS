@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 include '../Librerias/fpdf.php';
-include 'conexion.php';
+include 'conexionPDO.php';
 
 class PDF extends FPDF
 {
@@ -59,9 +59,9 @@ date_default_timezone_set('America/La_Paz');
 $fecha=  date('Y-m-d');
 $hora=  date("G:H:i");
 try {
-        $cla=new conexion();
-        $consulta=$cla->consulta("SELECT NOMBRE_LARGO,NOMBRE_CORTO FROM lista_ge");
-        while ($fila=  mysql_fetch_array($consulta))
+        $cla=new Conexion();
+        $consulta=$cla->query("SELECT NOMBRE_LARGO,NOMBRE_CORTO FROM lista_ge");
+        while ($fila=  $consulta->fetch(PDO::FETCH_NUM))
         {
             $pdf->MultiCell(130,5,  utf8_decode(utf8_decode("$indice.- NOMBRE LARGO: $fila[0]    NOMBRE CORTO: $fila[1]")));
             $pdf->Ln();

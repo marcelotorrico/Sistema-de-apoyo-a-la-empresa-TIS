@@ -3,8 +3,8 @@
 //require('registro.php');
 //require('guardarDocumento.php');
 session_start();
-include('conexion.php');
-$conexion = new conexion();
+include('conexionPDO.php');
+$conexion = new Conexion();
  
  $UsuarioActivo = $_SESSION['usuario'];
 
@@ -34,17 +34,17 @@ $asesor = $UsuarioActivo;
                 $hora=  date("G:H:i");
 
                 
-                $comentario_add = $conexion->consulta("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$asesor','documento subido','Habilitado','$nombre','$fecha','$hora')")or
+                $comentario_add = $conexion->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$asesor','documento subido','Habilitado','$nombre','$fecha','$hora')")or
             die("Error al s");
 
-            $query= $conexion->consulta("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
- if ($row = mysql_fetch_row($query)) 
+            $query= $conexion->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+ if ($row = $query->fetch(PDO::FETCH_NUM)) 
  {
    $id = trim($row[0]);
  }
  //var_dump($row);
  echo $id;
- $guardar_doc = $conexion->consulta("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
+ $guardar_doc = $conexion->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D)
         VALUES('$id','1024','$new_ruta',TRUE,TRUE)");
                // $registro= new Registro($asesor,'documento subido','habilitado',$nombre,$fecha,$hora);
                // $idRegistro = $registro->getIdRegistro();

@@ -2,7 +2,7 @@
 /**
 * Esta clase nos permitira mostrar los documentos publicados y sus tipo
 */
-require_once('conexion_pd.php');
+require_once('conexionPDO.php');
 class Recurso
 {
 

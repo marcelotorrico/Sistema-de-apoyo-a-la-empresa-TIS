@@ -1,5 +1,5 @@
 <?php 
-include ('conexion_pd.php');
+include ('conexionPDO.php');
 require('registro.php');
 require('guardarDocumento.php');
 require('descripcion.php');

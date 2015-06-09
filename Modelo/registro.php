@@ -1,6 +1,6 @@
 <?php
 
-require_once('conexion_pd.php');
+require_once('conexionPDO.php');
 
 class Registro
 {

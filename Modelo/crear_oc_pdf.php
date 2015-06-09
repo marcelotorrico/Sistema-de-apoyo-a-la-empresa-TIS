@@ -3,7 +3,6 @@
 * TODO todo documento deberia ser personalizable 
 * Crear una clase formato_para_documento.php
 */
-//include ( 'conexion_pd.php' );
 include( '../Librerias/fpdf.php' );
 include( 'ordencambio_class.php' );
 require('registro.php');
