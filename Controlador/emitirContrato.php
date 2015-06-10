@@ -1,6 +1,6 @@
-<?php
-  
+<?php 
   include '../Modelo/conexionPDO.php';
+  include '../Controlador/crearContrato.php';
   
   session_start();
   $uActivo = $_SESSION['usuario'];
@@ -8,128 +8,56 @@
   $conexion = new Conexion();
 
   if (isset($_POST['grupoempresa']))
-  {
-      $nLargoGE = $_REQUEST['grupoempresa'];
-      $consulta="SELECT DISTINCT NOMBRE_R FROM `registro` AS r,`receptor` AS w WHERE  r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND w.`RECEPTOR_R` = '$nLargoGE'";
-      $contrato= $conexion->query($consulta);
-      $cantC= $contrato->rowCount();
-      
-      if($cantC != 0 )
-      {
-         echo"<script type=\"text/javascript\">alert('Usted ya emitio un contrato para esta grupo empresa'); window.location='../Vista/contrato.php';</script>";  
-      }
-      else
-      {
-         $nombreF= '../Repositorio/asesor/Contrato.tex';
-         $existeFile = FALSE;
-         if (file_exists($nombreF))
-         {
-             $existeFile = TRUE;
-         }
-         if($existeFile)
-         {
+  {   
+    $nLargoGE = $_POST['grupoempresa'];
+
             if(strnatcasecmp($nLargoGE, "Seleccione una grupo empresa") != 0)
             {
-                $seleccion="SELECT `NOMBRE_CORTO_GE` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'";            
-                $consulta = $conexion->query($seleccion);
-                $nCortoGE =  $consulta->fetch();
+
                 
-                $nombreUA = $_SESSION['usuario'] ;
-                $nomAp = $conexion->query("SELECT NOMBRES_A, APELLIDOS_A FROM asesor WHERE NOMBRE_U =  '$nombreUA' ");
+               $pdf = new PDF();
+               
+               
+                $seleccion="SELECT NOMBRE_CORTO_GE FROM grupo_empresa WHERE NOMBRE_LARGO_GE = '$nLargoGE'";            
+                $consulta = $conexion->query($seleccion);
+                $consulta = $consulta->fetch(PDO::FETCH_NUM);
+                $nCortoGE =  $consulta[0];
+                
+                $nombreUA = $_SESSION['usuario'];
+                //nombre UA ejemplo LetciaB
+
+                $seleccion="SELECT NOMBRES_A, APELLIDOS_A FROM asesor WHERE NOMBRE_U =  '$nombreUA' ";
+                $nomAp = $conexion->query($seleccion);
                 $nombreAp = $nomAp->fetch(PDO::FETCH_NUM);
                 $asesor = $nombreAp[0]." ".$nombreAp[1] ;
     
-                $seleccion = "SELECT `REPRESENTANTE_LEGAL_GE` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'";            
+                $seleccion = "SELECT REPRESENTANTE_LEGAL_GE FROM grupo_empresa WHERE NOMBRE_LARGO_GE = '$nLargoGE'";            
                 $consulta = $conexion->query($seleccion);
-                $represen = $consulta->fetch();
+                $consulta = $consulta->fetch(PDO::FETCH_NUM);
+                $represen = $consulta[0];
                 
-                $seleccion = "SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'";            
+                $seleccion = "SELECT NOMBRE_U FROM grupo_empresa WHERE NOMBRE_LARGO_GE = '$nLargoGE'";            
                 $consulta = $conexion->query($seleccion);
-                $nombreUGE = $consulta->fetch();
+                $consulta = $consulta->fetch(PDO::FETCH_NUM);
+                $nombreUGE = $consulta[0];
                 
-                $seleccion = "SELECT p.`NOMBRE_P` FROM `proyecto` AS p, `inscripcion_proyecto` AS ip WHERE ip.`NOMBRE_U` = '$nombreUGE[0]' AND ip.`CODIGO_P` = p.`CODIGO_P`";
+                $seleccion = "SELECT p.`NOMBRE_P` FROM `proyecto` p, `inscripcion_proyecto` ip WHERE ip.`NOMBRE_U` = '$nombreUGE' AND ip.`CODIGO_P` = p.`CODIGO_P`";
                 $consulta = $conexion->query($seleccion);
-                $sistema = $consulta->fetch();
+                $consulta = $consulta->fetch(PDO::FETCH_NUM);
+                $sistema = $consulta[0];
                 
-                $seleccion = "SELECT p.`CONVOCATORIA` FROM `proyecto` AS p, `inscripcion_proyecto` AS ip WHERE ip.`NOMBRE_U` = '$nombreUGE[0]' AND ip.`CODIGO_P` = p.`CODIGO_P`";
+                $seleccion = "SELECT p.`CONVOCATORIA` FROM `proyecto` p, `inscripcion_proyecto` ip WHERE ip.`NOMBRE_U` = '$nombreUGE' AND ip.`CODIGO_P` = p.`CODIGO_P`";
                 $consulta = $conexion->query($seleccion);
-                $convo = $consulta->fetch();
+                $consulta = $consulta->fetch(PDO::FETCH_NUM);
+                $convo = $consulta[0];
 
-                $consulta = $conexion->query("SELECT * FROM planificacion WHERE NOMBRE_U='$nombreUGE[0]' AND ESTADO_E='planificacion registrada'");
-                $planifi = $consulta->fetch(PDO::FETCH_NUM);
+            //repositorio/usuario asesor/Contratos/CgrupoEmpresa.pdf //realizar esta tarea para guardas los pdfs
 
-                if (is_array($planifi))
-                {       
-                    $buscar    = array(
-                        'empresa_nombre_largo' => '[[empresa-nombre-largo]]',
-                        'empresa_nombre_corto' => '[[empresa-nombre-corto]]',
-                        'rep_legal'            => '[[rep-legal]]',
-                        'asesor'               => '[[asesor]]',
-                        'fecha_actual'         => '[[fecha-actual]]',
-                        'hora_actual'          => '[[hora-actual]]',
-                        'sistema'              => '[[sistema]]',
-                        'convocatoria'         => '[[convocatoria]]',   
-                    );
-                    
-                    $remplazo['empresa_nombre_largo'] = $nLargoGE;
-                    $remplazo['empresa_nombre_corto'] = $nCortoGE[0];
-                    $remplazo['rep_legal']            = $represen[0];
-                    $remplazo['asesor']               = $asesor;
-                    $remplazo['fecha_actual']         = date('Y/m/d');
-                    $remplazo['sistema']              = $sistema[0];
-                    $remplazo['convocatoria']         = $convo[0];
-                        
-                    $ruta = "../Repositorio/asesor";
-                    
-                    chdir($ruta);
-                        
-                    $id = "Contrato";
-                    $tex = $id.".tex"; 
-                    $log = $id.".log"; 
-                    $aux = $id.".aux";
-                    $nombCorto = str_replace(' ', '', $nCortoGE[0]);
-                    $pdf = $id.$nombCorto.".pdf"; 
-                    
-                    $plantilla = "Contrato.tex";
-                    $texto = file_get_contents($plantilla);
-                    $textoAux = file_get_contents($plantilla);
-                    $texto = str_replace($buscar['empresa_nombre_largo'], $remplazo['empresa_nombre_largo'], $texto);
-                    $texto = str_replace($buscar['empresa_nombre_corto'], $remplazo['empresa_nombre_corto'], $texto);
-                    $texto = str_replace($buscar['rep_legal'], $remplazo['rep_legal'], $texto);
-                    $texto = str_replace($buscar['asesor'], $remplazo['asesor'], $texto);
-                    $texto = str_replace($buscar['fecha_actual'], $remplazo['fecha_actual'], $texto);
-                    $texto = str_replace($buscar['sistema'], $remplazo['sistema'], $texto);
-                    $texto = str_replace($buscar['convocatoria'], $remplazo['convocatoria'], $texto);
-                        
-                    file_put_contents($tex,$texto);
-                    exec("pdflatex -interaction=nonstopmode $tex",$final);
-                    file_put_contents($tex, $textoAux);
-                    unlink($log);
-                    unlink($aux);
-                    
-                    $rutaDir="../".$nombreUA."/Contratos/";
-                    $file = "Contrato".'_'.$nombreUA.'.pdf';
-                    
-                    if (!file_exists($rutaDir)) 
-                    {
-                        $oldmask = umask(0); 
-                        mkdir($rutaDir, 0777,TRUE);
-                        umask($oldmask);
-                        
-                        if(!file_exists("../".$nombreUA."/index.html"))
-                        {
-                                fopen("../".$nombreUA."/index.html", "x");
-                        }
-                    }
-                                                   
-                    rename("Contrato.pdf", $file);
-                    rename($file, $rutaDir.$pdf );
-                    
-                    $descrip = "../Repositorio/".$nombreUA."/Contratos/".$pdf;
-                    $fecha = date('Y-m-d');
-                    $hora = date("G:H:i");
-                    $visible = "TRUE";
-                    $descargar = "TRUE";
+              //datos para crear el controo como ser asesor, documento y otros
+                $pdf->datosGe($nLargoGE,$nCortoGE,$represen);
+
+                $pdf->cuerpo($pdf);
+                /*
                     $comentar = $conexion->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$nombreUA','Contrato','Habilitado','$pdf','$fecha','$hora')")or
                     die("Error");
                                                    
@@ -147,37 +75,30 @@
                      $selGE=$conexion->query("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'");
                      $nomGE=$selGE->fetch(PDO::FETCH_NUM);
 
-                     $estaFir=  $conexion->query("UPDATE `inscripcion_proyecto`
-                     SET `ESTADO_CONTRATO`= 'Firmado'                   
-                    WHERE `NOMBRE_U` = '$nomGE[0]'");  
-                    //rename("Contrato.pdf", $pdf);
+                     $estaFir=  $conexion->query("UPDATE `inscripcion_proyecto` SET `ESTADO_CONTRATO`= 'Firmado' WHERE `NOMBRE_U` = '$nomGE[0]'");  
 
-                   /* if(!file_exists("../".$nombreUA."/Contratos/index.html"))
-                    {
-                        $directorioIndex = "../".$nombreUA."/Contratos/index.html";
-                        fopen($directorioIndex, "x");
-                    }*/
-                    
-                    echo"<script type=\"text/javascript\">alert('Se genero el contrato correctamente'); window.location='../Vista/contrato.php';</script>";                    
-                }
-                else
-                {
-                    echo"<script type=\"text/javascript\">alert('La grupo empresa seleccionada no ha registrado aun su planificacion'); window.location='../Vista/contrato.php';</script>";  
+                     //despues de hacer todos los insert necesarios para este documento
+                  */
 
+                   // echo"<script type=\"text/javascript\">alert('Se genero el contrato correctamente'); window.location='../Vista/contrato.php';</script>";                    
+                     
                 }
-                
-            }
-            else{        
+               
+							
             
-               echo"<script type=\"text/javascript\">alert('Por favor, seleccione una grupo empresa'); window.location='../Vista/contrato.php';</script>";  
+            else{   
+    
+               unset ($pdf);
+               echo"<script>alert('Por favor, seleccione una grupo empresa'); window.location='../Vista/contrato.php';</script>";  
             }
         }
-        else
-        {
+		
+     else
+      {
              echo"<script type=\"text/javascript\">alert('Por favor, suba la plantilla del Contrato a su repositorio); window.location='../Vista/contrato.php';</script>";
                                 
-        }
-        
       }
-  }
+        
+      
+  
 ?>

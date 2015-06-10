@@ -313,10 +313,13 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                                             class="btn btn-default btn-xs">Deshabilitar</a>
                                                                             <a href="ModificarEvaluacionGrupoEmpresa.php?GE=' . $GruposIn[$i] . '"
                                                                             class="btn btn-default btn-xs">Modificar Evaluacion </a>
-
+                                                                            
+                                                                            <a href="../Controlador/ListaSocios.php?GE='.$GruposIn[$i].'"
+                                                                            class="btn btn-default btn-xs">Ver Socios </a>
+                                                                            
                                                                             <a href="permitirUnSextoSocio.php?GE='.$GruposIn[$i].'"
                                                                             class="btn btn-default btn-xs">Permitir añadir a un 6to socio. </a>
-
+                                                                            
                                                                         </td>
                                                             </tr>';
                                                 }

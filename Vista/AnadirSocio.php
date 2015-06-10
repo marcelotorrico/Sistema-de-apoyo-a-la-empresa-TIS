@@ -1,12 +1,13 @@
 <?php
 session_start();
- include '../Modelo/conexion.php';
- 
+
+ include '../Modelo/conexionPDO.php';
  require '../Controlador/ValidadorInicioSesion.php';
   
+ $conexion = new Conexion();
+ 
 if (isset($_SESSION['usuario'])) { 
  $uActivo = $_SESSION['usuario'];
- $conexion = new conexion();
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
@@ -69,6 +70,8 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
     <!-- SB Admin CSS - Include with every page -->
     <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    
+    <link href="css/tabla-div.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -125,9 +128,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
                                             
                                             echo '<li>
@@ -227,11 +230,11 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
                         <?php 
 
-                        $consSocios = $conexion->consulta("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
-                        $socios = mysql_num_rows($consSocios);
+                        $consSocios = $conexion->query("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
+                        $socios = $consSocios->rowCount();
                       
-                        $cantPermitida = $conexion->consulta("SELECT NUM_SOCIOS as cantidad FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
-                        $cantP = mysql_fetch_array($cantPermitida);
+                        $cantPermitida = $conexion->query("SELECT NUM_SOCIOS as cantidad FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+                        $cantP = $cantPermitida->fetch(PDO::FETCH_ASSOC);
                         $cantP= $cantP['cantidad'];
 
                         $restantes = ($cantP-$socios);
@@ -261,11 +264,108 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+            
+            <div class="row">
+            <div class="col-lg-12">
+
+
+            <div class="mainbar">
+            <div class="article"><br><br>
+            <h2><span>Lista de los socios</span></h2>	
+
+            </div>
+
+                
+
+            <div class="historia1">
+            <div class="contenedor-fila2">
+
+            <div class="contenedor-columna">
+            <?php
+            echo "Nº";
+            ?>
+            </div>
+                
+            <div class="contenedor-columna">
+            <?php
+            echo "Nombre";
+            ?>
+            </div>	
+            <div class="contenedor-columna">
+            <?php
+            echo "Apellido";
+            ?>
+            </div>
+            <div class="contenedor-columna">
+            <?php
+            echo "Acción";
+            ?>
+            </div>
+          
+            </div>
+            <?php
+            //crear conexion---------------------------
+
+            //Peticion
+            $peticion =$conexion->prepare("SELECT CODIGO_S, NOMBRES_S, APELLIDOS_S FROM socio WHERE NOMBRE_U = '$uActivo'");
+            $peticion->execute();
+            $result = $peticion->fetchAll();
+            $cantidad = count($result);
+            $j = 1;
+            foreach($result as $fila => $value)
+            {
+            ?>
+            <div class="contenedor-fila">
+                
+            <div class="contenedor-columna">
+            <?php
+            echo $j;
+            $j++;
+            ?>
+            </div>
+                
+            <div class="contenedor-columna">
+            <?php
+            echo $value['NOMBRES_S'];
+            ?>
+            </div>
+
+            <div class="contenedor-columna">
+            <?php
+            echo $value['APELLIDOS_S'];
+            ?>
+            </div>
+                                                                   
+            <div class="contenedor-columna">
+            <?php
+            $url = '../../Vista/AnadirSocio.php';
+            $rol = 'grupoEmpresa';
+            echo "<a href ='../Modelo/BD/eliminar_socio.php?id_us=".$value['CODIGO_S']."&url=".$url."&nombre=".$uActivo."'><font color='blue'>Eliminar</font></a>";
+            ?>
+
+            </div>
+
+
+            </div>
+
+            <?php
+            }
+
+            //Cerrar
+
+            ?>	
+
+            </div>                                         
+
+            </div>                   
+
+            </div>
+            <!-- /.col-lg-12 -->
+            </div>
+            
+            
         </div>   
-            
-            
-            
-   
+             
         <!-- /#page-wrapper -->
 
     </div>
