@@ -12,7 +12,7 @@ if(isset($selecDoc))
     $registros=$co->query("SELECT *".
         " FROM Registro".
         " WHERE tipo_t= 'documento requerido'") or
-         die("Problemas en el select:".mysql_error());
+         die("Problemas en el select:".$co->errorInfo());
 
     
     

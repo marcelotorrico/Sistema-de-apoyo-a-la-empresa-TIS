@@ -11,7 +11,7 @@ $horaAhora="";
 $existeCampo="vacio";
 $usuarioActivo="leticia";
 $registros=$co->query("select * from criterio_evaluacion") or
-  die("Problemas en la consulta:".mysql_error());
+  die("Problemas en la consulta:".$co->errorInfo());
 if(isset($Agregar))
 {
                 

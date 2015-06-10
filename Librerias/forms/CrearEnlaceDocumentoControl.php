@@ -20,20 +20,20 @@ $var=1;
 echo ("$fechaS");
 $reg="";
 $registros=$clas->query("select * from tarea") or
-  die("Problemas en el select:".mysql_error());
+  die("Problemas en el select:".$co->errorInfo());
 if(isset($b))
 {
 	
 	
-		/**$registros=mysql_query("INSERT INTO tarea (id_T, 
+		/**$registros=$co->query("INSERT INTO tarea (id_T, 
 		nombre_T,fecha_publicacion_T,hora_Publicacion_T,fecha_limite_T,
 		USUARIO_id_U) 
 		VALUES ('$var++', 'Propuesta A',null,null,'$fecha1','$hora1','1')") and
-		$registros=mysql_query("INSERT INTO tarea (id_T, 
+		$registros=$co->query("INSERT INTO tarea (id_T, 
 		nombre_T,fecha_publicacion_T,hora_Publicacion_T,fecha_limite_T,
 		USUARIO_id_U) 
 		VALUES ('$var++', 'Propuesta B',null,null,'$fecha2','$hora2','1')") or
-  		die("Problemas en el select:".mysql_error());**/
+  		die("Problemas en el select:".$co->errorInfo());**/
   		$SQL="Update tarea Set fecha_Limite_T='$fecha1' Where id_T='1'";
 		$registros=$clas->query("$SQL"); 
 		

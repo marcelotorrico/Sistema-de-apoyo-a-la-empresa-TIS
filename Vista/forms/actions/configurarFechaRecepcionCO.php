@@ -24,7 +24,7 @@ $horaFinRegistrado="HorFin";
 $registros=$co->query("SELECT *".
         " FROM registro".
         " WHERE tipo_t= 'documento requerido'") or
-  die("Problemas en el select:".mysql_error());
+  die("Problemas en el select:".$co->errorInfo());
 if(isset($documentoR))
 {
     /**

@@ -183,10 +183,7 @@ $idAsesor = $_GET['id_us'];
         $delSesion = $conect->query("DELETE FROM sesion WHERE NOMBRE_U = '$idAsesor' ");
         
         $delUser = $conect->query("DELETE FROM usuario WHERE NOMBRE_U = '$idAsesor' ");
-        
-        // mysql_close($conexion);
-        
-        
+
         echo '<script>alert("Se elimino al asesor correctamente!!")</script>';
     echo '<script>window.location="../Vista/lista_asesores.php";</script>';
     }

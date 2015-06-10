@@ -265,7 +265,7 @@
                                          // Adiciona a Noticia 
                                         $textoNotiN=$_POST['texto'];
                                        
-                                        $noticia = "INSERT INTO noticias (NOMBRE_U,TITULO, FECHA_N, VIEWS, TEXTO, POSTEADO) VALUES ('$usuario','".addslashes(mysql_real_escape_string($_POST["titulo"]))."', NOW(), '0', '$textoNotiN','$uActivo')";
+                                        $noticia = "INSERT INTO noticias (NOMBRE_U,TITULO, FECHA_N, VIEWS, TEXTO, POSTEADO) VALUES ('$usuario','".addslashes($con->quote($_POST["titulo"]))."', NOW(), '0', '$textoNotiN','$uActivo')";
                                         $noticia = $con->query($noticia)
                                         or die ("Error.");
                                         echo "<script type=\"text/javascript\">alert('Tema Adicionado');</script>";

@@ -11,7 +11,7 @@ if(isset($selecDoc))
 {    
     $registros=$co->query("SELECT *".
             " FROM documento_requerido") or
-      die("Problemas en el select:".mysql_error());
+      die("Problemas en el select:".$co->errorInfo());
 
     $SQL="SELECT fecha_inicio,hora_inicio,fecha_limite,hora_limite".
                     " FROM documento_requerido".

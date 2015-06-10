@@ -316,7 +316,7 @@ include 'forms/actions/seleccionarDocumentoConfiguracionFechas.php';
 
 
                                 $idDocumento="";
-                                while($var1 =  mysql_fetch_array($a)){
+                                while($var1 =  $a->fetch(PDO::FETCH_NUM)){
 
                                     echo "<option>".$var1[0]."</option>";
 
