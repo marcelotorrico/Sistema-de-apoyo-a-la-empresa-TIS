@@ -39,8 +39,8 @@
         </form>        
         
         <?php        
-        include '../Modelo/conexion.php';
-        $conectar = new conexion();        
+        include '../Modelo/conexionPDO.php';
+        $conectar = new Conexion();        
         
         if(isset($_POST['select']) && isset($_POST['from']) && isset($_SESSION['administrador'])){
             $consulta = "SELECT ".$_POST['select'].
@@ -49,10 +49,10 @@
                 $consulta.=" WHERE ".$_POST['where'];
             }
             echo "<br>Se ejecutará la siguiente consulta: $consulta <br><br>";
-            $peticion =$conectar->consulta($consulta);
+            $peticion =$conectar->query($consulta);
             $esPrimeraFila = TRUE;
             echo "<table>";
-            while(($fila = mysql_fetch_assoc($peticion))){                
+            while(($fila = $peticion->fetch(PDO::FETCH_ASSOC))){
                 if($esPrimeraFila){
                     echo "<tr>";
                     foreach ($fila as $clave => $valor){
