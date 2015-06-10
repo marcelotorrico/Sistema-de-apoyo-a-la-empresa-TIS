@@ -11,7 +11,6 @@
     $telefono = htmlentities($_POST['telefono'], ENT_QUOTES);
     $rol = htmlentities($_POST['UsuarioRol'], ENT_QUOTES);
 
-    //include '../conexion.php';
     //require '../PHPMailerAutoload.php';
     //require '../class.phpmailer.php';
     
