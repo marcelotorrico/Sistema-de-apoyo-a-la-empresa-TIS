@@ -15,7 +15,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
  <head>
 
-    <meta charset="utf-8">
+   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sistema de Apoyo a la Empresa TIS</title>
@@ -43,6 +43,8 @@ $verificar->validarInicioSesion($uActivo,"asesor");
     <link rel="stylesheet" type="text/css" href="../Librerias/lib/css/bootstrapValidator.css">
     <script type="text/javascript" src="../Librerias/lib/bootstrapValidator.js"></script>
     <!-- Validators -->
+    
+    
     <script type="text/javascript" src="../Librerias/lib/validator/diferenteActividadPlanificacion.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/diferenteEntregable.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/stringLength.js"></script>
@@ -52,14 +54,22 @@ $verificar->validarInicioSesion($uActivo,"asesor");
     <script type="text/javascript" src="../Librerias/lib/validator/numeric.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/porcentajeMax.js"></script>
     <script type="text/javascript" src="../Librerias/lib/validator/porcentajeMin.js"></script>
+    <script type="text/javascript" src="../Librerias/lib/validator/integerN.js"></script>
+    <script type="text/javascript" src="../Librerias/lib/validator/porcentajeAc.js"></script>
     <!-- JS -->
     <script type="text/javascript" src="../Librerias/lib/funcion.js"></script>
+    
 
-    <script type="text/javascript" src="../Librerias/lib/funcionSeguimiento.js"></script>
 
+
+    <!-- Page-Level Plugin CSS - Dashboard -->
+    <link href="../Librerias/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="../Librerias/css/plugins/timeline/timeline.css" rel="stylesheet">
     <!-- SB Admin CSS - Include with every page -->
     <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
+
+
+
 
 </head>
 
@@ -88,6 +98,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                 <a href="lista-de-noticias.php"><i class="glyphicon glyphicon-comment"></i> Foro</a>
             </li>
 
+            <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <?php echo $uActivo.' '; ?><i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -102,6 +113,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                         <a href="unlog.php"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
                     </li>
                 </ul>
+                <!-- /.dropdown-user -->
             </li>
             <!-- /.dropdown -->
         </ul>
@@ -127,6 +139,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                 <a href="documentos_recibidos.php">Documentos Recibidos</a>
                             </li>
                         </ul>
+                        <!-- /.nav-second-level -->
                     </li>
 
                     <li>
@@ -157,23 +170,26 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                             <li>
                                 <a href="contrato.php">Emitir Contrato </a>
                             </li>
-                            
                         </ul>
+                        <!-- /.nav-second-level -->
                     </li>
                     <li>
 
                         <a id="Seguimiento" href="#"><i class="glyphicon glyphicon-list-alt"></i> Seguimiento</a>
+                        <ul class="nav nav-second-level">   </ul>
+                        <!-- /.nav-second-level -->
 
                     </li>
                     <li>
 
                         <a id="SeguimientoSemanal" href="#"><i class="glyphicon glyphicon-list-alt"></i> Seguimiento Semanal</a>
-
+                        <ul class="nav nav-second-level"></ul>
+                        <!-- /.nav-second-level -->
                     </li>
 
                     <li>
                         <a href="#"><i class="glyphicon glyphicon-th-list"></i> Evaluacion<span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
+                        <ul class="nav nav-second-level">
                             <li>
                                 <a href="lista_evaluacion.php">Evaluacion 2 Fase </a>                             
                             </li>
@@ -194,6 +210,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                 <a href="EliminarCriterioCalificacion.php"> Eliminar Criterio de Calificaci&oacute;n</a>
                                             </li>
                                         </ul>
+                                        <!-- /.nav-third-level -->
                                     </li>
 
                                     <li>
@@ -209,26 +226,31 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                 <a href="EliminarFormulario.php">Eliminar Formulario de Evaluacion</a>
                                             </li>
                                         </ul>
+                                        <!-- /.nav-third-level -->
                                     </li>
                                     <li>
                                         <a href="EvaluarGrupoEmpresa.php">Evaluar Grupo Empresa </a>   
                                     </li>                                    
                                     
-                                </ul>    
+                                </ul> 
+                                <!-- /.nav-third-level -->   
                             </li>
                             <li>
                                 <a href="../Vista/EvaluacionGeneral.php">Evaluacion Final </a>   
                             </li>
                         </ul>
+                        <!-- /.nav-second-level -->
                     </li>
                     <li>
                         <a href="../Vista/publicaciones.php"><i class="fa fa-book"></i> Publicaciones </a>
+
                     </li>
-                </ul><!-- /#side-menu -->
-            </div><!-- /.sidebar-collapse -->
+                </ul>
+                <!-- /#side-menu -->
+            </div>
+            <!-- /.sidebar-collapse -->
         </div>
     </nav>
-
 <div class="modal fade modalRegistroAsistencia" role="dialog" data-backdrop="static" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
