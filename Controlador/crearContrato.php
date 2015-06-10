@@ -30,7 +30,7 @@ class PDF extends FPDF
     $nCGE=$nomC;				
     $repL=$reL;
   }
-
+	
   function Cuerpo($pdf){
   	global $nLGE;
   	global $nCGE;
@@ -70,7 +70,7 @@ class PDF extends FPDF
          $noveno=utf8_decode('NOVENO.- La información que TIS brinde al contratado debe ser de rigurosa confidencialidad, y no utilizarse para otros fines que no sea el desarrollo del proyecto.');
          $pdf->MultiCell(180,5,$noveno,0,'L');
          $pdf-> Ln(5);
-         $decimo=utf8_decode('DECIMO.- TIS representada por su directorio Lic. Corina Flores V., Lic. M. Leticia Blanco C., Lic. David Escalera F., Lic. Patricia Rodriguez e Ing. Americo Fiorilo, y por otra la consultora \empresa,  representada por su representante legal '.$repL.', dan su plena conformidad a los términos y condiciones establecidos en el presente Contrato de Prestación de Servicios y Consultoría, firmando en constancia al pie de presente documento.');
+         $decimo=utf8_decode('DECIMO.- TIS representada por su directorio Lic. Corina Flores V., Lic. M. Leticia Blanco C., Lic. David Escalera F., Lic. Patricia Rodriguez e Ing. Americo Fiorilo, y por otra la consultora '.$nLGE.',  representada por su representante legal '.$repL.', dan su plena conformidad a los términos y condiciones establecidos en el presente Contrato de Prestación de Servicios y Consultoría, firmando en constancia al pie de presente documento.');
          $pdf->MultiCell(180,5,$decimo,0,'L');
          $pdf-> Ln(5);
          $fecha = date("d-m-Y");
@@ -80,8 +80,10 @@ class PDF extends FPDF
          $textRepres = 'Representante '.$repL;
          $pdf->MultiCell(180,5,$textRepres,0,'L');
 
-		$pdf->Output();
-	
+//guardar el documento pdf en Repositorio/Contratos/C.....
+       $destinoPdf = '../Repositorio/Contratos/C'.$nLGE.'.pdf';
+
+       $pdf->Output($destinoPdf,'F'); 
   }
   
 }
