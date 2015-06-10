@@ -8,8 +8,7 @@
 
 class conexion{
     public $link;
-function __construct(){
-    
+function __construct(){    
     $this->conectar();
 }
 
@@ -50,41 +49,41 @@ function cerrarConexion() {
     mysql_close($link);
 }
 
-		public function consultarTabla($query) {
-            $tabla = array();
-            $resConsulta = $this->consulta($query);
-            $i = 0;
-            $j = 0;
-            $numColumnas = mysql_numfields($resConsulta);
-            while ($fila = mysql_fetch_array($resConsulta)) {
-                for ($j = 0 ; $j < $numColumnas ;$j++){
-                    $tabla["$i"]["$j"] = $fila["$j"];
-                }            
-                $i++;
-            }
-            return $tabla;
-        }    
+public function consultarTabla($query) {
+    $tabla = array();
+    $resConsulta = $this->consulta($query);
+    $i = 0;
+    $j = 0;
+    $numColumnas = mysql_numfields($resConsulta);
+    while ($fila = mysql_fetch_array($resConsulta)) {
+        for ($j = 0 ; $j < $numColumnas ;$j++){
+            $tabla["$i"]["$j"] = $fila["$j"];
+        }            
+        $i++;
+    }
+    return $tabla;
+}    
         
-        public function consultarArreglo($query){        
-            $arreglo = array();
-            $resConsulta = $this->consulta($query);
-            $i = 0;                
-            while ($fila = mysql_fetch_array($resConsulta)) {            
-                $arreglo["$i"] = $fila["0"];
-                $i++;
-            }
-            return $arreglo;
-        }
+public function consultarArreglo($query){        
+    $arreglo = array();
+    $resConsulta = $this->consulta($query);
+    $i = 0;                
+    while ($fila = mysql_fetch_array($resConsulta)) {            
+        $arreglo["$i"] = $fila["0"];
+        $i++;
+    }
+    return $arreglo;
+}
        
-        public function consultaUnDato($query) {
-            $dato = -1;
-            $resConsulta = $this->consulta($query);
-            while ($fila = mysql_fetch_array($resConsulta)) {            
-                $dato = $fila["0"];
-                break;
-            }             
-            return $dato;
-        }
+public function consultaUnDato($query) {
+    $dato = -1;
+    $resConsulta = $this->consulta($query);
+    while ($fila = mysql_fetch_array($resConsulta)) {            
+        $dato = $fila["0"];
+        break;
+    }             
+    return $dato;
+}
 
 }
 

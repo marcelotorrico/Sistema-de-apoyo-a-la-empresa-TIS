@@ -1,8 +1,8 @@
 <?php
-	require_once '../Modelo/conexion.php';
+	require_once '../conexionPDO.php';
 
 	class Planificacion {
-		var $conexion;
+            var $conexion;
 	    private $usuario;
 	    private $estado;
 	    private $fechaInicio;
@@ -11,7 +11,7 @@
 	    function __construct() {
 	        $nargs = func_num_args();
 	        $args = func_get_args();
-	        $this->conexion = new conexion();
+	        $this->conexion = new Conexion();
             if ($nargs == 1) {
                 $this->constructor($args[0]);
             } else {
@@ -22,31 +22,25 @@
             }
 	    }
 
-	    function constructor($usuario) {
-	    	$this->conexion->conectar();
+	    function constructor($usuario) {	    	
 	        $datosPlanificacion = $this->conexion->consultarTabla("SELECT NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P
-											                       FROM planificacion
-											                       WHERE NOMBRE_U = '$usuario';");
+                                                                    FROM planificacion
+                                                                    WHERE NOMBRE_U = '$usuario';");
 	        $this->usuario = $datosPlanificacion[0][0];
 	        $this->estado = $datosPlanificacion[0][1];
 	        $this->fechaInicio = $datosPlanificacion[0][2];
 	        $this->fechaFin = $datosPlanificacion[0][3];
-	        $this->conexion->cerrarConexion();
 	    }
 
-	    function insertarBD() {
-	        $this->conexion->conectar();
-	        $this->conexion->consulta("INSERT INTO planificacion(NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P)
-	        							VALUES('$this->usuario', '$this->estado', '$this->fechaInicio', '$this->fechaFin');");
-	        $this->conexion->cerrarConexion();
+	    function insertarBD() {	        
+	        $this->conexion->query("INSERT INTO planificacion(NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P)
+	        							VALUES('$this->usuario', '$this->estado', '$this->fechaInicio', '$this->fechaFin');");	        
 	    }
 
-	    public function modificarBD() {
-	        $this->conexion->conectar();
-	        $this->conexion->consulta("UPDATE planificacion
+	    public function modificarBD() {	        
+	        $this->conexion->query("UPDATE planificacion
 	        						   SET ESTADO_E = '$this->estado',  FECHA_INICIO_P = '$this->fechaInicio', FECHA_FIN_P = '$this->fechaFin'
-	        						   WHERE NOMBRE_U = '$this->usuario';");
-	        $this->conexion->cerrarConexion();
+	        						   WHERE NOMBRE_U = '$this->usuario';");	        
 	    }
 
 	    public function getUsuario() {

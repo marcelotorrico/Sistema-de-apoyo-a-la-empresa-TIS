@@ -1,5 +1,5 @@
 <?php
-	require_once '../Modelo/conexion.php';
+	require_once '../conexionPDO.php';
 
 	class Precio {
             var $conexion;
@@ -10,7 +10,7 @@
 	    function __construct() {
 	        $nargs = func_num_args();
 	        $args = func_get_args();
-	        $this->conexion = new conexion();
+	        $this->conexion = new Conexion();
 	        if ($nargs == 1) {
                 $this->constructor($args[0]);
             } else {
@@ -20,23 +20,18 @@
             }
 	    }
 
-	    function constructor($usuario) {
-	        $this->conexion->conectar();
-			$datosPrecio = $this->conexion->consultarTabla("SELECT nombre_u, precio_p, porcentaje_a
-														    FROM precio
-														    WHERE nombre_u = '$usuario';");
-            $this->usuario = $datosPrecio[0][0];
-            $this->precio = $datosPrecio[0][1];
-            $this->porcentajeA = $datosPrecio[0][2];
-	       
-            $this->conexion->cerrarConexion();
+	    function constructor($usuario) {	        
+		$datosPrecio = $this->conexion->consultarTabla("SELECT nombre_u, precio_p, porcentaje_a
+								FROM precio
+								WHERE nombre_u = '$usuario';");
+                $this->usuario = $datosPrecio[0][0];
+                $this->precio = $datosPrecio[0][1];
+                $this->porcentajeA = $datosPrecio[0][2];
 	    }
 
-	    function insertarBD() {
-	        $this->conexion->conectar();
-	        $this->conexion->consulta("INSERT INTO precio(nombre_u, precio_p, porcentaje_a)
-	        						   VALUES('$this->usuario', '$this->precio', '$this->porcentajeA');");
-	        $this->conexion->cerrarConexion();
+	    function insertarBD() {	        
+	        $this->conexion->query("INSERT INTO precio(nombre_u, precio_p, porcentaje_a)
+	        						   VALUES('$this->usuario', '$this->precio', '$this->porcentajeA');");	        
 	    }
 
 	    public function getUsuario() {

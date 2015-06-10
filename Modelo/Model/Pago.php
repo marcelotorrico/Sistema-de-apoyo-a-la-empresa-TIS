@@ -1,16 +1,16 @@
 <?php
-	require_once '../Modelo/conexion.php';
+	require_once '../conexionPDO.php';
 
 	class Pago {
-		var $conexion;
-		private $idRegistro;
+            var $conexion;
+            private $idRegistro;
 	    private $monto;
 	    private $porcentajeDelTotal;
 
 	    function __construct() {
 	        $nargs = func_num_args();
 	        $args = func_get_args();
-	        $this->conexion = new conexion();
+	        $this->conexion = new Conexion();
 	        if ($nargs == 1) {
                 $this->constructor($args[0]);
             } else {
@@ -21,21 +21,16 @@
 	    }
 
 	    function constructor($id) {
-	        $this->conexion->conectar();
-			$datosPago = $this->conexion->consultarTabla("SELECT id_r, monto_p, porcentaje_del_total_p
-														  FROM pago
+		$datosPago = $this->conexion->consultarTabla("SELECT id_r, monto_p, porcentaje_del_total_p
 														  WHERE id_r = $id;");
-            $this->idRegistro = $datosPago[0][0];
-            $this->monto = $datosPago[0][1];
-            $this->porcentajeDelTotal = $datosPago[0][2];
-	        $this->conexion->cerrarConexion();
+                $this->idRegistro = $datosPago[0][0];
+                $this->monto = $datosPago[0][1];
+                $this->porcentajeDelTotal = $datosPago[0][2];        
 	    }
 
-	    function insertarBD() {
-	        $this->conexion->conectar();
-	        $this->conexion->consulta("INSERT INTO pago(id_r, monto_p, porcentaje_del_total_p)
-	        						   VALUES($this->idRegistro, $this->monto, $this->porcentajeDelTotal);");
-	        $this->conexion->cerrarConexion();
+	    function insertarBD() {	        
+	        $this->conexion->query("INSERT INTO pago(id_r, monto_p, porcentaje_del_total_p)
+	        						   VALUES($this->idRegistro, $this->monto, $this->porcentajeDelTotal);");	        
 	    }
 
 	    public function getIdRegistro() {

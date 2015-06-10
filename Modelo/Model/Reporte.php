@@ -1,8 +1,8 @@
 <?php
-	require_once '../Modelo/conexion.php';
+	require_once '../conexionPDO.php';
 
 	class Reporte {
-		var $conexion;
+            var $conexion;
 	    private $idRegistro;
 	    private $rol;
 	    private $actividad;
@@ -14,7 +14,7 @@
 	    function __construct() {
 	        $nargs = func_num_args();
 	        $args = func_get_args();
-	        $this->conexion = new conexion();
+	        $this->conexion = new Conexion();
             if ($nargs == 1) {
                 $this->constructor($args[0]);
             } else {
@@ -28,11 +28,10 @@
             }
 	    }
 
-	    function constructor($idRegistro) {
-	    	$this->conexion->conectar();
+	    function constructor($idRegistro) {	    	
 	        $datosReporte = $this->conexion->consultarTabla("SELECT id_r, rol_rr, actividad_r, hecho_r, resultado_r, conclusion_r, observacion_r
-											                 FROM reporte
-											                 WHERE 	id_r = '$idRegistro';");
+								FROM reporte
+								WHERE 	id_r = '$idRegistro';");
 	        $this->idRegistro = $datosReporte[0][0];
 	        $this->rol = $datosReporte[0][1];
 	        $this->actividad = $datosReporte[0][2];
@@ -40,22 +39,16 @@
 	        $this->resultado = $datosReporte[0][4];
 	        $this->conclusion = $datosReporte[0][5];
 	        $this->observacion = $datosReporte[0][6];
-	        $this->conexion->cerrarConexion();
 	    }
 
 	    function insertarBD() {
-	        $this->conexion->conectar();
-	        $this->conexion->consulta("INSERT INTO reporte(id_r, rol_rr, actividad_r, hecho_r, resultado_r, conclusion_r, observacion_r)
-	        						   VALUES($this->idRegistro, '$this->rol', '$this->actividad', $this->hecho, '$this->resultado', '$this->conclusion', '$this->observacion');");
-	        $this->conexion->cerrarConexion();
+	        $this->conexion->query("INSERT INTO reporte(id_r, rol_rr, actividad_r, hecho_r, resultado_r, conclusion_r, observacion_r)
+	        						   VALUES($this->idRegistro, '$this->rol', '$this->actividad', $this->hecho, '$this->resultado', '$this->conclusion', '$this->observacion');");	        
 	    }
 
-	    public static function listaRolesReporte() {
-	        $conexion = new conexion();
-	        $conexion->conectar();
-	        $roles = $conexion->consultarArreglo("SELECT rol_rr 
-	        									  FROM rol_reporte");
-	        $conexion->cerrarConexion();
+	    public static function listaRolesReporte() {	        
+	        $roles = $this->conexion->consultarArreglo("SELECT rol_rr 
+                                                    FROM rol_reporte");	        
 	        return $roles;
 	    }
 
