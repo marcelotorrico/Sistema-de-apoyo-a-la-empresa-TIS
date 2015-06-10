@@ -1,14 +1,14 @@
 <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
     
  ?> 
 
@@ -222,10 +222,10 @@
 
 
             //Peticion
-            $peticion =$conectar->consulta("SELECT u.NOMBRE_U,u.PASSWORD_U,u.TELEFONO_U,u.CORREO_ELECTRONICO_U,a.NOMBRES_AD,a.APELLIDOS_AD FROM  usuario u, administrador a WHERE u.NOMBRE_U=a.NOMBRE_U  and u.NOMBRE_U='$usuario'");
+            $peticion =$conectar->query("SELECT u.NOMBRE_U,u.PASSWORD_U,u.TELEFONO_U,u.CORREO_ELECTRONICO_U,a.NOMBRES_AD,a.APELLIDOS_AD FROM  usuario u, administrador a WHERE u.NOMBRE_U=a.NOMBRE_U  and u.NOMBRE_U='$usuario'");
             //cerrar conexion--------------------------
 
-            while($fila = mysql_fetch_array($peticion))
+            while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
             {
 
             echo"

@@ -304,27 +304,26 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                      </tr> 
 
                             <?php
-                                include_once '../Modelo/conexion.php';
-                                $con=new conexion();
+                                include_once '../Modelo/conexionPDO.php';
+                                $con=new Conexion();
 
                               
                             
                                  $docSubidos="SELECT DISTINCT  `RUTA_D` , `NOMBRE_R`,FECHA_R,HORA_R FROM `registro` AS r,`documento` AS d WHERE r.`ID_R` = d.`ID_R` AND r.`TIPO_T` LIKE 'documento subido' AND r.`NOMBRE_U` LIKE '$uActivo' ";
-                                 $documentos=$con->consulta($docSubidos);
+                                 $documentos=$con->query($docSubidos);
                                  $contDoc=1;
                                 
-                                        while($subidos = mysql_fetch_array($documentos))
+                                        while($subidos = $documentos->fetch())
                                         {
                                                 
                                             $rutaDocSub=$subidos['0'];
                                                
                                             $docPubli="SELECT DISTINCT   `RUTA_D` FROM `registro` AS r,`documento` AS d,`descripcion` AS e WHERE r.`ID_R` = d.`ID_R` AND r.`ID_R` = e.`ID_R` AND r.`TIPO_T` LIKE 'publicaciones' AND r.`NOMBRE_U` LIKE '$uActivo' ";
-                                            $publicado=$con->consulta($docPubli);
-                                                        $tamDoc=mysql_num_rows($publicado);
+                                            $publicado=$con->query($docPubli);
+                                                        $tamDoc=$publicado->rowCount();
                                                         $contador=0;
-                                                        while($publicacion = mysql_fetch_array($publicado))
-                                                        {
-                                                
+                                                        while($publicacion = $publicado->fetch())
+                                                        {                                                
                                                             $rutaDocPubli=$publicacion['0'];
                                                 
                                                             if($rutaDocSub != $rutaDocPubli)

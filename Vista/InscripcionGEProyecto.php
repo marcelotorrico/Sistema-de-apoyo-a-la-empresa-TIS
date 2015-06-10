@@ -1,6 +1,6 @@
 <?php
 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
@@ -10,7 +10,7 @@
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
-    $conexion = new conexion();
+    $conexion = new Conexion();
 
 ?>
 <html>
@@ -124,15 +124,13 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
-                                        {
-                                            
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
+                                        {                                            
                                             echo '<li>
                                                   <a href="SubirDocumento.php?doc='.$rowDocs[0].'">'.$rowDocs[0].'</a>
-                                                   </li>';  
-                                            
+                                                   </li>';
                                         }
                                         
                                     ?>
@@ -193,11 +191,11 @@
                          <?php
                          
                           $seleccion = "SELECT NOMBRE_UA FROM inscripcion WHERE NOMBRE_UGE = '$uActivo'";
-                          $conexionsultar = $conexion->consulta($seleccion);
-                          $nombreUA = mysql_fetch_array($conexionsultar);
+                          $conexionsultar = $conexion->query($seleccion);
+                          $nombreUA = $conexionsultar->fetch(PDO::FETCH_NUM);
 
-                          $VerificarHabilitacion = $conexion->consulta("SELECT * FROM inscripcion WHERE NOMBRE_UGE='$uActivo' AND ESTADO_INSCRIPCION='Habilitado'");
-                          $Habilitacion = mysql_fetch_row($VerificarHabilitacion);
+                          $VerificarHabilitacion = $conexion->query("SELECT * FROM inscripcion WHERE NOMBRE_UGE='$uActivo' AND ESTADO_INSCRIPCION='Habilitado'");
+                          $Habilitacion = $VerificarHabilitacion->fetch(PDO::FETCH_NUM);
 
                         if(strnatcasecmp($nombreUA[0], "") != 0){
 
@@ -215,15 +213,15 @@
                                         $seleccion = "SELECT id_g "
                                                 . "FROM gestion "
                                                 . "WHERE DATE (NOW()) > DATE(FECHA_INICIO_G) and DATE(NOW()) < DATE(FECHA_FIN_G)";
-                                        $conexionsulta_= $conexion->consulta($seleccion);
-                                        $idGestion = mysql_fetch_row($conexionsulta_);
+                                        $conexionsulta_= $conexion->query($seleccion);
+                                        $idGestion = $conexionsulta_->fetch(PDO::FETCH_NUM);
                                         $idGestion_ = $idGestion[0];
                                                                        
                                         $seleccion = "SELECT p.`NOMBRE_P` FROM `proyecto` AS `p`, `gestion` AS `g` WHERE p.`ID_G` = g.`ID_G` AND p.`ID_G` LIKE '".$idGestion_."'";
                                  
-                                        $conexionsulta = $conexion->consulta($seleccion);
+                                        $conexionsulta = $conexion->query($seleccion);
                 
-                                        while($proyecto =  mysql_fetch_array($conexionsulta)){
+                                        while($proyecto =  $conexionsulta->fetch(PDO::FETCH_NUM)){
                                             echo "<option>".$proyecto[0]."</option>";
                                         }
                                     echo "<input type='hidden' name='idGE' value='$idGE'>";

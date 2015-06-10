@@ -255,12 +255,11 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                             <div class="col-lg-12">
                                 <form method = "post" id="FormEvaluar">
                                     <?php
-                                    include_once '../Modelo/conexion.php';
-                                    $conect = new conexion();
-                                    $SelectGI = $conect->consulta("SELECT NOMBRE_UGE FROM inscripcion
+                                    include_once '../Modelo/conexionPDO.php';
+                                    $conect = new Conexion();
+                                    $SelectGI = $conect->query("SELECT NOMBRE_UGE FROM inscripcion
                                                         WHERE NOMBRE_UA='$uActivo'");
-                                    while ($rowG = mysql_fetch_row($SelectGI)) {
-                                        
+                                    while ($rowG = $SelectGI->fetch(PDO::FETCH_NUM)) {                                        
                                         $GruposIn[] = $rowG[0];
                                     }
                                     if (isset($GruposIn)) {
@@ -277,22 +276,20 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                             </thead>
                                                             <tbody>';
                                                 
-                                                $S_Estado = $conect->consulta("SELECT ESTADO_INSCRIPCION FROM inscripcion WHERE NOMBRE_UA ='$uActivo'");
+                                                $S_Estado = $conect->query("SELECT ESTADO_INSCRIPCION FROM inscripcion WHERE NOMBRE_UA ='$uActivo'");
                                                 
-                                                while ($rowE = mysql_fetch_row($S_Estado)) {
-                                                    
+                                                while ($rowE = $S_Estado->fetch(PDO::FETCH_NUM)) {
                                                     $Estado[] = $rowE[0];
                                                 }
                                                 
                                                 for ($i = 0; $i < count($GruposIn); $i++) {
+                                                    $Sel_Rep = $conect->query("SELECT REPRESENTANTE_LEGAL_GE FROM grupo_empresa WHERE NOMBRE_U = '$GruposIn[$i]'");
+                                                    $Sel_Nota = $conect->query("SELECT CALIF_N FROM nota WHERE NOMBRE_U = '$GruposIn[$i]'");
                                                     
-                                                    $Sel_Rep = $conect->consulta("SELECT REPRESENTANTE_LEGAL_GE FROM grupo_empresa WHERE NOMBRE_U = '$GruposIn[$i]'");
-                                                    $Sel_Nota = $conect->consulta("SELECT CALIF_N FROM nota WHERE NOMBRE_U = '$GruposIn[$i]'");
-                                                    
-                                                    while ($Row_Rep = mysql_fetch_row($Sel_Rep)) {
+                                                    while ($Row_Rep = $Sel_Rep->fetch(PDO::FETCH_NUM)) {
                                                         $Rep[] = $Row_Rep[0];
                                                     }
-                                                    while ($Row_Nota = mysql_fetch_row($Sel_Nota)) {
+                                                    while ($Row_Nota = $Sel_Nota->fetch(PDO::FETCH_NUM)) {
                                                         $Nota[] = $Row_Nota[0];
                                                     }
                                                 }

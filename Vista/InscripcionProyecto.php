@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $con=new conexion();
+ $con=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>

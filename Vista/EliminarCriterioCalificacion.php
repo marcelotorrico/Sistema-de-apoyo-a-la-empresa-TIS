@@ -277,17 +277,15 @@ $verificar->validarInicioSesion($UsuarioActivo,"asesor");
 
                     <?php 
 
-                    include_once '../Modelo/conexion.php';
+                    include_once '../Modelo/conexionPDO.php';
 
-                    $conect = new conexion();
+                    $conect = new Conexion();
 
-                    $Sel_Crit = $conect->consulta("SELECT NOMBRE_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_U = '$UsuarioActivo'");
+                    $Sel_Crit = $conect->query("SELECT NOMBRE_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_U = '$UsuarioActivo'");
 
 
-                    while ($Row_Crit = mysql_fetch_row($Sel_Crit)) {
-
-                        $Criterio[] = $Row_Crit; 
-
+                    while ($Row_Crit = $Sel_Crit->fetch(PDO::FETCH_NUM)) {
+                        $Criterio[] = $Row_Crit;
                     }
 
                     if(isset($Criterio) and is_array($Criterio)){

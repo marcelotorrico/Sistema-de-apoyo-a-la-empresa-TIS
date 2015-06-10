@@ -1,14 +1,14 @@
  <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
  ?> 
 
 <!DOCTYPE html>
@@ -224,9 +224,9 @@
 												<select required name="id_rol" class="form-control"><option  value="" >Seleccione Rol</option>
 													<?php 
 														
-														$sql=$conectar->consulta("SELECT * FROM rol"); 
+														$sql=$conectar->query("SELECT * FROM rol"); 
 														
-															while($row=mysql_fetch_array($sql)) 
+															while($row=$sql->fetch(PDO::FETCH_ASSOC)) 
 																echo "<option  value='".$row["ROL_R"]."'>".$row["ROL_R"]."</option>"; 
 													?>
 												</td>
@@ -237,9 +237,9 @@
 												<select required name="id_menu" class="form-control"><option  value="" >Seleccione Menu</option>
 													<?php 
 														
-														$sql=$conectar->consulta("SELECT * FROM menu"); 
+														$sql=$conectar->query("SELECT * FROM menu"); 
 														
-															while($row=mysql_fetch_array($sql)) 
+															while($row=$sql->fetch(PDO::FETCH_ASSOC)) 
 																echo "<option  value='".$row["id_menu"]."'>" 
 																 .$row["nom_menu"]."</option>"; 
 													?>
@@ -278,10 +278,10 @@
 								//crear conexion---------------------------
 		
 								//Peticion
-								$peticion = $conectar->consulta("SELECT p.id_permiso,m.nom_menu, r.ROL_R FROM menu as m,rol as r, permisos as p where p.menu_id_menu=m.id_menu and r.ROL_R=p.ROL_R 
+								$peticion = $conectar->query("SELECT p.id_permiso,m.nom_menu, r.ROL_R FROM menu as m,rol as r, permisos as p where p.menu_id_menu=m.id_menu and r.ROL_R=p.ROL_R 
 														");
 
-								while($fila = mysql_fetch_array($peticion))
+								while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
 								{
 							?>
 								<div class="contenedor-fila">

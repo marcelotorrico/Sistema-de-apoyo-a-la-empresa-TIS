@@ -1,6 +1,6 @@
 <?php
 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
@@ -10,7 +10,7 @@
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
-    $conexion = new conexion();
+    $conexion = new Conexion();
 
 
 ?>
@@ -125,9 +125,9 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
                                             
                                             echo '<li>
@@ -193,8 +193,8 @@
                     <div class="col-lg-4" >
                         <?php
                           $seleccion = "SELECT REPRESENTANTE_LEGAL_GE FROM grupo_empresa WHERE NOMBRE_U = '$uActivo'";
-                          $consultar = $conexion ->consulta($seleccion);
-                          $repLegal = mysql_fetch_array($consultar);
+                          $consultar = $conexion->query($seleccion);
+                          $repLegal = $consultar->fetch(PDO::FETCH_NUM);
                          
                           if(strnatcasecmp($repLegal[0], "") != 0){
                         ?>
@@ -204,8 +204,8 @@
                                         <option>Seleccione un Asesor</option>
                                         <?php
                                                 $seleccion = "SELECT a.NOMBRES_A, a.APELLIDOS_A FROM asesor AS a, usuario AS u WHERE a.NOMBRE_U = u.NOMBRE_U AND u.ESTADO_E = 'Habilitado'";
-                                                $consulta = $conexion->consulta($seleccion);
-                                                while($asesor =  mysql_fetch_array($consulta)){
+                                                $consulta = $conexion->query($seleccion);
+                                                while($asesor =  $consulta->fetch(PDO::FETCH_NUM)){
                                                     echo "<option>".$asesor[0]. " " . $asesor[1] . "</option>";
                                                 }
                                         ?>

@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
@@ -8,7 +8,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $conexion=new conexion();
+ $conexion=new Conexion();
  ?> 
  <!DOCTYPE html>
  <html>
@@ -295,19 +295,19 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                     
                                                     
                                                     
-                                                   $peticion= $conexion->consulta("SELECT `NOMBRE_R`, NOMBRE_U, ID_R FROM `registro`, inscripcion WHERE `TIPO_T`='actividad planificacion' and `NOMBRE_UA`='$uActivo' and  `NOMBRE_UGE`=`NOMBRE_U`"); 
-                                                   while($fila = mysql_fetch_array($peticion))
+                                                   $peticion= $conexion->query("SELECT `NOMBRE_R`, NOMBRE_U, ID_R FROM `registro`, inscripcion WHERE `TIPO_T`='actividad planificacion' and `NOMBRE_UA`='$uActivo' and  `NOMBRE_UGE`=`NOMBRE_U`"); 
+                                                   while($fila = $peticion->fetch())
                                                     {
                                                         if(!empty($fila[0]))
                                                         {
                                                             $codigo=$fila['ID_R'];
-                                                            $peticion1= $conexion->consulta("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$codigo'");  
-                                                            while ($correo = mysql_fetch_array($peticion1))
+                                                            $peticion1= $conexion->query("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$codigo'");  
+                                                            while ($correo = $peticion1->fetch(PDO::FETCH_ASSOC))
                                                             {
                                                                 $fechaFin=$correo["FECHA_FR"];  
                                                             }
-                                                            $peticion2= $conexion->consulta("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$codigo'");                                                              
-                                                            $tamano=mysql_num_rows($peticion2);
+                                                            $peticion2= $conexion->query("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$codigo'");                                                              
+                                                            $tamano=$peticion2->rowCount();
                                                             
                                                             
                                                             $stampFechaF = strtotime($fechaFin);
@@ -346,15 +346,15 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
                                                             }
                                                             
-                                                           $peticion6=$conexion->consulta("SELECT grupo_empresa.NOMBRE_LARGO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$codigo' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
-                                                           while ($correo1 = mysql_fetch_array($peticion6))
+                                                           $peticion6=$conexion->query("SELECT grupo_empresa.NOMBRE_LARGO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$codigo' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
+                                                           while ($correo1 = $peticion6->fetch(PDO::FETCH_ASSOC))
                                                            { $nLargoGE=$correo1["NOMBRE_LARGO_GE"];}
                                                            
                                                            
                                                            
                                                               $consulta="SELECT DISTINCT NOMBRE_R FROM `registro` AS r,`receptor` AS w WHERE  r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND w.`RECEPTOR_R` = '$nLargoGE'";
-                                                              $contrato= $conexion->consulta($consulta);
-                                                              $cantC= mysql_num_rows($contrato);
+                                                              $contrato= $conexion->query($consulta);
+                                                              $cantC= $contrato->rowCount();
                                                            
                                                            
                                                                                                                      

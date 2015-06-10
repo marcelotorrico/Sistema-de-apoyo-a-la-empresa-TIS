@@ -1,13 +1,13 @@
 <?php
 
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  
   require '../Controlador/ValidadorInicioSesion.php';
   
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
- $conexion = new conexion();
+ $conexion = new Conexion();
  
  $verificar = new ValidadorInicioSesion();
  $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
@@ -126,15 +126,13 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
-                                            
                                             echo '<li>
                                                   <a href="SubirDocumento.php?doc='.$rowDocs[0].'">'.$rowDocs[0].'</a>
-                                                   </li>';  
-                                            
+                                                   </li>';
                                         }
                                         
                                     ?>
@@ -199,10 +197,10 @@
 
              <?php
 
-             $consSocio = $conexion->consulta("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
+             $consSocio = $conexion->query("SELECT * FROM socio WHERE NOMBRE_U='$uActivo'");
 
 
-             $socios = mysql_num_rows($consSocio);  
+             $socios = $consSocio->rowCount();
 
             if ($socios < 3) {
 
@@ -224,9 +222,9 @@
                                     session_start();
                                     $idGE = $_SESSION['usuario']  ;
                                     $seleccion = "SELECT NOMBRES_S, APELLIDOS_S FROM `socio`WHERE NOMBRE_U LIKE '$idGE'";
-                                    $consulta = $conexion->consulta($seleccion);
+                                    $consulta = $conexion->query($seleccion);
 
-                                    while($rLegal =  mysql_fetch_array($consulta)){
+                                    while($rLegal =  $consulta->fetch(PDO::FETCH_NUM)){
                                         echo "<option>".$rLegal[0]." ".$rLegal[1]."</option>";
                                     }
                                     echo "<input type='hidden' name='idAsesor' value='$idGE'>";

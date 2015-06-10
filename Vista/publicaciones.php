@@ -1,14 +1,14 @@
 <?php  
   session_start();
   $uActivo = $_SESSION['usuario'];
-  include '../Modelo/conexion.php';
+  include '../Modelo/conexionPDO.php';
   
   require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
-  $con=new conexion();
+  $con=new Conexion();
  ?> 
 
  <!DOCTYPE html>
@@ -292,11 +292,11 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                            
                                             $indice = 1;
 
-                                            $Sel_Desc = $con->consulta("SELECT d.RUTA_D,r.NOMBRE_R, ds.DESCRIPCION_D 
+                                            $Sel_Desc = $con->query("SELECT d.RUTA_D,r.NOMBRE_R, ds.DESCRIPCION_D 
                                                     FROM documento as d, registro as r,descripcion as ds 
                                                     WHERE r.NOMBRE_U = '$uActivo' AND r.TIPO_T = 'publicaciones' AND r.ID_R=ds.ID_R AND d.ID_R = r.ID_R"); 
 
-                                            while ($Desc = mysql_fetch_row($Sel_Desc)) {
+                                            while ($Desc = $Sel_Desc->fetch(PDO::FETCH_NUM)) {
 
                                                 if(!empty($Desc[0]))
                                                 {
@@ -352,11 +352,11 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                            
                                             $indiceA = 1;
 
-                                            $Sel_Desc = $con->consulta("SELECT d.RUTA_D,r.NOMBRE_R, ds.DESCRIPCION_D 
+                                            $Sel_Desc = $con->query("SELECT d.RUTA_D,r.NOMBRE_R, ds.DESCRIPCION_D 
                                                     FROM documento as d, registro as r,descripcion as ds 
                                                     WHERE r.NOMBRE_U = '$uActivo' AND r.TIPO_T = 'publicaciones' AND r.ID_R=ds.ID_R AND d.ID_R = r.ID_R"); 
 
-                                            while ($Desc = mysql_fetch_row($Sel_Desc)) {
+                                            while ($Desc = $Sel_Desc->fetch(PDO::FETCH_NUM)) {
 
                                                 if(empty($Desc[0]))
                                                 {

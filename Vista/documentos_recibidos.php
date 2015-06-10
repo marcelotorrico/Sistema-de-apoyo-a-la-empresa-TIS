@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $con=new conexion();
+ $con=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>
@@ -289,9 +289,9 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                             $idAsesor= $_SESSION['usuario']  ;
                                             $estado = "Habilitado";
                                             $c1="SELECT ge.`NOMBRE_LARGO_GE` FROM `inscripcion` AS i,`asesor` AS a,`grupo_empresa` AS `ge` WHERE i.`NOMBRE_UA` = a.`NOMBRE_U` AND i.`NOMBRE_UGE` = ge.`NOMBRE_U` AND a.`NOMBRE_U` LIKE '$idAsesor' AND i.`ESTADO_INSCRIPCION` LIKE '$estado'";
-                                            $a1=$con->consulta($c1);
+                                            $a1=$con->query($c1);
 
-                                            while($grupoE =  mysql_fetch_array($a1)){
+                                            while($grupoE =  $a1->fetch(PDO::FETCH_NUM)){
                                                 echo "<option>".$grupoE[0]."</option>";
                                             }
                                             echo "<input type='hidden' name='idAsesor' value='$idAsesor'>";           

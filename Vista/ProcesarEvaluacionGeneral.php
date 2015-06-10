@@ -272,12 +272,12 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                     <div class="form-group">
                         
                         <?php
-                        include '../Modelo/conexion.php';
-                        $conect = new conexion();  
+                        include '../Modelo/conexionPDO.php';
+                        $conect = new Conexion();  
                         $GE = $_POST['GrupoEmpresa'];
 
-                        $Sel_Nota= $conect->consulta("SELECT CALIF_N FROM nota WHERE NOMBRE_U='$GE'");
-                        $Nota = mysql_fetch_row($Sel_Nota);
+                        $Sel_Nota= $conect->query("SELECT CALIF_N FROM nota WHERE NOMBRE_U='$GE'");
+                        $Nota = $Sel_Nota->fetch(PDO::FETCH_NUM);
 
                         
                         if(is_array($Nota))
@@ -285,22 +285,18 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
                             $Nota2da = 0;
 
-                            $Sel_Plan = $conect->consulta("SELECT ID_R FROM registro WHERE NOMBRE_U='$GE' AND TIPO_T='actividad planificacion'");
+                            $Sel_Plan = $conect->query("SELECT ID_R FROM registro WHERE NOMBRE_U='$GE' AND TIPO_T='actividad planificacion'");
                             
-                            while ($rowP = mysql_fetch_row($Sel_Plan)) {
-
-                                $Plan[] = $rowP[0];
-                                
+                            while ($rowP = $Sel_Plan->fetch(PDO::FETCH_NUM)) {
+                                $Plan[] = $rowP[0];                                
                             }
 
                             for ($i=0; $i <count($Plan) ; $i++) { 
                                 
-                                $Sel_Ev2 = $conect->consulta("SELECT NOTA_E FROM evaluacion WHERE ID_R = '$Plan[$i]'");
+                                $Sel_Ev2 = $conect->query("SELECT NOTA_E FROM evaluacion WHERE ID_R = '$Plan[$i]'");
                                 
-                                while ($rowE = mysql_fetch_row($Sel_Ev2)) {
-
-                                    $Eval2[] = $rowE[0];
-                                    
+                                while ($rowE = $Sel_Ev2->fetch(PDO::FETCH_NUM)) {
+                                    $Eval2[] = $rowE[0];                                    
                                 }
                             }
 

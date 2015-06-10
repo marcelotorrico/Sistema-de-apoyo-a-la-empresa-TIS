@@ -301,18 +301,15 @@ $verificar->validarInicioSesion($UsuarioActivo,"asesor");
                                     <option value="">Seleccione una grupo empresa</option>
                                     <?php  
 
-                                        include '../Modelo/conexion.php';
-                                        $conect = new conexion();
+                                        include '../Modelo/conexionPDO.php';
+                                        $conect = new Conexion();
                                         $estado = "Habilitado";
                                         $c1="SELECT ge.`NOMBRE_LARGO_GE` FROM `inscripcion` AS i,`asesor` AS a,`grupo_empresa` AS `ge` WHERE i.`NOMBRE_UA` = a.`NOMBRE_U` AND i.`NOMBRE_UGE` = ge.`NOMBRE_U` AND a.`NOMBRE_U` LIKE '$UsuarioActivo' AND i.`ESTADO_INSCRIPCION` LIKE '$estado'";
-                                        $GrupoEmpresas = $conect->consulta($c1);
+                                        $GrupoEmpresas = $conect->query($c1);
                                     
-                                        while ($GE = mysql_fetch_row($GrupoEmpresas)) {
-
-                                            echo '<option>'.$GE[0].'</option>';
-                                    
+                                        while ($GE = $GrupoEmpresas->fetch(PDO::FETCH_NUM)) {
+                                            echo '<option>'.$GE[0].'</option>';                                    
                                         }
-
                                     ?>
                                 
                                 </select>

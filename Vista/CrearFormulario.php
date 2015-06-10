@@ -290,14 +290,13 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
                         <?php 
 
-                        include_once '../Modelo/conexion.php';
+                        include_once '../Modelo/conexionPDO.php';
 
+                        $conect = new Conexion();
 
-                        $conect = new conexion();                                               
+                        $Sel_CE = $conect->query("SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_U = '$uActivo'");
 
-                        $Sel_CE = $conect->consulta("SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_U = '$uActivo'");
-
-                        $Sel_CC = $conect->consulta("SELECT DISTINCT NOMBRE_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_U ='$uActivo'");
+                        $Sel_CC = $conect->query("SELECT DISTINCT NOMBRE_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_U ='$uActivo'");
 
                         echo '<div id="todos">
                         <div id="escogidos">
@@ -306,8 +305,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                         <select class="form-control" name="EvaEscogidos[]" required>
                         <option value="">Seleccione un Criterio a Evaluar</option>';
 
-                        while ($Row_CE = mysql_fetch_row($Sel_CE)) {
-
+                        while ($Row_CE = $Sel_CE->fetch(PDO::FETCH_NUM)) {
                           echo '<option>'.$Row_CE[0].'</option>';
                       }
                       echo '</select>
@@ -320,10 +318,8 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                       <option value="">Seleccione un Tipo de Calificacion</option>';
 
 
-                      while ($Row_CC = mysql_fetch_row($Sel_CC)) {
-
+                      while ($Row_CC = $Sel_CC->fetch(PDO::FETCH_NUM)) {
                           echo '<option value="'.$Row_CC[0].'">'.$Row_CC[0].'</option>';
-
                       }
 
                       echo '<select>

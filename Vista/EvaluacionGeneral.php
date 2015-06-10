@@ -274,19 +274,19 @@ $verificar->validarInicioSesion($uActivo,"asesor");
             <div class="col-lg-6">   
                 
                             <?php  
-                            include_once '../Modelo/conexion.php';
-                            $conect = new conexion();
+                            include_once '../Modelo/conexionPDO.php';
+                            $conect = new Conexion();
 
-                            $SelGrupo = $conect->consulta("SELECT NOMBRE_UGE FROM inscripcion, nota WHERE NOMBRE_UA = '$uActivo' AND ESTADO_INSCRIPCION = 'Habilitado' AND NOMBRE_U = NOMBRE_UGE");                         
+                            $SelGrupo = $conect->query("SELECT NOMBRE_UGE FROM inscripcion, nota WHERE NOMBRE_UA = '$uActivo' AND ESTADO_INSCRIPCION = 'Habilitado' AND NOMBRE_U = NOMBRE_UGE");                         
                             
-                            if(mysql_num_rows($SelGrupo) > 0)
+                            if($SelGrupo->rowCount() > 0)
                             {
                                 echo '  <form method ="post" id="FormEvaluar" action="../Vista/ProcesarEvaluacionGeneral.php"> 
                                             <div class="form-group">
                                                 <select name="GrupoEmpresa" id="" class="form-control" required>
                                                     <option value="">Seleccione una grupo empresa</option>';
                                 
-                                while($Row_G = mysql_fetch_array($SelGrupo)){
+                                while($Row_G = $SelGrupo->fetch(PDO::FETCH_NUM)){
                                               echo "<option>".$Row_G[0]."</option>";
                                 }
                                 

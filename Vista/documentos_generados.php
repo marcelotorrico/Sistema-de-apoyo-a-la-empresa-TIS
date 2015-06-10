@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $con=new conexion();
+ $con=new Conexion();
  
  ?> 
  <!DOCTYPE html>
@@ -277,10 +277,10 @@ $verificar->validarInicioSesion($uActivo,"asesor");
             <?php
             
             $c_3="SELECT DISTINCT `NOMBRE_R`,`RUTA_D` FROM `registro` AS r,`documento` AS d,`receptor` AS w WHERE r.`ID_R` = d.`ID_R` AND r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND `NOMBRE_U` LIKE '$uActivo'";
-            $r3=$con->consulta($c_3);
+            $r3=$con->query($c_3);
             
             
-            if(mysql_num_rows($r3) != 0)
+            if($r3->rowCount() != 0)
             { 
              ?>
              <div class="panel panel-default" >
@@ -296,7 +296,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
                       <?php
                       $i=1;
-                      while($var3 = mysql_fetch_array($r3))
+                      while($var3 = $r3->fetch(PDO::FETCH_NUM))
                       {
                         
                         ?>      
@@ -333,8 +333,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                     <strong>Usted no emitio ningun contrato</strong>
                     </div>';
                 }
-                
-                $con->cerrarConexion();
+
                 ?>
             </div>
         </div>

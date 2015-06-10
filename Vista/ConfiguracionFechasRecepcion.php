@@ -1,9 +1,9 @@
  <?php
 session_start();
 error_reporting (5);    
-include '../Modelo/conexion.php';
+include '../Modelo/conexionPDO.php';
 
-$con=new conexion();
+$con=new Conexion();
 if (isset($_SESSION['usuario'])) {
 $uActivo = $_SESSION['usuario'];
 
@@ -324,8 +324,7 @@ include 'forms/actions/seleccionarDocumentoConfiguracionFechas.php';
 
 
 
-                                }
-                                $con->cerrarConexion();
+                                }                                
                                 ?>
 
                             </select>

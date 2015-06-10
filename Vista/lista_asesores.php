@@ -1,5 +1,5 @@
 <?php 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conect = new conexion();
+    $conect = new Conexion();
 ?>
     <html>
 
@@ -291,12 +291,12 @@
                                 //crear conexion---------------------------
                                 
                                 //Peticion
-                                $peticion = $conect->consulta("SELECT u.NOMBRE_U, u.ESTADO_E, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R
+                                $peticion = $conect->query("SELECT u.NOMBRE_U, u.ESTADO_E, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R
 FROM usuario u , usuario_rol r
 WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'asesor'");
                             
 
-                                while($asesor = mysql_fetch_array($peticion))
+                                while($asesor = $peticion->fetch(PDO::FETCH_ASSOC))
                                 {
                                       
                             ?>

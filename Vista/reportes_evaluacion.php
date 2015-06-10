@@ -1,14 +1,14 @@
  <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';  
+    include '../Modelo/conexionPDO.php';  
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"asesor");
 
-    $conectar=new conexion();
+    $conectar=new Conexion();
 
  ?> 
 
@@ -74,28 +74,28 @@
             $ID = $_GET['GE'];
             $notaFin=0;
             $estado="";
-            $peticion= $conectar->consulta("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$ID'");  
-            while ($correo = mysql_fetch_array($peticion))
+            $peticion= $conectar->query("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$ID'");  
+            while ($correo = $peticion->fetch(PDO::FETCH_ASSOC))
             {
             $fechaFin=$correo["FECHA_FR"];  
             }    
-            $peticion=$conectar->consulta("SELECT grupo_empresa.NOMBRE_CORTO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$ID' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
-             while ($correo1 = mysql_fetch_array($peticion))
+            $peticion=$conectar->query("SELECT grupo_empresa.NOMBRE_CORTO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$ID' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
+             while ($correo1 = $peticion->fetch(PDO::FETCH_ASSOC))
             { $nombreCorto=$correo1["NOMBRE_CORTO_GE"];
             
             }              
-            $peticion1= $conectar->consulta("SELECT `NOMBRE_R` FROM `registro` WHERE `TIPO_T`='actividad planificacion' and ID_R='$ID'"); 
-            while ($correo1 = mysql_fetch_array($peticion1))
+            $peticion1= $conectar->query("SELECT `NOMBRE_R` FROM `registro` WHERE `TIPO_T`='actividad planificacion' and ID_R='$ID'"); 
+            while ($correo1 = $peticion1->fetch(PDO::FETCH_ASSOC))
             {
             $actividad=$correo1["NOMBRE_R"];  
             }
-            $peticion=$conectar->consulta("SELECT `NOTA_E`,`PORCENTAJE` FROM `evaluacion` WHERE `ID_R`='$ID'");
-             while ($correo1 = mysql_fetch_array($peticion))
+            $peticion=$conectar->query("SELECT `NOTA_E`,`PORCENTAJE` FROM `evaluacion` WHERE `ID_R`='$ID'");
+             while ($correo1 = $peticion->fetch(PDO::FETCH_ASSOC))
             { $notaAct=$correo1["NOTA_E"];
               $porcentaje=$correo1["PORCENTAJE"];
             }
-            $peticion=$conectar->consulta("SELECT p.PORCENTAJE_A FROM precio AS p, registro AS u WHERE u.ID_R='$ID' and p.NOMBRE_U= u.NOMBRE_U");
-             while ($correo1 = mysql_fetch_array($peticion))
+            $peticion=$conectar->query("SELECT p.PORCENTAJE_A FROM precio AS p, registro AS u WHERE u.ID_R='$ID' and p.NOMBRE_U= u.NOMBRE_U");
+             while ($correo1 = $peticion->fetch(PDO::FETCH_ASSOC))
             { $porsentajeS=$correo1["PORCENTAJE_A"];
 
             }            
@@ -111,20 +111,20 @@
             }
             
             
-            $peticion1=$conectar->consulta("SELECT `NOMBRE_R` FROM `registro` WHERE `ID_R`='$ID'");
-           while ($correo2 = mysql_fetch_array($peticion1))
+            $peticion1=$conectar->query("SELECT `NOMBRE_R` FROM `registro` WHERE `ID_R`='$ID'");
+           while ($correo2 = $peticion1->fetch(PDO::FETCH_ASSOC))
            { $Actividad=$correo2["NOMBRE_R"];}        
            
-           $peticion3=$conectar->consulta("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_CORTO_GE`='$nombreCorto'");
-           while ($correo4 = mysql_fetch_array($peticion3))
+           $peticion3=$conectar->query("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_CORTO_GE`='$nombreCorto'");
+           while ($correo4 = $peticion3->fetch(PDO::FETCH_ASSOC))
            { $usuarioGE=$correo4["NOMBRE_U"];}  
            
-            $peticion2=$conectar->consulta("select MAX(ID_R)  from registro where `NOMBRE_R`= '$Actividad' and `NOMBRE_U`='$usuarioGE'");
-           while ($correo3 = mysql_fetch_array($peticion2))
+            $peticion2=$conectar->query("select MAX(ID_R)  from registro where `NOMBRE_R`= '$Actividad' and `NOMBRE_U`='$usuarioGE'");
+           while ($correo3 = $peticion2->fetch(PDO::FETCH_ASSOC))
            { $IDPago=$correo3["MAX(ID_R)"];} 
 
-            $peticion3=$conectar->consulta("SELECT ENTREGABLE_P FROM `entrega` WHERE `ID_R`='$IDPago' and `ENTREGADO_P`='1'");
-            $tamanio=mysql_num_rows($peticion3);
+            $peticion3=$conectar->query("SELECT ENTREGABLE_P FROM `entrega` WHERE `ID_R`='$IDPago' and `ENTREGADO_P`='1'");
+            $tamanio=$peticion3->rowCount();
             if($tamanio>0)
             {  
                  $estado="Retrasado";

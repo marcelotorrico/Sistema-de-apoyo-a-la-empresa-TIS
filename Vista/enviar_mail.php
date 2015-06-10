@@ -2,14 +2,14 @@
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
 
 ?>
 <!DOCTYPE html>
@@ -224,8 +224,8 @@
 		<select required name='dest' class="form-control"  ><option value=""  size="30%">-     Seleccione Destinatario     -</option>
 		<?php 
 													
-		$sql=$conectar->consulta("SELECT u.NOMBRE_U from usuario as u, asesor as a where a.NOMBRE_U=u.NOMBRE_U and `ESTADO_E`='Deshabilitado'"); 
-		while($row=mysql_fetch_array($sql)) 
+		$sql=$conectar->query("SELECT u.NOMBRE_U from usuario as u, asesor as a where a.NOMBRE_U=u.NOMBRE_U and `ESTADO_E`='Deshabilitado'"); 
+		while($row=$sql->fetch(PDO::FETCH_ASSOC)) 
 		echo "<option  value='".$row["NOMBRE_U"]."'>" .$row["NOMBRE_U"]."</option>"; ?>	
 		</td>
 

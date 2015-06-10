@@ -2,14 +2,14 @@
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
     $addNomInte = '';						
 						
       
@@ -237,9 +237,9 @@
                  <select required name="NOMBRE_U" class="form-control"><option  value="">Seleccione Un grupo Empresa</option>
 		<?php 
 														
-		$sql= $conectar->consulta("SELECT u.NOMBRE_U FROM usuario u, usuario_rol r WHERE  u.NOMBRE_U=r.NOMBRE_U and r.ROL_R='grupoempresa'"); 
+		$sql= $conectar->query("SELECT u.NOMBRE_U FROM usuario u, usuario_rol r WHERE  u.NOMBRE_U=r.NOMBRE_U and r.ROL_R='grupoempresa'"); 
 													
-		while($row=mysql_fetch_array($sql)) 
+		while($row=$sql->fetch(PDO::FETCH_ASSOC)) 
 		echo "<option  value='".$row["NOMBRE_U"]."'>".$row["NOMBRE_U"]."</option>";  
                 $addNomInte=$_REQUEST["NOMBRE_U"];
                 ?>    
@@ -287,9 +287,9 @@
                                                             //crear conexion---------------------------
 
                 //Peticion
-                $peticion = $conectar->consulta(" SELECT CODIGO_S,NOMBRE_U, NOMBRES_S, APELLIDOS_S FROM socio WHERE NOMBRE_U='$addNomInte'");
+                $peticion = $conectar->query(" SELECT CODIGO_S,NOMBRE_U, NOMBRES_S, APELLIDOS_S FROM socio WHERE NOMBRE_U='$addNomInte'");
 
-                while($fila = mysql_fetch_array($peticion))
+                while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
                 {
                 ?><div class="contenedor-fila">
                 <div class="contenedor-columna">

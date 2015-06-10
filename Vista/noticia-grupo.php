@@ -1,5 +1,5 @@
 <?php
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
@@ -8,7 +8,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
- $conexion = new conexion();
+ $conexion = new Conexion();
  
 ?>
 <html>
@@ -131,15 +131,13 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
-                                        {
-                                            
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
+                                        {                                           
                                             echo '<li>
                                                   <a href="SubirDocumento.php?doc='.$rowDocs[0].'">'.$rowDocs[0].'</a>
-                                                   </li>';  
-                                            
+                                                   </li>';
                                         }
                                         
                                     ?>
@@ -210,15 +208,15 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                        <?php
                                  $idNoti = $_GET['id'];
                                // Adiciona +1 de Visualizaciones a cada pessoa que acessar a noticia
-                               $selNoti = $conexion->consulta("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
-                               $noticia = mysql_fetch_array($selNoti);
+                               $selNoti = $conexion->query("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
+                               $noticia = $selNoti->fetch(PDO::FETCH_ASSOC);
                                $view = $noticia['VIEWS'];
                                $views = $view + 1;
-                               $actNoti = $conexion->consulta("UPDATE noticias SET VIEWS = '$views' WHERE ID_N = '$idNoti'");
-                              $selNoti2 =$conexion->consulta("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
+                               $actNoti = $conexion->query("UPDATE noticias SET VIEWS = '$views' WHERE ID_N = '$idNoti'");
+                              $selNoti2 =$conexion->query("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
                               
                              
-                               while ($noticiaF=mysql_fetch_array($selNoti2)) 
+                               while ($noticiaF=$selNoti2->fetch(PDO::FETCH_ASSOC)) 
                                { 
                                    $idNotic = $noticiaF["ID_N"];
                                    $autor = $noticiaF["NOMBRE_U"];
@@ -227,9 +225,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                    $vistos = $noticiaF["VIEWS"];
                                    $texto = $noticiaF["TEXTO"];
                                    $posteado=$noticiaF["POSTEADO"];
-                                    $selComen = $conexion->consulta("SELECT * FROM comentarios, inscripcion_proyecto, proyecto, gestion WHERE ID_N='$idNotic' and inscripcion_proyecto.NOMBRE_U = '$uActivo' and inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and DATE (FECHA_C) >= DATE(FECHA_INICIO_G) and DATE(FECHA_C) <= DATE(FECHA_FIN_G)");
+                                    $selComen = $conexion->query("SELECT * FROM comentarios, inscripcion_proyecto, proyecto, gestion WHERE ID_N='$idNotic' and inscripcion_proyecto.NOMBRE_U = '$uActivo' and inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and DATE (FECHA_C) >= DATE(FECHA_INICIO_G) and DATE(FECHA_C) <= DATE(FECHA_FIN_G)");
                                     
-                                    $tamComen = mysql_num_rows($selComen);
+                                    $tamComen = $selComen->rowCount();
                                    echo"<font face='verdana' Color='Black' size='6'>$titulo</font></br></br>";
                                     echo "<font face='arial' Color='Teal' size='4'>$texto</font></br>";
                                     echo "<p><b>Postado por </b><b>$posteado</b>  <b>$fecha</b> - <font face='arial' Color='Teal' size='3'>$vistos Visualizaciones</font> | <font face='arial' Color='Teal' size='3'>$tamComen Comentarios | </font>";
@@ -246,10 +244,10 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                         <?php
                          }
                        $idNoti= $_GET['id'];
-                       $selCom1 = $conexion->consulta("SELECT * FROM comentarios, inscripcion_proyecto, proyecto, gestion WHERE ID_N = '$idNoti' and inscripcion_proyecto.NOMBRE_U = '$uActivo' and inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and DATE (FECHA_C) >= DATE(FECHA_INICIO_G) and DATE(FECHA_C) <= DATE(FECHA_FIN_G) ORDER BY ID_N DESC");
+                       $selCom1 = $conexion->query("SELECT * FROM comentarios, inscripcion_proyecto, proyecto, gestion WHERE ID_N = '$idNoti' and inscripcion_proyecto.NOMBRE_U = '$uActivo' and inscripcion_proyecto.CODIGO_P = proyecto.CODIGO_P and proyecto.ID_G = gestion.ID_G and DATE (FECHA_C) >= DATE(FECHA_INICIO_G) and DATE(FECHA_C) <= DATE(FECHA_FIN_G) ORDER BY ID_N DESC");
                       
                         // muestra los valores da tabla 'comentarios'
-                       while ($actualC=mysql_fetch_array($selCom1)) 
+                       while ($actualC=$selCom1->fetch(PDO::FETCH_ASSOC)) 
                        { 
                              $idComen = $actualC["ID_C"];
                              $autor = $actualC["NOMBRE_U"];
@@ -279,7 +277,7 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                // Adiciona comentario
                                      $idNoticia=$_GET['id'];
                                     $textoComen=$_POST['comentario'];
-                                      $agregarC = $conexion->consulta("INSERT INTO comentarios (NOMBRE_U,ID_N,COMENTARIO,FECHA_C,AUTOR_C) VALUES ('$autor','$idNoticia', '$textoComen', NOW(), '$uActivo')");
+                                      $agregarC = $conexion->query("INSERT INTO comentarios (NOMBRE_U,ID_N,COMENTARIO,FECHA_C,AUTOR_C) VALUES ('$autor','$idNoticia', '$textoComen', NOW(), '$uActivo')");
                                   
                                    
                 ?>

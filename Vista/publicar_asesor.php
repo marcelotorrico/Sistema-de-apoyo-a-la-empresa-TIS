@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $con = new conexion(); 
+ $con = new Conexion(); 
  ?> 
  <!DOCTYPE html>
  <html>
@@ -331,10 +331,10 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                         <option>Seleccione Grupo Empresa</option>
                                         <?php
                                             $c1="SELECT ge.`NOMBRE_LARGO_GE` FROM `grupo_empresa` AS ge,`inscripcion` AS i WHERE i.`NOMBRE_UA` = '$uActivo' AND i.`NOMBRE_UGE` = ge.`NOMBRE_U`";
-                                            $a1=$con->consulta($c1);
+                                            $a1=$con->query($c1);
                                             
                                              echo "<option>TODOS</option>";
-                                            while($v1 =  mysql_fetch_array($a1)){
+                                            while($v1 =  $a1->fetch(PDO::FETCH_NUM)){
                                                 echo "<option>".$v1[0]."</option>";
                                             }
                                             echo "<input type='hidden' name='idAsesor' value='$uActivo'>";
@@ -356,15 +356,15 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                         $conGestion="SELECT id_g "
                                                 . "FROM gestion "
                                                 . "WHERE DATE (NOW()) > DATE(FECHA_INICIO_G) and DATE(NOW()) < DATE(FECHA_FIN_G)";
-                                        $conGestion_=$con->consulta($conGestion);
-                                        $idGestion=mysql_fetch_row($conGestion_);
+                                        $conGestion_=$con->query($conGestion);
+                                        $idGestion=$conGestion_->fetch(PDO::FETCH_NUM);
                                         $idGestion_=$idGestion[0];
                                                                        
                                         $c1="SELECT p.`NOMBRE_P` FROM `proyecto` AS `p`, `gestion` AS `g` WHERE p.`ID_G` = g.`ID_G` AND p.`ID_G` LIKE '".$idGestion_."'";
                                  
-                                        $a1=$con->consulta($c1);
+                                        $a1=$con->query($c1);
                                          echo "<option>TODOS</option>";
-                                        while($v1 =  mysql_fetch_array($a1)){
+                                        while($v1 =  $a1->fetch(PDO::FETCH_NUM)){
                                             echo "<option>".$v1[0]."</option>";
                                         }
                                     echo "<input type='hidden' name='idGE' value='$idGE'>";

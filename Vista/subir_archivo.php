@@ -5,11 +5,11 @@
  * and open the template in the editor.
  */
 error_reporting(E_ERROR);
-include '../Modelo/conexion.php';
+include '../Modelo/conexionPDO.php';
 
 
 
-    $clas = new conexion();
+    $clas = new Conexion();
     
         //ahora verificamos que el tamanio y formato de archivo son correcto
         //$formatos = array("application/pdf");
@@ -34,8 +34,8 @@ include '../Modelo/conexion.php';
             if ($resultado) {
                 
                 //recuperamos la idRegistro siguiente que se insertara en la BD de registro para enviarlo a documento
-                $resultadoUno=$clas->consulta("SELECT auto_increment FROM `information_schema`.tables WHERE TABLE_SCHEMA = 'tis_mbittle' AND TABLE_NAME = 'registro'");
-                while ($filas = mysql_fetch_array($resultadoUno)) {
+                $resultadoUno=$clas->query("SELECT auto_increment FROM `information_schema`.tables WHERE TABLE_SCHEMA = 'tis_mbittle' AND TABLE_NAME = 'registro'");
+                while ($filas = $resultadoUno->fetch()) {
                     $idRegistro=(integer)$filas['0'];
                 }
                 
@@ -46,8 +46,8 @@ include '../Modelo/conexion.php';
                 date_default_timezone_set('America/La_Paz');
                 $fecha=  date('Y-m-d');
                 $hora=  date("G:H:i");
-                $clas->consulta("INSERT INTO `registro` (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R)  VALUES ('$idUsuarioG','documento subido','habilitado','$nombre','$fecha','$hora')");
-                $clas->consulta("INSERT INTO `documento` (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES ($idRegistro,$tamanio,'$rutaDocumento','$visualizable','$descargable')");
+                $clas->query("INSERT INTO `registro` (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R)  VALUES ('$idUsuarioG','documento subido','habilitado','$nombre','$fecha','$hora')");
+                $clas->query("INSERT INTO `documento` (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES ($idRegistro,$tamanio,'$rutaDocumento','$visualizable','$descargable')");
                 echo 'Documento cargado exitosamente';
                 
             }
@@ -62,6 +62,4 @@ include '../Modelo/conexion.php';
         //{
             //echo 'el formato de archivo o el tamanio de archivo no son permitidos';
         //}
-
-$clas->cerrarConexion();
 ?>

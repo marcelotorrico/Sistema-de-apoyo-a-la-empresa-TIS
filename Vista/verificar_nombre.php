@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
 ?>
 <html>
 

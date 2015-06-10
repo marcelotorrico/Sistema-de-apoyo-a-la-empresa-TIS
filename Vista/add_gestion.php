@@ -2,14 +2,14 @@
     session_start();
 if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
  ?> 
 
 <!DOCTYPE html>
@@ -274,8 +274,8 @@ if (isset($_SESSION['usuario'])) {
 		</div>
 		</div>
 		<?php
-		$peticion = $conectar->consulta("SELECT * FROM `gestion`");
-			while($fila = mysql_fetch_array($peticion))
+		$peticion = $conectar->query("SELECT * FROM `gestion`");
+			while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
 			{
 			?>
 			<div class="contenedor-fila">

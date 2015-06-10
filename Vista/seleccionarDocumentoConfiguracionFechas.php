@@ -1,6 +1,6 @@
 <?php
-    include '../Modelo/conexion.php';
-    $con=new conexion();
+    include '../Modelo/conexionPDO.php';
+    $con=new Conexion();
     $usuarioActivo="leticia";
     
 
@@ -9,7 +9,7 @@
        " WHERE tipo_t ='documento requerido'".
        " AND nombre_u='$usuarioActivo'";
     
-    $a=$con->consulta($cons);
+    $a=$con->query($cons);
     
     if(isset($_POST['documentoRequerido'])){
         $_a=$_POST['documentoRequerido'];

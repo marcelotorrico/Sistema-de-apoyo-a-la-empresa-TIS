@@ -1,5 +1,5 @@
 <?php
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
    
     session_start();
     $uActivo = $_SESSION['usuario'];
@@ -9,16 +9,16 @@
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
-    $con=new conexion();
-    $VerificarUsuario = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");
-    $VerificarUsuario2 = mysql_fetch_row($VerificarUsuario);
+    $con=new Conexion();
+    $VerificarUsuario = $con->query("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");
+    $VerificarUsuario2 = $VerificarUsuario->fetch(PDO::FETCH_NUM);
     
     $usuario = $uActivo;
     
     if (!is_array($VerificarUsuario2)) {   
     $consultaGE="SELECT `NOMBRE_U` FROM socio WHERE `NOMBRES_S` = '$uActivo'";
-    $conGE_=$con->consulta($consultaGE);
-    $NombreUsuario=mysql_fetch_row($conGE_);
+    $conGE_=$con->query($consultaGE);
+    $NombreUsuario=$conGE_->fetch(PDO::FETCH_NUM);
 
     $usuario=$NombreUsuario[0];
 
@@ -164,9 +164,9 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $con->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $con->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
                                             
                                             echo '<li>
@@ -266,7 +266,7 @@
                                         $textoNotiN=$_POST['texto'];
                                        
                                         $noticia = "INSERT INTO noticias (NOMBRE_U,TITULO, FECHA_N, VIEWS, TEXTO, POSTEADO) VALUES ('$usuario','".addslashes(mysql_real_escape_string($_POST["titulo"]))."', NOW(), '0', '$textoNotiN','$uActivo')";
-                                        $noticia = $con->consulta($noticia)
+                                        $noticia = $con->query($noticia)
                                         or die ("Error.");
                                         echo "<script type=\"text/javascript\">alert('Tema Adicionado');</script>";
 

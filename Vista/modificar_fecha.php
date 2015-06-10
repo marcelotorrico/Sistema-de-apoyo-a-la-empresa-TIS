@@ -1,14 +1,14 @@
  <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';  
+    include '../Modelo/conexionPDO.php';  
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"asesor");
 
-    $conectar=new conexion();
+    $conectar=new Conexion();
 
  ?> 
 
@@ -72,14 +72,14 @@
    <?php       
 
             $ID = $_GET['GE'];
-            $peticion= $conectar->consulta("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$ID'");  
-            while ($correo = mysql_fetch_array($peticion))
+            $peticion= $conectar->query("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$ID'");  
+            while ($correo = $peticion->fetch(PDO::FETCH_ASSOC))
             {
             $fechaFin=$correo["FECHA_FR"];  
             }    
             
-            $peticion1= $conectar->consulta("SELECT `NOMBRE_R` FROM `registro` WHERE `TIPO_T`='actividad planificacion' and ID_R='$ID'"); 
-            while ($correo1 = mysql_fetch_array($peticion1))
+            $peticion1= $conectar->query("SELECT `NOMBRE_R` FROM `registro` WHERE `TIPO_T`='actividad planificacion' and ID_R='$ID'"); 
+            while ($correo1 = $peticion1->fetch(PDO::FETCH_ASSOC))
             {
             $actividad=$correo1["NOMBRE_R"];  
             }

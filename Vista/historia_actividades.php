@@ -1,5 +1,5 @@
 <?php 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
@@ -9,23 +9,23 @@
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
-    $conexion=new conexion();
+    $conexion=new Conexion();
 
         //Peticion
-        $peticionA = $conexion->consulta("SELECT `NOMBRE_UA` FROM `inscripcion` WHERE `NOMBRE_UGE`='$uActivo'");
-             while ($correo = mysql_fetch_array($peticionA))
+        $peticionA = $conexion->query("SELECT `NOMBRE_UA` FROM `inscripcion` WHERE `NOMBRE_UGE`='$uActivo'");
+             while ($correo = $peticionA->fetch(PDO::FETCH_ASSOC))
                {        
                       $asesor=$correo["NOMBRE_UA"];
                }
 
-         $peticionGE = $conexion->consulta("SELECT NOMBRE_CORTO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
-             while ($correo1 = mysql_fetch_array($peticionGE))
+         $peticionGE = $conexion->query("SELECT NOMBRE_CORTO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+             while ($correo1 = $peticionGE->fetch(PDO::FETCH_ASSOC))
                {        
                       $grupoEmpresa=$correo1["NOMBRE_CORTO_GE"];   
                }   
                       
-         $peticionNL = $conexion->consulta("SELECT NOMBRE_LARGO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
-             while ($correo2 = mysql_fetch_array($peticionNL))
+         $peticionNL = $conexion->query("SELECT NOMBRE_LARGO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+             while ($correo2 = $peticionNL->fetch(PDO::FETCH_ASSOC))
                {        
                       $grupoEmpresaNL=$correo2["NOMBRE_LARGO_GE"];
                }                        
@@ -149,15 +149,13 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
-                                        {
-                                            
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
+                                        {                                            
                                             echo '<li>
                                                   <a href="SubirDocumento.php?doc='.$rowDocs[0].'">'.$rowDocs[0].'</a>
-                                                   </li>';  
-                                            
+                                                   </li>';
                                         }
                                         
                                     ?>
@@ -220,8 +218,8 @@
         <?php 
   
         
-        $peticion6=$conexion->consulta("SELECT * FROM inscripcion WHERE NOMBRE_UGE='$uActivo' and ESTADO_INSCRIPCION='Habilitado'");
-        $tamano=mysql_num_rows($peticion6);
+        $peticion6=$conexion->query("SELECT * FROM inscripcion WHERE NOMBRE_UGE='$uActivo' and ESTADO_INSCRIPCION='Habilitado'");
+        $tamano=$peticion6->rowCount();
         if($tamano>0)
         {
         
@@ -229,8 +227,8 @@
         
             
         
-            $peticion7=$conexion->consulta("SELECT  r.nombre_r, p.fecha_inicio_pl, p.hora_inicio_pl, p.fecha_fin_pl, p.hora_fin_pl FROM plazo p, registro r, tipo t, inscripcion_proyecto i, documento_r d WHERE t.TIPO_T = r.TIPO_T AND p.ID_R = r.ID_R AND r.TIPO_T =  'documento requerido' AND r.NOMBRE_U = '$asesor' AND i.NOMBRE_U='$uActivo' and  d.CODIGO_P=i.CODIGO_P AND r.ID_R=d.ID_R");
-            $tamanio=mysql_num_rows($peticion7);
+            $peticion7=$conexion->query("SELECT  r.nombre_r, p.fecha_inicio_pl, p.hora_inicio_pl, p.fecha_fin_pl, p.hora_fin_pl FROM plazo p, registro r, tipo t, inscripcion_proyecto i, documento_r d WHERE t.TIPO_T = r.TIPO_T AND p.ID_R = r.ID_R AND r.TIPO_T =  'documento requerido' AND r.NOMBRE_U = '$asesor' AND i.NOMBRE_U='$uActivo' and  d.CODIGO_P=i.CODIGO_P AND r.ID_R=d.ID_R");
+            $tamanio=$peticion7->rowCount();
             if($tamanio>0)
             {
 
@@ -275,10 +273,10 @@
                         <?php
 
                         //Peticion
-                        $peticion = $conexion->consulta("SELECT  r.nombre_r, p.fecha_inicio_pl, p.hora_inicio_pl, p.fecha_fin_pl, p.hora_fin_pl FROM plazo p, registro r, tipo t, inscripcion_proyecto i, documento_r d WHERE t.TIPO_T = r.TIPO_T AND p.ID_R = r.ID_R AND r.TIPO_T =  'documento requerido' AND r.NOMBRE_U = '$asesor' AND i.NOMBRE_U='$uActivo' and  d.CODIGO_P=i.CODIGO_P AND r.ID_R=d.ID_R");
+                        $peticion = $conexion->query("SELECT  r.nombre_r, p.fecha_inicio_pl, p.hora_inicio_pl, p.fecha_fin_pl, p.hora_fin_pl FROM plazo p, registro r, tipo t, inscripcion_proyecto i, documento_r d WHERE t.TIPO_T = r.TIPO_T AND p.ID_R = r.ID_R AND r.TIPO_T =  'documento requerido' AND r.NOMBRE_U = '$asesor' AND i.NOMBRE_U='$uActivo' and  d.CODIGO_P=i.CODIGO_P AND r.ID_R=d.ID_R");
 
 
-                        while($fila = mysql_fetch_array($peticion))
+                        while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
                         {
                         ?>
                         <div class="contenedor-fila">
@@ -319,8 +317,8 @@
             }
             else
             {                     
-                $peticion9=$conexion->consulta("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
-                $tamanio2=mysql_num_rows($peticion9);
+                $peticion9=$conexion->query("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
+                $tamanio2=$peticion9->rowCount();
                 if($tamanio2<1)
                 {  
                         echo '<div class="alert alert-warning">
@@ -336,8 +334,8 @@
                         <div class="historia">
         <?php   
         
-            $peticion8=$conexion->consulta("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
-            $tamanio1=mysql_num_rows($peticion8);
+            $peticion8=$conexion->query("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
+            $tamanio1=$peticion8->rowCount();
             if($tamanio1>0)
             {
         
@@ -377,10 +375,10 @@
                         </div>  
                         <?php
 
-                        $peticion = $conexion->consulta("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
+                        $peticion = $conexion->query("SELECT registro.ID_R,registro.NOMBRE_U,registro.NOMBRE_R,registro.FECHA_R,registro.HORA_R  FROM registro, receptor  WHERE  registro.ID_R=receptor.ID_R  and   (RECEPTOR_R='$grupoEmpresaNL' OR RECEPTOR_R='TODOS')");
 
 
-                        while($fila = mysql_fetch_array($peticion))
+                        while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
                         {
                         ?>
                         <div class="contenedor-fila">

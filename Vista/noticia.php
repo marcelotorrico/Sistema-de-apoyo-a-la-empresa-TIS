@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
@@ -8,7 +8,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $conect=new conexion();
+ $conect=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>
@@ -287,16 +287,16 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
                                $idNoti = $_GET['id'];
                                // Adiciona +1 de Visualizaciones a cada pessoa que acessar a noticia
-                               $selNoti = $conect->consulta("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
-                               $noticia = mysql_fetch_array($selNoti);
+                               $selNoti = $conect->query("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
+                               $noticia = $selNoti->fetch(PDO::FETCH_ASSOC);
                                $view = $noticia['VIEWS'];
                                $views = $view + 1;
-                               $actNoti = $conect->consulta("UPDATE noticias SET VIEWS = '$views' WHERE ID_N = '$idNoti'");
+                               $actNoti = $conect->query("UPDATE noticias SET VIEWS = '$views' WHERE ID_N = '$idNoti'");
 
-                              $selNoti2 =$conect->consulta("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
+                              $selNoti2 =$conect->query("SELECT * FROM noticias WHERE ID_N = '$idNoti'");
                               
                              
-                               while ($noticiaF=mysql_fetch_array($selNoti2)) 
+                               while ($noticiaF=$selNoti2->fetch(PDO::FETCH_ASSOC)) 
                                { 
                                    $idNotic = $noticiaF["ID_N"];
                                    $autor = $noticiaF["NOMBRE_U"];
@@ -306,11 +306,9 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                    $texto = $noticiaF["TEXTO"];
                                    $posteado=$noticiaF["POSTEADO"];
 
-                                    $selComen = $conect->consulta("SELECT * FROM comentarios WHERE ID_N='$idNotic'");
+                                    $selComen = $conect->query("SELECT * FROM comentarios WHERE ID_N='$idNotic'");
                                     
-                                    $tamComen = mysql_num_rows($selComen);
-
-
+                                    $tamComen = $selComen->rowCount();
 
                                    echo"<font face='verdana' Color='Black' size='6'>$titulo</font></br></br>";
                                     echo "<font face='arial' Color='Gray' size='4'>$texto</font></br>";
@@ -330,11 +328,11 @@ $verificar->validarInicioSesion($uActivo,"asesor");
 
 
                        $idNoti= $_GET['id'];
-                       $selCom1 = $conect->consulta("SELECT * FROM comentarios WHERE ID_N = '$idNoti' ORDER BY ID_N DESC");
+                       $selCom1 = $conect->query("SELECT * FROM comentarios WHERE ID_N = '$idNoti' ORDER BY ID_N DESC");
                       
 
                         // muestra los valores da tabla 'comentarios'
-                       while ($actualC=mysql_fetch_array($selCom1)) 
+                       while ($actualC=$selCom1->fetch(PDO::FETCH_ASSOC)) 
                        { 
                              $idComen = $actualC["ID_C"];
                              $autor = $actualC["NOMBRE_U"];
@@ -370,7 +368,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                     $comentario=$_POST['comentario'];
                                     $idnNoticia=$_GET['id'];
     
-                                      $agregarC = $conect->consulta("INSERT INTO comentarios (NOMBRE_U,ID_N,COMENTARIO,FECHA_C,AUTOR_C) VALUES ('$autor','$idnNoticia', '$comentario', NOW(), '$uActivo')");
+                                      $agregarC = $conect->query("INSERT INTO comentarios (NOMBRE_U,ID_N,COMENTARIO,FECHA_C,AUTOR_C) VALUES ('$autor','$idnNoticia', '$comentario', NOW(), '$uActivo')");
 
                                   
 

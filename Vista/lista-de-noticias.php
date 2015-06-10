@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $conect=new conexion();
+ $conect=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>
@@ -283,10 +283,10 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                    <?php
  
                                        // Seleciona la tabla de noticias
-                                        $noticia = $conect->consulta("SELECT * FROM noticias ORDER BY ID_N DESC");
+                                        $noticia = $conect->query("SELECT * FROM noticias ORDER BY ID_N DESC");
 
                                 
-                                        while ($noticias=mysql_fetch_array($noticia)) 
+                                        while ($noticias=$noticia->fetch(PDO::FETCH_ASSOC)) 
                                         { 
                                            $idNoti = $noticias["ID_N"];
                                            $usuario = $noticias["NOMBRE_U"];
@@ -296,8 +296,8 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                            $posteado=$noticias["POSTEADO"];
 
                                             // numero de comentarios
-                                           $selComen = $conect->consulta("SELECT * FROM comentarios WHERE ID_N='$idNoti'");
-                                           $comentarios = mysql_num_rows($selComen);
+                                           $selComen = $conect->query("SELECT * FROM comentarios WHERE ID_N='$idNoti'");
+                                           $comentarios = $selComen->rowCount();
 
                                     ?>
 

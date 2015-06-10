@@ -141,12 +141,12 @@
                                                    
                                                 <?php
                                                     $i=0;
-                                                    include '../Modelo/conexion.php';
+                                                    include '../Modelo/conexionPDO.php';
         
-                                                    $conect = new conexion();
-                                                    $ResRoles = $conect->consulta("SELECT * FROM `rol` WHERE ROL_R != 'administrador' and  ROL_R != 'grupoEmpresa' ");
+                                                    $conect = new Conexion();
+                                                    $ResRoles = $conect->query("SELECT * FROM `rol` WHERE ROL_R != 'administrador' and  ROL_R != 'grupoEmpresa' ");
                                                   
-                                                    while($row = mysql_fetch_row($ResRoles))
+                                                    while($row = $ResRoles->fetch(PDO::FETCH_NUM))
                                                     {
                                                         $roles[] = $row;
                                                         echo '<option>'.$roles[$i][0].'</option>';

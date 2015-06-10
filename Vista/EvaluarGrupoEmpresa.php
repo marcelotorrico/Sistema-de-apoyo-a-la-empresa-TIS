@@ -282,12 +282,12 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                         <div class="panel-body">     
                             
                             <?php 
-                            include_once '../Modelo/conexion.php';
-                            $conect = new conexion();
+                            include_once '../Modelo/conexionPDO.php';
+                            $conect = new Conexion();
                             
-                            $Sel_Form = $conect->consulta("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$uActivo'");
+                            $Sel_Form = $conect->query("SELECT ID_FORM FROM formulario WHERE ESTADO_FORM = 'Habilitado' AND NOMBRE_U = '$uActivo'");
                             
-                            $IdForm = mysql_fetch_row($Sel_Form);
+                            $IdForm = $Sel_Form->fetch(PDO::FETCH_NUM);
 
                             $IdForm2 = $IdForm[0];
 
@@ -297,7 +297,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                             if(is_array($IdForm)) 
                             {
                                 
-                                $Sel_GE = $conect->consulta("SELECT DISTINCT NOMBRE_UGE FROM inscripcion WHERE NOMBRE_UA = '$uActivo' AND ESTADO_INSCRIPCION = 'Habilitado'");
+                                $Sel_GE = $conect->query("SELECT DISTINCT NOMBRE_UGE FROM inscripcion WHERE NOMBRE_UA = '$uActivo' AND ESTADO_INSCRIPCION = 'Habilitado'");
 
                                 echo '<div class="form-group">';
                                 echo '<label><h4>Seleccione la Grupo Empresa a evaluar:</h4></label>';
@@ -305,7 +305,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                 echo '<option value="">Seleccione una grupo empresa</option>';
                                 
                                 
-                                while($Row_GE = mysql_fetch_array($Sel_GE)){
+                                while($Row_GE = $Sel_GE->fetch(PDO::FETCH_NUM)){
                                     echo "<option>".$Row_GE[0]."</option>";
                                 }
 
@@ -314,48 +314,39 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                 </div>
                                 </div>';
 
-                                $Sel_IdCE = $conect->consulta("SELECT ID_CRITERIO_E FROM form_crit_e WHERE ID_FORM ='$IdForm2'");
+                                $Sel_IdCE = $conect->query("SELECT ID_CRITERIO_E FROM form_crit_e WHERE ID_FORM ='$IdForm2'");
 
-                                while ($Row_CE = mysql_fetch_row($Sel_IdCE)) {
-
-                                    $IdCritE[] = $Row_CE; 
-                                    
+                                while ($Row_CE = $Sel_IdCE->fetch(PDO::FETCH_NUM)) {
+                                    $IdCritE[] = $Row_CE;                                     
                                 }
 
                                 for ($i=0; $i <count($IdCritE) ; $i++) { 
 
-                                    $Sel_NomE = $conect->consulta('SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE ID_CRITERIO_E = '.$IdCritE[$i][0].'');
+                                    $Sel_NomE = $conect->query('SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE ID_CRITERIO_E = '.$IdCritE[$i][0].'');
 
-                                    $NomCE[] = mysql_fetch_row($Sel_NomE);
+                                    $NomCE[] = $Sel_NomE->fetch(PDO::FETCH_NUM);
                                     
                                 }
 
-                                $Sel_Pje = $conect->consulta("SELECT PUNTAJE FROM puntaje WHERE ID_FORM = '$IdForm2'");
+                                $Sel_Pje = $conect->query("SELECT PUNTAJE FROM puntaje WHERE ID_FORM = '$IdForm2'");
 
-                                while($Row_Pje = mysql_fetch_row($Sel_Pje))
+                                while($Row_Pje = $Sel_Pje->fetch(PDO::FETCH_NUM))
                                 {
                                     $puntajes[] = $Row_Pje;
                                 }
 
-                                $Sel_IdCC = $conect->consulta("SELECT ID_CRITERIO_C FROM from_crit_c WHERE ID_FORM = '$IdForm2'");
+                                $Sel_IdCC = $conect->query("SELECT ID_CRITERIO_C FROM from_crit_c WHERE ID_FORM = '$IdForm2'");
 
-                                while ($Row_CC = mysql_fetch_row($Sel_IdCC)) {
-
-                                    $IdCritC[] = $Row_CC;
-                                    
+                                while ($Row_CC = $Sel_IdCC->fetch(PDO::FETCH_NUM)) {
+                                    $IdCritC[] = $Row_CC;                                    
                                 }
 
-                                for ($j=0; $j < count($IdCritC) ; $j++) { 
-                                    
-                                    $Sel_Tipo = $conect->consulta('SELECT TIPO_CRITERIO FROM criteriocalificacion WHERE ID_CRITERIO_C ='.$IdCritC[$j][0].'');
-
-                                    $TipoC[] = mysql_fetch_row($Sel_Tipo);
+                                for ($j=0; $j < count($IdCritC) ; $j++) {                                    
+                                    $Sel_Tipo = $conect->query('SELECT TIPO_CRITERIO FROM criteriocalificacion WHERE ID_CRITERIO_C ='.$IdCritC[$j][0].'');
+                                    $TipoC[] = $Sel_Tipo->fetch(PDO::FETCH_NUM);
                                 }
 
-                                
-
-                                for ($i=0; $i < count($NomCE) ; $i++) { 
-
+                                for ($i=0; $i < count($NomCE) ; $i++) {
                                     echo "<div>";
                                     echo '<div class="panel panel-default">';
                                     echo '<div class="panel-body">';
@@ -376,24 +367,20 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                     else
                                     {      
                                         
-                                        $Sel_Ind = $conect->consulta('SELECT NOMBRE_INDICADOR FROM indicador WHERE ID_CRITERIO_C = '.$IdCritC[$i][0].'');
-
-                                        while($Row_Ind = mysql_fetch_row($Sel_Ind)){
-
+                                        $Sel_Ind = $conect->query('SELECT NOMBRE_INDICADOR FROM indicador WHERE ID_CRITERIO_C = '.$IdCritC[$i][0].'');
+                                        while($Row_Ind = $Sel_Ind->fetch(PDO::FETCH_NUM)){
                                             $Ind[] = $Row_Ind;
                                         }
 
-                                        $valores = $conect->consulta('SELECT PUNTAJE_INDICADOR FROM indicador WHERE ID_CRITERIO_C = '.$IdCritC[$i][0].'');
+                                        $valores = $conect->query('SELECT PUNTAJE_INDICADOR FROM indicador WHERE ID_CRITERIO_C = '.$IdCritC[$i][0].'');
                                         
-                                        while ($Row_Val = mysql_fetch_row($valores)) {
-
-                                            $Val[] = $Row_Val;
-                                            
+                                        while ($Row_Val = $valores->fetch(PDO::FETCH_NUM)) {
+                                            $Val[] = $Row_Val;                                            
                                         }
                                         
                                         echo '<div id='.$i.'>';
 
-                                        for ($z=0; $z < count($Ind) ; $z++) { 
+                                        for ($z=0; $z < count($Ind) ; $z++) {
 
                                             echo'<div class="checkbox">';
                                             

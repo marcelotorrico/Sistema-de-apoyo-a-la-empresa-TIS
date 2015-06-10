@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $conectar=new conexion();
+ $conectar=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>
@@ -294,11 +294,11 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                     $correo;
             
                     //Peticion
-                    $peticion = $conectar->consulta("SELECT u.PASSWORD_U,u.TELEFONO_U,u.CORREO_ELECTRONICO_U,a.NOMBRES_A,a.APELLIDOS_A FROM  usuario u, asesor a WHERE u.NOMBRE_U=a.NOMBRE_U  and u.NOMBRE_U='$uActivo'");
+                    $peticion = $conectar->query("SELECT u.PASSWORD_U,u.TELEFONO_U,u.CORREO_ELECTRONICO_U,a.NOMBRES_A,a.APELLIDOS_A FROM  usuario u, asesor a WHERE u.NOMBRE_U=a.NOMBRE_U  and u.NOMBRE_U='$uActivo'");
                     //cerrar conexion--------------------------
                    
                     
-                    while($fila = mysql_fetch_array($peticion))
+                    while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
                     {
                         $nombre= $fila["NOMBRES_A"]; 
                         $apellido= $fila["APELLIDOS_A"]; 

@@ -7,32 +7,31 @@
     echo $nombreUsuario;
     echo $password;
 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
    
     
-    $conect = new conexion();
+    $conect = new Conexion();
    
-    $VerificarUsuario = $conect->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$nombreUsuario' AND PASSWORD_U = '$password'") ;
+    $VerificarUsuario = $conect->query("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$nombreUsuario' AND PASSWORD_U = '$password'") ;
     
-    $VerificarUsuario2 = mysql_fetch_row($VerificarUsuario);
+    $VerificarUsuario2 = $VerificarUsuario->fetch(PDO::FETCH_NUM);
 
     //var_dump($VerificarUsuario2);
     
     
     if (is_array($VerificarUsuario2)) {
         
-        $VerificarEstado = $conect->consulta("SELECT ESTADO_E FROM usuario WHERE NOMBRE_U = '$nombreUsuario' AND ESTADO_E = 'habilitado' ");
-        $VerificarEstado2 = mysql_fetch_row($VerificarEstado);
+        $VerificarEstado = $conect->query("SELECT ESTADO_E FROM usuario WHERE NOMBRE_U = '$nombreUsuario' AND ESTADO_E = 'habilitado' ");
+        $VerificarEstado2 = $VerificarEstado->fetch(PDO::FETCH_NUM);
 
         //var_dump($VerificarEstado2);
         
         if (is_array($VerificarEstado2)) {
             
-            $VerificarRol = $conect->consulta("SELECT ROL_R FROM usuario_rol WHERE NOMBRE_U = '$nombreUsuario'");
-            $VerificarRol2 = mysql_fetch_row($VerificarRol);
+            $VerificarRol = $conect->query("SELECT ROL_R FROM usuario_rol WHERE NOMBRE_U = '$nombreUsuario'");
+            $VerificarRol2 = $VerificarRol->fetch(PDO::FETCH_NUM);
 
-            var_dump($VerificarRol2);
-            
+            var_dump($VerificarRol2);            
             
             if($VerificarRol2 == "GrupoEmpresa")
             {

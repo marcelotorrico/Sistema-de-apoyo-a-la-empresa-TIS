@@ -1,15 +1,15 @@
 <?php 
 
 
-	include '../Modelo/conexion.php';
+	include '../Modelo/conexionPDO.php';
             
 	session_start();
-	$conect = new conexion(); 
+	$conect = new Conexion(); 
     $UsuarioActivo = $_SESSION['usuario'];
 
-    $CriteriosEvaluacion = $conect->consulta("SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_U = '$UsuarioActivo'");
+    $CriteriosEvaluacion = $conect->query("SELECT NOMBRE_CRITERIO_E FROM criterio_evaluacion WHERE NOMBRE_U = '$UsuarioActivo'");
 
-    $CriteriosCalificacion = $conect->consulta("SELECT NOMBRE_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_U ='$UsuarioActivo'");
+    $CriteriosCalificacion = $conect->query("SELECT NOMBRE_CRITERIO_C FROM criteriocalificacion WHERE NOMBRE_U ='$UsuarioActivo'");
 
     echo '<div id="escogidos">';
     	echo '<div class="form-group">';
@@ -17,7 +17,7 @@
     		echo '<select class="form-control" name="EvaEscogidos[]" required>';
         		echo '<option value="">Seleccione un Criterio a Evaluar</option>';
 
-	while ($v2 = mysql_fetch_row($CriteriosEvaluacion)) {
+	while ($v2 = $CriteriosEvaluacion->fetch(PDO::FETCH_NUM)) {
 
             	echo '<option>'.$v2[0].'</option>';
     }
@@ -29,7 +29,7 @@
         	echo '<select class="form-control" name="CritEscogidos[]" required>';
             	echo '<option value="">Seleccione un Tipo de Calificacion</option>';
                                                                     
-    while ($v3 = mysql_fetch_row($CriteriosCalificacion)) {
+    while ($v3 = $CriteriosCalificacion->fetch(PDO::FETCH_NUM)) {
 
             	echo '<option value="'.$v3[0].'">'.$v3[0].'</option>';
 
@@ -48,7 +48,4 @@
         echo '</div>';
     	echo '<hr>';
     echo '</div>';
-
-    
-
  ?>

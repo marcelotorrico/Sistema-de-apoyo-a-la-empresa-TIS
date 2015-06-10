@@ -11,13 +11,11 @@
 
     switch ($funcion) {
         case 'registrar asistencia':
-          $conexion = new Conexion();
-      $conexion->conectar();
+          $conexion = new Conexion();      
 
       $s = $conexion->consultarTabla("SELECT codigo_s, nombres_s, apellidos_s
                           FROM socio
-                          WHERE nombre_u = '$u';");
-      $conexion->cerrarConexion();
+                          WHERE nombre_u = '$u';");      
       $filas = '';
       $scripts = '';
       for ($i = 0; $i < count($s); $i++) {
@@ -95,38 +93,28 @@
 
       case 'registrar seguimiento':
       $conexion = new Conexion();
-      $conexion->conectar();
-      $fechas=$conexion->consulta("SELECT DISTINCT `FECHA_S` FROM seguimiento WHERE seguimiento.GRUPO_S='$u' ORDER BY FECHA_S DESC ");
-      
-      
+      $fechas=$conexion->query("SELECT DISTINCT `FECHA_S` FROM seguimiento WHERE seguimiento.GRUPO_S='$u' ORDER BY FECHA_S DESC ");
       ?>
-      
- 
 
       <?php
 
-
-      while ($fechasSegui = mysql_fetch_array($fechas))
+      while ($fechasSegui = $fechas->fetch(PDO::FETCH_NUM))
      { 
          $fechaArr=$fechasSegui[0];
 
          echo "<div class='bs-callout bs-callout-info'>
               <h4>".$fechaArr."</h4>
           </div>";
-          $peticionGE = $conexion->consulta("SELECT `ROL_S`,`ACTIVIDAD_S`,`HECHO_S`,`RESULTADO_S`,`CONCLUSION_S`,`OBSERVACION_S`  FROM seguimiento WHERE seguimiento.GRUPO_S='$u' AND FECHA_S ='$fechaArr'");
+          $peticionGE = $conexion->query("SELECT `ROL_S`,`ACTIVIDAD_S`,`HECHO_S`,`RESULTADO_S`,`CONCLUSION_S`,`OBSERVACION_S`  FROM seguimiento WHERE seguimiento.GRUPO_S='$u' AND FECHA_S ='$fechaArr'");
         
-             while ($seguimiento = mysql_fetch_array($peticionGE))
-            { 
-
-
+             while ($seguimiento = $peticionGE->fetch(PDO::FETCH_NUM))
+            {
                 $rolGE=$seguimiento[0];
                 $actividad=$seguimiento[1];
                 $hechoGE=$seguimiento[2];
                 $resultado=$seguimiento[3];
                 $conclusion=$seguimiento[4];
                 $obserGE=$seguimiento[5];
-               
-
               
                 if($hechoGE=="1")
                 {
@@ -193,17 +181,9 @@
                
                 $tabla.=" </thead> 
                 </table> </fieldset></form></div>";
-                echo $tabla;
-
-               
-                         
+                echo $tabla;                         
          }
-
-        
-
-    } 
-      
-
+    }
       break;
 
     case 'registrar reportes':

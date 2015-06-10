@@ -1,14 +1,14 @@
  <?php  
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';  
+    include '../Modelo/conexionPDO.php';  
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"asesor");
 
-    $conectar=new conexion();
+    $conectar=new Conexion();
  ?> 
 
 <!DOCTYPE html>

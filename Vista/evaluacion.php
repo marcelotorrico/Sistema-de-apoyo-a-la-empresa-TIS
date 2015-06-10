@@ -1,14 +1,14 @@
  <?php  
  session_start();
 $uActivo = $_SESSION['usuario'];
-include '../Modelo/conexion.php';  
+include '../Modelo/conexionPDO.php';  
 
 require '../Controlador/ValidadorInicioSesion.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
-$conectar=new conexion();
+$conectar=new Conexion();
  ?> 
 
 <!DOCTYPE html>
@@ -77,40 +77,40 @@ $conectar=new conexion();
            $Nota=0;
            $ID = $_GET['GE'];
            
-           $peticion=$conectar->consulta("SELECT grupo_empresa.NOMBRE_CORTO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$ID' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
-           while ($correo1 = mysql_fetch_array($peticion))
+           $peticion=$conectar->query("SELECT grupo_empresa.NOMBRE_CORTO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$ID' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
+           while ($correo1 = $peticion->fetch(PDO::FETCH_ASSOC))
            { $NombreCorto=$correo1["NOMBRE_CORTO_GE"];}  
            
-            $peticion1=$conectar->consulta("SELECT `NOMBRE_R` FROM `registro` WHERE `ID_R`='$ID'");
-           while ($correo2 = mysql_fetch_array($peticion1))
+            $peticion1=$conectar->query("SELECT `NOMBRE_R` FROM `registro` WHERE `ID_R`='$ID'");
+           while ($correo2 = $peticion1->fetch(PDO::FETCH_ASSOC))
            { $Actividad=$correo2["NOMBRE_R"];}        
            
-           $peticion3=$conectar->consulta("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_CORTO_GE`='$NombreCorto'");
-           while ($correo4 = mysql_fetch_array($peticion3))
+           $peticion3=$conectar->query("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_CORTO_GE`='$NombreCorto'");
+           while ($correo4 = $peticion3->fetch(PDO::FETCH_ASSOC))
            { $usuarioGE=$correo4["NOMBRE_U"];}  
            
-            $peticion2=$conectar->consulta("select MAX(ID_R)  from registro where `NOMBRE_R`= '$Actividad' and `NOMBRE_U`='$usuarioGE'");
-           while ($correo3 = mysql_fetch_array($peticion2))
+            $peticion2=$conectar->query("select MAX(ID_R)  from registro where `NOMBRE_R`= '$Actividad' and `NOMBRE_U`='$usuarioGE'");
+           while ($correo3 = $peticion2->fetch(PDO::FETCH_ASSOC))
            { $IDPago=$correo3["MAX(ID_R)"];} 
            
 
-             $peticion4=$conectar->consulta("SELECT `ENTREGABLE_P` FROM `entrega`, entregable WHERE `ID_R`='$IDPago' and entregable.ENTREGABLE_E= entrega.ENTREGABLE_P and `NOMBRE_U`='$usuarioGE'");
-           while ($correo5 = mysql_fetch_array($peticion4))
+             $peticion4=$conectar->query("SELECT `ENTREGABLE_P` FROM `entrega`, entregable WHERE `ID_R`='$IDPago' and entregable.ENTREGABLE_E= entrega.ENTREGABLE_P and `NOMBRE_U`='$usuarioGE'");
+           while ($correo5 = $peticion4->fetch(PDO::FETCH_ASSOC))
            { $Entregable[]=$correo5["ENTREGABLE_P"];}         
        
            
-             $peticion5=$conectar->consulta("SELECT `DESCRIPCION_E` FROM `entrega`, entregable WHERE `ID_R`='$IDPago' and entregable.ENTREGABLE_E= entrega.ENTREGABLE_P and `NOMBRE_U`='$usuarioGE'");
-           while ($correo6 = mysql_fetch_array($peticion5))
+             $peticion5=$conectar->query("SELECT `DESCRIPCION_E` FROM `entrega`, entregable WHERE `ID_R`='$IDPago' and entregable.ENTREGABLE_E= entrega.ENTREGABLE_P and `NOMBRE_U`='$usuarioGE'");
+           while ($correo6 = $peticion5->fetch(PDO::FETCH_ASSOC))
            { $Descripcion[]=$correo6["DESCRIPCION_E"];}            
            
            
-              $peticion6=$conectar->consulta("SELECT `PORCENTAJE_DEL_TOTAL_P` FROM `pago` WHERE `ID_R`='$IDPago'");
-           while ($correo7 = mysql_fetch_array($peticion6))
+              $peticion6=$conectar->query("SELECT `PORCENTAJE_DEL_TOTAL_P` FROM `pago` WHERE `ID_R`='$IDPago'");
+           while ($correo7 = $peticion6->fetch(PDO::FETCH_ASSOC))
            { $Puntaje=$correo7["PORCENTAJE_DEL_TOTAL_P"];}   
 
            
-                    $peticion333=$conectar->consulta("SELECT `ENTREGABLE_P` FROM `entrega`, entregable WHERE `ID_R`='$IDPago' and entregable.ENTREGABLE_E= entrega.ENTREGABLE_P and `NOMBRE_U`='$usuarioGE'");
-                    $tamano=mysql_num_rows($peticion333);
+                    $peticion333=$conectar->query("SELECT `ENTREGABLE_P` FROM `entrega`, entregable WHERE `ID_R`='$IDPago' and entregable.ENTREGABLE_E= entrega.ENTREGABLE_P and `NOMBRE_U`='$usuarioGE'");
+                    $tamano=$peticion333->rowCount();
 
                     $_SESSION["ID"] = $ID;
                     $_SESSION["NombreCorto"] = $NombreCorto;

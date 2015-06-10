@@ -5,12 +5,12 @@
     $fec2="No registrado";
     $hor2="No registrado";
     //$UsuarioActivo = $_SESSION['usuario'];
-include '../../../Modelo/conexion.php';
+include '../../../Modelo/conexionPDO.php';
 
-$co=new conexion();
+$co=new Conexion();
 if(isset($selecDoc))
 {    
-    $registros=$co->consulta("SELECT *".
+    $registros=$co->query("SELECT *".
         " FROM registro".
         " WHERE tipo_t= 'documento requerido'",$co) or
          die("Problemas en el select:".mysql_error());
@@ -24,16 +24,15 @@ if(isset($selecDoc))
                 " AND r.TIPO_T =  'documento requerido'".
                 " AND r.nombre_r ='$selecDoc'".
                 " LIMIT 0 , 30";
-            $registros=$co->consulta("$SQL",$co);
-            while ($row = mysql_fetch_row($registros)) 
+            $registros=$co->query("$SQL",$co);
+            while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                     {
                         $fec1 = ($row[0]);
                         $hor1 = ($row[1]);
                         $fec2 = ($row[2]);
                         $hor2 = ($row[3]);
                     }
-            $co->cerrarConexion();
-            
+                       
             /**echo $hor1;
             echo $fec2;
             echo $hor2;**/

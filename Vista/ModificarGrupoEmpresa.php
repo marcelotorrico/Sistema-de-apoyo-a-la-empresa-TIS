@@ -1,5 +1,5 @@
 <?php
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -9,7 +9,7 @@
  $verificar = new ValidadorInicioSesion();
  $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
- $conexion = new conexion();
+ $conexion = new Conexion();
 
 ?>
 
@@ -126,15 +126,13 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
-                                        {
-                                            
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
+                                        {                                            
                                             echo '<li>
                                                   <a href="SubirDocumento.php?doc='.$rowDocs[0].'">'.$rowDocs[0].'</a>
-                                                   </li>';  
-                                            
+                                                   </li>';
                                         }
                                         
                                     ?>
@@ -215,11 +213,11 @@
                                         $direccion;
                                         $contrase;
 
-                                        $peticion = $conexion->consulta("SELECT G.NOMBRE_LARGO_GE, G.NOMBRE_CORTO_GE, U.CORREO_ELECTRONICO_U, U.TELEFONO_U, G.DIRECCION_GE, U.PASSWORD_U
+                                        $peticion = $conexion->query("SELECT G.NOMBRE_LARGO_GE, G.NOMBRE_CORTO_GE, U.CORREO_ELECTRONICO_U, U.TELEFONO_U, G.DIRECCION_GE, U.PASSWORD_U
                                                     FROM grupo_empresa G, usuario U WHERE G.NOMBRE_U=U.NOMBRE_U AND U.NOMBRE_U='$uActivo'");         
 
 
-                                        while($fila = mysql_fetch_array($peticion))
+                                        while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
                                         {
                                             $nLargo = $fila["NOMBRE_LARGO_GE"];
                                             $nCorto = $fila["NOMBRE_CORTO_GE"];

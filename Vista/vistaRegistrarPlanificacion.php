@@ -4,7 +4,7 @@
     require_once '../Modelo/Model/Registro.php';
     require_once '../Modelo/Model/Precio.php';
     require_once '../Modelo/Model/FechaRealizacion.php';
-    require_once '../Modelo/conexion.php';
+    require_once '../Modelo/conexionPDO.php';
     session_start();
         
     $uActivo = $_SESSION['usuario'];
@@ -14,31 +14,31 @@
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
-    $con = new conexion();
-    $Ver_Usr = $con->consulta("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");
-    $Ver_Usr2 = mysql_fetch_row($Ver_Usr);
+    $con = new Conexion();
+    $Ver_Usr = $con->query("SELECT NOMBRE_U FROM usuario WHERE NOMBRE_U = '$uActivo' ");
+    $Ver_Usr2 = $Ver_Usr->fetch(PDO::FETCH_NUM);
         
     $usuario = $uActivo;
     
     if (!is_array($Ver_Usr2)) {   
         $Cons_GE = "SELECT `NOMBRE_U` FROM socio WHERE `NOMBRES_S` = '$uActivo'";
-        $Cons_GE2 = $con->consulta($Cons_GE);
-        $Nom_User = mysql_fetch_row($Cons_GE2);
+        $Cons_GE2 = $con->query($Cons_GE);
+        $Nom_User = $Cons_GE2->fetch(PDO::FETCH_NUM);
         $usuario=$Nom_User[0];
     }
     
-    $Verif_In = $con->consulta("SELECT NOMBRE_UA FROM inscripcion, inscripcion_proyecto WHERE NOMBRE_UGE = '$uActivo' and NOMBRE_U = '$uActivo'");
-    $Inscrip = mysql_fetch_row($Verif_In);
-    $Sel_NL = $con->consulta("SELECT NOMBRE_LARGO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
-    $NombreL = mysql_fetch_row($Sel_NL);
-    $Sel_NC = $con->consulta("SELECT NOMBRE_CORTO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
-    $NombreC = mysql_fetch_row($Sel_NC);
+    $Verif_In = $con->query("SELECT NOMBRE_UA FROM inscripcion, inscripcion_proyecto WHERE NOMBRE_UGE = '$uActivo' and NOMBRE_U = '$uActivo'");
+    $Inscrip = $Verif_In->fetch(PDO::FETCH_NUM);
+    $Sel_NL = $con->query("SELECT NOMBRE_LARGO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+    $NombreL = $Sel_NL->fetch(PDO::FETCH_NUM);
+    $Sel_NC = $con->query("SELECT NOMBRE_CORTO_GE FROM grupo_empresa WHERE NOMBRE_U='$uActivo'");
+    $NombreC = $Sel_NC->fetch(PDO::FETCH_NUM);
     $Grupo_NC = 'Notificacion de Conformidad de '.$NombreC[0].'';
-    $Sel_NC = $con->consulta("SELECT * FROM registro,receptor WHERE NOMBRE_U='$Inscrip[0]' AND NOMBRE_R='$Grupo_NC' AND registro.ID_R = receptor.ID_R");
-    $NC = mysql_num_rows($Sel_NC);
+    $Sel_NC = $con->query("SELECT * FROM registro,receptor WHERE NOMBRE_U='$Inscrip[0]' AND NOMBRE_R='$Grupo_NC' AND registro.ID_R = receptor.ID_R");
+    $NC = $Sel_NC->rowCount();
     $Grupo_OC = 'Orden de Cambio de '.$NombreC[0].'';
-    $Sel_OC = $con->consulta("SELECT * FROM registro,receptor WHERE NOMBRE_U='$Inscrip[0]' AND NOMBRE_R='$Grupo_OC' AND registro.ID_R = receptor.ID_R");
-    $OC = mysql_num_rows($Sel_OC);
+    $Sel_OC = $con->query("SELECT * FROM registro,receptor WHERE NOMBRE_U='$Inscrip[0]' AND NOMBRE_R='$Grupo_OC' AND registro.ID_R = receptor.ID_R");
+    $OC = $Sel_OC->rowCount();
     if(is_array($Inscrip))
     {
       if($NC >= 1 or $OC>=1)

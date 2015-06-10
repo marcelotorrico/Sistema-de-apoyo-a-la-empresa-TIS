@@ -1,7 +1,7 @@
 <?php  
  
- include '../Modelo/conexion.php';
- $con = new conexion(); 
+ include '../Modelo/conexionPDO.php';
+ $con = new Conexion(); 
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -304,17 +304,17 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                 . "FROM gestion "
                                 . "WHERE DATE (NOW()) > DATE(FECHA_INICIO_G) and DATE(NOW()) < DATE(FECHA_FIN_G)";
 
-                                $Sel_G=$con->consulta($Con_G);
+                                $Sel_G=$con->query($Con_G);
 
-                                $Id_G=mysql_fetch_row($Sel_G);
+                                $Id_G= $Sel_G->fetch(PDO::FETCH_NUM);
 
                                 $Id_G2=$Id_G[0];
                                 
                                 $c1="SELECT p.`NOMBRE_P` FROM `proyecto` AS `p`, `gestion` AS `g` WHERE p.`ID_G` = g.`ID_G` AND p.`ID_G` LIKE '".$Id_G2."'";
                                 
-                                $a1=$con->consulta($c1);
+                                $a1=$con->query($c1);
                                 
-                                while($v1 =  mysql_fetch_array($a1)){
+                                while($v1 =  $a1->fetch(PDO::FETCH_NUM)){
                                     echo "<option>".$v1[0]."</option>";
                                 }
                                 echo "<input type='hidden' name='idGE' value='$idGE'>";

@@ -12,15 +12,13 @@
 
     switch ($funcion) {
         case 'registrar asistencia':
-        	$conexion = new Conexion();
-			$conexion->conectar();
+        	$conexion = new Conexion();			
 			$u = $conexion->consultaUnDato("SELECT nombre_u
-			        						FROM registro
-			        						WHERE id_r = '$registro';");
+			        			FROM registro
+			        			WHERE id_r = '$registro';");
 			$s = $conexion->consultarTabla("SELECT codigo_s, nombres_s, apellidos_s
-			        						FROM socio
-			        						WHERE nombre_u = '$u';");
-			$conexion->cerrarConexion();
+			        			FROM socio
+			        			WHERE nombre_u = '$u';");			
 			$filas = '';
 			$scripts = '';
 			for ($i = 0; $i < count($s); $i++) {

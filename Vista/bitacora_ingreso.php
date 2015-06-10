@@ -2,14 +2,14 @@
     session_start();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
 ?>
 
 <!DOCTYPE html>
@@ -255,8 +255,8 @@
 		<?php
 							
 								//Peticion
-		$peticion = $conectar->consulta("SELECT * FROM `sesion` ");
-		while($fila = mysql_fetch_array($peticion))
+		$peticion = $conectar->query("SELECT * FROM `sesion` ");
+		while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
 		{
 		?>
 		<div class="contenedor-fila">
@@ -306,8 +306,8 @@
 		?>	
                 <div class="contenedor-columna">
 		<?php
-                 $peticion333=$conectar->consulta("SELECT * FROM `sesion`");
-                 $tamano=mysql_num_rows($peticion333);
+                 $peticion333=$conectar->query("SELECT * FROM `sesion`");
+                 $tamano=$peticion333->rowCount();
                 if($tamano>1){
                 echo "<a href ='../Controlador/eliminar_bitacora_total.php?id_us=".$fila['ID_S']."' class='verificar'><font color='blue'>Eliminar Todo</font></a>"; }
                  ?>

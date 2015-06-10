@@ -3,14 +3,14 @@
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
   
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
    
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conect = new conexion();
+    $conect = new Conexion();
  ?>
 	<html>
 
@@ -255,9 +255,9 @@
 								</div>
                             </div>  
 							<?php
-								$SelDatos = $conect->consulta("SELECT NOMBRE_U, NOMBRE_CORTO_GE, NOMBRE_LARGO_GE, REPRESENTANTE_LEGAL_GE FROM grupo_empresa");
+								$SelDatos = $conect->query("SELECT NOMBRE_U, NOMBRE_CORTO_GE, NOMBRE_LARGO_GE, REPRESENTANTE_LEGAL_GE FROM grupo_empresa");
 							
-								while($fila = mysql_fetch_array($SelDatos))
+								while($fila = $SelDatos->fetch())
 								{
                                     $grupo = $fila['NOMBRE_U'];
 							?>

@@ -1,8 +1,8 @@
 <?php
 error_reporting (5); 	
-include '../../../Modelo/conexion.php';
+include '../../../Modelo/conexionPDO.php';
 
-$co=new conexion();
+$co=new Conexion();
 $usuarioAse = $_POST['usuarioAsesor'];
 
 $aceptar=$_POST["aceptarFecha"];
@@ -21,9 +21,9 @@ $horaFinRegistrado="HorFin";
 //echo $documentoR.'fsdfdsf';
 
 
-$registros=$co->consulta("SELECT *".
+$registros=$co->query("SELECT *".
         " FROM registro".
-        " WHERE tipo_t= 'documento requerido'",$co) or
+        " WHERE tipo_t= 'documento requerido'") or
   die("Problemas en el select:".mysql_error());
 if(isset($documentoR))
 {
@@ -40,8 +40,8 @@ if(isset($documentoR))
                 " AND r.nombre_r ='$documentoR'".
                 " AND nombre_U='$usuarioAse'".
                 " LIMIT 0 , 30";
-	$registros=$co->consulta("$SQL",$co);
-        while ($row = mysql_fetch_row($registros)) 
+	$registros=$co->query("$SQL");
+        while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                 {
                     $fechaIniRegistrado = trim($row[0]);
                     $horaIniRegistrado = trim($row[1]);
@@ -60,8 +60,8 @@ if(isset($documentoR))
         " AND nombre_U='$usuarioAse'";
                 
         
-	$registros=$co->consulta("$SQL",$co);
-        while ($row = mysql_fetch_row($registros)) 
+	$registros=$co->query("$SQL");
+        while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                 {
                     $idDocumento = (Int)trim($row[0]);
                 }
@@ -84,7 +84,7 @@ if(isset($aceptar))
                         $SQL="Update documento_requerido".
                                 " Set fecha_inicio='$fechaIni'".
                                 "Where idDocumentoRequerido='$idDocumento'";
-                        $registros=$co->consulta("$SQL",$co);
+                        $registros=$co->querry("$SQL");
                         **/
                         echo "<SCRIPT LANGUAGE='javascript'>". 
                         " alert('Exito,la configuracion de $documentoR fue registrada exitosamente.');".
@@ -92,22 +92,22 @@ if(isset($aceptar))
                         $SQL="Update plazo".
                                 " Set fecha_inicio_pl='$fechaIni'".
                                 "Where id_R='$idDocumento'";
-                        $registros=$co->consulta("$SQL",$co);
+                        $registros=$co->query("$SQL");
                         
                         $SQL="Update plazo".
                                 " Set hora_inicio_pl='$horaIni'".
                                 "Where id_R='$idDocumento'";
-                        $registros=$co->consulta("$SQL",$co);
+                        $registros=$co->query("$SQL");
                         
                         $SQL="Update plazo".
                                 " Set fecha_fin_pl='$fechaFin'".
                                 "Where id_R='$idDocumento'";
-                        $registros=$co->consulta("$SQL",$co);
+                        $registros=$co->query("$SQL");
                         
                         $SQL="Update plazo".
                                 " Set hora_fin_pl='$horaFin'".
                                 "Where id_R='$idDocumento'";
-                        $registros=$co->consulta("$SQL",$co);
+                        $registros=$co->query("$SQL");
                         
                     }    
                 }    

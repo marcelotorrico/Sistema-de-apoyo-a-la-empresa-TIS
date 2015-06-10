@@ -1,11 +1,11 @@
 <?php
-include '../../../Modelo/conexion.php';
+include '../../../Modelo/conexionPDO.php';
 
 //header('Location: ../../CrearModalidadEvaluacion.php');
 $textDescripcionD=$_POST["descripcionDocumento"];
 
 $Agregar=$_POST["btnCrearModalidad"];
-$co=new conexion();
+$co=new Conexion();
 $idCrit=1;
 $idReg=1;
 
@@ -21,9 +21,9 @@ if(isset($Agregar))
                  $SQL= "SELECT NOMBRE_CRITERIO_E".
                           " FROM criterio_evaluacion". 
                           " WHERE NOMBRE_CRITERIO_E =  '$textDescripcionD' AND NOMBRE_U = '$usuarioActivo'";
-                  $registros=$co->consulta("$SQL",$co);
+                  $registros=$co->query("$SQL",$co);
 
-                    while ($row = mysql_fetch_row($registros)) 
+                    while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                     {
                         $existeCampo = $row[0];
 
@@ -39,7 +39,7 @@ if(isset($Agregar))
 
                         $SQL= "insert into criterio_evaluacion values('','$usuarioActivo','$textDescripcionD')"; 
 
-                        $registros=$co->consulta("$SQL",$co);
+                        $registros=$co->query($SQL);
 
 
 

@@ -1,8 +1,8 @@
 <?php
 
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     session_start();
-    $conexion = new conexion();
+    $conexion = new Conexion();
     if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
 
@@ -126,9 +126,8 @@
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
-                                     
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");                                     
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
                                             
                                             echo '<li>
@@ -197,15 +196,15 @@
                     <div class="col-lg-6" >
                         
                         <?php
-                        $selAsesor = $conexion->consulta("SELECT NOMBRE_UA FROM inscripcion WHERE NOMBRE_UGE='$uActivo'");
-                        $Asesor = mysql_fetch_row($selAsesor);
+                        $selAsesor = $conexion->query("SELECT NOMBRE_UA FROM inscripcion WHERE NOMBRE_UGE='$uActivo'");
+                        $Asesor = $selAsesor->fetch(PDO::FETCH_NUM);
 
                         date_default_timezone_set('America/Puerto_Rico');
                         $horaAct = date("H:i:s");
                         $fechaAct = date('Y-m-j');
 
-                            $verifIns= $conexion->consulta("SELECT NOMBRE_U FROM inscripcion_proyecto WHERE NOMBRE_U = '$uActivo' ");
-                            $inscrip = mysql_fetch_row($verifIns);
+                            $verifIns= $conexion->query("SELECT NOMBRE_U FROM inscripcion_proyecto WHERE NOMBRE_U = '$uActivo' ");
+                            $inscrip = $verifIns->fetch(PDO::FETCH_NUM);
 
                             if (!is_array($inscrip))
                             {
@@ -220,9 +219,9 @@
                               
                                     $Doc = $_GET['doc'];
                                     
-                                    $consFechas = $conexion->consulta("SELECT FECHA_INICIO_PL, FECHA_FIN_PL, HORA_INICIO_PL, HORA_FIN_PL FROM registro, documento_r, inscripcion_proyecto, plazo WHERE inscripcion_proyecto.NOMBRE_U='$uActivo' AND inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = plazo.ID_R AND documento_r.ID_R = registro.ID_R AND registro.NOMBRE_R = '$Doc'");
+                                    $consFechas = $conexion->query("SELECT FECHA_INICIO_PL, FECHA_FIN_PL, HORA_INICIO_PL, HORA_FIN_PL FROM registro, documento_r, inscripcion_proyecto, plazo WHERE inscripcion_proyecto.NOMBRE_U='$uActivo' AND inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = plazo.ID_R AND documento_r.ID_R = registro.ID_R AND registro.NOMBRE_R = '$Doc'");
 
-                                    $fechas = mysql_fetch_row($consFechas);
+                                    $fechas = $consFechas->fetch(PDO::FETCH_NUM);
 
                                     $stampHoraA = strtotime($horaAct);
                                     $stampFechaA = strtotime($fechaAct);
@@ -231,9 +230,9 @@
                                     $stampFechaI = strtotime($fechas[0]);
                                     $stampFechaF = strtotime($fechas[1]);
                                     
-                                    $consDoc = $conexion->consulta("SELECT * FROM registro WHERE NOMBRE_U = '$uActivo' AND NOMBRE_R = '$Doc'");
+                                    $consDoc = $conexion->query("SELECT * FROM registro WHERE NOMBRE_U = '$uActivo' AND NOMBRE_R = '$Doc'");
 
-                                    $verifDoc = mysql_fetch_row($consDoc);
+                                    $verifDoc = $consDoc->fetch(PDO::FETCH_NUM);
                                     
 
                                     if(is_array($verifDoc))

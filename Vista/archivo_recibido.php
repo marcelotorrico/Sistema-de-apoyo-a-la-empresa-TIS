@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
@@ -8,7 +8,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $con=new conexion();
+ $con=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>
@@ -259,14 +259,13 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                     
                                     if ($seleccion == 'TODOS') {
                                         $c_3="SELECT DISTINCT r.`NOMBRE_R`,d.`RUTA_D` FROM `registro` AS r,`documento` AS d WHERE d.`ID_R` = r.`ID_R` AND r.`TIPO_T` LIKE 'documento subido' AND r.`NOMBRE_U` IN (SELECT ge.`NOMBRE_U` FROM `inscripcion` AS i,`asesor` AS a,`grupo_empresa` AS `ge`,`gestion` AS g,`proyecto` AS p WHERE i.`NOMBRE_UA` = a.`NOMBRE_U` AND i.`NOMBRE_UGE` = ge.`NOMBRE_U` AND i.`ID_G` = g.`ID_G` AND i.`CODIGO_P` = p.`CODIGO_P` AND a.`NOMBRE_U` LIKE '".$_POST['idAsesor']."')";
-                                    $r3=$con->consulta($c_3);
-                                    if(mysql_num_rows($r3) != 0)
+                                    $r3=$con->query($c_3);
+                                    if($r3->rowCount() != 0)
                                     {
                                             echo "<h3><center>Listado de propuestas</center></h3><br>";
                                             echo "<form name='formularioComprimir' method='POST' action='descargar_zip.php' enctype='Multipart/form-data'>";
-                                    while($var3 =  mysql_fetch_array($r3)){
+                                    while($var3 =  $r3->fetch()){
                                             echo "<a class='btn btn-default btn-lg btn-block' href='..".$var3['1']."'>".$var3[0]."</a><br>";
-                                            
                                         }
                                             echo "<input type='hidden' name='idAsesor' value='".$_POST['idAsesor']."'>";
                                             echo "<button type='submit' class='btn btn-primary'>Haga clic aqu&iacute; para comprimir todos los documentos</button>";
@@ -281,15 +280,15 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                     else
                                     {
                                         $ax='';
-                                        $consultaAuxiliar=$con->consulta("SELECT ge.`NOMBRE_U` FROM `grupo_empresa` AS ge WHERE ge.`NOMBRE_LARGO_GE` LIKE '".$_POST['grupoempresa']."'");
-                                        while ($conAux = mysql_fetch_array($consultaAuxiliar)) {
+                                        $consultaAuxiliar=$con->query("SELECT ge.`NOMBRE_U` FROM `grupo_empresa` AS ge WHERE ge.`NOMBRE_LARGO_GE` LIKE '".$_POST['grupoempresa']."'");
+                                        while ($conAux = $consultaAuxiliar->fetch()) {
                                             $ax=$conAux['0'];
                                         }
                                         
-                                        $consultaUno=$con->consulta("SELECT DISTINCT r.`NOMBRE_R`,d.`RUTA_D` FROM `registro` AS r,`documento` AS d WHERE d.`ID_R` = r.`ID_R` AND r.`TIPO_T` LIKE 'documento subido' AND r.`NOMBRE_U` LIKE '$ax'");
-                                        if(mysql_num_rows($consultaUno) != 0)
+                                        $consultaUno=$con->query("SELECT DISTINCT r.`NOMBRE_R`,d.`RUTA_D` FROM `registro` AS r,`documento` AS d WHERE d.`ID_R` = r.`ID_R` AND r.`TIPO_T` LIKE 'documento subido' AND r.`NOMBRE_U` LIKE '$ax'");
+                                        if($consultaUno->rowCount() != 0)
                                         {
-                                            while ($conAuxDos = mysql_fetch_array($consultaUno)) {
+                                            while ($conAuxDos = $consultaUno->fetch()) {
                                                 echo "<a class='btn btn-default btn-lg btn-block' href='..".$conAuxDos['1']."'>".$conAuxDos[0]."</a><br>";
                                             }
                                         }
@@ -300,9 +299,6 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                     }
                                     
                                 }
-                                
-                                $con->cerrarConexion();
-                                
                                 ?>
                             </div>
                     </div>

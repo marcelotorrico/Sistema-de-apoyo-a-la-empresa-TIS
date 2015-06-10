@@ -2,14 +2,14 @@
    session_start();
    if (isset($_SESSION['usuario'])) {
    $uActivo= $_SESSION['usuario'];
-   include '../Modelo/conexion.php';
+   include '../Modelo/conexionPDO.php';
    
    require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-   $conect = new conexion()
+   $conect = new Conexion()
  
 ?>
     <html>
@@ -291,12 +291,12 @@
                             <?php
                                 
                                 //Peticion
-                                $peticion = $conect->consulta("SELECT u.NOMBRE_U, u.ESTADO_E, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R
+                                $peticion = $conect->query("SELECT u.NOMBRE_U, u.ESTADO_E, u.TELEFONO_U , u.CORREO_ELECTRONICO_U, r.ROL_R
 FROM usuario u , usuario_rol r
 WHERE  u.NOMBRE_U = r.NOMBRE_U  AND r.ROL_R = 'administrador'");
                             
 
-                                while($fila = mysql_fetch_array($peticion))
+                                while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
                                 {
                                     if($fila['NOMBRE_U'] == $uActivo || $fila['NOMBRE_U']=="Admin1")
                                     {

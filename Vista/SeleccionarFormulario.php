@@ -276,12 +276,11 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                     <form method = "post" id="HabilitarFormulario" action="../Modelo/BD/HabilitarFormulario.php">   
                         <?php 
 
-                        include_once '../Modelo/conexion.php';     
-                        $conect = new conexion();
-                        $Sel_Form = $conect->consulta("SELECT NOMBRE_FORM FROM formulario WHERE NOMBRE_U = '$uActivo'");
+                        include_once '../Modelo/conexionPDO.php';     
+                        $conect = new Conexion();
+                        $Sel_Form = $conect->query("SELECT NOMBRE_FORM FROM formulario WHERE NOMBRE_U = '$uActivo'");
 
-                        while ($Row_Form = mysql_fetch_row($Sel_Form)) {
-
+                        while ($Row_Form = $Sel_Form->fetch(PDO::FETCH_NUM)) {
                             $Form[] = $Row_Form; 
                         }
 

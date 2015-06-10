@@ -1,6 +1,6 @@
 <?php
 
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -10,7 +10,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
- $conexion = new conexion();
+ $conexion = new Conexion();
  
 
 ?>
@@ -125,9 +125,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
                                             
                                             echo '<li>
@@ -209,10 +209,10 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                    <?php
  
                                          // Seleciona la tabla de noticias
-                                        $noticia = $conexion->consulta("SELECT * FROM noticias ORDER BY ID_N DESC");
+                                        $noticia = $conexion->query("SELECT * FROM noticias ORDER BY ID_N DESC");
 
                                 
-                                        while ($noticias=mysql_fetch_array($noticia)) 
+                                        while ($noticias=$noticia->fetch(PDO::FETCH_ASSOC)) 
                                         { 
                                            $idNoti = $noticias["ID_N"];
                                            $usuario = $noticias["NOMBRE_U"];
@@ -222,8 +222,8 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                            $posteado=$noticias["POSTEADO"];
 
                                             // numero de comentarios
-                                           $selComen = $conexion->consulta("SELECT * FROM comentarios WHERE ID_N='$idNoti'");
-                                           $comentarios = mysql_num_rows($selComen);
+                                           $selComen = $conexion->query("SELECT * FROM comentarios WHERE ID_N='$idNoti'");
+                                           $comentarios = $selComen->rowCount();
 
                                   ?>
 

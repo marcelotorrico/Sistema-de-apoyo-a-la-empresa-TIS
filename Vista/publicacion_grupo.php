@@ -1,7 +1,7 @@
 <?php
 
 
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  if (isset($_SESSION['usuario'])) {
  $uActivo = $_SESSION['usuario'];
@@ -11,7 +11,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
- $conexion = new conexion();
+ $conexion = new Conexion();
  
 
 ?>
@@ -128,9 +128,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     <ul class="nav nav-third-level">
                                     <?php
                                     
-                                        $docsReq = $conexion->consulta("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+                                        $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
                                      
-                                        while ($rowDocs = mysql_fetch_row($docsReq))
+                                        while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM))
                                         {
                                             
                                             echo '<li>
@@ -213,18 +213,18 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
  
                                 <?php
                                    //gestion**
-                                     $selDoc=$conexion->consulta("SELECT DISTINCT `NOMBRE_R`,`RUTA_D`,`DESCRIPCION_D`,`fecha_p` ,`hora_p`,`RECEPTOR_R`,r.`NOMBRE_U` FROM `registro` AS r,`documento` AS d,`descripcion` AS e,`periodo` AS p,`receptor` AS w, `inscripcion_proyecto` AS i, `proyecto` AS a, `gestion` AS g WHERE r.`ID_R` = d.`ID_R` AND r.`ID_R` = e.`ID_R` AND r.`ID_R` = p.`ID_R` AND r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'publicaciones' and i.`CODIGO_P` = a.`CODIGO_P` and a.`ID_G` = g.`ID_G` and (DATE (p.`fecha_p`) >= DATE(FECHA_INICIO_G) and DATE(p.`fecha_p`) <= DATE(FECHA_FIN_G))");
+                                     $selDoc=$conexion->query("SELECT DISTINCT `NOMBRE_R`,`RUTA_D`,`DESCRIPCION_D`,`fecha_p` ,`hora_p`,`RECEPTOR_R`,r.`NOMBRE_U` FROM `registro` AS r,`documento` AS d,`descripcion` AS e,`periodo` AS p,`receptor` AS w, `inscripcion_proyecto` AS i, `proyecto` AS a, `gestion` AS g WHERE r.`ID_R` = d.`ID_R` AND r.`ID_R` = e.`ID_R` AND r.`ID_R` = p.`ID_R` AND r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'publicaciones' and i.`CODIGO_P` = a.`CODIGO_P` and a.`ID_G` = g.`ID_G` and (DATE (p.`fecha_p`) >= DATE(FECHA_INICIO_G) and DATE(p.`fecha_p`) <= DATE(FECHA_FIN_G))");
                                      
                                    
-                                    if(mysql_num_rows($selDoc) != 0)
+                                    if($selDoc->rowCount() != 0)
                                     {    $i=1;
-                                           while($docPubli = mysql_fetch_array($selDoc))
+                                           while($docPubli = $selDoc->fetch())
                                           {
                                             $auxDoc=$docPubli['2'];
                                             $docDest=$docPubli[5];
            
-                                            $selNom=$conexion->consulta("SELECT `NOMBRE_LARGO_GE` FROM `grupo_empresa` WHERE `NOMBRE_U`='$uActivo'");
-                                            $nomLargo = mysql_fetch_array($selNom);
+                                            $selNom=$conexion->query("SELECT `NOMBRE_LARGO_GE` FROM `grupo_empresa` WHERE `NOMBRE_U`='$uActivo'");
+                                            $nomLargo = $selNom->fetch(PDO::FETCH_NUM);
                                            
                                             if($docDest==$nomLargo[0] || $docDest=="PUBLICO")
                                             {
@@ -267,8 +267,8 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
                                         if($docDest=="Todas las Grupo Empresas")
                                         {
-                                            $estaIns=$conexion->consulta("SELECT `NOMBRE_UA` FROM `inscripcion` WHERE `NOMBRE_UGE`='$uActivo'");
-                                            $nomAseso=mysql_fetch_array($estaIns);
+                                            $estaIns=$conexion->query("SELECT `NOMBRE_UA` FROM `inscripcion` WHERE `NOMBRE_UGE`='$uActivo'");
+                                            $nomAseso=$estaIns->fetch(PDO::FETCH_NUM);
                                             if($nomAseso[0]==$docPubli[6])
                                             {
                                                 $docUbi= $docPubli[1];
@@ -310,8 +310,8 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
 
                                          if($docDest=="Todos los Proyectos")
                                         {
-                                            $estaInsP=$conexion->consulta("SELECT `CODIGO_P` FROM `inscripcion_proyecto` WHERE `NOMBRE_U`='$uActivo'");
-                                            $enProyec=mysql_num_rows($estaInsP);
+                                            $estaInsP=$conexion->query("SELECT `CODIGO_P` FROM `inscripcion_proyecto` WHERE `NOMBRE_U`='$uActivo'");
+                                            $enProyec=$estaInsP->rowCount();
                                             if($enProyec>0)
                                             {
                                                 $docUbi= $docPubli[1];
@@ -351,9 +351,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                        }
                                        else{}
 
-                                        $desProy=$conexion->consulta("SELECT DISTINCT `NOMBRE_U`FROM `proyecto` AS p,`inscripcion_proyecto` AS i WHERE p.`CODIGO_P` = i.`CODIGO_P` AND  p.`Nombre_P` LIKE '$docDest' ");
-                                        $tamProy=mysql_num_rows($desProy);
-                                         $nombreP=mysql_fetch_array($desProy);
+                                        $desProy=$conexion->query("SELECT DISTINCT `NOMBRE_U`FROM `proyecto` AS p,`inscripcion_proyecto` AS i WHERE p.`CODIGO_P` = i.`CODIGO_P` AND  p.`Nombre_P` LIKE '$docDest' ");
+                                        $tamProy=$desProy->rowCount();
+                                         $nombreP=$desProy->fetch(PDO::FETCH_NUM);
                                         if($tamProy>0)
                                         {
 
@@ -414,38 +414,11 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     {
                                         echo  "<b>NO SE ENCONTRO DOCUMENTOS</b><br><br>";
                                     }
-                                     
-                                   
-                                    
-                                
-                                
-                                $conexion->cerrarConexion();
-                                
-                                
-
                                 ?>
-              
                     </div>           
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+       
         </div>
         <!-- /#page-wrapper -->
 

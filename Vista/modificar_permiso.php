@@ -1,14 +1,14 @@
 <?php 
     session_start();
     $uActivo = $_SESSION['usuario'];
-    include '../Modelo/conexion.php';
+    include '../Modelo/conexionPDO.php';
     
     require '../Controlador/ValidadorInicioSesion.php';
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo,"administrador");
 
-    $conectar = new conexion();
+    $conectar = new Conexion();
 ?>
 
 <!DOCTYPE html>
@@ -207,9 +207,9 @@
 		$usuario= $_SESSION['usuario'];
 		$contrasena= $_SESSION['contrasena'];
                 $idgp = $_GET['id_us'];
-		$peticion =$conectar->consulta("SELECT u.NOMBRE_U,u.ESTADO_E, r.ROL_R FROM  usuario as u,usuario_rol as r  WHERE u.NOMBRE_U=r.NOMBRE_U and u.NOMBRE_U='$idgp'");
+		$peticion =$conectar->query("SELECT u.NOMBRE_U,u.ESTADO_E, r.ROL_R FROM  usuario as u,usuario_rol as r  WHERE u.NOMBRE_U=r.NOMBRE_U and u.NOMBRE_U='$idgp'");
 	         
-                 while($fila = mysql_fetch_array($peticion))
+                 while($fila = $peticion->fetch(PDO::FETCH_ASSOC))
 		{
 	         echo"
                 <form action='../Controlador/actualizar_integrante.php' method='post'>
@@ -287,8 +287,8 @@
 			<td>
                         <select required="seleccione un estado" name="estado" class="form-control" ><option value='' >Seleccione Un Estado</option>  
 			<?php     
-			$sql=$conectar ->consulta("SELECT ESTADO_E FROM  estado WHERE ESTADO_E='Habilitado' or ESTADO_E='Deshabilitado' "); 
-			while($row=mysql_fetch_array($sql)) 
+			$sql=$conectar ->query("SELECT ESTADO_E FROM  estado WHERE ESTADO_E='Habilitado' or ESTADO_E='Deshabilitado' "); 
+			while($row=$sql->fetch(PDO::FETCH_ASSOC)) 
                         {echo "<option  value='".$row["ESTADO_E"]."'>".$row["ESTADO_E"]."</option>";}  
                                                                                                                      
                         ?>    

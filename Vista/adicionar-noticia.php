@@ -1,5 +1,5 @@
 <?php  
- include '../Modelo/conexion.php';
+ include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
@@ -8,7 +8,7 @@
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $conect=new conexion();
+ $conect=new Conexion();
  ?> 
   <!DOCTYPE html>
 <html>
@@ -311,7 +311,7 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                    // Adiciona a Noticia 
                                     $nuevaNoti=$_POST['texto'];
                                     $tituloNoti=$_POST["titulo"];
-                                   $noticia = "INSERT INTO noticias (NOMBRE_U,TITULO, FECHA_N, VIEWS, TEXTO, POSTEADO) VALUES ('$uActivo','$tituloNoti', NOW(), '0', '$nuevaNoti','$uActivo')"; $noticia = $conect->consulta($noticia)
+                                   $noticia = "INSERT INTO noticias (NOMBRE_U,TITULO, FECHA_N, VIEWS, TEXTO, POSTEADO) VALUES ('$uActivo','$tituloNoti', NOW(), '0', '$nuevaNoti','$uActivo')"; $noticia = $conect->query($noticia)
                                    or die ("Error.");
                                     echo "<script type=\"text/javascript\">alert('Tema Adicionado');</script>";
                                  }
