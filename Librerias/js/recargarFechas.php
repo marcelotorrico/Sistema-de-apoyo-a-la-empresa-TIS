@@ -10,13 +10,13 @@ $co=new Conexion();
 if(isset($selecDoc))
 {    
     $registros=$co->query("SELECT *".
-            " FROM documento_requerido",$co) or
+            " FROM documento_requerido") or
       die("Problemas en el select:".mysql_error());
 
     $SQL="SELECT fecha_inicio,hora_inicio,fecha_limite,hora_limite".
                     " FROM documento_requerido".
                     " WHERE titulo_documento='$selectDoc' ";
-            $registros=$co->query("$SQL",$co);
+            $registros=$co->query("$SQL");
             while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                     {
                         $fec1 = trim($row[0]);
