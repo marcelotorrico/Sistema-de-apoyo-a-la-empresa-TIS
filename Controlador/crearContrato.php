@@ -31,7 +31,7 @@ class PDF extends FPDF
     $repL=$reL;
   }
 	
-  function Cuerpo($pdf){
+  function Cuerpo($pdf, $destino){
   	global $nLGE;
   	global $nCGE;
   	global $repL;
@@ -81,10 +81,12 @@ class PDF extends FPDF
          $pdf->MultiCell(180,5,$textRepres,0,'L');
 
 //guardar el documento pdf en Repositorio/Contratos/C.....
-       $destinoPdf = '../Repositorio/Contratos/C'.$nLGE.'.pdf';
+       
 
-       $pdf->Output($destinoPdf,'F'); 
+       $pdf->Output($destino,'F'); 
   }
+ 
+
   
 }
 

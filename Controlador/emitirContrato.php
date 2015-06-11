@@ -52,10 +52,44 @@
                 $convo = $consulta[0];
 
             
-              //datos para crear el controo como ser asesor, documento y otros
+              
                 $pdf->datosGe($nLargoGE,$nCortoGE,$represen);
 
-                $pdf->cuerpo($pdf);
+                $destinoPdf = '../Repositorio/Contratos/C'.$nLargoGE.'.pdf';
+                $pdf->cuerpo($pdf,$destinoPdf);
+                
+                //Do the necesary queries to display the results
+
+                   $fecha = date('Y-m-d');
+                   $hora = date("G:H:i");
+                   $visible = "TRUE";
+                   $descargar = "TRUE";
+                   $nombrePdf = "Contrato".$nCortoGE.".pdf";
+
+                   $comentar = $conexion->query("INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('$nombreUA','Contrato','Habilitado','$nombrePdf','$fecha','$hora')")or
+                    die("Error");
+                                                   
+                    $consultar= $conexion->query("SELECT MAX(ID_R) AS 'ID_R' FROM registro");
+                    
+                    if ($regis = $consultar->fetch(PDO::FETCH_NUM)) 
+                    {
+                        $idRegis = trim($regis[0]);
+                    }
+                                                   
+                    $guardar = $conexion->query("INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES('$idRegis','1024','$destinoPdf','$visible','$descargar')");
+                    $desD = $conexion->query("INSERT INTO descripcion (ID_R,DESCRIPCION_D) VALUES('$idRegis','Contrato')");
+                    $destinat = $conexion->query("INSERT INTO receptor (ID_R,RECEPTOR_R) VALUES('$idRegis','$nLargoGE')");
+                     
+                     $selGE=$conexion->query("SELECT `NOMBRE_U` FROM `grupo_empresa` WHERE `NOMBRE_LARGO_GE` = '$nLargoGE'");
+                     $nomGE=$selGE->fetch(PDO::FETCH_NUM);
+
+                     $estaFir=  $conexion->query("UPDATE `inscripcion_proyecto` SET `ESTADO_CONTRATO`= 'Firmado' WHERE `NOMBRE_U` = '$nomGE[0]'");  
+
+                 
+
+
+
+
        
                     echo"<script type=\"text/javascript\">alert('Se genero el contrato correctamente'); window.location='../Vista/contrato.php';</script>";                    
                      
