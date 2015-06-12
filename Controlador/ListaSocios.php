@@ -1,4 +1,4 @@
- <?php
+<?php
 session_start();
 $uActivo = $_SESSION['usuario'];
 include '../Modelo/conexionPDO.php';  
