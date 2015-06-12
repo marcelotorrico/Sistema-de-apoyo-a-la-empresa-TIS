@@ -4,15 +4,15 @@ require_once '../Modelo/conexionPDO.php';
 require_once '../Modelo/Model/GrupoEmpresa.php';   
 $usuario = $_SESSION['usuario'];
 
-$conexion = new Conexion();
+$conexion2 = new Conexion();
 	
-    $ap = $conexion->consultarTabla("SELECT id_r, nombre_u, estado_e, nombre_r FROM registro , inscripcion WHERE tipo_t = 'actividad planificacion' AND estado_e = 'en proceso' and NOMBRE_UGE=nombre_u and NOMBRE_UA='$usuario';");
+    $ap = $conexion2->consultarTabla("SELECT id_r, nombre_u, estado_e, nombre_r FROM registro , inscripcion WHERE tipo_t = 'actividad planificacion' AND estado_e = 'en proceso' and NOMBRE_UGE=nombre_u and NOMBRE_UA='$usuario';");
     
-    $reportes = $conexion->consultarArreglo("SELECT DISTINCT id_r
+    $reportes = $conexion2->consultarArreglo("SELECT DISTINCT id_r
 									  		 FROM reporte");
-    $asistencia = $conexion->consultarArreglo("SELECT DISTINCT id_r
+    $asistencia = $conexion2->consultarArreglo("SELECT DISTINCT id_r
 									  		   FROM asistencia");
-    $evaluacion = $conexion->consultarArreglo("SELECT DISTINCT id_r
+    $evaluacion = $conexion2->consultarArreglo("SELECT DISTINCT id_r
 									  		   FROM evaluacion");
     
 	$filas = '';

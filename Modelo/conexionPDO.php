@@ -2,7 +2,7 @@
 /* 
  * Author Antonio
  */
-//echo dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
+ //echo "Hola ".dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php'." adios";
 
 class Conexion extends PDO { 
     /*private $tipo_de_base = 'mysql';
@@ -13,7 +13,7 @@ class Conexion extends PDO {
 
     public function __construct() {
         //Sobreescribo el método constructor de la clase PDO.
-        require_once dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
+        require dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
         try{
             parent::__construct($dbtype.':host='.$host.';dbname='.$db, $user, $password);
         }catch(PDOException $e){

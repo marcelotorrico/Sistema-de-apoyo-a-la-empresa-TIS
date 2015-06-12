@@ -1,5 +1,5 @@
 <?php
-	require_once '../conexionPDO.php';
+	require_once '../Modelo/conexionPDO.php';
 
 	class Pago {
             var $conexion;
