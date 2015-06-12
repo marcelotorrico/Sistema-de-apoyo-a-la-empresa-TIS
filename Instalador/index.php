@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+Author Antonio
 -->
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="author" content="Antonio Alurralde" />
         <title>Instalador del Sistema SAETIS</title>
         <link href="Vista//bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <style>
@@ -39,10 +38,10 @@ and open the template in the editor.
             $conexion = new Conexion();
             $query = file_get_contents("saetis.sql");            
             $stmt = $conexion->prepare($query);
-            $stmt->execute();                
+            $stmt->execute();
             
             /*Recarga la página*/
-            header('Location: #');
+            echo '<script> location.reload(); </script>';
         }
         ?>
         <div class="container">

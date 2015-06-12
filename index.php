@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
     if (!file_exists('config.php')){	
         define('INSTALAR', 1);
@@ -6,16 +5,17 @@
 	exit;
     }
     include 'Controlador/validadorPaginaPrincipal.php';
-    include 'Modelo/conexionPDO.php';
-    
+    require_once 'Modelo/conexionPDO.php';    
     $conectar = new Conexion();
 ?>
+<!DOCTYPE html>
 <html>
 
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="InnovaTe" />
 
     <title>Sistema de Apoyo a la Empresa TIS</title>
 
@@ -41,15 +41,8 @@
 
 </head>
 
-<body>
-
-   
+<body>   
     <div id="wrapper">
-       
-        
-		<!--<h2>design by <a href="#" title="flash templates">flash-templates-today.com</a></h2>-->
-        
-	
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                                <h2 ><IMG SRC="images/umss.png"><font color='white'> <strong>UNIVERSIDAD MAYOR DE SAN SIMON &nbsp;&nbsp;&nbsp;</strong></h2>
