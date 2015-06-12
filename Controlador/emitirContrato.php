@@ -85,11 +85,7 @@
 
                      $estaFir=  $conexion->query("UPDATE `inscripcion_proyecto` SET `ESTADO_CONTRATO`= 'Firmado' WHERE `NOMBRE_U` = '$nomGE[0]'");  
 
-                 
-
-
-
-
+              
        
                     echo"<script type=\"text/javascript\">alert('Se genero el contrato correctamente'); window.location='../Vista/contrato.php';</script>";                    
                      

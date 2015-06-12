@@ -81,8 +81,7 @@ class PDF extends FPDF
          $pdf->MultiCell(180,5,$textRepres,0,'L');
 
 //guardar el documento pdf en Repositorio/Contratos/C.....
-       
-
+      
        $pdf->Output($destino,'F'); 
   }
  

@@ -1,15 +1,15 @@
 <?php  
- include '../Modelo/conexionPDO.php';
  session_start();
- $uActivo = $_SESSION['usuario'];
- 
+ include '../Modelo/conexionPDO.php';
  require '../Controlador/ValidadorInicioSesion.php';
+ if (isset($_SESSION['usuario'])) { 
 
- $verificar = new ValidadorInicioSesion();
- $verificar->validarInicioSesion($uActivo,"asesor");
+	 $uActivo = $_SESSION['usuario'];
+	 $verificar = new ValidadorInicioSesion();
+	 $verificar->validarInicioSesion($uActivo,"asesor");
 
- $con = new Conexion();
- ?> 
+	 $con = new Conexion();
+?> 
   <!DOCTYPE html>
 <html>
 
@@ -316,6 +316,13 @@
 
     <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="../Librerias/js/sb-admin.js"></script>
+
+<?php  
+	}else{
+	   echo '<script>alert("Inicie sesion para ingresar");</script>';
+	   echo '<script>window.location="../index.php";</script>';
+	}
+?>
 </body>
 
 </html>
