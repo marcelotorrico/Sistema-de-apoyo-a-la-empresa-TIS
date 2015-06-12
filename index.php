@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<?php 
+<?php
+    if (!file_exists('config.php')){	
+        define('INSTALAR', 1);
+        require_once dirname(__FILE__) . '/Instalador/index.php';
+	exit;
+    }
     include 'Controlador/validadorPaginaPrincipal.php';
     include 'Modelo/conexionPDO.php';
     

@@ -2,6 +2,8 @@
 /* 
  * Author Antonio
  */
+//echo dirname(__DIR__).DIRECTORY_SEPARATOR.'config.php';
+
 class Conexion extends PDO { 
     /*private $tipo_de_base = 'mysql';
     private $host = 'localhost';
