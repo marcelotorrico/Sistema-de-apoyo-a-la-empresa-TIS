@@ -20,19 +20,58 @@
             }
 	    }
 
-	    function constructor($usuario) {	        
-		$datosPrecio = $this->conexion->consultarTabla("SELECT nombre_u, precio_p, porcentaje_a
-								FROM precio
-								WHERE nombre_u = '$usuario';");
-                $this->usuario = $datosPrecio[0][0];
-                $this->precio = $datosPrecio[0][1];
-                $this->porcentajeA = $datosPrecio[0][2];
+	    function constructor($usuario) {
+            $pdoStatement = $this->conexion->prepare("SELECT nombre_u, precio_p, porcentaje_a FROM precio WHERE nombre_u = '$usuario';");
+            $pdoStatement->execute();
+            $datosPrecio = $pdoStatement->fetch(PDO::FETCH_NUM);
+            if(count($datosPrecio)==3){
+                $this->usuario = $datosPrecio[0];
+                $this->precio = $datosPrecio[1];
+                $this->porcentajeA = $datosPrecio[2];
+            }else{
+                $this->precio = NULL;
+            }
+	    $pdoStatement->closeCursor();
 	    }
 
-	    function insertarBD() {	        
-	        $this->conexion->query("INSERT INTO precio(nombre_u, precio_p, porcentaje_a)
-	        						   VALUES('$this->usuario', '$this->precio', '$this->porcentajeA');");	        
+	    function insertarBD() {
+                if($this->existeBD()){
+                    $pdoStatement = $this->conexion->query("UPDATE precio 
+					SET precio_p = '$this->precio', porcentaje_a = '$this->porcentajeA' 
+					WHERE nombre_u = '$this->usuario';");
+                }else{
+	        $pdoStatement = $this->conexion->query("INSERT INTO precio(nombre_u, precio_p, porcentaje_a)
+	        						   VALUES('$this->usuario', '$this->precio', '$this->porcentajeA');");
+                }
+                $pdoStatement->closeCursor();
 	    }
+            
+            function cerrarConexion() {
+                $this->conexion = NULL;
+            }
+            
+            function existeBD() {
+                $precio= $this->getDatosBD();
+                $res = TRUE;
+                if(count($precio[0]) == 0){
+                    $res = FALSE;
+                }
+                return $res;
+            }
+            public function getDatosBD(){
+                $pdoStatement = $this->conexion->query("SELECT precio_p FROM precio WHERE nombre_u = '$this->usuario';");
+                $res = $pdoStatement->fetch(PDO::FETCH_NUM);
+	        $pdoStatement->closeCursor();
+                return $res;
+            }
+            public static function getDatosPrecio($usuario) {
+                $conexion = new Conexion();
+	        $pdoStatement = $conexion->prepare("SELECT precio_p, porcentaje_a FROM precio WHERE nombre_u = '$usuario';");
+	        $pdoStatement->execute();
+                $datosPrecio = $pdoStatement->fetch(PDO::FETCH_NUM);
+                $conexion = NULL;
+	        return $datosPrecio;
+            }
 
 	    public function getUsuario() {
 	        return $this->usuario;

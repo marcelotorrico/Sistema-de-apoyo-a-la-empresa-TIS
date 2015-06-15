@@ -2,7 +2,7 @@
 	require_once '../Modelo/conexionPDO.php';
 
 	class Planificacion {
-            var $conexion;
+		var $conexion;
 	    private $usuario;
 	    private $estado;
 	    private $fechaInicio;
@@ -22,28 +22,36 @@
             }
 	    }
 
-	    function constructor($usuario) {	    	
-	        $datosPlanificacion = $this->conexion->consultarTabla("SELECT NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P
-                                                                    FROM planificacion
-                                                                    WHERE NOMBRE_U = '$usuario';");
-	        $this->usuario = $datosPlanificacion[0][0];
-	        $this->estado = $datosPlanificacion[0][1];
-	        $this->fechaInicio = $datosPlanificacion[0][2];
-	        $this->fechaFin = $datosPlanificacion[0][3];
+	    function constructor($usuario) {
+	        $pdoStatement = $this->conexion->prepare("SELECT NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P
+											                       FROM planificacion
+											                       WHERE NOMBRE_U = '$usuario';");
+	        $pdoStatement->execute();
+                $datosPlanificacion = $pdoStatement->fetch(PDO::FETCH_NUM);
+                $this->usuario = $datosPlanificacion[0];
+	        $this->estado = $datosPlanificacion[1];
+	        $this->fechaInicio = $datosPlanificacion[2];
+	        $this->fechaFin = $datosPlanificacion[3];
+	        $pdoStatement->closeCursor();
 	    }
 
-	    function insertarBD() {	        
-	        $this->conexion->query("INSERT INTO planificacion(NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P)
-	        							VALUES('$this->usuario', '$this->estado', '$this->fechaInicio', '$this->fechaFin');");	        
+	    function insertarBD() {
+	        $pdoStatement = $this->conexion->query("INSERT INTO planificacion(NOMBRE_U, ESTADO_E, FECHA_INICIO_P, FECHA_FIN_P)
+	        							VALUES('$this->usuario', '$this->estado', '$this->fechaInicio', '$this->fechaFin');");
+	        $pdoStatement->closeCursor();
 	    }
 
-	    public function modificarBD() {	        
-	        $this->conexion->query("UPDATE planificacion
+	    public function modificarBD() {
+	        $pdoStatement = $this->conexion->query("UPDATE planificacion
 	        						   SET ESTADO_E = '$this->estado',  FECHA_INICIO_P = '$this->fechaInicio', FECHA_FIN_P = '$this->fechaFin'
-	        						   WHERE NOMBRE_U = '$this->usuario';");	        
+	        						   WHERE NOMBRE_U = '$this->usuario';");
+	        $pdoStatement->closeCursor();
 	    }
+            public function cerrarConexion(){
+                $this->conexion = NULL;
+            }
 
-	    public function getUsuario() {
+            public function getUsuario() {
 	        return $this->usuario;
 	    }
 

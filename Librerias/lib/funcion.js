@@ -35,6 +35,183 @@ $(document).on('ready', function() {
         $('.modalRegistroReportes').modal('show');
     });
 });
+$(document).on('click', '#atrasRegistro',function(){
+        var usuario = $(this).val();
+        llenarDatosTabla("../Controlador/DatosRegistro.php",[usuario],1,"#registroPlanificacion","btnBorrarActividadPlanificacion","actividades","adelanteEntregable");
+});
+$(document).on('click', '#adelanteCosto', function(){
+    mostrarVentana($(this).val(),'#registroCostoProyecto');
+});
+$(document).on('click','#atrasCosto',function(){
+    var usuario = $(this).val();
+    llenarDatos("../Controlador/DatosPago.php",usuario,3,"#registroCostoProyecto","adelanteCosto",["#costo","#porcentajeA"]);
+});
+$(document).on('click','#adelanteCosto',function(){
+    mostrarContenido(parseInt($(this).val()));
+});
+$(document).on('click','#adelanteEntregable',function(){
+    mostrarVentana($(this).val(),'#registroEntregables');
+});
+$(document).on('click', '#atrasEntregable',function(){
+    var usuario = $(this).val();
+    llenarDatosTabla("../Controlador/DatosEntregable.php",[usuario," entregable_e,descripcion_e "],2,"#registroEntregables","btnBorrarEntregable","entregables","adelanteCosto");
+});
+$(document).on('click',"#atrasPlanPagos",function(){
+    var usuario = $(this).val();
+    llenarDatosTabla("../Controlador/DatosPlanPago.php",[usuario],4,"#registroPlanPagos","btnBorrarPago","","adelanteRegistrado");
+});
+
+function llenarDatos(url,usuario,valor,id,idBoton,ids){
+        ocultarVentanas();
+        $.post(url,{
+            usuario : usuario
+        }, function(texto){
+            var arreglo = texto.split(",");
+            if(arreglo.length==ids.length){
+                completarDato(ids,arreglo);
+            }
+        });
+        $(id).show();
+        agregarBoton(id,idBoton,valor,".col-md-12");
+}
+
+function completarDato(ids,valores){
+    for(var i=0;i<ids.length;i++){
+        $(ids[i]).val(valores[i]);
+    }
+}
+function mostrarVentana(num,id){
+    ocultarVentanas();
+    mostrarContenido(parseInt(num));
+    $(id).show();
+}
+
+function agregarBoton(id,idBoton,valor,dato){
+    if(document.getElementById(idBoton)==null){
+        var boton = '<div class="col-md-3 pull-right">'+
+                            '<button class="btn btn-primary btn-block" id='+idBoton+' value="'+valor+'">Siguiente</button>'+
+                        '</div>';
+        $(id).find(dato).append(boton);
+    }
+}
+function llenarDatosTabla(url,datosA,valor,id,claseBoton,nombreData,idBoton){
+    var tam = datosA.length;
+    if(tam==1){
+        var datosData;
+        ocultarVentanas();
+        $.post(url,{
+            usuario : datosA[0]
+        }, function(texto){
+            datosData = obtenerFilas(texto,id,claseBoton);
+            agregarDatosData(id,nombreData,datosData);
+        });
+    }else if(tam==2){
+        var datosData;
+        ocultarVentanas();
+        $.post(url,{
+            usuario : datosA[0],
+            datos : datosA[1]
+        }, function(texto){
+            datosData = obtenerFilas(texto,id,claseBoton);
+            agregarDatosData(id,nombreData,datosData);
+        });
+    }
+        $(id).show();
+        agregarBoton(id,idBoton,valor,".col-md-12");
+}
+function obtenerSelect(texto){
+    var entregables,arreglo;
+    entregables = '<select class="btn-primary" name="entregables" multiple="multiple">';
+    arreglo = texto.split(",");
+    for (var i = 0; i < arreglo.length; i++) {
+        entregables += '<option value="'+arreglo[i]+'">'+ arreglo[i]+'</option>';
+    }
+    entregables += '</select>';
+    return entregables;
+}
+function obtenerSelectActividad(texto){
+    var actividadesPlanificacion,arreglo;
+    arreglo = texto.split(",");
+    actividadesPlanificacion = '<select class="btn-primary" name="actividades" multiple="multiple">';
+    for (var i = 0; i < arreglo.length; i++) {
+        var datos = arreglo[i].split("|");
+        if(datos.length ==2){
+            actividadesPlanificacion+= '<option data-fecha="'+datos[1]+'" value="'+datos[0]+'">'+datos[0]+'</option>';
+        }
+    }
+    actividadesPlanificacion += '</select>';
+    return actividadesPlanificacion;
+}
+function obtenerFilas(texto,idFieldset,claseBoton){
+    var contenidoTabla, filas, arreglo, dataDatos;
+    dataDatos = new Array();
+    contenidoTabla = $(idFieldset).find('table').find('tbody');
+    filas = "";
+    arreglo = texto.split(",");
+    for(var i=0; i < arreglo.length; i++){
+        var datos = arreglo[i].split("|");
+        if(datos.length > 0){
+            filas+= '<tr>'+obtenerColumnas(datos)+
+                        '<td align="center">'+
+                           '<button class="btn btn-xs btn-danger '+claseBoton+'">'+
+                               '<i class="fa fa-times"></i>'+
+                           '</button>'+
+                        '</td>'+
+                    '</tr>';
+            dataDatos[i]=datos[0];
+        }
+    }
+    contenidoTabla.empty();
+    contenidoTabla.append(filas);
+    return dataDatos;
+}
+function obtenerColumnas(datos){
+    var res="";
+    for(var i=0;i<datos.length;i++){
+        res+='<td>'+datos[i]+'</td>';
+    }
+    return res;
+}
+function agregarDatosData(id,nombreData,datos){
+    var arreglo = $(id).data(nombreData).split(',');
+    for(var i = 0;i< datos.length;i++){
+        arreglo.push(datos[i]);
+    }
+    $(id).data(nombreData, arreglo.join());
+}
+
+function mostrarContenido(num){
+    ocultarVentanas();
+    switch (num){
+        case 0:
+            $("#registroActividadPlanificacion").show();
+            break;
+        case 1:
+            $("#registroEntregable").show();
+            break;
+        case 2:
+            $("#registroCostoProyecto").show();
+            break;
+        case 3:
+            $("#registroPago").show();
+            break;
+        case 4:
+            $(".alert.alert-success").show();
+            break;
+    }
+}
+
+function ocultarVentanas(){
+    $(".planificacion").hide();
+}
+
+function llenarFormulario(actividades,entregables,costo){
+    $("#actividadesPlanificacion").append(actividades);
+    $("#entregables").append(entregables);
+    var planPagos = $("#registroPlanPagos").data("costo");
+    planPagos.push(costo);
+    $("#registroPlanPagos").data('costo',planPagos);
+}
 
 function registrarAsistencia(){
     $("#registroAsistencia").find("form")
@@ -465,11 +642,14 @@ function registrarPlanificacion() {
             $('#btnCancelarActividadPlanificacion').hide();
         }
         var fila = $(this).parents().get(1);
-        var actividades = $('#registroPlanificacion').data('actividades').split(',');          
+        var actividades = $('#registroPlanificacion').data('actividades').split(',');
         var actividad = actividades.indexOf($(fila).find('td:first').text());
         actividades.splice(actividad, 1);
         $('#registroPlanificacion').data('actividades', actividades.join());
-      //  $(fila).remove();
+        /*if($(cuerpo).find('tr').length>1){
+            $(this).parent().parent().remove();
+        }*/
+        $(fila).remove();
     });
     
     $(document).on('click', '#btnCancelarActividadPlanificacion', function() {
@@ -506,6 +686,8 @@ function registrarPlanificacion() {
             actividades:actividades.join(),
             fechas:fechas.join()
         });
+        var usuario = $("#atrasEntregable").val();
+        llenarDatosTabla("../Controlador/DatosEntregable.php",[usuario," entregable_e,descripcion_e "],2,"#registroEntregables","btnBorrarEntregable","entregables","adelanteCosto");
     });
 }
 
@@ -674,8 +856,31 @@ function registrarCostoProyecto() {
                 }
             }
         });
+        var vacio =  document.getElementById("entregables").children.length==0;
+        if(vacio){
+            var usuarioC = $("#atrasEntregable").val();
+            $.post("../Controlador/DatosRegistro.php",{
+                usuario : usuarioC
+            },function(texto){
+                var select = obtenerSelectActividad(texto);
+                $('#actividadesPlanificacion').append(select);
+            });
+            $.post("../Controlador/DatosEntregable.php",{
+                usuario : usuarioC
+            },function(texto){
+                var select = obtenerSelect(texto);
+                $('#entregables').append(select);
+            });
+            $.post("../Controlador/DatosPago.php",{
+                usuario : usuarioC
+            },function(texto){
+                var arreglo = texto.split(",");
+                if(arreglo.length==2){
+                    $("#registroPlanPagos").data("costo",arreglo[0]);
+                }
+            });
+        }
 }
-
 function registrarPlanPagos() {
     $('#registroPago').find('form')
         .bootstrapValidator({
@@ -898,6 +1103,7 @@ function registrarPlanPagos() {
     });
 
     $(document).on('click', '#btnRegistrarPlanPagos', function() {
+        mostrarContenido(4);
         var actividades = new Array();
         var fechas = new Array();
         var porcentajes = new Array();

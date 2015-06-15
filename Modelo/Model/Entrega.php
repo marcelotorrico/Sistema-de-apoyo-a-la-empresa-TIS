@@ -2,8 +2,8 @@
 	require_once '../Modelo/conexionPDO.php';
 
 	class Entrega {
-            var $conexion;
-            private $idRegistro;
+		var $conexion;
+		private $idRegistro;
 	    private $entregable;
 	    private $entregado;
 
@@ -21,16 +21,23 @@
 	    }
 
 	    function constructor($id) {
-		$datosEntrega = $this->conexion->consultarTabla("SELECT id_r, entregable_p, entregado_p
-														     WHERE id_r = $id;");
-                $this->idRegistro = $datosEntrega[0][0];
-                $this->entregable = $datosEntrega[0][1];
-                $this->entregado = $datosEntrega[0][2];
+            $pdoStatement = $this->conexion->prepare("SELECT id_r, entregable_p, entregado_p FROM entrega WHERE id_r = $id;");
+            $pdoStatement->execute();
+            $datosEntrega = $pdoStatement->fetch(PDO::FETCH_NUM);
+            if(count($datosEntrega)==3){
+                $this->idRegistro = $datosEntrega[0];
+                $this->entregable = $datosEntrega[1];
+                $this->entregado = $datosEntrega[2];
+            }
+            $pdoStatement->closeCursor(); 
 	    }
-
-	    function insertarBD() {	        
-	        $this->conexion->query("INSERT INTO entrega(id_r, entregable_p, entregado_p)
-	        						   VALUES($this->idRegistro, '$this->entregable', $this->entregado);");	        
+            function carrarConexion() {
+                $this->conexion = NULL;  
+            }
+	    function insertarBD() {
+	        $pdoStatement = $this->conexion->query("INSERT INTO entrega(id_r, entregable_p, entregado_p)
+	        						   VALUES($this->idRegistro, '$this->entregable', $this->entregado);");
+	        $pdoStatement->closeCursor();
 	    }
 
 	    public function getIdRegistro() {
