@@ -1,0 +1,17 @@
+label{
+    width: 100px;
+    display: block;
+    clear: both;
+    float: left;
+    margin: 2px;
+}            
+input{
+    margin: 2px;
+    display: block;
+}
+#instalar{
+    padding: 5px 10px;
+    font-weight: bold;
+    margin: 2px;
+}
+
