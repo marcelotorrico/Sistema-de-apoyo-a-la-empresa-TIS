@@ -46,8 +46,9 @@
 	        						   VALUES($this->idRegistro, '$this->rol', '$this->actividad', $this->hecho, '$this->resultado', '$this->conclusion', '$this->observacion');");	        
 	    }
 
-	    public static function listaRolesReporte() {	        
-	        $roles = $this->conexion->consultarArreglo("SELECT rol_rr 
+	    public static function listaRolesReporte() {
+                $conexion = new Conexion();
+	        $roles = $conexion->consultarArreglo("SELECT rol_rr 
                                                     FROM rol_reporte");	        
 	        return $roles;
 	    }

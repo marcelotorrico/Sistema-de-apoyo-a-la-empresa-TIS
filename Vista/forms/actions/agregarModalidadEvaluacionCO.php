@@ -21,12 +21,11 @@ if(isset($Agregar))
                  $SQL= "SELECT NOMBRE_CRITERIO_E".
                           " FROM criterio_evaluacion". 
                           " WHERE NOMBRE_CRITERIO_E =  '$textDescripcionD' AND NOMBRE_U = '$usuarioActivo'";
-                  $registros=$co->query("$SQL",$co);
+                  $registros=$co->query("$SQL");
 
                     while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                     {
                         $existeCampo = $row[0];
-
                     }
 
                 

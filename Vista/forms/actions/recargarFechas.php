@@ -12,7 +12,7 @@ if(isset($selecDoc))
 {    
     $registros=$co->query("SELECT *".
         " FROM registro".
-        " WHERE tipo_t= 'documento requerido'",$co) or
+        " WHERE tipo_t= 'documento requerido'") or
          die("Problemas en el select:".$co->errorInfo());
 
     
@@ -24,7 +24,7 @@ if(isset($selecDoc))
                 " AND r.TIPO_T =  'documento requerido'".
                 " AND r.nombre_r ='$selecDoc'".
                 " LIMIT 0 , 30";
-            $registros=$co->query("$SQL",$co);
+            $registros=$co->query("$SQL");
             while ($row = $registros->fetch(PDO::FETCH_NUM)) 
                     {
                         $fec1 = ($row[0]);

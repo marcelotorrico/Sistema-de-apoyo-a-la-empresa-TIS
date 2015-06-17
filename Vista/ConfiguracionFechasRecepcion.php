@@ -3,7 +3,6 @@ session_start();
 error_reporting (5);    
 include '../Modelo/conexionPDO.php';
 
-$con=new Conexion();
 if (isset($_SESSION['usuario'])) {
 $uActivo = $_SESSION['usuario'];
 
