@@ -40,9 +40,16 @@
                    echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
                } else {
                         $peticion=$conectar->query("CALL registro_grupo_empresa('$nombreUGE','$telefGE','$password','$correoGE','$dirGE','$nombreLGE','$nombreCGE')");
-                        $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
-                        $mensaje= $peticion['mensaje'];
-                        echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";
+                        //verificar que la peticion se logro exitosamente!
+                        if ($peticion) {
+                           $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
+                           $mensaje= $peticion['mensaje'];
+                          echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";      
+                        }
+                         else{
+                          $mensaje = 'El correo ya esta siendo usado en otra cuenta, por favor cambie';
+                          echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarGrupoEmpresa.php';</script>";      
+                         }                 
                }
           }
     }

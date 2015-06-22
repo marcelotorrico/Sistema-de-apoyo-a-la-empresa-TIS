@@ -21,10 +21,14 @@
       echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
     } else {
         $peticion=$conectar->query("CALL registro_administrador('$nombre','$apellido','$nombreU','$telefono','$password','$correo')");
-        $peticion = $peticion->fetch(PDO::FETCH_ASSOC);
-        $mensaje= $peticion['mensaje'];
-          echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
-        }
+      if ($peticion) {
+           $peticion = $peticion->fetch(PDO::FETCH_ASSOC);
+           $mensaje= $peticion['mensaje'];
+           echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
+            } else {
+               $mensaje = 'El correo ya esta siendo usado en otra cuenta, por favor cambie';
+               echo "<script>alert('$mensaje'); window.location='../Vista/registro_administrador.php';</script>";          
+            }
       
    
 ?>                                        

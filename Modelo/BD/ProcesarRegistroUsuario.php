@@ -25,9 +25,14 @@
 
      } else {
         $peticion=$conectar->query("CALL registro_usuario('$nombre','$apellido','$nombreU','$telefono','$password','$correo','$rol')");
-        $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
-        $mensaje= $peticion['mensaje'];
-        echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
-       
+        //verificar que la peticion se logró exitosamente!
+        if ($peticion) {
+            $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
+            $mensaje= $peticion['mensaje'];
+            echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
+        } else {
+            $mensaje = 'El correo ya esta siendo usado en otra cuenta, por favor cambie';
+            echo "<script>alert('$mensaje'); window.location='../../Vista/RegistrarUsuario.php';</script>";            
+        }
     } 
 ?>
