@@ -1524,10 +1524,10 @@ CREATE TABLE `usuario` (
   `TELEFONO_U` varchar(8) NOT NULL,
   `CORREO_ELECTRONICO_U` varchar(50) NOT NULL,
   PRIMARY KEY (`NOMBRE_U`) USING BTREE,
+  UNIQUE KEY `uniq_correo` (`CORREO_ELECTRONICO_U`),
   KEY `FK_ESTADO__USUARIO` (`ESTADO_E`) USING BTREE,
   CONSTRAINT `FK_ESTADO__USUARIO` FOREIGN KEY (`ESTADO_E`) REFERENCES `estado` (`ESTADO_E`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=2048;
-
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------
@@ -1693,7 +1693,7 @@ BEGIN
    WHEN e THEN (select "Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" as mensaje);
    
   ELSE 
-
+START TRANSACTION;
    INSERT INTO usuario VALUES(nom_u,'Habilitado',MD5(passwd),telef,email); 
    INSERT INTO usuario_rol VALUES(nom_u,'administrador');  
    INSERT INTO administrador VALUES (nom_u,nom,ape);
@@ -1701,7 +1701,7 @@ BEGIN
   SELECT "Se registro correctamente" as mensaje;
 
   END CASE;
-  
+COMMIT; 
   END;;
 DELIMITER ;
 
@@ -1738,7 +1738,7 @@ BEGIN
    WHEN n_c THEN (select "Minimo 3 caracteres" as mensaje);  
 
   ELSE 
-
+START TRANSACTION;
   INSERT INTO usuario VALUES (nom_u,'Habilitado',MD5(passwd),telef,email);
 
   INSERT INTO grupo_empresa VALUES (nom_u,nge_corto, nge_largo,direcc,"",5);
@@ -1747,6 +1747,7 @@ BEGIN
   
   SELECT "Se registro correctamente" as mensaje;
   END CASE;
+COMMIT;
   
   END;;
 DELIMITER ;
@@ -1784,6 +1785,7 @@ BEGIN
    WHEN e THEN (select "Ingrese un correo valido. Ejm: admin@hotmail.com ,admin@yahoo.com, admin@gmail.com" as mensaje);
    
   ELSE 
+START TRANSACTION;
 
    INSERT INTO usuario VALUES(nom_u,'Deshabilitado',MD5(passwd),telef,email); 
    INSERT INTO asesor VALUES(nom_u,nom,ape);  
@@ -1793,6 +1795,6 @@ BEGIN
   SELECT "Se registro correctamente" as mensaje;
 
   END CASE;
-  
+COMMIT; 
   END;;
 DELIMITER ;
