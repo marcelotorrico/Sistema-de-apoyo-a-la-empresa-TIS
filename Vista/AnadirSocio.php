@@ -218,6 +218,15 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                                 <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" minlength="4" pattern=".{4,}" title="Apellido muy corto" required  onkeypress="return validarLetras(event)">
                                             </div>
                                         </div>
+
+                                       <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input class="form-control" name="correo" id="correo" placeholder="Correo" minlength="4">
+                                            </div>
+                                        </div>  
                                         
                                 
                                 
@@ -291,11 +300,19 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
             echo "Nombre";
             ?>
             </div>	
+
             <div class="contenedor-columna">
             <?php
             echo "Apellido";
             ?>
             </div>
+
+            <div class="contenedor-columna">
+            <?php
+            echo "Correo";
+            ?>
+            </div>
+
             <div class="contenedor-columna">
             <?php
             echo "Acción";
@@ -307,7 +324,7 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
             //crear conexion---------------------------
 
             //Peticion
-            $peticion =$conexion->prepare("SELECT CODIGO_S, NOMBRES_S, APELLIDOS_S FROM socio WHERE NOMBRE_U = '$uActivo'");
+            $peticion =$conexion->prepare("SELECT CODIGO_S, NOMBRES_S, APELLIDOS_S,CORREO FROM socio WHERE NOMBRE_U = '$uActivo'");
             $peticion->execute();
             $result = $peticion->fetchAll();
             $cantidad = count($result);
@@ -333,6 +350,12 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
             <div class="contenedor-columna">
             <?php
             echo $value['APELLIDOS_S'];
+            ?>
+            </div>
+
+            <div class="contenedor-columna">
+            <?php
+            echo $value['CORREO'];
             ?>
             </div>
                                                                    
