@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50527
 Source Host           : localhost:3306
-Source Database       : saaa
+Source Database       : saetis
 
 Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-05-29 14:20:34
+Date: 2015-06-23 11:26:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -313,10 +313,10 @@ CREATE TABLE `entrega` (
 -- ----------------------------
 -- Records of entrega
 -- ----------------------------
-INSERT INTO `entrega` VALUES ('165', 'documentaciÃ³n', '0');
-INSERT INTO `entrega` VALUES ('166', 'documentaciÃ³n', '0');
-INSERT INTO `entrega` VALUES ('167', 'documentaciÃ³n', '0');
-INSERT INTO `entrega` VALUES ('168', 'documentaciÃ³n', '0');
+INSERT INTO `entrega` VALUES ('165', 'documentaciÃƒÂ³n', '0');
+INSERT INTO `entrega` VALUES ('166', 'documentaciÃƒÂ³n', '0');
+INSERT INTO `entrega` VALUES ('167', 'documentaciÃƒÂ³n', '0');
+INSERT INTO `entrega` VALUES ('168', 'documentaciÃƒÂ³n', '0');
 INSERT INTO `entrega` VALUES ('170', 'Documento', '0');
 INSERT INTO `entrega` VALUES ('171', 'Informe', '0');
 INSERT INTO `entrega` VALUES ('172', 'Informe', '0');
@@ -366,14 +366,14 @@ CREATE TABLE `entregable` (
 -- ----------------------------
 INSERT INTO `entregable` VALUES ('Devs', 'Documento', 'Documento del contrato');
 INSERT INTO `entregable` VALUES ('Devs', 'Informe', 'Informe sobre el estado del proyecto');
-INSERT INTO `entregable` VALUES ('InnovaTe', 'CD', 'Ultima versiÃ³n del cÃ³digo fuente');
-INSERT INTO `entregable` VALUES ('InnovaTe', 'Informe', 'DescripciÃ³n del sistema actual');
-INSERT INTO `entregable` VALUES ('MAD', 'Documento', 'Documento de evaluaciÃ³n y pruebas');
+INSERT INTO `entregable` VALUES ('InnovaTe', 'CD', 'Ultima versiÃƒÂ³n del cÃƒÂ³digo fuente');
+INSERT INTO `entregable` VALUES ('InnovaTe', 'Informe', 'DescripciÃƒÂ³n del sistema actual');
+INSERT INTO `entregable` VALUES ('MAD', 'Documento', 'Documento de evaluaciÃƒÂ³n y pruebas');
 INSERT INTO `entregable` VALUES ('MAD', 'Informe', 'Informe QC');
-INSERT INTO `entregable` VALUES ('NetSky', 'documentaciÃ³n', 'Protocolo de validaciÃ³n');
-INSERT INTO `entregable` VALUES ('SAADS', 'Informe', 'descripciÃ³n del sistema actual');
-INSERT INTO `entregable` VALUES ('SLOW', 'Documento', 'Protocolo de validaciÃ³n de los Sprint');
-INSERT INTO `entregable` VALUES ('SLOW', 'Informe', 'Informe de la iteraciÃ³n');
+INSERT INTO `entregable` VALUES ('NetSky', 'documentaciÃƒÂ³n', 'Protocolo de validaciÃƒÂ³n');
+INSERT INTO `entregable` VALUES ('SAADS', 'Informe', 'descripciÃƒÂ³n del sistema actual');
+INSERT INTO `entregable` VALUES ('SLOW', 'Documento', 'Protocolo de validaciÃƒÂ³n de los Sprint');
+INSERT INTO `entregable` VALUES ('SLOW', 'Informe', 'Informe de la iteraciÃƒÂ³n');
 
 -- ----------------------------
 -- Table structure for `estado`
@@ -622,11 +622,11 @@ INSERT INTO `grupo_empresa` VALUES ('ARGOS', 'ARGOS', 'ARGOS SRL', 'ivnfivnidfvn
 INSERT INTO `grupo_empresa` VALUES ('Arkano', 'Arkano', 'Arkano Soft', 'Av Santa Cruz', '', '5');
 INSERT INTO `grupo_empresa` VALUES ('Aska', 'Aska', 'Aska SRL', 'hbvhfdvhdbv', '', '5');
 INSERT INTO `grupo_empresa` VALUES ('ASSI', 'ASSI', 'ASSI SRL', 'shhjsbcsb', '', '5');
-INSERT INTO `grupo_empresa` VALUES ('Devs', 'Devs Group', 'DevsGroup SRL', 'Av.Ladislao Cabrera N°567', 'Vania Marisela Catorceno Carballo', '5');
+INSERT INTO `grupo_empresa` VALUES ('Devs', 'Devs Group', 'DevsGroup SRL', 'Av.Ladislao Cabrera NÂ°567', 'Vania Marisela Catorceno Carballo', '5');
 INSERT INTO `grupo_empresa` VALUES ('FreeValue', 'FreeValue', 'FreeValue SRL', 'Calle F', 'Oscar Gamboa Acho', '5');
-INSERT INTO `grupo_empresa` VALUES ('InnovaTe', 'InnovaTe', 'Innovando Tecnologia SRL', 'C. Tarija N°1520', 'Antonio Alurralde', '5');
+INSERT INTO `grupo_empresa` VALUES ('InnovaTe', 'InnovaTe', 'Innovando Tecnologia SRL', 'C. Tarija NÂ°1520', 'Antonio Alurralde', '5');
 INSERT INTO `grupo_empresa` VALUES ('MAD', 'MAD', 'MAD SOFTWARE SRL', 'Av. Rodriguez Morales N&d', 'Juan Manuel Castro Arnez', '5');
-INSERT INTO `grupo_empresa` VALUES ('NetSky', 'NetSky', 'NetSky System SRL', 'Sipe Sipe Calle Gualberto', 'Ruben Villca FernÃ¡ndez', '5');
+INSERT INTO `grupo_empresa` VALUES ('NetSky', 'NetSky', 'NetSky System SRL', 'Sipe Sipe Calle Gualberto', 'Ruben Villca FernÃƒÂ¡ndez', '5');
 INSERT INTO `grupo_empresa` VALUES ('SAADS', 'SAADS', 'SAADS SRL', 'Av. Melchor Perez #1312', 'Kenji Gabriel Lozano Rosales', '5');
 INSERT INTO `grupo_empresa` VALUES ('SLOW', 'SLOW CODE', 'SLOW CODE SRL', 'C/ Dario Monta&ntilde;o #', 'Rodrigo David Rivera Ortega', '5');
 
@@ -1140,7 +1140,7 @@ INSERT INTO `registro` VALUES ('115', 'LeticiaB', 'publicaciones', 'Habilitado',
 INSERT INTO `registro` VALUES ('116', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de NetSky', '2015-05-26', '14:14:55');
 INSERT INTO `registro` VALUES ('117', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de SAADS', '2015-05-26', '15:15:23');
 INSERT INTO `registro` VALUES ('118', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de SLOW CODE', '2015-05-26', '15:15:26');
-INSERT INTO `registro` VALUES ('119', 'Devs', 'actividad planificacion', 'en proceso', 'GestiÃ³n del pryecto', '2015-05-26', '09:43:40');
+INSERT INTO `registro` VALUES ('119', 'Devs', 'actividad planificacion', 'en proceso', 'GestiÃƒÂ³n del pryecto', '2015-05-26', '09:43:40');
 INSERT INTO `registro` VALUES ('120', 'MAD', 'actividad planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '10:06:09');
 INSERT INTO `registro` VALUES ('121', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de Devs Group', '2015-05-26', '16:16:11');
 INSERT INTO `registro` VALUES ('122', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de InnovaTe', '2015-05-26', '16:16:13');
@@ -1148,7 +1148,7 @@ INSERT INTO `registro` VALUES ('123', 'LeticiaB', 'publicaciones', 'Habilitado',
 INSERT INTO `registro` VALUES ('124', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de NetSky', '2015-05-26', '16:16:15');
 INSERT INTO `registro` VALUES ('125', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de SAADS', '2015-05-26', '16:16:16');
 INSERT INTO `registro` VALUES ('126', 'LeticiaB', 'publicaciones', 'Habilitado', 'Notificacion de Conformidad de SLOW CODE', '2015-05-26', '16:16:17');
-INSERT INTO `registro` VALUES ('127', 'Devs', 'actividad planificacion', 'en proceso', 'PlanificaciÃ³n', '2015-05-26', '11:35:33');
+INSERT INTO `registro` VALUES ('127', 'Devs', 'actividad planificacion', 'en proceso', 'PlanificaciÃƒÂ³n', '2015-05-26', '11:35:33');
 INSERT INTO `registro` VALUES ('128', 'Devs', 'actividad planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '11:52:32');
 INSERT INTO `registro` VALUES ('129', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '11:52:32');
 INSERT INTO `registro` VALUES ('130', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '11:52:32');
@@ -1159,8 +1159,8 @@ INSERT INTO `registro` VALUES ('134', 'Devs', 'actividad planificacion', 'en pro
 INSERT INTO `registro` VALUES ('135', 'Devs', 'actividad planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '11:52:33');
 INSERT INTO `registro` VALUES ('136', 'InnovaTe', 'actividad planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '12:19:18');
 INSERT INTO `registro` VALUES ('137', 'InnovaTe', 'actividad planificacion', 'en proceso', 'firma de contrato', '2015-05-26', '12:33:23');
-INSERT INTO `registro` VALUES ('138', 'InnovaTe', 'actividad planificacion', 'en proceso', 'PlanificaciÃ³n', '2015-05-26', '12:51:32');
-INSERT INTO `registro` VALUES ('139', 'InnovaTe', 'actividad planificacion', 'en proceso', 'PlanificaciÃ³n', '2015-05-26', '12:57:35');
+INSERT INTO `registro` VALUES ('138', 'InnovaTe', 'actividad planificacion', 'en proceso', 'PlanificaciÃƒÂ³n', '2015-05-26', '12:51:32');
+INSERT INTO `registro` VALUES ('139', 'InnovaTe', 'actividad planificacion', 'en proceso', 'PlanificaciÃƒÂ³n', '2015-05-26', '12:57:35');
 INSERT INTO `registro` VALUES ('140', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '13:59:53');
 INSERT INTO `registro` VALUES ('141', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '13:59:53');
 INSERT INTO `registro` VALUES ('142', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '13:59:53');
@@ -1168,18 +1168,18 @@ INSERT INTO `registro` VALUES ('143', 'SAADS', 'actividad planificacion', 'en pr
 INSERT INTO `registro` VALUES ('144', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '13:59:53');
 INSERT INTO `registro` VALUES ('145', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '13:59:53');
 INSERT INTO `registro` VALUES ('146', 'SAADS', 'actividad planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '13:59:53');
-INSERT INTO `registro` VALUES ('147', 'SLOW', 'actividad planificacion', 'en proceso', 'EvaluaciÃ³n', '2015-05-26', '14:15:35');
+INSERT INTO `registro` VALUES ('147', 'SLOW', 'actividad planificacion', 'en proceso', 'EvaluaciÃƒÂ³n', '2015-05-26', '14:15:35');
 INSERT INTO `registro` VALUES ('148', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '14:15:36');
 INSERT INTO `registro` VALUES ('149', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '14:15:36');
 INSERT INTO `registro` VALUES ('150', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '14:15:36');
 INSERT INTO `registro` VALUES ('151', 'SLOW', 'actividad planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '14:15:36');
 INSERT INTO `registro` VALUES ('152', 'SLOW', 'actividad planificacion', 'en proceso', 'Entrega ', '2015-05-26', '14:15:36');
-INSERT INTO `registro` VALUES ('153', 'SLOW', 'actividad planificacion', 'en proceso', 'capacitaciÃ³n', '2015-05-26', '14:15:36');
-INSERT INTO `registro` VALUES ('154', 'SLOW', 'actividad planificacion', 'en proceso', 'ConclusiÃ³n ', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('153', 'SLOW', 'actividad planificacion', 'en proceso', 'capacitaciÃƒÂ³n', '2015-05-26', '14:15:36');
+INSERT INTO `registro` VALUES ('154', 'SLOW', 'actividad planificacion', 'en proceso', 'ConclusiÃƒÂ³n ', '2015-05-26', '14:15:36');
 INSERT INTO `registro` VALUES ('155', 'NetSky', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '14:26:12');
 INSERT INTO `registro` VALUES ('156', 'NetSky', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '14:26:12');
 INSERT INTO `registro` VALUES ('157', 'NetSky', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '14:26:13');
-INSERT INTO `registro` VALUES ('158', 'NetSky', 'actividad planificacion', 'en proceso', 'CapacitaciÃ³n', '2015-05-26', '14:26:13');
+INSERT INTO `registro` VALUES ('158', 'NetSky', 'actividad planificacion', 'en proceso', 'CapacitaciÃƒÂ³n', '2015-05-26', '14:26:13');
 INSERT INTO `registro` VALUES ('159', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '14:46:38');
 INSERT INTO `registro` VALUES ('160', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '14:46:38');
 INSERT INTO `registro` VALUES ('161', 'MAD', 'actividad planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '14:46:38');
@@ -1189,7 +1189,7 @@ INSERT INTO `registro` VALUES ('164', 'MAD', 'actividad planificacion', 'en proc
 INSERT INTO `registro` VALUES ('165', 'NetSky', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '20:42:29');
 INSERT INTO `registro` VALUES ('166', 'NetSky', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '20:42:29');
 INSERT INTO `registro` VALUES ('167', 'NetSky', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '20:42:30');
-INSERT INTO `registro` VALUES ('168', 'NetSky', 'pago planificacion', 'en proceso', 'CapacitaciÃ³n', '2015-05-26', '20:42:30');
+INSERT INTO `registro` VALUES ('168', 'NetSky', 'pago planificacion', 'en proceso', 'CapacitaciÃƒÂ³n', '2015-05-26', '20:42:30');
 INSERT INTO `registro` VALUES ('169', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoNetSky.pdf', '2015-05-27', '02:02:45');
 INSERT INTO `registro` VALUES ('170', 'Devs', 'pago planificacion', 'en proceso', 'Firma de contrato', '2015-05-26', '20:56:55');
 INSERT INTO `registro` VALUES ('171', 'Devs', 'pago planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '20:56:55');
@@ -1206,14 +1206,14 @@ INSERT INTO `registro` VALUES ('181', 'MAD', 'pago planificacion', 'en proceso',
 INSERT INTO `registro` VALUES ('182', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '21:10:19');
 INSERT INTO `registro` VALUES ('183', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 5', '2015-05-26', '21:10:19');
 INSERT INTO `registro` VALUES ('184', 'MAD', 'pago planificacion', 'en proceso', 'Sprint 6', '2015-05-26', '21:10:19');
-INSERT INTO `registro` VALUES ('185', 'SLOW', 'pago planificacion', 'en proceso', 'EvaluaciÃ³n', '2015-05-26', '21:21:09');
+INSERT INTO `registro` VALUES ('185', 'SLOW', 'pago planificacion', 'en proceso', 'EvaluaciÃƒÂ³n', '2015-05-26', '21:21:09');
 INSERT INTO `registro` VALUES ('186', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '21:21:09');
 INSERT INTO `registro` VALUES ('187', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '21:21:09');
 INSERT INTO `registro` VALUES ('188', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 3', '2015-05-26', '21:21:09');
 INSERT INTO `registro` VALUES ('189', 'SLOW', 'pago planificacion', 'en proceso', 'Sprint 4', '2015-05-26', '21:21:10');
 INSERT INTO `registro` VALUES ('190', 'SLOW', 'pago planificacion', 'en proceso', 'Entrega ', '2015-05-26', '21:21:10');
-INSERT INTO `registro` VALUES ('191', 'SLOW', 'pago planificacion', 'en proceso', 'capacitaciÃ³n', '2015-05-26', '21:21:10');
-INSERT INTO `registro` VALUES ('192', 'SLOW', 'pago planificacion', 'en proceso', 'ConclusiÃ³n ', '2015-05-26', '21:21:10');
+INSERT INTO `registro` VALUES ('191', 'SLOW', 'pago planificacion', 'en proceso', 'capacitaciÃƒÂ³n', '2015-05-26', '21:21:10');
+INSERT INTO `registro` VALUES ('192', 'SLOW', 'pago planificacion', 'en proceso', 'ConclusiÃƒÂ³n ', '2015-05-26', '21:21:10');
 INSERT INTO `registro` VALUES ('193', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 0', '2015-05-26', '21:39:10');
 INSERT INTO `registro` VALUES ('194', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 1', '2015-05-26', '21:39:10');
 INSERT INTO `registro` VALUES ('195', 'SAADS', 'pago planificacion', 'en proceso', 'Sprint 2', '2015-05-26', '21:39:10');
@@ -1337,7 +1337,7 @@ CREATE TABLE `sesion` (
   PRIMARY KEY (`ID_S`) USING BTREE,
   KEY `FK_USUARIO_SESION` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_USUARIO_SESION` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesion
@@ -1444,6 +1444,7 @@ INSERT INTO `sesion` VALUES ('222', 'LeticiaB', '2015-05-27', '03:59:50', '::1')
 INSERT INTO `sesion` VALUES ('223', 'InnovaTe', '2015-05-27', '04:13:03', '::1');
 INSERT INTO `sesion` VALUES ('224', 'LeticiaB', '2015-05-27', '04:26:32', '::1');
 INSERT INTO `sesion` VALUES ('225', 'LeticiaB', '2015-05-27', '02:51:19', '::1');
+INSERT INTO `sesion` VALUES ('226', 'FreeValue', '2015-06-23', '10:51:48', '::1');
 
 -- ----------------------------
 -- Table structure for `socio`
@@ -1454,40 +1455,45 @@ CREATE TABLE `socio` (
   `NOMBRE_U` varchar(50) NOT NULL,
   `NOMBRES_S` varchar(50) NOT NULL,
   `APELLIDOS_S` varchar(50) NOT NULL,
+  `CORREO` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`CODIGO_S`) USING BTREE,
+  UNIQUE KEY `uniq_correo` (`CORREO`),
   KEY `FK_GRUPO_EMPRESA__SOCIO` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_GRUPO_EMPRESA__SOCIO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
 
 -- ----------------------------
 -- Records of socio
 -- ----------------------------
-INSERT INTO `socio` VALUES ('40', 'Devs', 'Vania Marisela ', 'Catorceno Carballo');
-INSERT INTO `socio` VALUES ('41', 'Devs', 'Dan Joel', 'Canqui Aviles');
-INSERT INTO `socio` VALUES ('42', 'Devs', 'Daniel', 'Rocha Perez');
-INSERT INTO `socio` VALUES ('43', 'Devs', 'Denis', 'Vazques Flores');
-INSERT INTO `socio` VALUES ('44', 'Devs', 'Diego Armando', 'Zambrana Arze');
-INSERT INTO `socio` VALUES ('45', 'InnovaTe', 'Antonio', 'Alurralde');
-INSERT INTO `socio` VALUES ('46', 'InnovaTe', 'Andreina', 'Cota');
-INSERT INTO `socio` VALUES ('47', 'InnovaTe', 'Fernando', 'Gutierrez');
-INSERT INTO `socio` VALUES ('48', 'InnovaTe', 'Marcelo', 'Torrico');
-INSERT INTO `socio` VALUES ('49', 'InnovaTe', 'Winder', 'Chiri');
-INSERT INTO `socio` VALUES ('50', 'MAD', 'Juan Manuel', 'Castro Arnez');
-INSERT INTO `socio` VALUES ('51', 'MAD', 'Alison', 'Fernandez Blanco');
-INSERT INTO `socio` VALUES ('52', 'MAD', 'Diego Gabriel', 'Nuñez Duran');
-INSERT INTO `socio` VALUES ('53', 'NetSky', 'Norman', 'Antezana Pinto');
-INSERT INTO `socio` VALUES ('54', 'NetSky', 'Dario Edson', 'Chacon Paichucama');
-INSERT INTO `socio` VALUES ('55', 'NetSky', 'Erlinda', 'Chambi Manzano');
-INSERT INTO `socio` VALUES ('56', 'NetSky', 'Claudia Dolinda', 'Torrico');
-INSERT INTO `socio` VALUES ('57', 'NetSky', 'Ruben ', 'Villca Fernandez');
-INSERT INTO `socio` VALUES ('58', 'SAADS', 'Enrique Daniel ', 'Antezana Vargas');
-INSERT INTO `socio` VALUES ('59', 'SAADS', 'Beimar E. ', 'Huarachi Mamani');
-INSERT INTO `socio` VALUES ('60', 'SAADS', 'Jorge ', 'Avila Baldiviezo');
-INSERT INTO `socio` VALUES ('61', 'SAADS', 'Kenji Gabriel ', 'Lozano Rosales');
-INSERT INTO `socio` VALUES ('62', 'SLOW', 'Melisa Stefani', 'Carballo Valencia');
-INSERT INTO `socio` VALUES ('63', 'SLOW', 'Cristhian', 'Lima Sarabia');
-INSERT INTO `socio` VALUES ('64', 'SLOW', 'Santiago', 'Quiroga Turdera');
-INSERT INTO `socio` VALUES ('65', 'SLOW', 'Rodrigo David', 'Rivera Ortega');
+INSERT INTO `socio` VALUES ('40', 'Devs', 'Vania Marisela ', 'Catorceno Carballo', null);
+INSERT INTO `socio` VALUES ('41', 'Devs', 'Dan Joel', 'Canqui Aviles', null);
+INSERT INTO `socio` VALUES ('42', 'Devs', 'Daniel', 'Rocha Perez', null);
+INSERT INTO `socio` VALUES ('43', 'Devs', 'Denis', 'Vazques Flores', null);
+INSERT INTO `socio` VALUES ('44', 'Devs', 'Diego Armando', 'Zambrana Arze', null);
+INSERT INTO `socio` VALUES ('45', 'InnovaTe', 'Antonio', 'Alurralde', null);
+INSERT INTO `socio` VALUES ('46', 'InnovaTe', 'Andreina', 'Cota', null);
+INSERT INTO `socio` VALUES ('47', 'InnovaTe', 'Fernando', 'Gutierrez', null);
+INSERT INTO `socio` VALUES ('48', 'InnovaTe', 'Marcelo', 'Torrico', null);
+INSERT INTO `socio` VALUES ('49', 'InnovaTe', 'Winder', 'Chiri', null);
+INSERT INTO `socio` VALUES ('50', 'MAD', 'Juan Manuel', 'Castro Arnez', null);
+INSERT INTO `socio` VALUES ('51', 'MAD', 'Alison', 'Fernandez Blanco', null);
+INSERT INTO `socio` VALUES ('52', 'MAD', 'Diego Gabriel', 'NuÃ±ez Duran', null);
+INSERT INTO `socio` VALUES ('53', 'NetSky', 'Norman', 'Antezana Pinto', null);
+INSERT INTO `socio` VALUES ('54', 'NetSky', 'Dario Edson', 'Chacon Paichucama', null);
+INSERT INTO `socio` VALUES ('55', 'NetSky', 'Erlinda', 'Chambi Manzano', null);
+INSERT INTO `socio` VALUES ('56', 'NetSky', 'Claudia Dolinda', 'Torrico', null);
+INSERT INTO `socio` VALUES ('57', 'NetSky', 'Ruben ', 'Villca Fernandez', null);
+INSERT INTO `socio` VALUES ('58', 'SAADS', 'Enrique Daniel ', 'Antezana Vargas', null);
+INSERT INTO `socio` VALUES ('59', 'SAADS', 'Beimar E. ', 'Huarachi Mamani', null);
+INSERT INTO `socio` VALUES ('60', 'SAADS', 'Jorge ', 'Avila Baldiviezo', null);
+INSERT INTO `socio` VALUES ('61', 'SAADS', 'Kenji Gabriel ', 'Lozano Rosales', null);
+INSERT INTO `socio` VALUES ('62', 'SLOW', 'Melisa Stefani', 'Carballo Valencia', null);
+INSERT INTO `socio` VALUES ('63', 'SLOW', 'Cristhian', 'Lima Sarabia', null);
+INSERT INTO `socio` VALUES ('64', 'SLOW', 'Santiago', 'Quiroga Turdera', null);
+INSERT INTO `socio` VALUES ('65', 'SLOW', 'Rodrigo David', 'Rivera Ortega', null);
+INSERT INTO `socio` VALUES ('66', 'FreeValue', 'Fernando', 'Gutierrez', null);
+INSERT INTO `socio` VALUES ('67', 'FreeValue', 'Evelin', 'Garcia', 'eve@gmail.com');
+INSERT INTO `socio` VALUES ('72', 'FreeValue', 'FF', 'F', null);
 
 -- ----------------------------
 -- Table structure for `tipo`
@@ -1528,6 +1534,7 @@ CREATE TABLE `usuario` (
   KEY `FK_ESTADO__USUARIO` (`ESTADO_E`) USING BTREE,
   CONSTRAINT `FK_ESTADO__USUARIO` FOREIGN KEY (`ESTADO_E`) REFERENCES `estado` (`ESTADO_E`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=2048;
+
 -- ----------------------------
 -- Records of usuario
 -- ----------------------------
@@ -1614,35 +1621,11 @@ INSERT INTO `usuario_rol` VALUES ('SAADS', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('SLOW', 'grupoEmpresa');
 
 -- ----------------------------
--- Procedure structure for `insert_gestion`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `insert_gestion`;
-DELIMITER ;;
-CREATE PROCEDURE `insert_gestion`(in gestion varchar(25), f_ini date, f_fin date)
-BEGIN
-DECLARE anio_actual, anio_f_ini integer;
-set anio_actual = YEAR(CURDATE()); 
-set anio_f_ini = YEAR(f_ini);
-
-IF(anio_f_ini >= anio_actual)THEN
- IF(f_ini > f_fin) THEN
-  SELECT "La fecha de inicio no puede ser mayor a la de fin" as errno;
- ELSE
-  SELECT "Se registro la gestion" as errno;
-  INSERT INTO GESTION(NOM_G,FECHA_INICIO_G,FECHA_FIN_G) values(gestion,f_ini,f_fin);
- END IF;
-ELSE
-    SELECT "Las gestiones deben ser posteriores a la fecha actual" as errno;
-  END IF;
-END;;
-DELIMITER ;
-
--- ----------------------------
 -- Procedure structure for `insert_socio`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_socio`;
 DELIMITER ;;
-CREATE PROCEDURE `insert_socio`(in n_u varchar(25), nombre varchar(25) , apellido varchar(25))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_socio`(in n_u varchar(25), nombre varchar(25) , apellido varchar(25),corr varchar(50))
 BEGIN
 DECLARE cantT integer;
 DECLARE numSocP integer;
@@ -1652,7 +1635,7 @@ SET numSocP = (select NUM_SOCIOS FROM grupo_empresa WHERE  NOMBRE_U=n_u);
 SET rest = (numSocP - cantT);
 IF (rest > 0) 
 THEN
-  INSERT INTO socio(NOMBRE_U,NOMBRES_S,APELLIDOS_S) VALUES (n_u,nombre,apellido);
+  INSERT INTO socio(NOMBRE_U,NOMBRES_S,APELLIDOS_S,CORREO) VALUES (n_u,nombre,apellido,corr);
   SELECT "Se registro correctamente" as errno;
  ELSE
   SELECT "Ya se registraron todos los socios" as errno;
@@ -1665,7 +1648,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_administrador`;
 DELIMITER ;;
-CREATE PROCEDURE `registro_administrador`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_administrador`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50))
 BEGIN
 
  declare n INTEGER;
@@ -1710,7 +1693,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_grupo_empresa`;
 DELIMITER ;;
-CREATE PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
 BEGIN
 
  declare t INTEGER;
@@ -1757,7 +1740,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_usuario`;
 DELIMITER ;;
-CREATE PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
 BEGIN
 
  declare n INTEGER;

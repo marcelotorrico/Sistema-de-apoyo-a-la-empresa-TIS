@@ -7,6 +7,7 @@
     $nombreU = $_SESSION['usuario'];
     $nombreS = $_POST['nombre'];
     $apellidoS = $_POST['apellido'];
+    $correo = $_POST['correo'];
       
     $consultaNombreLargoGE = "SELECT NOMBRE_LARGO_GE FROM grupo_empresa WHERE NOMBRE_U = '$nombreU'";
     $nombreLargoConsulta = $conectar->query($consultaNombreLargoGE);
@@ -21,12 +22,19 @@
          echo"<script type=\"text/javascript\">alert('Usted no puede agregar a mas socios porque ya se emitio un contrato.'); window.location='../Vista/AnadirSocio.php';</script>";
     }else{
         
-        $peticion=$conectar->query("CALL insert_socio('$nombreU','$nombreS','$apellidoS')");
-        $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
-
-        $alerta= $peticion['errno'];
-
-        echo "<script>alert('$alerta'); window.location='../Vista/AnadirSocio.php';</script>";
+        $peticion=$conectar->query("CALL insert_socio('$nombreU','$nombreS','$apellidoS','$correo')");
+        if ($peticion) {
+            $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
+            $alerta= $peticion['errno'];
+            echo "<script>alert('$alerta'); window.location='../Vista/AnadirSocio.php';</script>";
+        }
+            else {
+                $alerta= 'El correo ya esta siendo utilizado';
+                echo "<script>alert('$alerta'); window.location='../Vista/AnadirSocio.php';</script>";
+              
+            }
+            
+        
     }
 ?>    
   
