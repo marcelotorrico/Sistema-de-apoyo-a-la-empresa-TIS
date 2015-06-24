@@ -179,7 +179,18 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                             <a id="registrarPlanificacion" href="#">
                                 <i class="fa fa-pencil-square-o fa-fw"></i>Registrar Planificaci&oacute;n
                             </a>
-                        </li>        
+                        </li>
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-file"></i> Ver Reportes <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">                               
+                                <li>
+                                    <a href="#" >Asistencia</a>
+                                </li>
+                                <li>
+                                    <a href="VerReporteNota.php">Nota de las actividades</a>                                  
+                                </li>                              
+                            </ul>                           
+                        </li>
                     </ul>
                     <!-- /#side-menu -->
                 </div>
@@ -218,6 +229,14 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                                 <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" minlength="4" pattern=".{4,}" title="Apellido muy corto" required  onkeypress="return validarLetras(event)">
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-user"></span>
+                                                </span>
+                                                <input class="form-control" name="correo" id="correo" placeholder="Correo" minlength="4">
+                                            </div>
+                                        </div> 
 
                                        <div class="form-group">
                                             <div class="input-group">
@@ -314,6 +333,11 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
             </div>
 
             <div class="contenedor-columna">
+             <?php
+             echo "Correo";
+             ?>
+             </div>
+            <div class="contenedor-columna">
             <?php
             echo "Acción";
             ?>
@@ -352,7 +376,6 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
             echo $value['APELLIDOS_S'];
             ?>
             </div>
-
             <div class="contenedor-columna">
             <?php
             echo $value['CORREO'];

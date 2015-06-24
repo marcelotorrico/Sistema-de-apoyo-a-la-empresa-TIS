@@ -1,7 +1,7 @@
 <?php
-session_start();
-require_once '../Modelo/conexionPDO.php';
+include '../Modelo/conexionPDO.php';
 require_once '../Modelo/Model/GrupoEmpresa.php';   
+session_start();
 $usuario = $_SESSION['usuario'];
 
 $conexion2 = new Conexion();
@@ -14,7 +14,6 @@ $conexion2 = new Conexion();
 									  		   FROM asistencia");
     $evaluacion = $conexion2->consultarArreglo("SELECT DISTINCT id_r
 									  		   FROM evaluacion");
-    
 	$filas = '';
 
        
