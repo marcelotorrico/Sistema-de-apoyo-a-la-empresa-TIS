@@ -1,5 +1,7 @@
 <?php 
 include( '../Librerias/fpdf.php' );
+include '../Modelo/conexionPDO.php';
+$conectar = new Conexion();
 
 class PDF extends FPDF
 {
@@ -93,13 +95,19 @@ class CREAR_DIRECTORIO
 
      }
 }
+$emp  = $_POST['lista'];
+ $consulta = $conectar->query("SELECT * FROM notifConfor WHERE empresa='$emp'");
+ $consulta = $consulta->fetch(PDO::FETCH_NUM);
+ $consulta = $consulta[0];
 
-///instancia para crear el DIRECTORIO
-$grupoE  = $_POST['lista'];
+if ($consulta != $emp) {
+  ///instancia para crear el DIRECTORIO
+ $grupoE  = $_POST['lista'];
  $dir = new CREAR_DIRECTORIO();
  $dir->crear($grupoE);
 
 //instancia para crear el PDF
+//verificar que no haya una notificacion de conformidad
 
   $pdf = new PDF();
   $pdf->AliasNbPages();
@@ -169,16 +177,25 @@ $grupoE  = $_POST['lista'];
 ///salida al navegador
 
 
-$destinoPdf = '../Repositorio/'.$grupoE.'/OC/ordenDeCambio.pdf';
-$pdf->Output($destinoPdf,'F'); 
-if (file_exists($destinoPdf)) {
-   $alerta = 'Se creo la orden correctamente';
-    echo "<script>alert('$alerta'); window.location='../Vista/ordenDeCambio.php';</script>"; 
-  
+  $destinoPdf = '../Repositorio/'.$grupoE.'/OC/ordenDeCambio.pdf';
+  $pdf->Output($destinoPdf,'F'); 
+    if (file_exists($destinoPdf)) {
+       $alerta = 'Se creo la orden correctamente';
+       $peticion=$conectar->query("CALL insert_OrdenDeCambio('$grupoE','$destinoPdf')");
+       if ($peticion) {
+         $peticion=$peticion->fetch(PDO::FETCH_ASSOC);
+
+        echo "<script>alert('$alerta'); window.location='../Vista/ordenDeCambio.php';</script>";
+    } else {
+       $alerta = 'Ocurrio un error intentelo nuevamente';
+       echo "<script>alert('$alerta'); window.location='../Vista/ordenDeCambio.php';</script>";
+    }
+ }
+
 } else {
-   $alerta = 'Ocurrio un error intentelo nuevamente';
-   echo "<script>alert('$alerta'); window.location='../Vista/ordenDeCambio.php';</script>";
+   $alerta = 'La grupo empresa ya emitio una notificacion de conformidad';
+       echo "<script>alert('$alerta'); window.location='../Vista/ordenDeCambio.php';</script>";
 }
 
+?>
 
- ?>
