@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-06-23 11:26:50
+Date: 2015-06-24 16:54:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -228,6 +228,10 @@ INSERT INTO `descripcion` VALUES ('201', 'Contrato');
 INSERT INTO `descripcion` VALUES ('202', 'Contrato');
 INSERT INTO `descripcion` VALUES ('203', 'Contrato');
 INSERT INTO `descripcion` VALUES ('204', 'Contrato');
+INSERT INTO `descripcion` VALUES ('205', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('206', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('207', 'Orden de Cambio');
+INSERT INTO `descripcion` VALUES ('208', 'Orden de Cambio');
 
 -- ----------------------------
 -- Table structure for `documento`
@@ -243,7 +247,7 @@ CREATE TABLE `documento` (
   PRIMARY KEY (`ID_D`) USING BTREE,
   KEY `FK_REGISTRO_DOCUMENTO` (`ID_R`) USING BTREE,
   CONSTRAINT `FK_REGISTRO_DOCUMENTO` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of documento
@@ -281,6 +285,10 @@ INSERT INTO `documento` VALUES ('56', '201', '1024', '../Repositorio/LeticiaB/Co
 INSERT INTO `documento` VALUES ('57', '202', '1024', '../Repositorio/LeticiaB/Contratos/ContratoDevsGroup.pdf', '0', '0');
 INSERT INTO `documento` VALUES ('58', '203', '1024', '../Repositorio/LeticiaB/Contratos/ContratoMAD.pdf', '0', '0');
 INSERT INTO `documento` VALUES ('59', '204', '1024', '../Repositorio/LeticiaB/Contratos/ContratoInnovaTe.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('62', '205', '1024', '/Repositorio/InnovaTe/ParteB_InnovaTe.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('63', '206', '1024', '../Repositorio/Innovando Tecnologia SRL/OC/ordenDe', '1', '1');
+INSERT INTO `documento` VALUES ('64', '207', '1024', '../Repositorio/Seleccione una grupo empresa/OC/ord', '1', '1');
+INSERT INTO `documento` VALUES ('65', '208', '1024', '../Repositorio/DevsGroup SRL/OC/ordenDeCambio.pdf', '1', '1');
 
 -- ----------------------------
 -- Table structure for `documento_r`
@@ -410,11 +418,12 @@ CREATE TABLE `evaluacion` (
   PRIMARY KEY (`ID_R`,`ID_E`) USING BTREE,
   UNIQUE KEY `ID_E` (`ID_E`),
   CONSTRAINT `FK_REGISTRO__EVALUACION` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluacion
 -- ----------------------------
+INSERT INTO `evaluacion` VALUES ('119', '8', '0', '0');
 INSERT INTO `evaluacion` VALUES ('120', '1', '16', '20');
 INSERT INTO `evaluacion` VALUES ('159', '2', '4', '5');
 INSERT INTO `evaluacion` VALUES ('160', '3', '3', '5');
@@ -525,7 +534,7 @@ CREATE TABLE `form_crit_e` (
   KEY `fk_formulario_has_criterio_evaluacion_formulario1_idx` (`ID_FORM`),
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_criterio_evaluacion1` FOREIGN KEY (`ID_CRITERIO_E`) REFERENCES `criterio_evaluacion` (`ID_CRITERIO_E`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of form_crit_e
@@ -545,7 +554,7 @@ CREATE TABLE `formulario` (
   PRIMARY KEY (`ID_FORM`,`NOMBRE_U`),
   KEY `fk_formulario_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_formulario_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of formulario
@@ -910,6 +919,10 @@ INSERT INTO `periodo` VALUES ('123', '2015-05-26', '16:16:14');
 INSERT INTO `periodo` VALUES ('124', '2015-05-26', '16:16:15');
 INSERT INTO `periodo` VALUES ('125', '2015-05-26', '16:16:16');
 INSERT INTO `periodo` VALUES ('126', '2015-05-26', '16:16:17');
+INSERT INTO `periodo` VALUES ('205', '2015-06-23', '16:28:49');
+INSERT INTO `periodo` VALUES ('206', '2015-06-23', '16:38:28');
+INSERT INTO `periodo` VALUES ('207', '2015-06-24', '15:50:01');
+INSERT INTO `periodo` VALUES ('208', '2015-06-24', '16:44:43');
 
 -- ----------------------------
 -- Table structure for `permisos`
@@ -1010,7 +1023,7 @@ CREATE TABLE `proyecto` (
   PRIMARY KEY (`CODIGO_P`,`ID_G`) USING BTREE,
   KEY `fk_proyecto_gestion1_idx` (`ID_G`),
   CONSTRAINT `fk_proyecto_gestion1` FOREIGN KEY (`ID_G`) REFERENCES `gestion` (`ID_G`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
 
 -- ----------------------------
 -- Records of proyecto
@@ -1090,6 +1103,10 @@ INSERT INTO `receptor` VALUES ('201', 'SLOW CODE SRL');
 INSERT INTO `receptor` VALUES ('202', 'DevsGroup SRL');
 INSERT INTO `receptor` VALUES ('203', 'MAD SOFTWARE SRL');
 INSERT INTO `receptor` VALUES ('204', 'Innovando Tecnologia SRL');
+INSERT INTO `receptor` VALUES ('205', 'Innovando Tecnologia SRL');
+INSERT INTO `receptor` VALUES ('206', 'Innovando Tecnologia SRL');
+INSERT INTO `receptor` VALUES ('207', 'Seleccione una grupo empresa');
+INSERT INTO `receptor` VALUES ('208', 'DevsGroup SRL');
 
 -- ----------------------------
 -- Table structure for `registro`
@@ -1110,7 +1127,7 @@ CREATE TABLE `registro` (
   CONSTRAINT `FK_ESTADO__REGISTRO` FOREIGN KEY (`ESTADO_E`) REFERENCES `estado` (`ESTADO_E`),
   CONSTRAINT `FK_TIPO__REGISTRO` FOREIGN KEY (`TIPO_T`) REFERENCES `tipo` (`TIPO_T`),
   CONSTRAINT `FK_USUARIO_REGISTRO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=205 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
 
 -- ----------------------------
 -- Records of registro
@@ -1226,6 +1243,10 @@ INSERT INTO `registro` VALUES ('201', 'LeticiaB', 'Contrato', 'Habilitado', 'Con
 INSERT INTO `registro` VALUES ('202', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoDevsGroup.pdf', '2015-05-27', '04:04:00');
 INSERT INTO `registro` VALUES ('203', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoMAD.pdf', '2015-05-27', '04:04:01');
 INSERT INTO `registro` VALUES ('204', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoInnovaTe.pdf', '2015-05-27', '04:04:27');
+INSERT INTO `registro` VALUES ('205', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de', '2015-06-23', '16:28:49');
+INSERT INTO `registro` VALUES ('206', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de', '2015-06-23', '16:38:28');
+INSERT INTO `registro` VALUES ('207', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de', '2015-06-24', '15:50:01');
+INSERT INTO `registro` VALUES ('208', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio de', '2015-06-24', '16:44:43');
 
 -- ----------------------------
 -- Table structure for `reporte`
@@ -1337,7 +1358,7 @@ CREATE TABLE `sesion` (
   PRIMARY KEY (`ID_S`) USING BTREE,
   KEY `FK_USUARIO_SESION` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_USUARIO_SESION` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=231 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesion
@@ -1445,6 +1466,10 @@ INSERT INTO `sesion` VALUES ('223', 'InnovaTe', '2015-05-27', '04:13:03', '::1')
 INSERT INTO `sesion` VALUES ('224', 'LeticiaB', '2015-05-27', '04:26:32', '::1');
 INSERT INTO `sesion` VALUES ('225', 'LeticiaB', '2015-05-27', '02:51:19', '::1');
 INSERT INTO `sesion` VALUES ('226', 'FreeValue', '2015-06-23', '10:51:48', '::1');
+INSERT INTO `sesion` VALUES ('227', 'LeticiaB', '2015-06-23', '14:20:46', '::1');
+INSERT INTO `sesion` VALUES ('228', 'LeticiaB', '2015-06-23', '16:35:44', '::1');
+INSERT INTO `sesion` VALUES ('229', 'LeticiaB', '2015-06-24', '07:42:26', '::1');
+INSERT INTO `sesion` VALUES ('230', 'LeticiaB', '2015-06-24', '15:14:28', '::1');
 
 -- ----------------------------
 -- Table structure for `socio`
@@ -1460,7 +1485,7 @@ CREATE TABLE `socio` (
   UNIQUE KEY `uniq_correo` (`CORREO`),
   KEY `FK_GRUPO_EMPRESA__SOCIO` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_GRUPO_EMPRESA__SOCIO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
 
 -- ----------------------------
 -- Records of socio
@@ -1621,6 +1646,40 @@ INSERT INTO `usuario_rol` VALUES ('SAADS', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('SLOW', 'grupoEmpresa');
 
 -- ----------------------------
+-- View structure for `notifconfor`
+-- ----------------------------
+DROP VIEW IF EXISTS `notifconfor`;
+CREATE VIEW `notifconfor` AS (select `r`.`RECEPTOR_R` AS `empresa` from (`descripcion` `d` join `receptor` `r`) where ((`d`.`ID_R` = `r`.`ID_R`) and (`d`.`DESCRIPCION_D` = 'Notificacion de Conformidad')));
+
+-- ----------------------------
+-- Procedure structure for `insert_OrdenDeCambio`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `insert_OrdenDeCambio`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_OrdenDeCambio`(in grupoE varchar(50),ruta varchar(50))
+BEGIN  
+
+  DECLARE idd int;
+  DECLARE fecha varchar(25);
+  DECLARE hora varchar(25);
+
+  
+  SET fecha = (SELECT CURDATE());
+  SET hora =  (SELECT CURTIME()); 
+  
+INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('LeticiaB','publicaciones','Habilitado','Orden de Cambio de',fecha,hora);
+
+  SET idd = (SELECT MAX(ID_R) AS id FROM registro);
+START TRANSACTION;
+  INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES(idd,'1024',ruta,TRUE,TRUE);
+  INSERT INTO descripcion (ID_R,DESCRIPCION_D) VALUES(idd,'Orden de Cambio');
+  INSERT INTO receptor (ID_R,RECEPTOR_R) VALUES(idd,grupoE);
+  INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES (idd,fecha,hora);
+COMMIT;  
+END;;
+DELIMITER ;
+
+-- ----------------------------
 -- Procedure structure for `insert_socio`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `insert_socio`;
@@ -1648,7 +1707,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_administrador`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_administrador`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50))
+CREATE PROCEDURE `registro_administrador`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50))
 BEGIN
 
  declare n INTEGER;
@@ -1693,7 +1752,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_grupo_empresa`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
+CREATE PROCEDURE `registro_grupo_empresa`(in nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), direcc varchar(25),nge_largo varchar(25),nge_corto varchar(25))
 BEGIN
 
  declare t INTEGER;
@@ -1740,7 +1799,7 @@ DELIMITER ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `registro_usuario`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
+CREATE PROCEDURE `registro_usuario`(in nom varchar(25), ape varchar(25), nom_u varchar(25), telef integer, passwd varchar(25), email varchar(50), rol varchar(25))
 BEGIN
 
  declare n INTEGER;
