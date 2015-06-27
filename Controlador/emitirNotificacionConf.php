@@ -1,6 +1,7 @@
 <?php
 include( '../Librerias/fpdf.php' );
-
+include '../Modelo/conexionPDO.php';
+$conectar = new Conexion();
 class PDF extends FPDF
 {
 // Cabecera de página
@@ -90,11 +91,17 @@ class CREAR_DIRECTORIO
        }
      }
 }
+$emp= $_POST['lista'];
+$consulta = $conectar->query("SELECT RECEPTOR_R FROM descripcion d , receptor r where d.`ID_R` = r.`ID_R` and d.`DESCRIPCION_D` = 'Orden de Cambio' and r.`RECEPTOR_R`= '$emp'");
+$consulta = $consulta->fetch(PDO::FETCH_NUM);
+$consulta = $consulta[0];
 
-///instancia para crear el DIRECTORIO
-$grupoE  = $_POST['lista'];
- $dir = new CREAR_DIRECTORIO();
- $dir->crear($grupoE);
+if ($consulta != $emp) {
+	
+	///instancia para crear el DIRECTORIO
+	$grupoE  = $_POST['lista'];
+	$dir = new CREAR_DIRECTORIO();
+	$dir->crear($grupoE);
 
 //instancia para crear el PDF
 
@@ -159,5 +166,10 @@ if (file_exists($destinoPdf)) {
    echo "<script>alert('$alerta'); window.location='../Vista/notificacion_conformidad.php';</script>";
 }
 
+
+} else {
+	$alerta = 'La grupo empresa ya emitio un Orden de Cambio';
+       echo "<script>alert('$alerta'); window.location='../Vista/notificacion_conformidad.php';</script>";
+}
 
 ?>

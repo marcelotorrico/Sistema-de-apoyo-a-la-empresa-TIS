@@ -96,7 +96,9 @@ class CREAR_DIRECTORIO
      }
 }
 $emp  = $_POST['lista'];
- $consulta = $conectar->query("SELECT * FROM notifConfor WHERE empresa='$emp'");
+ $consulta = $conectar->query("SELECT RECEPTOR_R FROM descripcion d , receptor r where d.`ID_R` = r.`ID_R` and d.`DESCRIPCION_D` = 'Notificacion de Conformidad' and r.`RECEPTOR_R`='$emp'");
+ 
+  
  $consulta = $consulta->fetch(PDO::FETCH_NUM);
  $consulta = $consulta[0];
 
