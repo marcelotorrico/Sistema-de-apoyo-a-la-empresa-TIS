@@ -1646,17 +1646,11 @@ INSERT INTO `usuario_rol` VALUES ('SAADS', 'grupoEmpresa');
 INSERT INTO `usuario_rol` VALUES ('SLOW', 'grupoEmpresa');
 
 -- ----------------------------
--- View structure for `notifconfor`
+-- Procedure structure for `insert_NotificacionDeConf`
 -- ----------------------------
-DROP VIEW IF EXISTS `notifconfor`;
-CREATE VIEW `notifconfor` AS (select `r`.`RECEPTOR_R` AS `empresa` from (`descripcion` `d` join `receptor` `r`) where ((`d`.`ID_R` = `r`.`ID_R`) and (`d`.`DESCRIPCION_D` = 'Notificacion de Conformidad')));
-
--- ----------------------------
--- Procedure structure for `insert_OrdenDeCambio`
--- ----------------------------
-DROP PROCEDURE IF EXISTS `insert_OrdenDeCambio`;
+DROP PROCEDURE IF EXISTS `insert_NotificacionDeConf`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_OrdenDeCambio`(in grupoE varchar(50),ruta varchar(50))
+CREATE PROCEDURE `insert_NotificacionDeConf`(in grupoE varchar(50),ruta varchar(50))
 BEGIN  
 
   DECLARE idd int;
@@ -1667,7 +1661,35 @@ BEGIN
   SET fecha = (SELECT CURDATE());
   SET hora =  (SELECT CURTIME()); 
   
-INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('LeticiaB','publicaciones','Habilitado','Orden de Cambio de',fecha,hora);
+INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('LeticiaB','publicaciones','Habilitado','Notificacion de conformidad',fecha,hora);
+
+  SET idd = (SELECT MAX(ID_R) AS id FROM registro);
+START TRANSACTION;
+  INSERT INTO documento (ID_R,TAMANIO_D,RUTA_D,VISUALIZABLE_D,DESCARGABLE_D) VALUES(idd,'1024',ruta,TRUE,TRUE);
+  INSERT INTO descripcion (ID_R,DESCRIPCION_D) VALUES(idd,'Notificacion de Conformidad');
+  INSERT INTO receptor (ID_R,RECEPTOR_R) VALUES(idd,grupoE);
+  INSERT INTO periodo (ID_R,fecha_p,hora_p) VALUES (idd,fecha,hora);
+COMMIT;  
+END;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `insert_OrdenDeCambio`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `insert_OrdenDeCambio`;
+DELIMITER ;;
+CREATE PROCEDURE `insert_OrdenDeCambio`(in grupoE varchar(50),ruta varchar(50))
+BEGIN  
+
+  DECLARE idd int;
+  DECLARE fecha varchar(25);
+  DECLARE hora varchar(25);
+
+  
+  SET fecha = (SELECT CURDATE());
+  SET hora =  (SELECT CURTIME()); 
+  
+INSERT INTO registro (NOMBRE_U,TIPO_T,ESTADO_E,NOMBRE_R,FECHA_R,HORA_R) VALUES ('LeticiaB','publicaciones','Habilitado','Orden de Cambio',fecha,hora);
 
   SET idd = (SELECT MAX(ID_R) AS id FROM registro);
 START TRANSACTION;
