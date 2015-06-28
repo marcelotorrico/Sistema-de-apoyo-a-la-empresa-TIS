@@ -320,6 +320,9 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                             echo '</div>';
 
                             $NotaFin = $Nota2da*0.60 + $Nota[0]*0.40;
+                            $NotaFin = round($NotaFin * 100) / 100; 
+
+
 
                             echo '<div class="form-group has-success">';
                             echo '<h4>Nota Final:</h4>';
