@@ -11,7 +11,7 @@
 
 	//Expire the session if user is inactive for 2
 	//minutes or more.
-	$expireAfter = 1;
+	$expireAfter = 20;
 
 
 
