@@ -1,9 +1,10 @@
-<?php  
+<?php   
  include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
  
  require '../Controlador/ValidadorInicioSesion.php';
+ require_once '../Modelo/Model/GrupoEmpresa.php';
 
 $verificar = new ValidadorInicioSesion();
 $verificar->validarInicioSesion($uActivo,"asesor");
@@ -267,157 +268,118 @@ $verificar->validarInicioSesion($uActivo,"asesor");
         </div>
     </div>
 </div>
-<div id="page-wrapper">
-            <div class="row">
-                    <div class="col-lg-12">
-                         
-                                <div class="panel-body">
-                                    <fieldset class="campos-border">
-                                        <table class="table form-group">      
-                                            <thead>
-                                                    <tr>
-                                                      <th>Actividad</th>
-                                                      <th>Grupo Empresa</th>
-                                                      <th>Estado</th>
-                                                      <th>Acciones</th>
-                                                      <th>Modificar Fecha</th>   
-                                                    </tr>
-                                            </thead>
-                                            <tbody>                                                    
-                                            <?php 
-                                                    date_default_timezone_set('America/Puerto_Rico');
-                                                    $fechaAct = date('Y-m-j');
-                                                    $stampFechaA = strtotime($fechaAct);
-                                                    $anuncio="";
-                                                    $clase="";
-                                                    $estado="";
-                                                  
-                                                    
-                                                    
-                                                    
-                                                   $peticion= $conexion->query("SELECT `NOMBRE_R`, NOMBRE_U, ID_R FROM `registro`, inscripcion WHERE `TIPO_T`='actividad planificacion' and `NOMBRE_UA`='$uActivo' and  `NOMBRE_UGE`=`NOMBRE_U`"); 
-                                                   while($fila = $peticion->fetch())
-                                                    {
-                                                        if(!empty($fila[0]))
-                                                        {
-                                                            $codigo=$fila['ID_R'];
-                                                            $peticion1= $conexion->query("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$codigo'");  
-                                                            while ($correo = $peticion1->fetch(PDO::FETCH_ASSOC))
-                                                            {
-                                                                $fechaFin=$correo["FECHA_FR"];  
-                                                            }
-                                                            $peticion2= $conexion->query("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$codigo'");                                                              
-                                                            $tamano=$peticion2->rowCount();
-                                                            
-                                                            
-                                                            $stampFechaF = strtotime($fechaFin);
-                                                            if($stampFechaA<=$stampFechaF)
-                                                            {
-                                                                if($tamano==0)
-                                                                {
-                                                                    $anuncio="En Proceso";
-                                                                    $estado="En Proceso";
-                                                                    $clase="label label-warning";
-                                                               
-                                                                }
-                                                                else
-                                                                {
-                                                                    $anuncio="&nbsp;Evaluado&nbsp;&nbsp;";
-                                                                    $estado="Registrado";
-                                                                    $clase="label label-success";    
-                                                                }               
-                                                            }
-                                                            else
-                                                            {
-                                                               
-                                                                if($tamano==0)
-                                                                {
-                                                                $anuncio="&nbsp;Retrasado&nbsp;";
-                                                                 $estado="Retraso";
-                                                                $clase="label label-danger";
-                                                               
-                                                                }
-                                                                else
-                                                                {
-                                                                    $anuncio="&nbsp;Evaluado&nbsp;&nbsp;";
-                                                                     $estado="Registrado";
-                                                                    $clase="label label-success";    
-                                                                }                                                                 
+      <div id="page-wrapper">
+          
+<?php
 
-                                                            }
-                                                            
-                                                           $peticion6=$conexion->query("SELECT grupo_empresa.NOMBRE_LARGO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$codigo' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
-                                                           while ($correo1 = $peticion6->fetch(PDO::FETCH_ASSOC))
-                                                           { $nLargoGE=$correo1["NOMBRE_LARGO_GE"];}
-                                                           
-                                                           
-                                                           
-                                                              $consulta="SELECT DISTINCT NOMBRE_R FROM `registro` AS r,`receptor` AS w WHERE  r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND w.`RECEPTOR_R` = '$nLargoGE'";
-                                                              $contrato= $conexion->query($consulta);
-                                                              $cantC= $contrato->rowCount();
-                                                           
-                                                           
-                                                                                                                     
-                                                            
-                                                            if ($tamano==0)
-                                                            {     if ($cantC == 0) 
-                                                                    {
-                                                                     $btnEvaluacion= '<a href="evaluacion.php?GE='.$codigo.'" class="btn btn-default btn-xs" disabled="disabled">Evaluacion</a>';
-                                                                     $btnReportes = '<a href="reportes_evaluacion.php?GE='.$codigo.'" class="btn btn-xs btn-danger" disabled="disabled">Reportes</a>';
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                     $btnEvaluacion= '<a href="evaluacion.php?GE='.$codigo.'" class="btn btn-default btn-xs">Evaluacion</a>';
-                                                                     $btnReportes = '<a href="reportes_evaluacion.php?GE='.$codigo.'" class="btn btn-xs btn-danger" disabled="disabled">Reportes</a>';                                                                        
-                                                                    }
-                                                            
-                                                            } 
-                                                            else 
-                                                            {
-                                                            $btnEvaluacion= '<a href="evaluacion.php?GE='.$codigo.'" class="btn btn-default btn-xs" disabled="disabled">Evaluacion</a>';
-                                                            $btnReportes = '<a href="reportes_evaluacion.php?GE='.$codigo.'" class="btn btn-xs btn-danger">Reportes</a>';
-                                                            }
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            if ($estado=="Retraso") 
-                                                            {
-                                                             $btnModificar= '<a href="modificar_fecha.php?GE='.$codigo.'" class="btn btn-default btn-xs">Modificar</a>';                       
-                                                            } 
-                                                            else 
-                                                            {   
-                                                            $btnModificar= '<a href="modificar_fecha.php?GE='.$codigo.'" class="btn btn-default btn-xs" disabled="disabled">Modificar</a>';
+    $ap = $conexion->consultarTabla("SELECT id_r, nombre_u, estado_e, nombre_r FROM registro , inscripcion WHERE tipo_t = 'actividad planificacion' AND estado_e = 'en proceso' and NOMBRE_UGE=nombre_u and NOMBRE_UA='$uActivo';");
+    $asistencia = $conexion->consultarArreglo("SELECT DISTINCT id_r FROM asistencia");
+    $filas = '';
 
-                                                            }                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            echo   
-                                                            '<tr>
-                                                                <td>'.$fila['NOMBRE_R'].'</td>  
-                                                                <td>'.$fila['NOMBRE_U'].'</td>
-                                                                <td><span class="'.$clase.'">'.$anuncio.'</span></td>
-                                                                <td>'.$btnEvaluacion.'   '.$btnReportes.'</td>
-                                                                <td>'.$btnModificar.'</td>
-                                                            </tr>';
-                                                        }
-                                                    }
-
-                                            ?>
-                                            </tbody>
-                                        </table>
-                                    </fieldset>
-                             
-
-                                </div>
-
+    for ($i = 0; $i < count($ap); $i++){
+        
+        $ge = new GrupoEmpresa($ap[$i][1]);
+	$idRegistro = $ap[$i][0];
+	$btnAsistencia = '';
+	$btnReportes = '';
+        $peticion2= $conexion->query("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$idRegistro'");                                                              
+        $tamano=$peticion2->rowCount();
+        $peticion6=$conexion->query("SELECT grupo_empresa.NOMBRE_LARGO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$idRegistro' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
+        while ($correo1 = $peticion6->fetch(PDO::FETCH_ASSOC))
+        { $nLargoGE=$correo1["NOMBRE_LARGO_GE"];}
+        $consulta="SELECT DISTINCT NOMBRE_R FROM `registro` AS r,`receptor` AS w WHERE  r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND w.`RECEPTOR_R` = '$nLargoGE'";
+        $contrato= $conexion->query($consulta);
+        $cantC= $contrato->rowCount();
+	if (in_array($idRegistro, $asistencia)) {
+            $btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia" disabled="disabled">
+                   		  Asistencia <i class="glyphicon glyphicon-check"></i>
+	                      </button>';
+	} else {
+            $btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia">
+                   		  Asistencia <i class="glyphicon glyphicon-check"></i>
+	                      </button>';
+	}
+        if ($tamano==0){
+            if ($cantC == 0){
+                $btnEvaluacion1= '<a href="evaluacion.php?GE='.$idRegistro.'" class="btn btn-default btn-xs" disabled="disabled">Evaluacion</a>';
+                $btnReportes = '<a href="reportes_evaluacion.php?GE='.$idRegistro.'" class="btn btn-xs btn-danger" disabled="disabled">Reportes</a>';
+                                     
+            }else{
+                $btnEvaluacion1= '<a href="evaluacion.php?GE='.$idRegistro.'" class="btn btn-default btn-xs">Evaluacion</a>';
+                $btnReportes = '<a href="reportes_evaluacion.php?GE='.$idRegistro.'" class="btn btn-xs btn-danger" disabled="disabled">Reportes</a>';
+             }
+         }else{
+             $btnEvaluacion1= '<a href="evaluacion.php?GE='.$idRegistro.'" class="btn btn-default btn-xs" disabled="disabled">Evaluacion</a>';
+             $btnReportes = '<a href="reportes_evaluacion.php?GE='.$idRegistro.'" class="btn btn-xs btn-danger">Reportes</a>';
+          }
+                
+                $peticion1= $conexion->query("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$idRegistro'");  
+                while ($correo = $peticion1->fetch(PDO::FETCH_ASSOC)){
+                    $fechaFin=$correo["FECHA_FR"];  
+                }
+                
+                date_default_timezone_set('America/Puerto_Rico');
+                $fechaAct = date('Y-m-j');
+                $stampFechaA = strtotime($fechaAct);
+                $stampFechaF = strtotime($fechaFin);
+                if($stampFechaA<=$stampFechaF){
                     
-
-                    </div><!-- /.col-lg-12 -->
-                </div>
-        </div>
+                    if($tamano==0){
+                        $anuncio="En Proceso";
+                        $estado="En Proceso";
+                        $clase="label label-warning";
+                    }else{
+                        $anuncio="&nbsp;Evaluado&nbsp;&nbsp;";
+                        $estado="Registrado";
+                        $clase="label label-success";    
+                    }               
+                }else{
+                    if($tamano==0){
+                        $anuncio="&nbsp;Retrasado&nbsp;";
+                        $estado="Retraso";
+                        $clase="label label-danger";
+                    }else{
+                        $anuncio="&nbsp;Evaluado&nbsp;&nbsp;";
+                        $estado="Registrado";
+                        $clase="label label-success";    
+                    }
+                 }
+                 if ($estado=="Retraso"){
+                     $btnModificar= '<a href="modificar_fecha.php?GE='.$idRegistro.'" class="btn btn-default btn-xs">Modificar</a>';                       
+                 }else{
+                     $btnModificar= '<a href="modificar_fecha.php?GE='.$idRegistro.'" class="btn btn-default btn-xs" disabled="disabled">Modificar</a>';
+                 }
+                 
+                $filas .= '<tr data-registro="'.$idRegistro.'">
+                <td>'.$ap[$i][3].'</td>
+                <td>'.$ge->getNombreCorto().'</td>
+                <td><span class="'.$clase.'">'.$anuncio.'</span></td>
+                <td>
+                '.$btnEvaluacion1.'
+                '.$btnAsistencia.'
+                '.$btnReportes.'
+                </td>
+                <td>'.$btnModificar.'</td>
+                </tr>';    
+    }                          
+    echo '<table class="table table-hover">
+			  <thead>
+		    	  <tr>
+		        	  <th>Actividad</th>
+	          	      <th>Grupo-empresa</th>
+	          		  <th>Estado</th>
+	          		  <th>Acciones</th>
+                                  <th>Modificar Fecha</th>
+	        	  </tr>
+		      </thead>
+			  <tbody>
+			  	'.$filas.'
+			  </tbody>
+		  </table>';
+    //modalRegistroEvaluacion
+    
+    ?>
+    </div>
 </div>
 <!-- /#page-wrapper -->
 

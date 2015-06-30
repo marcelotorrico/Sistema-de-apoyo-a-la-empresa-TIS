@@ -12,33 +12,12 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/documentos_generados.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Librerias/lib/funcionSeguimiento.js</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/lista-de-noticias.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/noticia-grupo.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/lista-de-noticias-grupo.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/evaluacionFinal.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/SubirDocumento.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/seleccionar_asesor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/AnadirRL.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/ModificarGrupoEmpresa.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/historia_actividades.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/AnadirSocio.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Librerias/lib/funcion.js</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/VistaSeguimientoSemanal.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/publicacion_grupo.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Modelo/conexionPDO.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/InscripcionGEProyecto.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/VistaModalSeguimiento.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Modelo/Model/GrupoEmpresa.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/lista_evaluacion.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/evaluacion.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/VistaSeguimiento.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Controlador/evaluacionFinalBD.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/VerReporteNotaActividad.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/inicio_asesor.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/adicionar-noticia-grupo.php</file>
-            <file>file:/C:/xampp/htdocs/Sistema-de-apoyo-a-la-empresa-TIS/Vista/inicio_grupo_empresa.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Controlador/registrarSocio.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/lista_evaluacion.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/evaluacion.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/vistaRegistrarPlanificacion.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaSeguimiento.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Modelo/conexionPDO.php</file>
         </group>
     </open-files>
 </project-private>
