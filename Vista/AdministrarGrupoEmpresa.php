@@ -314,6 +314,9 @@ $verificar->validarInicioSesion($uActivo,"asesor");
                                                                             <a href="../Controlador/ListaSocios.php?GE='.$GruposIn[$i].'"
                                                                             class="btn btn-default btn-xs">Ver Socios </a>
                                                                             
+                                                                            <a href="ReporteAsistenciaAsesor.php?GE='.$GruposIn[$i].'"
+                                                                             class= "btn btn-default btn-xs">Ver Asistencia </a>
+
                                                                             <a href="permitirUnSextoSocio.php?GE='.$GruposIn[$i].'"
                                                                             class="btn btn-default btn-xs">Permitir añadir a un 6to socio. </a>
                                                                             
