@@ -1,7 +1,6 @@
 <?php
 include '../Modelo/conexionPDO.php';
 session_start();
-$conexion = new Conexion();
 if (isset($_SESSION['usuario'])) {
     $uActivo = $_SESSION['usuario'];
 
@@ -9,17 +8,14 @@ if (isset($_SESSION['usuario'])) {
 
     $verificar = new ValidadorInicioSesion();
     $verificar->validarInicioSesion($uActivo, "grupoEmpresa");
+
+    $conexion = new Conexion();
     ?>
-
     <html>
-
         <head>
-
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
             <title>Sistema de Apoyo a la Empresa TIS</title>
-
             <!-- JQuery -->
             <script type="text/javascript" src="../Librerias/lib/jquery-2.1.0.min.js"></script>
             <!-- icheck -->
@@ -59,20 +55,17 @@ if (isset($_SESSION['usuario'])) {
             <!-- JS -->
             <script type="text/javascript" src="../Librerias/lib/funcion.js"></script>
 
-
-
-
             <!-- Page-Level Plugin CSS - Dashboard -->
             <link href="../Librerias/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
             <link href="../Librerias/css/plugins/timeline/timeline.css" rel="stylesheet">
             <!-- SB Admin CSS - Include with every page -->
             <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
-            <link href="css/style.css" rel="stylesheet" type="text/css" />
+
+            <link href="css/tabla-div1.css" rel="stylesheet" type="text/css" />
+            <link href="css/tabla-div.css" rel="stylesheet" type="text/css" />
+            <link href="css/style.css" rel="stylesheet" type="text/css" /> 
         </head>
-
         <body>
-
-
             <div id="wrapper">
                 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
@@ -84,8 +77,6 @@ if (isset($_SESSION['usuario'])) {
                         </button>
                         <a class="navbar-brand" href="inicio_grupo_empresa.php">Inicio </a>
                     </div>
-                    <!-- /.navbar-header -->
-
                     <ul class="nav navbar-top-links navbar-right">
 
                         <li>
@@ -104,12 +95,8 @@ if (isset($_SESSION['usuario'])) {
                                 <li><a href="unlog.php"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
                                 </li>
                             </ul>
-                            <!-- /.dropdown-user -->
                         </li>
-                        <!-- /.dropdown -->
                     </ul>
-                    <!-- /.navbar-top-links -->
-
                     <div class="navbar-default navbar-static-side" role="navigation">
                         <div class="sidebar-collapse">
                             <ul class="nav" id="side-menu">
@@ -124,6 +111,7 @@ if (isset($_SESSION['usuario'])) {
                                             <ul class="nav nav-third-level">
                                                 <?php
                                                 $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro, documento_r, inscripcion, inscripcion_proyecto WHERE inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = registro.ID_R AND inscripcion_proyecto.NOMBRE_U = '$uActivo' AND inscripcion.NOMBRE_UGE = inscripcion_proyecto.NOMBRE_U");
+
                                                 while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM)) {
 
                                                     echo '<li>
@@ -135,15 +123,10 @@ if (isset($_SESSION['usuario'])) {
                                         </li>
                                         <li>
                                             <a href="publicacion_grupo.php">Recepci&oacute;n Documentos </a>
-
                                         </li>
-
                                     </ul>
-
-                                    <!-- /.nav-second-level -->
                                 </li>
                                 <li>
-
                                     <a href="#"><i class="fa fa-tasks fa-fw"></i> Tareas<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
@@ -160,7 +143,6 @@ if (isset($_SESSION['usuario'])) {
                                             <a href="InscripcionGEProyecto.php">Inscribirse a proyecto</a>
                                         </li>
                                     </ul>
-                                    <!-- /.nav-second-level -->
                                 </li>
 
                                 <li>
@@ -183,135 +165,165 @@ if (isset($_SESSION['usuario'])) {
                                     </ul>                           
                                 </li>
                             </ul>
-                            <!-- /#side-menu -->
                         </div>
-                        <!-- /.sidebar-collapse -->
                     </div>
-
-
-                    <!-- /.navbar-static-side -->
                 </nav>
                 <div id="page-wrapper">
+                    <form id = "ordenc" method = "post" action="" role="form" enctype="multipart/data-form" onsubmit="return validarCampos(ordenc)">
+                        <div class ="form-horizontal">
+                            <div class="historia">
+                                <h2><span>ASISTENCIA DE LOS SOCIOS</span></h2>
+                            </div>
+                            <hr>
+                            <div class="historia1">
+                                <div class="contenedor-fila2">
 
+                                    <div class="contenedor-columna">
+                                        <?php
+                                        echo "Actividad";
+                                        ?>
+                                    </div>  
+                                    <div class="contenedor-columna">
+                                        <?php
+                                        echo "Socio";
+                                        ?>
+                                    </div>
 
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h2 class="page-header">Subir Documento</h2>
-                            <div class="col-lg-6" >
-
+                                    <div class="contenedor-columna">
+                                        <?php
+                                        echo "Asistencia";
+                                        ?>
+                                    </div>
+                                </div>
+                                
                                 <?php
-                                $selAsesor = $conexion->query("SELECT NOMBRE_UA FROM inscripcion WHERE NOMBRE_UGE='$uActivo'");
-                                $Asesor = $selAsesor->fetch(PDO::FETCH_NUM);
-
-                                date_default_timezone_set('America/La_Paz');
-                                $horaAct = date("H:i:s");
-                                $fechaAct = date('Y-m-j');
-
-                                $verifIns = $conexion->query("SELECT NOMBRE_U FROM inscripcion_proyecto WHERE NOMBRE_U = '$uActivo' ");
-                                $inscrip = $verifIns->fetch(PDO::FETCH_NUM);
-
-                                if (!is_array($inscrip)) {
-                                    echo '<div class="alert alert-warning">
-                                            <strong>Para subir su propuesta primero debe inscribirse a un proyecto</strong>
-                                          </div>';
-                                } else {
-
-
-
-                                    $Doc = $_GET['doc'];
-
-                                    $consFechas = $conexion->query("SELECT FECHA_INICIO_PL, FECHA_FIN_PL, HORA_INICIO_PL, HORA_FIN_PL FROM registro, documento_r, inscripcion_proyecto, plazo WHERE inscripcion_proyecto.NOMBRE_U='$uActivo' AND inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = plazo.ID_R AND documento_r.ID_R = registro.ID_R AND registro.NOMBRE_R = '$Doc'");
-
-                                    $fechas = $consFechas->fetch(PDO::FETCH_NUM);
-
-                                    $stampHoraA = strtotime($horaAct);
-                                    $stampFechaA = strtotime($fechaAct);
-                                    $stampHoraI = strtotime($fechas[2]);
-                                    $stampHoraF = strtotime($fechas[3]);
-                                    $stampFechaI = strtotime($fechas[0]);
-                                    $stampFechaF = strtotime($fechas[1]);
-
-                                    $consDoc = $conexion->query("SELECT * FROM registro WHERE NOMBRE_U = '$uActivo' AND NOMBRE_R = '$Doc'");
-
-                                    $verifDoc = $consDoc->fetch(PDO::FETCH_NUM);
-                                    $fechaFinIgual = $stampFechaA == $stampFechaF;
-                                    if (is_array($verifDoc)) {
-                                        if (($fechaFinIgual and $stampHoraA < $stampHoraF) or $stampFechaA < $stampFechaF) {
-                                            echo '<div class="alert alert-warning">
-                                                    <strong>Puede reemplazar el documento subido anteriormente por otro documento.</strong>
-                                                  </div>';
-                                            echo mostrarFormulario("ActualizarDocumento", $Doc, $uActivo);
-                                        }else{
-                                            echo '<div class="alert alert-warning">
-                                                    <strong>Usted ya subio el documento correspondiente</strong>
-                                                  </div>';
-                                        }
-                                    } else {
-
-
-                                        if (($stampFechaA == $stampFechaI and $stampHoraA < $stampHoraI) or ( $fechaFinIgual and $stampHoraA > $stampHoraF) or ( $stampFechaA < $stampFechaI) or ( $stampFechaA > $stampFechaF)) {
-
-
-                                            echo '<div class="alert alert-warning">
-                                                        <strong>No esta disponible la subida del documento</strong>
-                                                    </div>';
-                                        } else {
-
-                                            echo '<div class="alert alert-warning">';
-
-                                            echo '<strong>La entrega esta disponible desde la fecha ' . $fechas[0] . ' a horas ' . $fechas[2] . ' hasta la fecha ' . $fechas[1] . ' a horas ' . $fechas[3] . '</strong>';
-                                            echo '</div>';
-
-                                            echo mostrarFormulario("Documento", $Doc, $uActivo);
-                                        }
+                                $peticionActividad = $conexion->query("SELECT r.id_r, nombre_r, f_r.fecha_fr FROM registro r, fecha_realizacion f_r  WHERE r.NOMBRE_U='$uActivo' and r.TIPO_T='actividad planificacion' and f_r.ID_R = r.ID_R");
+                                while ($filaActividad = $peticionActividad->fetch(PDO::FETCH_ASSOC)) {
+                                    $peticion =$conexion->query("SELECT CODIGO_S, NOMBRES_S, APELLIDOS_S FROM socio WHERE NOMBRE_U = '$uActivo'");
+                                    $result = $peticion->fetchAll();
+                                    $cantidad = count($result);
+                                    $j = 0;
+                                    $actividad = $filaActividad['nombre_r'];
+                                    $codigoActividad = $filaActividad['id_r'];                                                                       
+                                ?>
+                                     
+                                <table class="table table-bordered table-responsive table-highlight">
+                                    <tr class="contenedor-fila" >
+                                        <td class="contenedor-columna" VALIGN="MIDDLE" ALIGN="CENTER" rowspan="<?=$cantidad?>">
+                                            <?php
+                                            echo $actividad;
+                                            ?>
+                                        </td>
+                                        
+                                            <?php 
+                                                foreach($result as $fila => $value){
+                                                    $socio = $value['CODIGO_S'];
+                                                    $consulta = "SELECT ASISTENCIA_A, LICENCIA_A FROM asistencia WHERE ID_R = '$codigoActividad' AND CODIGO_SOCIO_A ='$socio'";
+                                                    $peticionAsistencia = $conexion->query($consulta);
+                                                    $tamano=$peticionAsistencia->rowCount();
+                                                    $resultado = '';
+                                                    if($tamano>0){
+                                                        while ($fila = $peticionAsistencia->fetch(PDO::FETCH_ASSOC)){
+                                                            $asistencia= $fila["ASISTENCIA_A"];
+                                                            $licencia = $fila["LICENCIA_A"];
+                                                            if($asistencia == 1){
+                                                                $resultado = "Presente";
+                                                            }else{
+                                                                if($licencia == 1){
+                                                                    $resultado = "Licencia";
+                                                                }else{
+                                                                    $resultado = "Ausente";
+                                                                }
+                                                            }
+                                                        }
+                                                    }else{
+                                                        $resultado = "-----";
+                                                    }
+                                                    
+                                                    if($j>0){
+                                                        
+                                                        if($resultado == "Ausente"){
+                                                            
+                                            ?>
+                                    <tr bgcolor="red">
+                                        <td class="contenedor-columna" ALIGN="CENTER">
+                                            <?php
+                                                 echo $value['NOMBRES_S']." ".$value['APELLIDOS_S'];
+                                            ?>
+                                        </td>
+                                        <td class="contenedor-columna" ALIGN="CENTER">
+                                            <?php
+                                                echo $resultado;
+                                            ?>
+                                        </td>
+                                    </tr>
+                                    <?php   
+                                    }else{
+                                    ?>
+                                    <tr class="contenedor-fila">
+                                    <td class="contenedor-columna" ALIGN="CENTER">
+                                            <?php
+                                                 echo $value['NOMBRES_S']." ".$value['APELLIDOS_S'];
+                                            ?>
+                                        </td>
+                                        <td class="contenedor-columna" ALIGN="CENTER">
+                                            <?php
+                                                echo $resultado;
+                                            ?>
+                                        </td>
+                                        </tr>
+                                    <?php
                                     }
+                                    }else{
+                                        if($resultado == "Ausente"){
+                                    ?>
+                                        <td bgcolor="red" ALIGN="CENTER">
+                                            <?php
+                                                 echo $value['NOMBRES_S']." ".$value['APELLIDOS_S'];
+                                            ?>
+                                        </td>
+                                        <td bgcolor="red" ALIGN="CENTER">
+                                            <?php
+                                                echo $resultado;
+                                            ?>
+                                        </td>
+                                        <?php   
+                                        }else{
+                                        ?>
+                                    <td class="contenedor-columna" ALIGN="CENTER">
+                                            <?php
+                                                 echo $value['NOMBRES_S']." ".$value['APELLIDOS_S'];
+                                            ?>
+                                        </td>
+                                        <td class="contenedor-columna" ALIGN="CENTER">
+                                            <?php
+                                                echo $resultado;
+                                            ?>
+                                        </td>
+                                            <?php
+                                        }
+                                            }
+                                            $j++;
+                                            }
+                                            ?>
+                                    </tr>
+                                </table>   
+                                <?php
                                 }
                                 ?>
-
-
-
                             </div>
                         </div>
-                        <!-- /.col-lg-12 -->
-                    </div>            
-
+                    </form>
                 </div>
-                <!-- /#page-wrapper -->
-
-            </div>
-            <!-- /#wrapper -->
-
-            <!-- Core Scripts - Include with every page -->
-
-            <!--script src="../Librerias/js/bootstrap.min.js"></script-->
-            <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-
-            <!-- SB Admin Scripts - Include with every page -->
-            <script src="../Librerias/js/sb-admin.js"></script>
-            <?php
-        } else {
-            echo '<script>alert("Inicie sesion para ingresar");</script>';
-            echo '<script>window.location="../index.php";</script>';
-        }
-        function mostrarFormulario($nombreInput, $doc, $usuarioActivo) {
-                                    $res = '
-                                                    <form action="../Modelo/BD/GuardarSubirDocumento.php" method="POST" enctype="multipart/form-data">
-                                                        <fieldset>
-                                                            <div class="form-group">
-                                                                <input name="archivoA" id="archivoA" type="file" class = "btn btn-primary" required>
-                                                            </div>
-                                                        <input type="hidden" name="' . $nombreInput . '" value="' . $doc . '">
-                                                            <div class="form-group">
-                                                                <input type="submit" value="Subir Documento" class= "btn btn-primary">
-                                                            </div>
-                                                        </fieldset>
-                                                        <input type = "hidden" name="Usuario" value="' . $usuarioActivo . '"">
-                                                    </form>';
-                                    return $res;
-                                    
-                                }
-        ?>
+                <script src="../Librerias/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+                <!-- SB Admin Scripts - Include with every page -->
+                <script src="../Librerias/js/sb-admin.js"></script>
+                <?php
+            } else {
+                echo '<script>alert("Inicie sesion para ingresar");</script>';
+                echo '<script>window.location="../index.php";</script>';
+            }
+            ?>
     </body>
 
 </html>

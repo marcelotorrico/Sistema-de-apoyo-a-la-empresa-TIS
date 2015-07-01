@@ -1,4 +1,4 @@
-<?php   
+<?php
  include '../Modelo/conexionPDO.php';
  session_start();
  $uActivo = $_SESSION['usuario'];
@@ -280,8 +280,6 @@ $verificar->validarInicioSesion($uActivo,"asesor");
         
         $ge = new GrupoEmpresa($ap[$i][1]);
 	$idRegistro = $ap[$i][0];
-	$btnAsistencia = '';
-	$btnReportes = '';
         $peticion2= $conexion->query("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$idRegistro'");                                                              
         $tamano=$peticion2->rowCount();
         $peticion6=$conexion->query("SELECT grupo_empresa.NOMBRE_LARGO_GE FROM grupo_empresa, registro WHERE registro.ID_R='$idRegistro' and grupo_empresa.NOMBRE_U=registro.NOMBRE_U");
@@ -290,15 +288,28 @@ $verificar->validarInicioSesion($uActivo,"asesor");
         $consulta="SELECT DISTINCT NOMBRE_R FROM `registro` AS r,`receptor` AS w WHERE  r.`ID_R` = w.`ID_R` AND r.`TIPO_T` LIKE 'Contrato' AND w.`RECEPTOR_R` = '$nLargoGE'";
         $contrato= $conexion->query($consulta);
         $cantC= $contrato->rowCount();
-	if (in_array($idRegistro, $asistencia)) {
-            $btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia" disabled="disabled">
-                   		  Asistencia <i class="glyphicon glyphicon-check"></i>
-	                      </button>';
-	} else {
+        $btnAsistencia = '';
+	$btnReportes = '';
+        $consultaAsistencia = $conexion->query("SELECT * FROM asistencia WHERE ID_R = '$idRegistro'");
+        $listaAsistencia = $consultaAsistencia->rowCount();
+        if($listaAsistencia > 0){
+            $consultaVinieron = $conexion->query("SELECT * FROM asistencia WHERE ID_R = '$idRegistro' AND ASISTENCIA_A = '1'");
+            $listaVinieron = $consultaVinieron->rowCount();
+            if($listaAsistencia==$listaVinieron){
+                $btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia">
+                                    Asistencia <i class="glyphicon glyphicon-check"></i>
+                                  </button>';
+            }else{
+                $btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia" disabled="disabled">
+                                    Asistencia <i class="glyphicon glyphicon-check"></i>
+                                  </button>';
+            }
+        }else{
             $btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia">
-                   		  Asistencia <i class="glyphicon glyphicon-check"></i>
-	                      </button>';
-	}
+                            Asistencia <i class="glyphicon glyphicon-check"></i>
+	                  </button>';
+        }
+	
         if ($tamano==0){
             if ($cantC == 0){
                 $btnEvaluacion1= '<a href="evaluacion.php?GE='.$idRegistro.'" class="btn btn-default btn-xs" disabled="disabled">Evaluacion</a>';

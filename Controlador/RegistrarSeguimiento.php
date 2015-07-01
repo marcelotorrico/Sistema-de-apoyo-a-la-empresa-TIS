@@ -1,6 +1,9 @@
 <?php
 	require_once '../Modelo/Model/Asistencia.php';
 	require_once '../Modelo/Model/Reporte.php';
+        
+        require_once '../Modelo/conexionPDO.php';
+        $conectar=new Conexion();
 
 	$funcion = $_POST['funcion'];
 	$registro = $_POST['registro'];
@@ -8,7 +11,7 @@
         case 'registrar asistencia':
         	$codigos = explode(',', $_POST['codigos']);
         	$asistencias = explode(',', $_POST['asistencias']);
-        	for ($i = 0; $i < count($codigos); $i++) { 
+        	for ($i = 0; $i < count($codigos); $i++) {
         		$codigo = $codigos[$i];
 				$presente = 1;
 				$licencia = 0;
@@ -20,8 +23,16 @@
 						$licencia = 1;
 					}
 				}
+                                
+                                $consultaAsistencia = $conectar->query("SELECT * FROM asistencia WHERE ID_R = '$registro' AND CODIGO_SOCIO_A = '$codigo'");
+                                $tamano = $consultaAsistencia->rowCount();
+                                if($tamano>0){
+                                    $conectar->query("UPDATE asistencia SET ASISTENCIA_A='$presente', LICENCIA_A='$licencia' WHERE ID_R='$registro' AND CODIGO_SOCIO_A = '$codigo'");
+                                    
+                                }else{
 				$asistencia = new Asistencia($registro, $codigo, $presente, $licencia);
 				$asistencia->insertarBD();
+                                }
 			}
             break;
         case 'registrar reportes':

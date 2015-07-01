@@ -1,4 +1,4 @@
- <?php  
+ <?php
     session_start();
     $uActivo = $_SESSION['usuario'];
     include '../Modelo/conexionPDO.php';
@@ -60,6 +60,17 @@
             }   
           
           echo"<script type=\"text/javascript\">alert('La evaluacion se guardo exitosamente'); window.location='../Vista/lista_evaluacion.php';</script>";
+          
+          $asistencia = $conectar->query("SELECT * FROM asistencia WHERE ID_R = '$ID'");
+          $tamano = $asistencia->rowCount();
+          if($tamano==0){
+              $peticion = $conectar->query("SELECT CODIGO_S FROM socio WHERE NOMBRE_U = '$usuarioGE'");
+              while ($socios = $peticion->fetch(PDO::FETCH_ASSOC)){
+                $socio=$socios["CODIGO_S"];
+                $conectar->query("INSERT INTO asistencia(`ID_R`, CODIGO_SOCIO_A, ASISTENCIA_A, LICENCIA_A ) VALUES ('$ID', $socio, '1', '0');");
+             }
+          }
+                      
  ?> 
 
                       		
