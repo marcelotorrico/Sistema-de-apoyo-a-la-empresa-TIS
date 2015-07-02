@@ -12,8 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/evaluacion.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/vistaRegistrarPlanificacion.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/ModificarEvaluacionGrupoEmpresa.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/ReporteAsistencia.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/ReporteAsistenciaAsesor.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/AdministrarGrupoEmpresa.php</file>
         </group>
     </open-files>
 </project-private>

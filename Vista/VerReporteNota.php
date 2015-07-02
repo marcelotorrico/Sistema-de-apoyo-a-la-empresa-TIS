@@ -157,7 +157,7 @@ if (isset($_SESSION['usuario'])) {
                                     <a href="#"><i class="glyphicon glyphicon-file"></i> Ver Reportes <span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">                               
                                         <li>
-                                            <a href="ReporteAsistencia.php" >Asistencia</a>
+                                            <a href="ReporteAsistenciaGrupoEmpresa.php" >Asistencia</a>
                                         </li>
                                         <li>
                                             <a href="VerReporteNota.php">Nota de las actividades</a>                                  
