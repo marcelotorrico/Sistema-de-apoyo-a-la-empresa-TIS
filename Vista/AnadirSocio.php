@@ -229,14 +229,7 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                                 <input class="form-control" type="text" name="apellido" id="apellido" placeholder="Apellido" minlength="4" pattern=".{4,}" title="Apellido muy corto" required  onkeypress="return validarLetras(event)">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                  <span class="glyphicon glyphicon-user"></span>
-                                                </span>
-                                                <input class="form-control" name="correo" id="correo" placeholder="Correo" minlength="4">
-                                            </div>
-                                        </div> 
+                                       
 
                                        <div class="form-group">
                                             <div class="input-group">
