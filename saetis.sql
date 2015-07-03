@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50527
 Source Host           : localhost:3306
-Source Database       : saetis22
+Source Database       : saetis
 
 Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-07-01 23:06:03
+Date: 2015-07-03 12:34:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -133,7 +133,7 @@ CREATE TABLE `comentarios` (
   PRIMARY KEY (`ID_C`,`NOMBRE_U`,`ID_N`),
   KEY `fk_comentarios_noticias1_idx` (`ID_N`,`NOMBRE_U`),
   CONSTRAINT `fk_comentarios_noticias1` FOREIGN KEY (`ID_N`, `NOMBRE_U`) REFERENCES `noticias` (`ID_N`, `NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of comentarios
@@ -150,7 +150,7 @@ CREATE TABLE `criterio_evaluacion` (
   PRIMARY KEY (`ID_CRITERIO_E`,`NOMBRE_U`),
   KEY `fk_criterio_evaluacion_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_criterio_evaluacion_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of criterio_evaluacion
@@ -168,7 +168,7 @@ CREATE TABLE `criteriocalificacion` (
   PRIMARY KEY (`ID_CRITERIO_C`,`NOMBRE_U`),
   KEY `fk_criterioCalificacion_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_criterioCalificacion_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of criteriocalificacion
@@ -273,6 +273,7 @@ CREATE TABLE `entrega` (
   `ENTREGABLE_P` varchar(30) NOT NULL,
   `ENTREGADO_P` tinyint(1) NOT NULL,
   PRIMARY KEY (`ID_R`,`ENTREGABLE_P`) USING BTREE,
+  KEY `ENTREGABLE_P` (`ENTREGABLE_P`),
   CONSTRAINT `FK_REGISTRO__PRESENTACION` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -414,7 +415,7 @@ CREATE TABLE `evaluacion` (
   PRIMARY KEY (`ID_R`,`ID_E`) USING BTREE,
   UNIQUE KEY `ID_E` (`ID_E`),
   CONSTRAINT `FK_REGISTRO__EVALUACION` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluacion
@@ -538,7 +539,7 @@ CREATE TABLE `form_crit_e` (
   KEY `fk_formulario_has_criterio_evaluacion_formulario1_idx` (`ID_FORM`),
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_criterio_evaluacion1` FOREIGN KEY (`ID_CRITERIO_E`) REFERENCES `criterio_evaluacion` (`ID_CRITERIO_E`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of form_crit_e
@@ -576,7 +577,7 @@ CREATE TABLE `from_crit_c` (
   KEY `fk_criterioCalificacion_has_formulario_criterioCalificacion_idx` (`ID_CRITERIO_C`),
   CONSTRAINT `fk_criterioCalificacion_has_formulario_criterioCalificacion1` FOREIGN KEY (`ID_CRITERIO_C`) REFERENCES `criteriocalificacion` (`ID_CRITERIO_C`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_criterioCalificacion_has_formulario_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of from_crit_c
@@ -648,7 +649,7 @@ CREATE TABLE `indicador` (
   PRIMARY KEY (`ID_INDICADOR`,`ID_CRITERIO_C`),
   KEY `fk_indicador_criterioCalificacion1_idx` (`ID_CRITERIO_C`),
   CONSTRAINT `fk_indicador_criterioCalificacion1` FOREIGN KEY (`ID_CRITERIO_C`) REFERENCES `criteriocalificacion` (`ID_CRITERIO_C`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of indicador
@@ -770,7 +771,7 @@ CREATE TABLE `nota` (
   KEY `fk_nota_formulario_idx` (`ID_FORM`),
   CONSTRAINT `fk_nota_formulario` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_grupo_empresa1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nota
@@ -808,7 +809,7 @@ CREATE TABLE `noticias` (
   PRIMARY KEY (`ID_N`,`NOMBRE_U`),
   KEY `fk_noticias_usuario1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_noticias_usuario1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of noticias
@@ -874,6 +875,28 @@ INSERT INTO `pago` VALUES ('409', '972', '10');
 INSERT INTO `pago` VALUES ('410', '972', '10');
 INSERT INTO `pago` VALUES ('411', '972', '10');
 INSERT INTO `pago` VALUES ('412', '972', '10');
+
+-- ----------------------------
+-- Table structure for `parte_entregable`
+-- ----------------------------
+DROP TABLE IF EXISTS `parte_entregable`;
+CREATE TABLE `parte_entregable` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_R` int(11) NOT NULL,
+  `ENTREGABLE_P` varchar(30) NOT NULL,
+  `NOMBRE` varchar(150) NOT NULL,
+  `NOTA` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_ID_R` (`ID_R`),
+  KEY `FK_ENTREGABLE` (`ENTREGABLE_P`),
+  CONSTRAINT `FK_ID_R` FOREIGN KEY (`ID_R`) REFERENCES `entrega` (`ID_R`),
+  CONSTRAINT `FK_ENTREGABLE` FOREIGN KEY (`ENTREGABLE_P`) REFERENCES `entrega` (`ENTREGABLE_P`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of parte_entregable
+-- ----------------------------
+INSERT INTO `parte_entregable` VALUES ('1', '302', 'H.U.', 'HU1', '30');
 
 -- ----------------------------
 -- Table structure for `periodo`
@@ -1015,7 +1038,7 @@ CREATE TABLE `puntaje` (
   PRIMARY KEY (`PUNTAJE_ID`,`ID_FORM`),
   KEY `fk_puntaje_formulario1_idx` (`ID_FORM`),
   CONSTRAINT `fk_puntaje_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of puntaje
@@ -1033,7 +1056,7 @@ CREATE TABLE `puntaje_ge` (
   PRIMARY KEY (`ID_PGE`),
   KEY `fk_ PUNTAJE_GE_nota_idx` (`ID_N`),
   CONSTRAINT `fk_PUNTAJE_GE_nota` FOREIGN KEY (`ID_N`) REFERENCES `nota` (`ID_N`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of puntaje_ge
@@ -1321,7 +1344,7 @@ CREATE TABLE `sesion` (
   PRIMARY KEY (`ID_S`) USING BTREE,
   KEY `FK_USUARIO_SESION` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_USUARIO_SESION` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesion
@@ -1355,6 +1378,12 @@ INSERT INTO `sesion` VALUES ('256', 'SLOW', '2015-07-01', '18:46:52', '::1');
 INSERT INTO `sesion` VALUES ('257', 'LeticiaB', '2015-07-01', '18:53:50', '::1');
 INSERT INTO `sesion` VALUES ('258', 'Devs', '2015-07-01', '18:54:51', '::1');
 INSERT INTO `sesion` VALUES ('259', 'LeticiaB', '2015-07-01', '18:55:20', '::1');
+INSERT INTO `sesion` VALUES ('260', 'InnovaTe', '2015-07-02', '19:15:09', '::1');
+INSERT INTO `sesion` VALUES ('261', 'InnovaTe', '2015-07-03', '10:23:32', '::1');
+INSERT INTO `sesion` VALUES ('262', 'LeticiaB', '2015-07-03', '10:24:21', '::1');
+INSERT INTO `sesion` VALUES ('263', 'LeticiaB', '2015-07-03', '11:05:23', '::1');
+INSERT INTO `sesion` VALUES ('264', 'LeticiaB', '2015-07-03', '12:26:26', '::1');
+INSERT INTO `sesion` VALUES ('265', 'InnovaTe', '2015-07-03', '12:27:33', '::1');
 
 -- ----------------------------
 -- Table structure for `socio`
@@ -1370,7 +1399,7 @@ CREATE TABLE `socio` (
   UNIQUE KEY `uniq_correo` (`CORREO`),
   KEY `FK_GRUPO_EMPRESA__SOCIO` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_GRUPO_EMPRESA__SOCIO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
 
 -- ----------------------------
 -- Records of socio
