@@ -737,8 +737,8 @@ function registrarEntregables() {
                             message: 'El nombre del entregable es un dato requerido'
                         },
                         stringLength: {
-                            max: 20,
-                            message: 'El nombre del entregable debe ser menor o igual a 20 caracteres'
+                            max: 30,
+                            message: 'El nombre del entregable debe ser menor o igual a 30 caracteres'
                         }
                     }
                 },
@@ -748,8 +748,8 @@ function registrarEntregables() {
                             message: 'La descripcion del entregable es un dato requerido'
                         },
                         stringLength: {
-                            max: 40,
-                            message: 'La descripcion del entregable debe ser menor o igual a 40 caracteres'
+                            max: 150,
+                            message: 'La descripcion del entregable debe ser menor o igual a 150 caracteres'
                         }
                     }
                 }
