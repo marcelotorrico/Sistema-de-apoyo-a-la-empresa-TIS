@@ -274,7 +274,7 @@ $conexion = new Conexion();
                 $ap = $conexion->consultarTabla("SELECT id_r, nombre_u, estado_e, nombre_r FROM registro , inscripcion WHERE tipo_t = 'actividad planificacion' AND estado_e = 'en proceso' and NOMBRE_UGE=nombre_u and NOMBRE_UA='$uActivo';");
                 $filas = '';
                 $cantDatos = count($ap);
-                for ($i = $cantDatos/2; $i < $cantDatos; $i++) {
+                for ($i = 0; $i < $cantDatos; $i++) {
                     $ge = new GrupoEmpresa($ap[$i][1]);
                     $idRegistro = $ap[$i][0];
                     $peticion2 = $conexion->query("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$idRegistro'");
