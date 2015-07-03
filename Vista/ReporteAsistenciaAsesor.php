@@ -61,7 +61,11 @@ if (isset($_SESSION['usuario'])) {
             <link href="../Librerias/css/plugins/timeline/timeline.css" rel="stylesheet">
             <!-- SB Admin CSS - Include with every page -->
             <link href="../Librerias/css/sb-admin.css" rel="stylesheet">
-
+            <!-- JS -->
+            <script type="text/javascript" src="../Librerias/lib/funcion.js"></script>
+            <script type="text/javascript" src="../Librerias/lib/funcionSeguimiento.js"></script>
+            <link href="../Librerias/css/plugins/timeline/timeline.css" rel="stylesheet">
+            
             <link href="css/tabla-div1.css" rel="stylesheet" type="text/css" />
             <link href="css/tabla-div.css" rel="stylesheet" type="text/css" />
             <link href="css/style.css" rel="stylesheet" type="text/css" /> 
@@ -158,44 +162,56 @@ if (isset($_SESSION['usuario'])) {
                     </li>
 
                     <li>
-                        <a id="SeguimientoSemanal" href="#"><i class="glyphicon glyphicon-list-alt"></i> Seguimiento Semanal</a>
-                    </li>
+                                <a id="Seguimiento" href="#"><i class="glyphicon glyphicon-list-alt"></i> Seguimiento</a>
+                            </li>
+                            <li>
+                                <a id="SeguimientoSemanal" href="#"><i class="glyphicon glyphicon-list-alt"></i> Seguimiento Semanal</a>
+                            </li>
 
                     <li>
                         <a href="#"><i class="glyphicon glyphicon-th-list"></i> Evaluacion<span class="fa arrow"></span></a>
                         <ul class="nav nav-third-level">
                             <li>
-                                <a href="CrearModalidadEvaluacion.php">Criterio de Evaluaci&oacute;n </a>                             
+                                <a href="lista_evaluacion.php">Evaluacion 2 Fase </a>                             
                             </li>
-
                             <li>
-                                <a href="#">Criterio de Calificaci&oacute;n<span class="fa arrow"></span></a>
+                                <a href="#">Evaluacion 3 Fase <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="CrearModalidadCalificacion.php"> Crear Criterio de Calificaci&oacute;n</a>
+                                        <a href="CrearModalidadEvaluacion.php">Criterio de Evaluaci&oacute;n </a>                             
                                     </li>
-                                    <li>
-                                        <a href="EliminarCriterioCalificacion.php"> Eliminar Criterio de Calificaci&oacute;n</a>
-                                    </li>
-                                </ul>
-                            </li>
 
-                            <li>
-                                <a href="#">Formulario de Evaluacion<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="CrearFormulario.php">Crear Formulario de Evaluacion</a>
+                                        <a href="#">Criterio de Calificaci&oacute;n<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="CrearModalidadCalificacion.php"> Crear Criterio de Calificaci&oacute;n</a>
+                                            </li>
+                                            <li>
+                                                <a href="EliminarCriterioCalificacion.php"> Eliminar Criterio de Calificaci&oacute;n</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Formulario de Evaluacion<span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="CrearFormulario.php">Crear Formulario de Evaluacion</a>
+                                            </li>
+                                            <li>
+                                                <a href="SeleccionarFormulario.php"> Habilitar Formulario de Evaluacion </a>   
+                                            </li>
+                                            <li>
+                                                <a href="EliminarFormulario.php">Eliminar Formulario de Evaluacion</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li>
-                                        <a href="SeleccionarFormulario.php"> Habilitar Formulario de Evaluacion </a>   
-                                    </li>
-                                    <li>
-                                        <a href="EliminarFormulario.php">Eliminar Formulario de Evaluacion</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="EvaluarGrupoEmpresa.php">Evaluar Grupo Empresa </a>   
+                                        <a href="EvaluarGrupoEmpresa.php">Evaluar Grupo Empresa </a>   
+                                    </li>                                    
+                                    
+                                </ul>    
                             </li>
                             <li>
                                 <a href="../Vista/EvaluacionGeneral.php">Evaluacion Final </a>   

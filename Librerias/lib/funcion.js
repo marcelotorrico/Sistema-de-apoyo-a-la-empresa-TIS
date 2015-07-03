@@ -24,6 +24,16 @@ $(document).on('ready', function() {
         $('.modalRegistroAsistencia').modal('show');
     }); 
 
+    $(document).on('click', '.botonRegistroAsistenciaSemanal', function() {
+        var funcion = 'registrar asistencia';
+        var fila = $(this).parents().get(1);
+        var registro = $(fila).data('registro');
+        $('.modalRegistroAsistencia').find('.modal-body').load('AsistenciaSemanal.php', {
+            funcion:funcion,
+            registro:registro
+        });
+        $('.modalRegistroAsistencia').modal('show');
+    });
     $(document).on('click', '.btnRegistroReportes', function() {
         var funcion = 'registrar reportes';
         var fila = $(this).parents().get(1);
@@ -254,6 +264,46 @@ function registrarAsistencia(){
       });
 }
 
+function registrarAsistenciasSemanales(){
+    $("#registroAsistencia").find("form")
+        .bootstrapValidator({
+            excluded: ":disabled",
+            submitHandler: function(validator, form, submitButton) {
+                var funcion = 'registrar asistencia';
+                var registro = $('#registroAsistencia').data('registro');
+                var codigos = new Array();
+                var socios = new Array();
+                var asistencias = new Array();
+                $("#registroAsistencia form table tbody tr").each(function() {
+                    $(this).children("td").each(function(index) {
+                        switch (index) {
+                            case 0:
+                                codigos.push($(this).text());
+                                break;
+                            case 1:
+                                socios.push($(this).text());
+                                break;
+                            case 2:
+                                var codigo = $($(this).parents().get(0)).data("codigo");
+                                asistencias.push(validator.getFieldElements("Asistencia"+codigo).filter(":checked").val());
+                                break;
+                        }
+                    });
+                });
+                $.post('../Controlador/RegistrarAsistenciasSemanales.php', {
+                    funcion:funcion,
+                    registro:registro,
+                    codigos:codigos.join(),
+                    socios:socios.join(),
+                    asistencias:asistencias.join()
+                });
+                $('.modalRegistroAsistencia').modal('hide');
+                $('#registroAsistencia').find('form').bootstrapValidator('destroy');
+                $('.modalRegistroAsistencia').find('.modal-body').empty();
+                $('#btnAsistencia'+registro).attr("disabled", true);
+          }
+      });
+}
 function registrarReportes() {
     $('#registroReportes').find('form')
         .bootstrapValidator({

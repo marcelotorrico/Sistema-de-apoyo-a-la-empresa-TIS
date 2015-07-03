@@ -24,11 +24,11 @@ $conexion2 = new Conexion();
 		$btnReportes = '';
                  $btnEvaluacion = '';
 		if (in_array($idRegistro, $asistencia)) {
-			$btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia" disabled="disabled">
+			$btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger botonRegistroAsistenciaSemanal">
 	                     		  Asistencia <i class="glyphicon glyphicon-check"></i>
 	                          </button>';
 		} else {
-			$btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger btnRegistroAsistencia">
+			$btnAsistencia = '<button id="btnAsistencia'.$ap[$i][0].'" class="btn btn-xs btn-danger botonRegistroAsistenciaSemanal">
 	                     		  Asistencia <i class="glyphicon glyphicon-check"></i>
 	                          </button>';
 		}
