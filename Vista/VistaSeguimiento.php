@@ -48,15 +48,32 @@ $conexion2 = new Conexion();
                   
                 }
             
-    
+                $nota = $conexion2->query("SELECT `NOTA_E` FROM evaluacion where `ID_R`='$idRegistro'");
+                $tamano = $nota->rowCount();
+                $fechaFinalizacion = $conexion2->query("SELECT f.FECHA_FR FROM  fecha_realizacion as f, registro as a WHERE f.ID_R=a.ID_R and f.ID_R='$idRegistro'");
+                $fechaFin = $fechaFinalizacion->fetchColumn();
+                date_default_timezone_set('America/La_Paz');
+                $fechaAct = date('Y-m-j');
+                $stampFechaA = strtotime($fechaAct);
+                $stampFechaF = strtotime($fechaFin);
+                if ($stampFechaA <= $stampFechaF && $tamano == 0) {
+                    $anuncio = "En Proceso";
+                    $estado = "En Proceso";
+                    $clase = "label label-warning";
+                } else if ($tamano == 0) {
+                    $anuncio = "&nbsp;Retrasado&nbsp;";
+                    $estado = "Retraso";
+                    $clase = "label label-danger";
+                } else {
+                    $anuncio = "&nbsp;Evaluado&nbsp;&nbsp;";
+                    $estado = "Registrado";
+                    $clase = "label label-success";
+                }
    
-   
-   
-
                 $filas .= '<tr data-registro="'.$idRegistro.'">
                 <td>'.$ap[$i][3].'</td>
                 <td>'.$ge->getNombreCorto().'</td>
-                <td><span class="label label-success">'.$ap[$i][2].'</span></td>
+                <td><span class="' . $clase . '">' . $anuncio . '</span></td>
                 <td>
                 '.$btnAsistencia.'
                 '.$btnReportes.'
