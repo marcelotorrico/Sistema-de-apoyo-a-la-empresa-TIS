@@ -200,7 +200,7 @@ if (isset($_SESSION['usuario'])) {
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <h2 class="page-header">Subir Documento</h2>
+                            <h2 class="page-header">Subir Entregable</h2>
                             <div class="col-lg-6" >
 
                                 <?php
@@ -214,64 +214,25 @@ if (isset($_SESSION['usuario'])) {
                                 $verifIns = $conexion->query("SELECT NOMBRE_U FROM inscripcion_proyecto WHERE NOMBRE_U = '$uActivo' ");
                                 $inscrip = $verifIns->fetch(PDO::FETCH_NUM);
 
-                                if (!is_array($inscrip)) {
+                                if (!is_array($inscrip)) :
                                     echo '<div class="alert alert-warning">
                                             <strong>Para subir su propuesta primero debe inscribirse a un proyecto</strong>
                                           </div>';
-                                } else {
-
-
-
-                                    $Doc = $_GET['doc'];
-
-                                    $consFechas = $conexion->query("SELECT FECHA_INICIO_PL, FECHA_FIN_PL, HORA_INICIO_PL, HORA_FIN_PL FROM registro, documento_r, inscripcion_proyecto, plazo WHERE inscripcion_proyecto.NOMBRE_U='$uActivo' AND inscripcion_proyecto.CODIGO_P = documento_r.CODIGO_P AND documento_r.ID_R = plazo.ID_R AND documento_r.ID_R = registro.ID_R AND registro.NOMBRE_R = '$Doc'");
-
-                                    $fechas = $consFechas->fetch(PDO::FETCH_NUM);
-
-                                    $stampHoraA = strtotime($horaAct);
-                                    $stampFechaA = strtotime($fechaAct);
-                                    $stampHoraI = strtotime($fechas[2]);
-                                    $stampHoraF = strtotime($fechas[3]);
-                                    $stampFechaI = strtotime($fechas[0]);
-                                    $stampFechaF = strtotime($fechas[1]);
-
-                                    $consDoc = $conexion->query("SELECT * FROM registro WHERE NOMBRE_U = '$uActivo' AND NOMBRE_R = '$Doc'");
-                                    $tipo = $conexion->query("SELECT TIPO_T FROM registro WHERE NOMBRE_U = '$uActivo' AND NOMBRE_R = '$Doc' AND TIPO_T = 'actividad planificacion'");
-                                    
-                                    $verifDoc = $consDoc->fetch(PDO::FETCH_NUM);
-                                    $fechaFinIgual = $stampFechaA == $stampFechaF;
-                                    if (is_array($verifDoc) AND $tipo->rowCount() == 0) {
-                                        if (($fechaFinIgual and $stampHoraA < $stampHoraF) or $stampFechaA < $stampFechaF) {
-                                            echo '<div class="alert alert-warning">
-                                                    <strong>Puede reemplazar el documento subido anteriormente por otro documento.</strong>
-                                                  </div>';
-                                            echo mostrarFormulario("ActualizarDocumento", $Doc, $uActivo);
-                                        }else{
-                                            echo '<div class="alert alert-warning">
-                                                    <strong>Usted ya subio el documento correspondiente</strong>
-                                                  </div>';
-                                        }
-                                    } else {
-
-
-                                        if ((($stampFechaA == $stampFechaI and $stampHoraA < $stampHoraI) or ( $fechaFinIgual and $stampHoraA > $stampHoraF) or ( $stampFechaA < $stampFechaI) or ( $stampFechaA > $stampFechaF)) AND ($tipo->rowCount() == 0)) {
-
-
-                                            echo '<div class="alert alert-warning">
-                                                        <strong>No esta disponible la subida del documento</strong>
-                                                    </div>';
-                                        } else {
-
-                                            echo '<div class="alert alert-warning">';
-
-                                            echo '<strong>La entrega esta disponible desde la fecha ' . $fechas[0] . ' a horas ' . $fechas[2] . ' hasta la fecha ' . $fechas[1] . ' a horas ' . $fechas[3] . '</strong>';
-                                            echo '</div>';
-
-                                            echo mostrarFormulario("Documento", $Doc, $uActivo);
-                                        }
+                                else : 
+                                    $docsReq = $conexion->query("SELECT NOMBRE_R FROM registro WHERE TIPO_T = 'actividad planificacion' AND NOMBRE_U = '$uActivo'");
+                                    echo '<form action="SubirDocumento.php">';
+                                    echo '<select name="doc" required>';
+                                    echo '<option selected disabled>Seleccione una actividad</option> ';
+                                    while ($rowDocs = $docsReq->fetch(PDO::FETCH_NUM)) {
+echo <<<END
+<option value"{$rowDocs[0]}">{$rowDocs[0]}</option>
+END;
                                     }
-                                }
-                                ?>
+                                    echo '</select>';
+                                    echo '<br/><br/>';
+                                    echo '<input type="submit" class= "btn btn-primary" value="Seguir">';
+                                    echo '</form>';
+                                endif; ?>
 
 
 
@@ -298,23 +259,6 @@ if (isset($_SESSION['usuario'])) {
             echo '<script>alert("Inicie sesion para ingresar");</script>';
             echo '<script>window.location="../index.php";</script>';
         }
-        function mostrarFormulario($nombreInput, $doc, $usuarioActivo) {
-                                    $res = '
-                                                    <form action="../Modelo/BD/GuardarSubirDocumento.php" method="POST" enctype="multipart/form-data">
-                                                        <fieldset>
-                                                            <div class="form-group">
-                                                                <input name="archivoA" id="archivoA" type="file" class = "btn btn-primary" required>
-                                                            </div>
-                                                        <input type="hidden" name="' . $nombreInput . '" value="' . $doc . '">
-                                                            <div class="form-group">
-                                                                <input type="submit" value="Subir Documento" class= "btn btn-primary">
-                                                            </div>
-                                                        </fieldset>
-                                                        <input type = "hidden" name="Usuario" value="' . $usuarioActivo . '"">
-                                                    </form>';
-                                    return $res;
-                                    
-                                }
         ?>
     </body>
 

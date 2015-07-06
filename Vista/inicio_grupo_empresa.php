@@ -141,6 +141,9 @@ $verificar->validarInicioSesion($uActivo,"grupoEmpresa");
                                     </ul>
                                 </li>
                                 <li>
+                                    <a href="SubirEntregable.php">Subir Entregable</a>
+                                </li>
+                                <li>
                                     <a href="publicacion_grupo.php">Recepci&oacute;n Documentos </a>
                                     
                                 </li>
