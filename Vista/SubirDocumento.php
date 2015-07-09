@@ -262,10 +262,10 @@ if (isset($_SESSION['usuario'])) {
                                                     </div>';
                                         } else {
 
-                                            echo '<div class="alert alert-warning">';
+                                            // '<div class="alert alert-warning">';
 
-                                            echo '<strong>La entrega esta disponible desde la fecha ' . $fechas[0] . ' a horas ' . $fechas[2] . ' hasta la fecha ' . $fechas[1] . ' a horas ' . $fechas[3] . '</strong>';
-                                            echo '</div>';
+                                            //echo '<strong>La entrega esta disponible desde la fecha ' . $fechas[0] . ' a horas ' . $fechas[2] . ' hasta la fecha ' . $fechas[1] . ' a horas ' . $fechas[3] . '</strong>';
+                                            //echo '</div>';
 
                                             echo mostrarFormulario("Documento", $Doc, $uActivo);
                                         }

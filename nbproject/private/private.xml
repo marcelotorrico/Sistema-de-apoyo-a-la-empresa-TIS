@@ -12,10 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/ModificarEvaluacionGrupoEmpresa.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/ReporteAsistencia.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/ReporteAsistenciaAsesor.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Controlador/RegistrarSeguimientoSemanal.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/SubirDocumento.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Librerias/lib/funcion.js</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/AsistenciaSemanal.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaModalSeguimientoSemanal.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaSeguimientoSemanal.php</file>
             <file>file:/C:/xampp/htdocs/Saetis2/Vista/AdministrarGrupoEmpresa.php</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Librerias/lib/funcionSeguimiento.js</file>
+            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaModalSeguimiento.php</file>
         </group>
     </open-files>
 </project-private>
