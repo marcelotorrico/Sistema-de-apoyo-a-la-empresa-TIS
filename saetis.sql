@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2015-07-03 12:34:42
+Date: 2015-07-13 20:35:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -98,6 +98,56 @@ CREATE TABLE `asistencia` (
 -- ----------------------------
 -- Records of asistencia
 -- ----------------------------
+INSERT INTO `asistencia` VALUES ('232', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('232', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('232', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('232', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('232', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('233', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('233', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('233', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('233', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('233', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('234', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('234', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('234', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('234', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('234', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('235', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('235', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('235', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('235', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('235', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('236', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('236', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('236', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('236', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('236', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('237', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('237', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('237', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('237', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('237', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('238', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('238', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('238', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('238', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('238', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('239', '40', '1', '0');
+INSERT INTO `asistencia` VALUES ('239', '41', '1', '0');
+INSERT INTO `asistencia` VALUES ('239', '42', '1', '0');
+INSERT INTO `asistencia` VALUES ('239', '43', '1', '0');
+INSERT INTO `asistencia` VALUES ('239', '44', '1', '0');
+INSERT INTO `asistencia` VALUES ('248', '45', '1', '0');
+INSERT INTO `asistencia` VALUES ('248', '46', '1', '0');
+INSERT INTO `asistencia` VALUES ('248', '47', '1', '0');
+INSERT INTO `asistencia` VALUES ('248', '48', '1', '0');
+INSERT INTO `asistencia` VALUES ('248', '49', '1', '0');
+INSERT INTO `asistencia` VALUES ('249', '45', '0', '0');
+INSERT INTO `asistencia` VALUES ('249', '46', '1', '0');
+INSERT INTO `asistencia` VALUES ('249', '47', '1', '0');
+INSERT INTO `asistencia` VALUES ('249', '48', '1', '0');
+INSERT INTO `asistencia` VALUES ('249', '49', '1', '0');
 
 -- ----------------------------
 -- Table structure for `asistencia_semanal`
@@ -150,11 +200,14 @@ CREATE TABLE `criterio_evaluacion` (
   PRIMARY KEY (`ID_CRITERIO_E`,`NOMBRE_U`),
   KEY `fk_criterio_evaluacion_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_criterio_evaluacion_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of criterio_evaluacion
 -- ----------------------------
+INSERT INTO `criterio_evaluacion` VALUES ('1', 'LeticiaB', 'Puntualidad');
+INSERT INTO `criterio_evaluacion` VALUES ('2', 'LeticiaB', 'Cumplimiento');
+INSERT INTO `criterio_evaluacion` VALUES ('3', 'LeticiaB', 'Organizacion');
 
 -- ----------------------------
 -- Table structure for `criteriocalificacion`
@@ -168,11 +221,13 @@ CREATE TABLE `criteriocalificacion` (
   PRIMARY KEY (`ID_CRITERIO_C`,`NOMBRE_U`),
   KEY `fk_criterioCalificacion_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_criterioCalificacion_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of criteriocalificacion
 -- ----------------------------
+INSERT INTO `criteriocalificacion` VALUES ('1', 'LeticiaB', 'Verdadero(90)Falso(10)', '2');
+INSERT INTO `criteriocalificacion` VALUES ('2', 'LeticiaB', 'Si(90)No(20)', '3');
 
 -- ----------------------------
 -- Table structure for `descripcion`
@@ -202,6 +257,7 @@ INSERT INTO `descripcion` VALUES ('415', 'Contrato');
 INSERT INTO `descripcion` VALUES ('416', 'Contrato');
 INSERT INTO `descripcion` VALUES ('417', 'Contrato');
 INSERT INTO `descripcion` VALUES ('418', 'Contrato');
+INSERT INTO `descripcion` VALUES ('424', 'Orden de Cambio');
 
 -- ----------------------------
 -- Table structure for `documento`
@@ -217,7 +273,7 @@ CREATE TABLE `documento` (
   PRIMARY KEY (`ID_D`) USING BTREE,
   KEY `FK_REGISTRO_DOCUMENTO` (`ID_R`) USING BTREE,
   CONSTRAINT `FK_REGISTRO_DOCUMENTO` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of documento
@@ -225,7 +281,7 @@ CREATE TABLE `documento` (
 INSERT INTO `documento` VALUES ('68', '211', '1024', 'http://bittle.cs.umss.edu.bo/Repositorio/asesor/InvitacionPublica012015.pdf', '0', '0');
 INSERT INTO `documento` VALUES ('69', '214', '607194', '/Repositorio/Devs/DevsGroup_ParteA.pdf', '1', '1');
 INSERT INTO `documento` VALUES ('70', '215', '1584338', '/Repositorio/Devs/DevsGroup_parteB.pdf', '1', '1');
-INSERT INTO `documento` VALUES ('71', '216', '1447698', '/Repositorio/InnovaTe/ParteA_Innovate.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('71', '216', '2275', '/Repositorio/InnovaTe/ParteA_Innovate.pdf', '1', '1');
 INSERT INTO `documento` VALUES ('72', '217', '1327903', '/Repositorio/InnovaTe/ParteB_InnovaTe.pdf', '1', '1');
 INSERT INTO `documento` VALUES ('73', '218', '1457477', '/Repositorio/MAD/parteA.rar', '1', '1');
 INSERT INTO `documento` VALUES ('74', '219', '373204', '/Repositorio/MAD/parteB.rar', '1', '1');
@@ -247,6 +303,12 @@ INSERT INTO `documento` VALUES ('89', '415', '1024', '../Repositorio/Contratos/C
 INSERT INTO `documento` VALUES ('90', '416', '1024', '../Repositorio/Contratos/CNetSky System SRL.pdf', '0', '0');
 INSERT INTO `documento` VALUES ('91', '417', '1024', '../Repositorio/Contratos/CSAADS SRL.pdf', '0', '0');
 INSERT INTO `documento` VALUES ('92', '418', '1024', '../Repositorio/Contratos/CSLOW CODE SRL.pdf', '0', '0');
+INSERT INTO `documento` VALUES ('93', '419', '1024', '/Repositorio/asesor/CPTIS.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('94', '420', '1024', '/Repositorio/asesor/PliegoEspecificaciones012015.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('95', '421', '228755', '/Repositorio/MAD/apendicea.docx', '1', '1');
+INSERT INTO `documento` VALUES ('96', '422', '616990', '/Repositorio/Aska/CodigoComercio.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('97', '423', '151788', '/Repositorio/Aska/CPTIS.pdf', '1', '1');
+INSERT INTO `documento` VALUES ('98', '424', '1024', '../Repositorio/Aska SRL/OC/ordenDeCambio.pdf', '1', '1');
 
 -- ----------------------------
 -- Table structure for `documento_r`
@@ -280,15 +342,15 @@ CREATE TABLE `entrega` (
 -- ----------------------------
 -- Records of entrega
 -- ----------------------------
-INSERT INTO `entrega` VALUES ('240', 'Documento', '0');
-INSERT INTO `entrega` VALUES ('241', 'Informe', '0');
-INSERT INTO `entrega` VALUES ('242', 'Informe', '0');
-INSERT INTO `entrega` VALUES ('243', 'Informe', '0');
-INSERT INTO `entrega` VALUES ('244', 'Informe', '0');
-INSERT INTO `entrega` VALUES ('245', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('240', 'Documento', '1');
+INSERT INTO `entrega` VALUES ('241', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('242', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('243', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('244', 'Informe', '1');
+INSERT INTO `entrega` VALUES ('245', 'Informe', '1');
 INSERT INTO `entrega` VALUES ('246', 'Informe', '0');
-INSERT INTO `entrega` VALUES ('246', 'Manual', '0');
-INSERT INTO `entrega` VALUES ('247', 'Informe', '0');
+INSERT INTO `entrega` VALUES ('246', 'Manual', '1');
+INSERT INTO `entrega` VALUES ('247', 'Informe', '1');
 INSERT INTO `entrega` VALUES ('257', 'Documento', '0');
 INSERT INTO `entrega` VALUES ('258', 'Informe', '0');
 INSERT INTO `entrega` VALUES ('259', 'Informe', '0');
@@ -415,11 +477,19 @@ CREATE TABLE `evaluacion` (
   PRIMARY KEY (`ID_R`,`ID_E`) USING BTREE,
   UNIQUE KEY `ID_E` (`ID_E`),
   CONSTRAINT `FK_REGISTRO__EVALUACION` FOREIGN KEY (`ID_R`) REFERENCES `registro` (`ID_R`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluacion
 -- ----------------------------
+INSERT INTO `evaluacion` VALUES ('232', '1', '12', '20');
+INSERT INTO `evaluacion` VALUES ('233', '2', '7', '10');
+INSERT INTO `evaluacion` VALUES ('234', '3', '8', '10');
+INSERT INTO `evaluacion` VALUES ('235', '4', '4', '12');
+INSERT INTO `evaluacion` VALUES ('236', '5', '5', '12');
+INSERT INTO `evaluacion` VALUES ('237', '6', '6', '12');
+INSERT INTO `evaluacion` VALUES ('238', '7', '7', '14');
+INSERT INTO `evaluacion` VALUES ('239', '8', '7', '10');
 
 -- ----------------------------
 -- Table structure for `fecha_realizacion`
@@ -539,11 +609,13 @@ CREATE TABLE `form_crit_e` (
   KEY `fk_formulario_has_criterio_evaluacion_formulario1_idx` (`ID_FORM`),
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_criterio_evaluacion1` FOREIGN KEY (`ID_CRITERIO_E`) REFERENCES `criterio_evaluacion` (`ID_CRITERIO_E`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_formulario_has_criterio_evaluacion_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of form_crit_e
 -- ----------------------------
+INSERT INTO `form_crit_e` VALUES ('1', '4', '1');
+INSERT INTO `form_crit_e` VALUES ('2', '4', '2');
 
 -- ----------------------------
 -- Table structure for `formulario`
@@ -557,12 +629,13 @@ CREATE TABLE `formulario` (
   PRIMARY KEY (`ID_FORM`,`NOMBRE_U`),
   KEY `fk_formulario_asesor1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_formulario_asesor1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `asesor` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of formulario
 -- ----------------------------
-INSERT INTO `formulario` VALUES ('3', 'LeticiaB', 'formulario1', 'Habilitado');
+INSERT INTO `formulario` VALUES ('3', 'LeticiaB', 'formulario1', 'Deshabilitado');
+INSERT INTO `formulario` VALUES ('4', 'LeticiaB', 'formulario2', 'Habilitado');
 
 -- ----------------------------
 -- Table structure for `from_crit_c`
@@ -577,11 +650,13 @@ CREATE TABLE `from_crit_c` (
   KEY `fk_criterioCalificacion_has_formulario_criterioCalificacion_idx` (`ID_CRITERIO_C`),
   CONSTRAINT `fk_criterioCalificacion_has_formulario_criterioCalificacion1` FOREIGN KEY (`ID_CRITERIO_C`) REFERENCES `criteriocalificacion` (`ID_CRITERIO_C`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_criterioCalificacion_has_formulario_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of from_crit_c
 -- ----------------------------
+INSERT INTO `from_crit_c` VALUES ('1', '2', '4');
+INSERT INTO `from_crit_c` VALUES ('2', '2', '4');
 
 -- ----------------------------
 -- Table structure for `gestion`
@@ -628,7 +703,7 @@ INSERT INTO `grupo_empresa` VALUES ('Answer', 'Answer', 'Answer SRL', 'Anónimo'
 INSERT INTO `grupo_empresa` VALUES ('Aracorp', 'Aracorp', 'Aracorp SRL', 'Anónimo', '', '5');
 INSERT INTO `grupo_empresa` VALUES ('ARGOS', 'ARGOS', 'ARGOS SRL', 'Anónimo', '', '5');
 INSERT INTO `grupo_empresa` VALUES ('Arkano', 'Arkano', 'Arkano Soft', 'Anónimo', '', '5');
-INSERT INTO `grupo_empresa` VALUES ('Aska', 'Aska', 'Aska SRL', 'Anónimo', '', '5');
+INSERT INTO `grupo_empresa` VALUES ('Aska', 'Aska', 'Aska SRL', 'Anónimo', 'Ricardo Fuentes', '5');
 INSERT INTO `grupo_empresa` VALUES ('ASSI', 'ASSI', 'ASSI SRL', 'Anónimo', '', '5');
 INSERT INTO `grupo_empresa` VALUES ('Devs', 'Devs Group', 'DevsGroup SRL', 'Av.Ladislao Cabrera NÂ°567', 'Vania Marisela Catorceno Carballo', '5');
 INSERT INTO `grupo_empresa` VALUES ('InnovaTe', 'InnovaTe', 'Innovando Tecnologia SRL', 'C. Tarija NÂ°1520', 'Antonio Alurralde', '5');
@@ -649,11 +724,15 @@ CREATE TABLE `indicador` (
   PRIMARY KEY (`ID_INDICADOR`,`ID_CRITERIO_C`),
   KEY `fk_indicador_criterioCalificacion1_idx` (`ID_CRITERIO_C`),
   CONSTRAINT `fk_indicador_criterioCalificacion1` FOREIGN KEY (`ID_CRITERIO_C`) REFERENCES `criteriocalificacion` (`ID_CRITERIO_C`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of indicador
 -- ----------------------------
+INSERT INTO `indicador` VALUES ('1', '1', 'Verdadero', '90');
+INSERT INTO `indicador` VALUES ('2', '1', 'Falso', '10');
+INSERT INTO `indicador` VALUES ('3', '2', 'Si', '90');
+INSERT INTO `indicador` VALUES ('4', '2', 'No', '20');
 
 -- ----------------------------
 -- Table structure for `inscripcion`
@@ -673,6 +752,7 @@ CREATE TABLE `inscripcion` (
 -- ----------------------------
 -- Records of inscripcion
 -- ----------------------------
+INSERT INTO `inscripcion` VALUES ('LeticiaB', 'Aska', 'Habilitado');
 INSERT INTO `inscripcion` VALUES ('LeticiaB', 'Devs', 'Habilitado');
 INSERT INTO `inscripcion` VALUES ('LeticiaB', 'InnovaTe', 'Habilitado');
 INSERT INTO `inscripcion` VALUES ('LeticiaB', 'MAD', 'Habilitado');
@@ -698,6 +778,7 @@ CREATE TABLE `inscripcion_proyecto` (
 -- ----------------------------
 -- Records of inscripcion_proyecto
 -- ----------------------------
+INSERT INTO `inscripcion_proyecto` VALUES ('4', 'Aska', 'Sin Firmar');
 INSERT INTO `inscripcion_proyecto` VALUES ('4', 'Devs', 'Firmado');
 INSERT INTO `inscripcion_proyecto` VALUES ('4', 'InnovaTe', 'Firmado');
 INSERT INTO `inscripcion_proyecto` VALUES ('4', 'MAD', 'Firmado');
@@ -725,6 +806,7 @@ INSERT INTO `lista_ge` VALUES ('MAD', 'MAD SOFTWARE SRL', 'Av. Rodriguez Morales
 INSERT INTO `lista_ge` VALUES ('SLOW CODE', 'SLOW CODE SRL', 'C/ Dario Monta&ntilde;o #', null);
 INSERT INTO `lista_ge` VALUES ('SAADS', 'SAADS SRL', 'Av. Melchor Perez #1312', null);
 INSERT INTO `lista_ge` VALUES ('NetSky', 'NetSky System SRL', 'Sipe Sipe Calle Gualberto', null);
+INSERT INTO `lista_ge` VALUES ('Aska', 'Aska SRL', 'Anónimo', null);
 
 -- ----------------------------
 -- Table structure for `mensaje`
@@ -771,11 +853,12 @@ CREATE TABLE `nota` (
   KEY `fk_nota_formulario_idx` (`ID_FORM`),
   CONSTRAINT `fk_nota_formulario` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_nota_grupo_empresa1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nota
 -- ----------------------------
+INSERT INTO `nota` VALUES ('1', '4', 'Devs', '48');
 
 -- ----------------------------
 -- Table structure for `nota_final`
@@ -788,11 +871,12 @@ CREATE TABLE `nota_final` (
   PRIMARY KEY (`ID_NF`,`NOMBRE_U`),
   KEY `fk_nota_final_grupo_empresa1_idx` (`NOMBRE_U`),
   CONSTRAINT `fk_nota_final_grupo_empresa1` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of nota_final
 -- ----------------------------
+INSERT INTO `nota_final` VALUES ('1', 'Devs', '52.8');
 
 -- ----------------------------
 -- Table structure for `noticias`
@@ -889,8 +973,8 @@ CREATE TABLE `parte_entregable` (
   PRIMARY KEY (`ID`),
   KEY `FK_ID_R` (`ID_R`),
   KEY `FK_ENTREGABLE` (`ENTREGABLE_P`),
-  CONSTRAINT `FK_ID_R` FOREIGN KEY (`ID_R`) REFERENCES `entrega` (`ID_R`),
-  CONSTRAINT `FK_ENTREGABLE` FOREIGN KEY (`ENTREGABLE_P`) REFERENCES `entrega` (`ENTREGABLE_P`)
+  CONSTRAINT `FK_ENTREGABLE` FOREIGN KEY (`ENTREGABLE_P`) REFERENCES `entrega` (`ENTREGABLE_P`),
+  CONSTRAINT `FK_ID_R` FOREIGN KEY (`ID_R`) REFERENCES `entrega` (`ID_R`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -920,6 +1004,7 @@ INSERT INTO `periodo` VALUES ('228', '2015-07-01', '16:23:57');
 INSERT INTO `periodo` VALUES ('229', '2015-07-01', '16:25:34');
 INSERT INTO `periodo` VALUES ('230', '2015-07-01', '16:27:20');
 INSERT INTO `periodo` VALUES ('231', '2015-07-01', '16:29:25');
+INSERT INTO `periodo` VALUES ('424', '2015-07-06', '13:14:31');
 
 -- ----------------------------
 -- Table structure for `permisos`
@@ -958,6 +1043,7 @@ CREATE TABLE `planificacion` (
 -- ----------------------------
 -- Records of planificacion
 -- ----------------------------
+INSERT INTO `planificacion` VALUES ('Aska', 'registrar planificacion', '2014-12-12', '2020-12-12');
 INSERT INTO `planificacion` VALUES ('Devs', 'planificacion registrada', '2015-03-16', '2015-07-30');
 INSERT INTO `planificacion` VALUES ('InnovaTe', 'planificacion registrada', '2015-03-16', '2015-07-30');
 INSERT INTO `planificacion` VALUES ('MAD', 'planificacion registrada', '2015-03-16', '2015-07-30');
@@ -1038,11 +1124,13 @@ CREATE TABLE `puntaje` (
   PRIMARY KEY (`PUNTAJE_ID`,`ID_FORM`),
   KEY `fk_puntaje_formulario1_idx` (`ID_FORM`),
   CONSTRAINT `fk_puntaje_formulario1` FOREIGN KEY (`ID_FORM`) REFERENCES `formulario` (`ID_FORM`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of puntaje
 -- ----------------------------
+INSERT INTO `puntaje` VALUES ('1', '4', '40');
+INSERT INTO `puntaje` VALUES ('2', '4', '60');
 
 -- ----------------------------
 -- Table structure for `puntaje_ge`
@@ -1056,11 +1144,13 @@ CREATE TABLE `puntaje_ge` (
   PRIMARY KEY (`ID_PGE`),
   KEY `fk_ PUNTAJE_GE_nota_idx` (`ID_N`),
   CONSTRAINT `fk_PUNTAJE_GE_nota` FOREIGN KEY (`ID_N`) REFERENCES `nota` (`ID_N`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of puntaje_ge
 -- ----------------------------
+INSERT INTO `puntaje_ge` VALUES ('1', '1', '0', '90');
+INSERT INTO `puntaje_ge` VALUES ('2', '1', '1', '20');
 
 -- ----------------------------
 -- Table structure for `receptor`
@@ -1089,6 +1179,7 @@ INSERT INTO `receptor` VALUES ('415', 'MAD SOFTWARE SRL');
 INSERT INTO `receptor` VALUES ('416', 'NetSky System SRL');
 INSERT INTO `receptor` VALUES ('417', 'SAADS SRL');
 INSERT INTO `receptor` VALUES ('418', 'SLOW CODE SRL');
+INSERT INTO `receptor` VALUES ('424', 'Aska SRL');
 
 -- ----------------------------
 -- Table structure for `registro`
@@ -1109,7 +1200,7 @@ CREATE TABLE `registro` (
   CONSTRAINT `FK_ESTADO__REGISTRO` FOREIGN KEY (`ESTADO_E`) REFERENCES `estado` (`ESTADO_E`),
   CONSTRAINT `FK_TIPO__REGISTRO` FOREIGN KEY (`TIPO_T`) REFERENCES `tipo` (`TIPO_T`),
   CONSTRAINT `FK_USUARIO_REGISTRO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=419 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+) ENGINE=InnoDB AUTO_INCREMENT=425 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
 
 -- ----------------------------
 -- Records of registro
@@ -1121,7 +1212,7 @@ INSERT INTO `registro` VALUES ('212', 'LeticiaB', 'documento requerido', 'Habili
 INSERT INTO `registro` VALUES ('213', 'LeticiaB', 'documento requerido', 'Habilitado', 'Parte B', '2015-07-01', '16:06:08');
 INSERT INTO `registro` VALUES ('214', 'Devs', 'documento subido', 'habilitado', 'Parte A', '2015-07-01', '16:07:04');
 INSERT INTO `registro` VALUES ('215', 'Devs', 'documento subido', 'habilitado', 'Parte B', '2015-07-01', '16:07:45');
-INSERT INTO `registro` VALUES ('216', 'InnovaTe', 'documento subido', 'habilitado', 'Parte A', '2015-07-01', '16:08:14');
+INSERT INTO `registro` VALUES ('216', 'InnovaTe', 'documento subido', 'habilitado', 'Parte A', '2015-07-05', '23:15:02');
 INSERT INTO `registro` VALUES ('217', 'InnovaTe', 'documento subido', 'habilitado', 'Parte B', '2015-07-01', '16:08:25');
 INSERT INTO `registro` VALUES ('218', 'MAD', 'documento subido', 'habilitado', 'Parte A', '2015-07-01', '16:08:50');
 INSERT INTO `registro` VALUES ('219', 'MAD', 'documento subido', 'habilitado', 'Parte B', '2015-07-01', '16:09:01');
@@ -1233,6 +1324,12 @@ INSERT INTO `registro` VALUES ('415', 'LeticiaB', 'Contrato', 'Habilitado', 'Con
 INSERT INTO `registro` VALUES ('416', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoNetSky.pdf', '2015-07-02', '00:00:55');
 INSERT INTO `registro` VALUES ('417', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoSAADS.pdf', '2015-07-02', '00:00:55');
 INSERT INTO `registro` VALUES ('418', 'LeticiaB', 'Contrato', 'Habilitado', 'ContratoSLOW CODE.pdf', '2015-07-02', '00:00:55');
+INSERT INTO `registro` VALUES ('419', 'LeticiaB', 'documento subido', 'Habilitado', 'CPTIS.pdf', '2015-07-06', '11:11:33');
+INSERT INTO `registro` VALUES ('420', 'LeticiaB', 'documento subido', 'Habilitado', 'PliegoEspecificaciones012015.pdf', '2015-07-06', '11:11:33');
+INSERT INTO `registro` VALUES ('421', 'MAD', 'documento subido', 'habilitado', 'Sprint 1', '2015-07-06', '12:48:45');
+INSERT INTO `registro` VALUES ('422', 'Aska', 'documento subido', 'habilitado', 'Parte A', '2015-07-06', '13:12:19');
+INSERT INTO `registro` VALUES ('423', 'Aska', 'documento subido', 'habilitado', 'Parte B', '2015-07-06', '13:12:39');
+INSERT INTO `registro` VALUES ('424', 'LeticiaB', 'publicaciones', 'Habilitado', 'Orden de Cambio', '2015-07-06', '13:14:31');
 
 -- ----------------------------
 -- Table structure for `reporte`
@@ -1344,7 +1441,7 @@ CREATE TABLE `sesion` (
   PRIMARY KEY (`ID_S`) USING BTREE,
   KEY `FK_USUARIO_SESION` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_USUARIO_SESION` FOREIGN KEY (`NOMBRE_U`) REFERENCES `usuario` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=266 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=303 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sesion
@@ -1384,6 +1481,43 @@ INSERT INTO `sesion` VALUES ('262', 'LeticiaB', '2015-07-03', '10:24:21', '::1')
 INSERT INTO `sesion` VALUES ('263', 'LeticiaB', '2015-07-03', '11:05:23', '::1');
 INSERT INTO `sesion` VALUES ('264', 'LeticiaB', '2015-07-03', '12:26:26', '::1');
 INSERT INTO `sesion` VALUES ('265', 'InnovaTe', '2015-07-03', '12:27:33', '::1');
+INSERT INTO `sesion` VALUES ('266', 'LeticiaB', '2015-07-05', '23:04:46', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('267', 'InnovaTe', '2015-07-05', '23:05:00', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('268', 'LeticiaB', '2015-07-05', '23:07:55', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('269', 'InnovaTe', '2015-07-05', '23:10:16', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('270', 'LeticiaB', '2015-07-05', '23:12:02', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('271', 'InnovaTe', '2015-07-05', '23:14:08', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('272', 'LeticiaB', '2015-07-06', '11:32:11', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('273', 'Admin1', '2015-07-06', '12:13:05', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('274', 'InnovaTe', '2015-07-06', '12:19:03', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('275', 'Aska', '2015-07-06', '12:34:48', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('276', 'LeticiaB', '2015-07-06', '12:35:14', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('277', 'LeticiaB', '2015-07-06', '12:38:31', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('278', 'InnovaTe', '2015-07-06', '12:41:35', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('279', 'MAD', '2015-07-06', '12:43:27', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('280', 'Devs', '2015-07-06', '12:46:06', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('281', 'MAD', '2015-07-06', '12:47:47', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('282', 'LeticiaB', '2015-07-06', '12:49:26', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('283', 'Aska', '2015-07-06', '13:10:56', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('284', 'LeticiaB', '2015-07-06', '13:11:40', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('285', 'InnovaTe', '2015-07-06', '13:16:25', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('286', 'LeticiaB', '2015-07-06', '13:31:11', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('287', 'Admin1', '2015-07-06', '13:32:17', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('288', 'LeticiaB', '2015-07-06', '13:36:41', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('289', 'LeticiaB', '2015-07-06', '14:56:27', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('290', 'Admin1', '2015-07-06', '15:01:25', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('291', 'Aska', '2015-07-06', '15:06:33', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('292', 'LeticiaB', '2015-07-06', '15:10:23', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('293', 'InnovaTe', '2015-07-06', '15:15:11', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('294', 'InnovaTe', '2015-07-06', '15:21:56', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('295', 'Devs', '2015-07-06', '15:24:36', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('296', 'Devs', '2015-07-06', '15:25:36', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('297', 'Admin1', '2015-07-06', '15:37:08', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('298', 'LeticiaB', '2015-07-06', '15:37:41', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('299', 'InnovaTe', '2015-07-06', '15:38:06', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('300', 'InnovaTe', '2015-07-06', '15:52:27', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('301', 'InnovaTe', '2015-07-13', '15:29:09', '127.0.0.1');
+INSERT INTO `sesion` VALUES ('302', 'LeticiaB', '2015-07-13', '15:29:32', '127.0.0.1');
 
 -- ----------------------------
 -- Table structure for `socio`
@@ -1399,29 +1533,29 @@ CREATE TABLE `socio` (
   UNIQUE KEY `uniq_correo` (`CORREO`),
   KEY `FK_GRUPO_EMPRESA__SOCIO` (`NOMBRE_U`) USING BTREE,
   CONSTRAINT `FK_GRUPO_EMPRESA__SOCIO` FOREIGN KEY (`NOMBRE_U`) REFERENCES `grupo_empresa` (`NOMBRE_U`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=819;
 
 -- ----------------------------
 -- Records of socio
 -- ----------------------------
 INSERT INTO `socio` VALUES ('40', 'Devs', 'Vania Marisela ', 'Catorceno Carballo', null);
 INSERT INTO `socio` VALUES ('41', 'Devs', 'Dan Joel', 'Canqui Aviles', null);
-INSERT INTO `socio` VALUES ('42', 'Devs', 'Daniel', 'Rocha Perez', null);
-INSERT INTO `socio` VALUES ('43', 'Devs', 'Denis', 'Vazques Flores', null);
-INSERT INTO `socio` VALUES ('44', 'Devs', 'Diego Armando', 'Zambrana Arze', null);
-INSERT INTO `socio` VALUES ('45', 'InnovaTe', 'Antonio', 'Alurralde', null);
-INSERT INTO `socio` VALUES ('46', 'InnovaTe', 'Andreina', 'Cota', null);
-INSERT INTO `socio` VALUES ('47', 'InnovaTe', 'Fernando', 'Gutierrez', null);
-INSERT INTO `socio` VALUES ('48', 'InnovaTe', 'Marcelo', 'Torrico', null);
-INSERT INTO `socio` VALUES ('49', 'InnovaTe', 'Winder', 'Chiri', null);
+INSERT INTO `socio` VALUES ('42', 'Devs', 'Daniel', 'Rocha Perez', '');
+INSERT INTO `socio` VALUES ('43', 'Devs', 'Denis', 'Vazques Flores', 'vasquez.w7@gmail.com');
+INSERT INTO `socio` VALUES ('44', 'Devs', 'Diego Armando', 'Zambrana Arze', 'contacto@diegozambrana.com');
+INSERT INTO `socio` VALUES ('45', 'InnovaTe', 'Antonio', 'Alurralde', 'teo.dev.bo@gmail.com');
+INSERT INTO `socio` VALUES ('46', 'InnovaTe', 'Andreina', 'Cota', 'cotvyanghy@gmail.com');
+INSERT INTO `socio` VALUES ('47', 'InnovaTe', 'Fernando', 'Gutierrez', 'fernando279@gmail.com');
+INSERT INTO `socio` VALUES ('48', 'InnovaTe', 'Marcelo', 'Torrico', 'marcelo.torrico34@gmail.com');
+INSERT INTO `socio` VALUES ('49', 'InnovaTe', 'Winder', 'Chiri', 'winder_hardik_19@gmail.com');
 INSERT INTO `socio` VALUES ('50', 'MAD', 'Juan Manuel', 'Castro Arnez', null);
 INSERT INTO `socio` VALUES ('51', 'MAD', 'Alison', 'Fernandez Blanco', null);
 INSERT INTO `socio` VALUES ('52', 'MAD', 'Diego Gabriel', 'NuÃ±ez Duran', null);
-INSERT INTO `socio` VALUES ('53', 'NetSky', 'Norman', 'Antezana Pinto', null);
-INSERT INTO `socio` VALUES ('54', 'NetSky', 'Dario Edson', 'Chacon Paichucama', null);
-INSERT INTO `socio` VALUES ('55', 'NetSky', 'Erlinda', 'Chambi Manzano', null);
-INSERT INTO `socio` VALUES ('56', 'NetSky', 'Claudia Dolinda', 'Torrico', null);
-INSERT INTO `socio` VALUES ('57', 'NetSky', 'Ruben ', 'Villca Fernandez', null);
+INSERT INTO `socio` VALUES ('53', 'NetSky', 'Norman', 'Antezana Pinto', 'norman9_182@hotmail.com');
+INSERT INTO `socio` VALUES ('54', 'NetSky', 'Dario Edson', 'Chacon Paichucama', 'eddarion6@gmail.com');
+INSERT INTO `socio` VALUES ('55', 'NetSky', 'Erlinda', 'Chambi Manzano', 'lindacm18@hotmail.com');
+INSERT INTO `socio` VALUES ('56', 'NetSky', 'Claudia Dolinda', 'Torrico', 'the_girls_happy_islove17@hotmail.com');
+INSERT INTO `socio` VALUES ('57', 'NetSky', 'Ruben ', 'Villca Fernandez', 'ruben_wolf_9@hotmail.com');
 INSERT INTO `socio` VALUES ('58', 'SAADS', 'Enrique Daniel ', 'Antezana Vargas', null);
 INSERT INTO `socio` VALUES ('59', 'SAADS', 'Beimar E. ', 'Huarachi Mamani', null);
 INSERT INTO `socio` VALUES ('60', 'SAADS', 'Jorge ', 'Avila Baldiviezo', null);
@@ -1430,6 +1564,9 @@ INSERT INTO `socio` VALUES ('62', 'SLOW', 'Melisa Stefani', 'Carballo Valencia',
 INSERT INTO `socio` VALUES ('63', 'SLOW', 'Cristhian', 'Lima Sarabia', null);
 INSERT INTO `socio` VALUES ('64', 'SLOW', 'Santiago', 'Quiroga Turdera', null);
 INSERT INTO `socio` VALUES ('65', 'SLOW', 'Rodrigo David', 'Rivera Ortega', null);
+INSERT INTO `socio` VALUES ('66', 'Aska', 'Pablo', 'Guitierrez', 'pablo@gmail.com');
+INSERT INTO `socio` VALUES ('67', 'Aska', 'Ricardo', 'Fuentes', 'ricardo@gmail.com');
+INSERT INTO `socio` VALUES ('68', 'Aska', 'Lionel', 'Messi', 'lionel@gmail.com');
 
 -- ----------------------------
 -- Table structure for `tipo`
