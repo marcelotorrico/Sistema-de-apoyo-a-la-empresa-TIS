@@ -12,15 +12,15 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/Saetis2/Controlador/RegistrarSeguimientoSemanal.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/SubirDocumento.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Librerias/lib/funcion.js</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/AsistenciaSemanal.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaModalSeguimientoSemanal.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaSeguimientoSemanal.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/AdministrarGrupoEmpresa.php</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Librerias/lib/funcionSeguimiento.js</file>
-            <file>file:/C:/xampp/htdocs/Saetis2/Vista/VistaModalSeguimiento.php</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/inicio_asesor.php</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/evaluacionFinal.php</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/Prueba.php</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Controlador/evaluacionFinalBD.php</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Librerias/lib/funcion.js</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/Prueba2.html</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/Prueba.html</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/evaluacion.php</file>
+            <file>file:/C:/xampp/htdocs/SAETIS/Sistema-de-apoyo-a-la-empresa-TIS/Vista/lista_evaluacion.php</file>
         </group>
     </open-files>
 </project-private>
