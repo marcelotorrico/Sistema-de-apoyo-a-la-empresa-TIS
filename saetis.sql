@@ -7,6 +7,10 @@ Source Database       : saetis
 Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3950f4f96a65ed47d3be026fa5d57f0e03cc4ca4
 Date: 2015-07-13 20:35:17
 */
 
